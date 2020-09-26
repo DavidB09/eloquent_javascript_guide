@@ -19,39 +19,63 @@ document.getElementById("main-header-div").append(secondHeader);
 
 //ELOQUENT JAVASCRIPT LINKS
 // Create a div for the Eloquent JavaScript links
+var resources = document.createElement("div"); 
+resources.id = "resources-div";
+document.body.append(resources); 
+
 var bookLinkDiv = document.createElement("div"); 
 bookLinkDiv.id = "book-links-div";
-document.body.append(bookLinkDiv); 
+document.getElementById("resources-div").append(bookLinkDiv); 
+
+//Create an image of the book cover
+var bookCoverImage = document.createElement("img");
+bookCoverImage.id = "book-cover-image";
+bookCoverImage.src = "../Intro/Book_Cover.jpg"; 
+bookCoverImage.alt = "Eloquent JavaScript Cover"; 
+document.getElementById("book-links-div").append(bookCoverImage); 
+
+//Create a div
+var linksDiv = document.createElement("div");
+linksDiv.id = "links";
+document.getElementById("book-links-div").append(linksDiv); 
+
+//Create a div for first link
+var firstLinkDiv = document.createElement("div"); 
+firstLinkDiv.id = "first-link-div"; 
+document.getElementById("links").append(firstLinkDiv); 
+
+// Create a p for the Eloquent JavaScript website link
+var link1 = document.createElement("p"); 
+link1.id = "link1"; 
+link1.innerText = "The entire book is available online for free: "; 
+document.getElementById("first-link-div").append(link1); 
 
 // Create a href link for the Eloquent JavaScript website
 var link1Element = document.createElement("a"); 
 link1Element.innerText = "Eloquent JavaScript Website"; 
 link1Element.href = "https://eloquentjavascript.net/index.html"; 
-link1Element.title = "Eloquent JavaScript Website"; 
+link1Element.alt = "Eloquent JavaScript Website"; 
+link1Element.target = "_blank"; 
+document.getElementById("first-link-div").append(link1Element); 
+
+// Create a div for the second link
+var secondLinkDiv = document.createElement("div");
+secondLinkDiv.id = "second-link-div"; 
+document.getElementById("links").append(secondLinkDiv); 
+
+// Create a p for the Amazon link to Eloquent JavaScript
+var links2 = document.createElement("p"); 
+links2.id = "link2"; 
+links2.innerText = "The entire book is also available for purchase: " 
+document.getElementById("second-link-div").append(links2); 
 
 // Create a href link for Amazon to purchase Eloquent JavaScript
 var link2Element = document.createElement("a");
 link2Element.innerText = "Amazon"; 
 link2Element.href = "https://www.amazon.com/gp/product/1593279507/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1593279507&linkCode=as2&tag=marijhaver-20&linkId=d8642c0457954f03e27c02b0034d0d60"; 
-link2Element.title = "Amazon"; 
-
-// Create a p1 for the Eloquent JavaScript website link
-var links = document.createElement("p1"); 
-links.id = "link"; 
-links.innerText = "The entire book is available online for free: " 
-links.append(link1Element); 
-document.getElementById("book-links-div").appendChild(links); 
-
-// Create a newline
-var break1 = document.createElement("br"); 
-bookLinkDiv.append(break1); 
-
-// Create a p1 for the amazon link to Eloquent JavaScript
-var links2 = document.createElement("p2"); 
-links2.id = "link2"; 
-links2.innerText = "The entire book is also available for purchase: " 
-links2.append(link2Element); 
-document.getElementById("book-links-div").appendChild(links2); 
+link2Element.alt = "Amazon"; 
+link2Element.target = "_blank"; 
+document.getElementById("second-link-div").append(link2Element); 
 
 
 //NAVBAR
@@ -100,10 +124,12 @@ navbar3.append(unorderedList3);
 
 var styles = `
     html {
-        font-size: 62.5%; 
+        font-size: 62.5%;
+        overflow-y: scroll; 
     }    
 
     body {
+        margin: 0;
         font-size: 2rem;
         font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif;
     }
@@ -111,19 +137,73 @@ var styles = `
     #main-header-div { 
         display: flex;
         flex-direction: column;
-        justify-content: center; 
-        align-items: center;
+        text-align: center;
         margin: 0 auto;
-        padding: 5rem;
+        padding: 15rem 10rem 10rem 10rem;
         background-color: #f8d410;
+    }
+
+    #resources-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10rem;
     }
 
     #book-links-div {
         display: flex;
         flex-direction: column;
-        align-items: center; 
-        margin: 0 auto;
-        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #book-cover-image {
+        height: 100%;
+        width: 100%;
+    }
+
+    #links {
+        display: none;
+        position: relative;
+    }
+
+    #first-link-div {
+        position: absolute;
+        text-align: center;
+        transform: translate(-50%, -300%);
+        width: 30rem; 
+        margin-bottom: 1rem;
+        padding: 2rem;
+        background-color: rgb(0,0,0); 
+        background-color: rgba(0,0,0, 0.8);
+        color: white;
+        border: 0.5rem solid white;
+    }
+
+    #second-link-div {
+        position: absolute;
+        text-align: center;
+        transform: translate(-50%, -200%);
+        width: 30rem; 
+        margin-top: 1rem;
+        padding: 2rem;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.8);
+        color: white;
+        border: 0.5rem solid white;
+    }
+
+    #links a{
+        color: #ac77f2; 
+    }
+
+    #book-cover-image:hover + #links{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #book-links-div:hover #book-cover-image{
+        filter: blur(8px); 
     }
 
     #navbar-div {
@@ -151,12 +231,8 @@ var styles = `
     a {
         text-decoration: none;
         color: purple; 
-        transition: color 0.1s ease-out; 
     }
 
-    a:hover {
-        color: red;
-    }
 `
 var styleSheet = document.createElement("style"); 
 styleSheet.type = "text/css";
