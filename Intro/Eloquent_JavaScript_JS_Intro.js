@@ -6,43 +6,50 @@ document.body.append(mainHeaderDiv);
 
 // Create the header for the title
 var mainHeader = document.createElement("h1"); 
-mainHeader.id = "mainHeader";
+mainHeader.id = "main-header";
 mainHeader.innerHTML = "Welcome to the (Unofficial) Exercise Guide of Eloquent JavaScript";
 document.getElementById("main-header-div").append(mainHeader); 
 
 // Create the header for the creator's name 
 var secondHeader = document.createElement("h2");
-secondHeader.id = "secondHeader";
+secondHeader.id = "second-header";
 secondHeader.innerHTML = "Created by David Brunner (A Rookie JavaScript Pupil)"; 
 document.getElementById("main-header-div").append(secondHeader); 
 
 
 //ELOQUENT JAVASCRIPT LINKS
-// Create a div for the Eloquent JavaScript links
-var resources = document.createElement("div"); 
-resources.id = "resources-div";
-document.body.append(resources); 
-
+//Create a div for the resources
 var bookLinkDiv = document.createElement("div"); 
-bookLinkDiv.id = "book-links-div";
+bookLinkDiv.id = "resources-div";
+document.body.append(bookLinkDiv); 
+
+//Create a div for the blur effect 
+var bookLinkDiv = document.createElement("div"); 
+bookLinkDiv.id = "inner-resources-div";
 document.getElementById("resources-div").append(bookLinkDiv); 
+
+//Create a figure for the book cover
+var bookCoverFigure = document.createElement("figure"); 
+bookCoverFigure.id="book-cover-figure"; 
+document.getElementById("inner-resources-div").append(bookCoverFigure); 
 
 //Create an image of the book cover
 var bookCoverImage = document.createElement("img");
 bookCoverImage.id = "book-cover-image";
 bookCoverImage.src = "../Intro/Book_Cover.jpg"; 
-bookCoverImage.alt = "Eloquent JavaScript Cover"; 
-document.getElementById("book-links-div").append(bookCoverImage); 
+bookCoverImage.alt = "Eloquent JavaScript Cover";
+bookCoverImage.style="width: 100%; height: 100%" ; 
+document.getElementById("book-cover-figure").append(bookCoverImage); 
 
-//Create a div
+//Create a div for the book links
 var linksDiv = document.createElement("div");
-linksDiv.id = "links";
-document.getElementById("book-links-div").append(linksDiv); 
+linksDiv.id = "book-links";
+document.getElementById("inner-resources-div").append(linksDiv); 
 
 //Create a div for first link
 var firstLinkDiv = document.createElement("div"); 
 firstLinkDiv.id = "first-link-div"; 
-document.getElementById("links").append(firstLinkDiv); 
+document.getElementById("book-links").append(firstLinkDiv); 
 
 // Create a p for the Eloquent JavaScript website link
 var link1 = document.createElement("p"); 
@@ -61,7 +68,7 @@ document.getElementById("first-link-div").append(link1Element);
 // Create a div for the second link
 var secondLinkDiv = document.createElement("div");
 secondLinkDiv.id = "second-link-div"; 
-document.getElementById("links").append(secondLinkDiv); 
+document.getElementById("book-links").append(secondLinkDiv); 
 
 // Create a p for the Amazon link to Eloquent JavaScript
 var links2 = document.createElement("p"); 
@@ -143,28 +150,33 @@ var styles = `
         background-color: #f8d410;
     }
 
-    #resources-div {
+      #resources-div {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         margin-top: 10rem;
     }
 
-    #book-links-div {
-        display: flex;
+    #inner-resources-div {
+        display: flex; 
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    #book-cover-image {
-        height: 100%;
-        width: 100%;
+    #book-cover-figure {
+        display: flex; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    #links {
-        display: none;
+    #book-links {
+        display: flex; 
+        flex-direction: column;
         position: relative;
+        opacity: 0; 
     }
 
     #first-link-div {
@@ -193,16 +205,19 @@ var styles = `
         border: 0.5rem solid white;
     }
 
-    #links a{
+    #book-links a{
         color: #ac77f2; 
     }
 
-    #book-cover-image:hover + #links{
-        display: flex;
-        flex-direction: column;
+    #book-cover-figure:hover + #book-links{
+        opacity: 1; 
     }
 
-    #book-links-div:hover #book-cover-image{
+    #book-links:hover {
+        opacity: 1; 
+    }
+
+    #inner-resources-div:hover #book-cover-image {
         filter: blur(8px); 
     }
 
