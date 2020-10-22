@@ -1,32 +1,32 @@
 //MAIN TITLE AND HEADER
 // Create the div for the main header
-var mainHeaderDiv = document.createElement("div"); 
-mainHeaderDiv.id = "main-header-div";  
+var mainHeaderDiv = document.createElement("header"); 
+mainHeaderDiv.id = "main-header-element"; 
 document.body.append(mainHeaderDiv); 
 
 // Create the header for the title
 var mainHeader = document.createElement("h1"); 
-mainHeader.id = "main-header";
-mainHeader.innerHTML = "Welcome to the (Unofficial) Exercise Guide of Eloquent JavaScript";
-document.getElementById("main-header-div").append(mainHeader); 
+mainHeader.id = "intro-main-header";
+mainHeader.innerHTML = "Welcome to the (Unofficial) Exercise Guide of <em>Eloquent JavaScript<em>";
+document.getElementById("main-header-element").append(mainHeader); 
 
 // Create the header for the creator's name 
 var secondHeader = document.createElement("h2");
 secondHeader.id = "second-header";
 secondHeader.innerHTML = "Created by David Brunner (A Rookie JavaScript Pupil)"; 
-document.getElementById("main-header-div").append(secondHeader); 
+document.getElementById("main-header-element").append(secondHeader); 
 
 
 //ELOQUENT JAVASCRIPT LINKS
 //Create a div for the resources
-var bookLinkDiv = document.createElement("div"); 
-bookLinkDiv.id = "resources-div";
+var bookLinkDiv = document.createElement("article"); 
+bookLinkDiv.id = "resources-article";
 document.body.append(bookLinkDiv); 
 
 //Create a div for the blur effect 
 var bookLinkDiv = document.createElement("div"); 
 bookLinkDiv.id = "inner-resources-div";
-document.getElementById("resources-div").append(bookLinkDiv); 
+document.getElementById("resources-article").append(bookLinkDiv); 
 
 //Create a figure for the book cover
 var bookCoverFigure = document.createElement("figure"); 
@@ -87,41 +87,62 @@ document.getElementById("second-link-div").append(link2Element);
 
 //NAVBAR
 //Create a div element for the navbar
-var navbarDiv = document.createElement("div");
-navbarDiv.id = "navbar-div"; 
+var navbarDiv = document.createElement("article");
+navbarDiv.id = "navbar-article"; 
 document.body.append(navbarDiv); 
 
 //Create a div element for 3rd Ed.
-var navbarDiv3 = document.createElement("div"); 
-navbarDiv3.id = "navbar-div-3rd-Ed"; 
+var navbarDiv3 = document.createElement("section"); 
+navbarDiv3.id = "navbar-section-3rd-Ed"; 
 navbarDiv.append(navbarDiv3); 
 
 //Create a header for 3rd Ed. 
 var header3rdEd = document.createElement("h3"); 
 header3rdEd.id = "header-3rd-Ed"; 
 header3rdEd.innerHTML = "3rd Edition"; 
-document.getElementById("navbar-div-3rd-Ed").append(header3rdEd); 
+document.getElementById("navbar-section-3rd-Ed").append(header3rdEd); 
 
 // Create a navbar for 3rd Ed. 
 var navbar3 = document.createElement("nav"); 
 navbar3.id = "navbar-3rd-Ed";
-document.getElementById("navbar-div-3rd-Ed").append(navbar3); 
+document.getElementById("navbar-section-3rd-Ed").append(navbar3); 
 
 //Create unorderedList
 var unorderedList3 = document.createElement("ul"); 
+
+
+//Create link for intro
+var page30 = document.createElement("li"); 
+var page30Link = document.createElement("a"); 
+page30Link.innerText = "Intro"; 
+page30Link.href="../Intro/Eloquent_JavaScript_HTML_Intro.html";
+page30Link.alt="Intro Link"; 
+page30Link.title="Chapter 1"; 
+page30.appendChild(page30Link); 
+unorderedList3.append(page30); 
 
 //Create link for first Chapter
 var page31 = document.createElement("li"); 
 var page31Link = document.createElement("a"); 
 page31Link.innerText = "Chapter 1 (Part 1: Language)"; 
 page31Link.href = "../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html"; 
+page31Link.alt = "Chapter 1 Link"; 
 page31Link.title = "Chapter 1";
 page31.appendChild(page31Link); 
 unorderedList3.append(page31); 
 
 //Create link for second Chapter
-//var page32 = document.createElement("li");
-//var page32Link = document.createElement("a"); 
+var page32 = document.createElement("li"); 
+var page32Link = document.createElement("a"); 
+page32Link.innerText = "Chapter 2"; 
+page32Link.href = "../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html"; 
+page32Link.alt = "Chapter 2 Link"; 
+page32Link.title="Chapter 2"; 
+page32.appendChild(page32Link); 
+unorderedList3.append(page32)
+
+//Create a link for third chapter
+//var page33 = document.createElement("li"); 
 
 // Add links to the unordered list
 navbar3.append(unorderedList3); 
@@ -141,7 +162,7 @@ var styles = `
         font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif;
     }
 
-    #main-header-div { 
+    #main-header-element { 
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -150,7 +171,7 @@ var styles = `
         background-color: #f8d410;
     }
 
-      #resources-div {
+      #resources-article {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -221,19 +242,19 @@ var styles = `
         filter: blur(8px); 
     }
 
-    #navbar-div {
+    #navbar-article {
         display: flex;
         justify-content: space-around;
         align-items: center;
         padding: 8rem;
     }
 
-    #navbar-div-3rd-Ed {
+    #navbar-section-3rd-Ed {
         padding: 5rem;
         transition: background-color 0.3s ease-out;
     }
 
-    #navbar-div-3rd-Ed:hover {
+    #navbar-section-3rd-Ed:hover {
         background-color: #f8d410;
     }
 
@@ -243,9 +264,17 @@ var styles = `
         padding: 0;
     }
 
+    li {
+        padding-top: 3rem; 
+    }
+
     a {
         text-decoration: none;
         color: purple; 
+    }
+
+    a:hover {
+        color: red; 
     }
 
 `
