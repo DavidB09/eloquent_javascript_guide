@@ -18,17 +18,18 @@ header {
 }
 
 #exercise-problems .panel {
-   border : solid 1px #D6D6D6;
+   display: flex; 
+   flex-direction: column; 
+   border : solid 1px #f8d410;
    padding: 2rem; 
    margin: 2rem; 
  }
 
 #exercise-problems .header {
    display: flex; 
-   flex-direction: flex-end; 
-   font-size: 3rem; 
+   justify-content: flex-start; 
+   font-size: 2rem; 
    color: purple; 
-   padding: 0.5rem; 
    margin-left: 2rem; 
 }
 
@@ -43,8 +44,10 @@ header {
 
  #exercise-problems .active .body {
     display : flex;
+    flex-direction: column; 
+    justify-content: flex-start; 
     padding: 0.5rem; 
-    margin-left: 2rem; 
+    margin-left: 2.5rem; 
  }
 
  #navbar-article {

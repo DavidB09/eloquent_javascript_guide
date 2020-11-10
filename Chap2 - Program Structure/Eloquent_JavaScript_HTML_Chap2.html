@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap2.css">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap2.css"/>
+    <link href="../Assets/CSS/prism.css" rel="stylesheet"/>
     <title>Eloquent JavaScript - Chapter 2</title>
 </head>
 
 <body>
     
+    <script src="../Assets/JavaScript/prism.js"></script>
+
     <header>
         <h1 id="chapter2-main-header">Chapter 2, "Program Structure":</h1>
     </header>
@@ -20,18 +23,202 @@
         <article id="exercise-problems">
 
             <section id="exercise1" class="panel">
-                 <div id="exercise-header" class="header">Looping a Triangle</div>
-                 <div id="personal-answer" class="body">body of panel 1</div>
+                <div id="exercise-header" class="header"><h2 style="font-weight: normal">Looping a Triangle</h2></div>
+
+                <div id="exercise-question" class="body">
+                    <h3>Question</h3>
+                
+                    <p>Write a loop that makes seven calls to <code>console.log</code> to output the following triangle:</p>
+
+                    <pre class="language-markup"><code class="language-markup">#    
+##  
+###
+####
+#####
+######
+#######            </code></pre>
+                </div>
+
+                <div id="personal-answer" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class=" language-javascript">let answer = "#";
+for (let i = 0; i < 7; i++) {
+    console.log(answer); 
+    answer += "#"; 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation" class="body">
+                    <p><code>Line 1</code> binds <code>answer</code> to the character in the first row of the answer.</p>
+
+                    <p><code>Line 2 - Line 5</code> introduce a <code>for</code> loop that checks if <code>i</code> is less than the number of rows in the answer. If the <code><</code> comparison is <code>true</code>, it prints out the current answer and appends the hash sign character to the answer. Then, 1 is added to <code>i</code> and the loop continues to its next iteration</p> 
+                </div>
+
+                <div id="official-answer" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">for (let line = "#"; line.length < 8; line += "#")
+console.log(line);  </code></pre>
+                </div>
+
+                <div id="official-answer-explanation" class="body">
+                    <p>The author's answer also uses the <code>for</code> loop but more concisely.</p>
+                    
+                    <p><code>Line 1 - Line 2</code> binds <code>line</code> to the character in the first row of the answer. While the length of <code>line</code> is less than the intended number of hash marks in the final row of the answer, a hash sign character is added to the string and the loop continues to its next iteration.</p>
+                </div>
             </section>
 
             <section id="exercise2" class="panel">
-                 <div id="exercise-header2" class="header">FizzBuzz</div>
-                 <div id="personal-answer2" class="body">body of panel 2</div>
+                <div id="exercise-header2" class="header"><h2 style="font-weight: normal">FizzBuzz</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write a program that uses <code>console.log</code> to print all the numbers from 1 to 100, with two exceptions. For numbers divisible by 3, print <code>"Fizz"</code> instead of the number, and for numbers divisible by 5 (and not 3), print <code>"Buzz"</code> instead.</p>
+
+                    <p>When you have that working, modify your program to print <code>"FizzBuzz"</code> for numbers that are divisible by both 3 and 5 (and still print <code>"Fizz"</code> or <code>"Buzz"</code> for numbers divisible by only one of those).</p>
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">for (let i = 1; i <= 100; i++) {
+    if (i % 3 == 0) {
+        if (i % 5) {
+            console.log("FizzBuzz")
+        } else {
+            console.log("Fizz"); 
+        }
+    } else if (i % 5 == 0) {
+        console.log("Buzz"); 
+    } else {
+        console.log(i); 
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+                    <p><code>Line 1</code> creates a <code>for</code> loop that binds <code>i</code> to 1 and checks if it's value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through it's next statements before moving on to the next iteration.</p>
+                
+                    <p><code>Line 2</code> checks if <code>i</code> is divisible by 3 with the remainder of 0 with a conditional statement.</p>
+                    
+                    <p>If <code>Line 2</code> is <code>true</code>, then <code>Line 3 - 7</code> checks if <code>i</code> is also divisible by 5 with the remainder of 0. If <code>true</code>, then <code>FizzBuzz</code> is printed to the console. Else, <code>Fizz</code> is printed.</p>
+                    
+                    <p>If <code>Line 2</code> is <code>false</code>, then <code>Line 8 - 9</code> checks if <code>i</code> is divisible by 5 with the remainder of 0. If <code>true</code>, then <code>Buzz</code> is printed on the console.</p>
+                
+                    <p>If all of the previous conditions were <code>false</code>, then <code>i</code>, or the regular number, is printed to the console.</p>
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">for (let n = 1; n <= 100; n++) {
+    let output = "";
+    if (n % 3 == 0) output += "Fizz";
+    if (n % 5 == 0) output += "Buzz";
+    console.log(output || n);
+}                    </code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    <p><code>Line 1</code> creates a <code>for</code> loop that binds <code>n</code> to 1 and checks if it's value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through its next statements before moving on to the next interation.</p>
+                
+                    <p><code>Line 2</code> binds <code>output</code> to an empty string.</p>
+
+                    <p><code>Line 3</code> uses a conditional statement to check whether <code>n</code> is divisible by 3 with a remainder of 0. If <code>true</code>, then the string <code>Fizz</code> is added to <code>output</code>.</p>
+                
+                    <p><code>Line 4</code> uses a conditional statement to check whether <code>n</code> is divisible by 5 with a remainder of 0. If <code>true</code>, then the string <code>Buzz</code> is added to <code>output</code>.</p>
+                
+                    <p><code>Line 5</code> uses an "or" operator to check whether <code>output</code> is an empty string. If <code>output</code> has no value, then <code>n</code> is printed to the console. Else, <code>output</code> is printed to the console.</p>
+                </div>
             </section>
 
             <section id="exercise3" class="panel">
-                 <div id="exercise-header3" class="header">Chessboard</div>
-                 <div id="personal-answer3" class="body">body of panel 3</div>
+                <div id="exercise-header3" class="header"><h2 style="font-weight:normal">Chessboard</h2></div>
+                
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write a program that creates a string that represents an 8×8 grid, using newline characters to separate lines. At each position of the grid there is either a space or a "#" character. The characters should form a chessboard.</p>
+
+                    <pre class="language-markup"><code class="language-markup"> # # # #
+# # # # 
+ # # # #
+# # # # 
+ # # # #
+# # # # 
+ # # # #
+# # # #             </code></pre>
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">let binding = 8; 
+let finalString = ""; 
+for (let a = 1; a <= binding; a++) {
+    for (let b = 1; b <= binding; b++) { 
+        if (a % 2 == 0) {
+            b % 2 == 0 ? finalString += " " : finalString += "#"; 
+        } else {
+            b % 2 == 0 ? finalString += "#" : finalString += " "; 
+        }
+    }
+    finalString += "\n"; 
+}     
+console.log(finalString);</code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+                    <p><code>Line 1 - Line 2</code> binds the length and width of the grid to <code>binding</code> and initializes <code>finalString</code> to an empty string.</p>
+
+                    <p><code>Line 3</code> creates a <code>for</code> loop that is intended to represent each row of the matrix. While <code>a</code> is less than <code>binding</code>, the loop executes its next statements before moving on to the next row.</p>
+
+                    <p><code>Line 4</code> also creates a <code>for</code> loop that represents the characters in a particular row. While <code>b</code> is less than <code>binding</code>, a particular character is added to <code>finalString</code> before moving on to the next character.</p>
+
+                    <p><code>Line 5</code> checks whether the current row is divisible by 2 with a remainder of 0, or whether it is even or odd.</p>
+
+                    <p>If <code>Line 5</code> is <code>true</code>, <code>Line 6</code> uses an abbreviated version of the <code>if</code> conditional statement to check whether the current character is even or odd. If the <code><</code> comparison preceding the <code>?</code> character is <code>true</code>, then an empty space or <code>" "</code> is added to <code>finalString</code>. Else, a hash sign or <code>"#"</code> is added to <code>finalString</code>.</p>
+                
+                    <p>Since the all of the even chessboard rows begin with a hash sign, the condition statement results in <code>Line 8</code> are switched whenever <code>Line 5</code> is <code>false</code>. Now, if the <code><</code> comparison preceding the <code>?</code> character is <code>true</code>, an hash sign is added <code>finalString</code>. When <code>false</code>, an empty space is added.</p>
+                
+                    <p><code>Line 11</code> adds a newline character to <code>fnialString</code> whenever a row is completed, causing the next row to be on a new line instead of one long continous string.</p>
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">let size = 8;
+let board = "";
+for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+        if ((x + y) % 2 == 0) {
+            board += " ";
+        } else {
+            board += "#";
+        }
+    }
+    board += "\n";
+}
+console.log(board); </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    <p><code>Line 1 - Line 2</code> binds the length and width of the grid to <code>size</code> and initializes <code>board</code> to an empty string.</p>
+
+                    <p><code>Line 3</code> creates a <code>for</code> loop that is intended to represent each row of the matrix. While <code>y</code> is less than <code>size</code>, the loop executes its next statements before moving on to the next row.</p>
+
+                    <p><code>Line 4</code> also creates a <code>for</code> loop that represents the characters in a particular row. While <code>x</code> is less than <code>size</code>, a particular character is added to <code>board</code> before moving on to the next character.</p>
+
+                    <p><code>Line 5</code> uses a conditonal statement to check whether the values of <code>x</code> and <code>y</code> added together is even or odd.</p>
+
+                    <p>If <code>Line 5</code> is true and the result is even, <code>Line 6</code> adds an empty space character to <code>board</code>.</p>
+
+                    <p>Else, <code>Line 8</code> adds a hash sign character when <code>x</code> and <code>y</code> added together results in an odd value.</p>
+
+                    <p><code>Line 11</code> adds a newline character to <code>board</code> whenever a row is completed.</p>
+                </div>
             </section>
 
         </article>

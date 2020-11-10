@@ -1,16 +1,16 @@
 function initAccordion(accordionElem){
   
-  var allPanelElems = accordionElem.querySelectorAll(".panel");
+  var allPanelElems = accordionElem.querySelectorAll(".header");
   for (var i = 0, len = allPanelElems.length; i < len; i++){
        allPanelElems[i].addEventListener("click", handlePanelClick);
   }
 
   function handlePanelClick(event){
-  
-    if(event.currentTarget.classList.contains("active")) {
-      hidePanel(event.currentTarget);
+
+    if(event.currentTarget.parentElement.classList.contains("active")) {
+      hidePanel(event.currentTarget.parentElement);
     } else {
-      showPanel(event.currentTarget); 
+      showPanel(event.currentTarget.parentElement); 
     }
   }
   
