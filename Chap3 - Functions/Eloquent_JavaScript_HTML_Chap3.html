@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap3.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
+    <title>Eloquent JavaScript - Chapter 3</title>
+</head>
+
+<body>
+
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+    <header>
+        <h1 id="chapter3-main-header">Chapter 3, "Functions"</h1>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header" class="header"><h2 style="font-weight: normal">Minimum</h2></div>
+
+                <div id="exercise-question" class="body">
+                    <h3>Question</h3>
+                
+                    <p>Write a function <code>min</code> that takes two arguments and returns their minimum.</p>
+                </div>
+
+                <div id="personal-answer" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function min(num1, num2) {
+    if (num1 < num2)
+        return num1; 
+    else  
+        return num2; 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation" class="body">
+                    <p><code>Line 1</code> declares <code>min</code> as a function with two parameters.</p>
+
+                    <p><code>Line 2 - Line 3</code> uses an <code>if</code> statement that checks whether <code>num1</code> is smaller than <code>num2</code>. If the <code><</code> comparison is <code>true</code>, <code>min</code> returns <code>num1</code>.</p>
+                    
+                    <p>If <code>Line 2</code> is <code>false</code>, then <code>min</code> returns <code>num2</code>.</p> 
+                </div>
+
+                <div id="official-answer" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function min(a, b) {
+    if (a < b) return a; 
+    else return b; 
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation" class="body">
+                    <p>The author's answer uses similiar code just without indention and different parameter names.</p>
+                </div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2 style="font-weight: normal">Recursion</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>We’ve seen that <code>%</code> (the remainder operator) can be used to test whether a number is even or odd by using <code>% 2</code> to see whether it’s divisible by two. Here’s another way to define whether a positive whole number is even or odd:</p>
+                        
+                    <p>- Zero is even.</p>
+                        
+                    <p>- One is odd.</p>
+                        
+                    <p>- For any other number N, its evenness is the same as N - 2.</p>
+                        
+                    <p>Define a recursive function <code>isEven</code> corresponding to this description. The function should accept a single parameter (a positive, whole number) and return a Boolean.</p>
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function isEven(number) {
+    if (number < 0) 
+        return isEven(number + 2); 
+    else if (number == 0)
+        return true; 
+    else if (number == 1)
+        return false; 
+    else 
+        return isEven(number - 2); 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+                    <p><code>Line 1</code> declares <code>isEven</code> as a function with one parameter.</p>
+                
+                    <p><code>Line 2 - 3</code> checks if <code>number</code> is negative. If <code>true</code>, then <code>isEven</code> is rerun with a new parameter equal to <code>number + 2</code> since the number will need to equal either 1 or 0.</p>
+                    
+                    <p><code>Line 4 - 5</code> checks if <code>number</code> is equal to 0. If <code>true</code>, then <code>number</code> is even and the Boolean value <code>true</code> is returned.</p>
+                    
+                    <p><code>Line 6 - 7</code> checks if <code>number</code> is equal to 1. If <code>true</code>, then <code>number</code> is odd and the the Boolean value <code>false</code> is returned.</p>
+                
+                    <p>If all other statements are <code>false</code>, then <code>Line 8 - 9</code> recalls <code>isEven</code> with a new parameter equal to <code>number - 2</code> since the number will need to equal either 1 or 0.</p>
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function isEven(n) {
+    if (n == 0) return true; 
+    else if (n == 1) return false; 
+    else if (n < 0) return isEven(-n); 
+    else return isEven(n - 2); 
+}                    </code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    <p>The author's answer uses similar code with <code>Line 1</code> correlating with <code>Line 1</code>, <code>Line 2</code> with <code>Line 4 - 5</code>, <code>Line 3</code> with <code>Line 6 - 7</code>, and <code>Line 5</code> with <code>Line 8 - 9</code>.</p>
+
+                    <p><code>Line 4</code> uses a different approach with negative numbers. Instead of adding 2 to the number, the new parameter for <code>isEven</code> is <code>n</code> reversed and made positive.</p>
+                </div>
+            </section>
+
+            
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+    
+</body>
+
+<script type="text/javascript" src="Eloquent_JavaScript_JS_Chap3.js"></script>
+
+</html>

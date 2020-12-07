@@ -30,7 +30,7 @@ document.getElementById("resources-article").append(bookLinkDiv);
 
 //Create a figure for the book cover
 var bookCoverFigure = document.createElement("figure"); 
-bookCoverFigure.id="book-cover-figure"; 
+bookCoverFigure.id = "book-cover-figure"; 
 document.getElementById("inner-resources-div").append(bookCoverFigure); 
 
 //Create an image of the book cover
@@ -38,7 +38,7 @@ var bookCoverImage = document.createElement("img");
 bookCoverImage.id = "book-cover-image";
 bookCoverImage.src = "../Intro/Book_Cover.jpg"; 
 bookCoverImage.alt = "Eloquent JavaScript Cover";
-bookCoverImage.style="width: 100%; height: 100%" ; 
+bookCoverImage.style = "width: 100%; height: 100%" ; 
 document.getElementById("book-cover-figure").append(bookCoverImage); 
 
 //Create a div for the book links
@@ -71,10 +71,10 @@ secondLinkDiv.id = "second-link-div";
 document.getElementById("book-links").append(secondLinkDiv); 
 
 // Create a p for the Amazon link to Eloquent JavaScript
-var links2 = document.createElement("p"); 
-links2.id = "link2"; 
-links2.innerText = "The entire book is also available for purchase: " 
-document.getElementById("second-link-div").append(links2); 
+var link2 = document.createElement("p"); 
+link2.id = "link2"; 
+link2.innerText = "The entire book is also available for purchase: " 
+document.getElementById("second-link-div").append(link2); 
 
 // Create a href link for Amazon to purchase Eloquent JavaScript
 var link2Element = document.createElement("a");
@@ -115,9 +115,9 @@ var unorderedList3 = document.createElement("ul");
 var page30 = document.createElement("li"); 
 var page30Link = document.createElement("a"); 
 page30Link.innerText = "Intro"; 
-page30Link.href="../Intro/Eloquent_JavaScript_HTML_Intro.html";
-page30Link.alt="Intro Link"; 
-page30Link.title="Chapter 1"; 
+page30Link.href = "../Intro/Eloquent_JavaScript_HTML_Intro.html";
+page30Link.alt = "Intro Link"; 
+page30Link.title = "Intro"; 
 page30.appendChild(page30Link); 
 unorderedList3.append(page30); 
 
@@ -137,12 +137,61 @@ var page32Link = document.createElement("a");
 page32Link.innerText = "Chapter 2"; 
 page32Link.href = "../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html"; 
 page32Link.alt = "Chapter 2 Link"; 
-page32Link.title="Chapter 2"; 
+page32Link.title = "Chapter 2"; 
 page32.appendChild(page32Link); 
 unorderedList3.append(page32)
 
 //Create a link for third chapter
-//var page33 = document.createElement("li"); 
+var page33 = document.createElement("li"); 
+var page33Link = document.createElement("a"); 
+page33Link.innerText = "Chapter 3";
+page33Link.href = "../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html"; 
+page33Link.alt = "Chapter 3 Link";
+page33Link.title = "Chapter 3";
+page33.appendChild(page33Link); 
+unorderedList3.append(page33); 
+
+//Create a link for fourth chapter
+var page34 = document.createElement("li"); 
+var page34Link = document.createElement("a"); 
+page34Link.innerText = "Chapter 4";
+page34Link.href = "../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html"; 
+page34Link.alt = "Chapter 4 Link";
+page34Link.title = "Chapter 4";
+page34.appendChild(page34Link); 
+unorderedList3.append(page34); 
+
+//Create a link for fifth chapter
+var page35 = document.createElement("li"); 
+var page35Link = document.createElement("a"); 
+page35Link.innerText = "Chapter 5";
+page35Link.href = "../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html";  
+page35Link.alt = "Chapter 5 Link";
+page35Link.title = "Chapter 5";
+page35.appendChild(page35Link); 
+unorderedList3.append(page35); 
+
+//Create a link for sixth chapter
+var page36 = document.createElement("li"); 
+var page36Link = document.createElement("a"); 
+page36Link.innerText = "Chapter 6";
+page36Link.href = "../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html"; 
+page36Link.alt = "Chapter 6 Link";
+page36Link.title = "Chapter 6";
+page36.appendChild(page36Link); 
+unorderedList3.append(page36); 
+
+//Create a link for seventh chapter
+var page37 = document.createElement("li"); 
+var page37Link = document.createElement("a"); 
+page37Link.innerText = "Chapter 7";
+page37Link.href = "../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html"; 
+page37Link.alt = "Chapter 7 Link";
+page37Link.title = "Chapter 7";
+page37.appendChild(page37Link); 
+unorderedList3.append(page37); 
+
+//Create a link for eigth chapter 
 
 // Add links to the unordered list
 navbar3.append(unorderedList3); 
