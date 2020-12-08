@@ -1,0 +1,86 @@
+html {
+    font-size: 62.5%;
+    overflow-y: scroll; 
+ }    
+ 
+ body {
+    margin: 0;
+    font-size: 2rem;
+    font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif;
+ }
+ 
+ header {
+    padding-top: 7rem; 
+    padding-bottom: 5rem; 
+    font-size: 3rem; 
+    background-color: #f8d410; 
+    text-align: center; 
+ }
+ 
+ #exercise-problems .panel {
+    display: flex; 
+    flex-direction: column; 
+    border : solid 1px #f8d410;
+    padding: 2rem; 
+    margin: 2rem; 
+  }
+ 
+ #exercise-problems .header {
+    display: flex; 
+    justify-content: flex-start; 
+    font-size: 2rem; 
+    color: purple; 
+    margin-left: 2rem; 
+ }
+ 
+ #exercise-problems .header:hover {
+    color: red; 
+    cursor: pointer; 
+ }
+  
+ #exercise-problems .body {
+    display : none;
+ }
+ 
+  #exercise-problems .active .body {
+     display : flex;
+     flex-direction: column; 
+     justify-content: flex-start; 
+     padding: 0.5rem; 
+     margin-left: 2.5rem; 
+  }
+ 
+  #navbar-article {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8rem;
+ }
+ 
+ #navbar-section-3rd-Ed {
+    padding: 5rem;
+    transition: background-color 0.3s ease-out;
+ }
+ 
+ #navbar-section-3rd-Ed:hover {
+    background-color: #f8d410;
+ }
+ 
+ ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+ }
+ 
+ li {
+    padding-top: 3rem; 
+ }
+ 
+ a {
+    text-decoration: none;
+    color: purple; 
+ }
+ 
+ a:hover {
+    color: red; 
+ }

@@ -5,11 +5,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap4.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
     <title>Eloquent JavaScript - Chapter 4</title>
 </head>
 
 <body>
+
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+    <header>
+        <h1 id="chapter4-main-header">Chapter 4, "Data Structures: Objects and Arrays"</h1>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header" class="header"><h2 style="font-weight: normal">The Sum of a Range</h2></div>
+
+                <div id="exercise-question" class="body">
+                    <h3>Question</h3>
+                
+                    <p>Write a <code>range</code> function that takes two arguments, start and end, and returns an array containing all the numbers from start up to (and including) end.</p>
+
+                    <p>Next, write a <code>sum</code> function that takes an array of numbers and returns the sum of these numbers.</p>
+                        
+                    <p>As a bonus assignment, modify your range function to take an optional third argument that indicates the “step” value used when building the array. If no step is given, the elements go up by increments of one, corresponding to the old behavior.</p>
+                </div>
+
+                <div id="personal-answer" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function range(startNum, endNum, step = startNum < endNum ? 1 : -1) {
+    let values = []; 
+    for (let i = startNum; i != endNum; i += step) {
+        values.push(i); 
+    }
+    values.push(endNum); 
+    return values; 
+}
+                      
+function sum(array) {
+    let sum = 0; 
+    for (let i = 0; i < array.length; i++) {
+        sum += array[i]; 
+    }
+    return sum; 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation" class="body">
+                    <p><code>Line 1</code> declares <code>range</code> as a function with three parameters. The <code>step</code> parameter is initialized to 1 or -1 in case no value is given, depending on whether <code>startNum</code> is larger or smaller than <code>endNum</code>.</p>
+
+                    <p><code>Line 2</code> creates an empty array named <code>values</code>.</p>
+                    
+                    <p><code>Line 3</code> uses a <code>for</code> loop with <code>i</code> initialized to <code>startNum</code>. While <code>i</code> is less than <code>endNum</code>, the value is increased or decreased by the value provided by <code>step</code>.</p> 
+                    
+                    <p><code>Line 4</code> adds the current <code>i</code> value to the end of <code>values</code>. <code>Line 6</code> also concludes by adding <code>endNum</code> since it wasn't referenced by <code>i</code> in the previous loop.</p>
+
+                    <p><code>Line 7</code> returns the array called <code>values</code>.</p>
+
+                    <p><code>Line 10</code> declares a new function called <code>sum</code> with its parameters pointing to an array.</p>
+
+                    <p><code>Line 11</code> initializes <code>sum</code> to 0.</p>
+
+                    <p><code>Line 12 - Line 13</code> loops through each number in the array and adds the current value to <code>sum</code>.</p>
+
+                    <p><code>Line 15</code> returns the total of <code>sum</code>.</p>
+                </div>
+
+                <div id="official-answer" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function range(start, end, step = start < end ? 1 : -1) {
+    let array = [];
+                      
+    if (step > 0) {
+        for (let i = start; i <= end; i += step) array.push(i);
+    } else {
+        for (let i = start; i >= end; i += step) array.push(i);
+    }
+    return array;
+}
+                      
+function sum(array) {
+    let total = 0;
+    for (let value of array) {
+        total += value;
+    }
+    return total;
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation" class="body">
+                    <p><code>Line 1</code> declares <code>range</code> as a function with three parameters. The <code>step</code> parameter is initialized to 1 or -1 in case no value is given, depending on whether <code>start</code> is larger or smaller than <code>end</code>.</p>
+                
+                    <p><code>Line 2</code> creates an empty array.</p>
+
+                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether <code>step</code> is greater than 0.</p>
+
+                    <p><code>Line 5</code> uses a <code>for</code> loop with <code>i</code> initialized to <code>start</code>. Since <code>start</code> is smaller than <code>end</code>, the comparison is set to <code><=</code>. <code>i</code> is then increased by <code>step</code> and the resulting value is pushed to <code>array</code>.</p>
+                
+                    <p><code>Line 7</code> also uses a <code>for</code> loop with <code>i</code> initialized to <code>start</code>. Since <code>start</code> is larger than <code>end</code>, the comparison is set to <code>>=</code>. <code>i</code> is then decreased by <code>step</code> and the resulting value is pushed to <code>array</code>.</p>
+
+                    <p><code>Line 9</code> returns the array.</p>
+
+                    <p><code>Line 12</code> declares a new function called <code>sum</code> with one parameter.</p>
+
+                    <p><code>Line 13</code> initializes <code>total</code> to 0.</p>
+
+                    <p><code>Line 14 - Line 16</code> loops through each <code>value</code> in <code>array</code>  and adds the specific number to <code>total</code>.</p>
+
+                    <p><code>Line 17</code> returns <code>total</code>.</p>
+                </div>
+            </section>
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
     
 </body>
+
+<script type="text/javascript" src="Eloquent_JavaScript_JS_Chap4.js"></script>
 
 </html>

@@ -126,7 +126,85 @@
                 </div>
             </section>
 
-            
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2 style="font-weight:normal">Bean Counting</h2></div>
+                
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <h4>Part I:</h4>
+                    <p>Write a function <code>countBs</code> that takes a string as its only argument and returns a number that indicates how many uppercase <code>"B"</code> characters there are in the string.</p>
+
+                    <h4>Part II:</h4>
+                    <p>Next, write a function called <code>countChar</code> that behaves like <code>countBs</code>, except it takes a second argument that indicates the character that is to be counted (rather than counting only uppercase “B” characters).</p>
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <h4>Part I:</h4>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countBs(string) {
+    let count = 0; 
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] == "B") count++; 
+    }     
+    return count;
+}                   </code></pre>
+
+                    <h4>Part II:</h4>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countChar(string, character) {
+    let count = 0; 
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] == character) count++; 
+    }     
+    return count;
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+                    <h4>Part I:</h4>
+                    <p><code>Line 1</code> creates the function <code>countBs</code> with <code>string</code> as its only parameter.</p>
+
+                    <p><code>Line 2</code> initializes <code>count</code> to 0.</p>
+
+                    <p><code>Line 3</code> creates a <code>for</code> loop where <code>i</code> represents one specific character in <code>string</code>. While <code>i</code> is less than <code>string</code>'s length, it moves on to the next character.</p>
+
+                    <p><code>Line 4</code> checks whether the current charater in <code>string</code> is equal to uppercase <code>"B"</code>. If so, then count is increased by one.</p>
+
+                    <p><code>Line 5</code> returns the final <code>count</code> value.</p>
+
+                    <h4>Part II:</h4>
+                    <p><code>countChar</code> uses the same code just with an extra parameter called <code>character</code> to refer to the particular letter being referenced in the comparison.</p>
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <h4>Part II:</h4>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countChar(string, ch) {
+    let counted = 0;
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] == ch) {
+            counted += 1;
+        }
+    }
+    return counted;
+}                   </code></pre>
+
+                    <h4>Part I:</h4>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countBs(string) {
+    return countChar(string, "B");
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    <h4>Part II:</h4>
+                    <p>The author uses the same code just with different variable names and expressions.</p>
+
+                    <h4>Part I:</h4>
+                    <p>The author just uses <code>countBs</code> to call the <code>countChar</code> function with the <code>ch</code> parameter set to the character <code>"B"</code> in <code>Line 2</code></p>
+                </div>
+            </section>
 
         </article>
 
