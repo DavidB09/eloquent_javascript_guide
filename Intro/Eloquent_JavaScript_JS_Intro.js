@@ -240,6 +240,7 @@ var styles = `
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 0; 
     }
 
     #book-links {

@@ -259,7 +259,9 @@ function prepend(newValue, list) {
 }
   
 function nth(list, position) {
-    if (position > 0)
+    if (!list)
+        return undefined; 
+    else if (position > 0)
         return nth(list.rest, position - 1); 
     else
   	    return list.value; 
@@ -267,47 +269,157 @@ function nth(list, position) {
                 </div>
 
                 <div id="personal-answer-explanation3" class="body">
-                    <h4>Part I:</h4>
-                    <p><code>Line 1</code> creates the function <code>countBs</code> with <code>string</code> as its only parameter.</p>
+                    <p><code>Line 1</code> creates the function <code>arrayToList</code> with <code>array</code> as its only parameter.</p>
 
-                    <p><code>Line 2</code> initializes <code>count</code> to 0.</p>
+                    <p><code>Line 2</code> declares an empty object named <code>list</code>.</p>
 
-                    <p><code>Line 3</code> creates a <code>for</code> loop where <code>i</code> represents one specific character in <code>string</code>. While <code>i</code> is less than <code>string</code>'s length, it moves on to the next character.</p>
+                    <p><code>Line 3</code> creates a <code>for</code> loop where <code>i</code> represents the last character in <code>array</code>. While <code>i</code> is greater than than 0, it moves on to the previous character within the array.</p>
 
-                    <p><code>Line 4</code> checks whether the current charater in <code>string</code> is equal to uppercase <code>"B"</code>. If so, then count is increased by one.</p>
+                    <p><code>Line 4</code> creates a temporary empty object.</p>
 
-                    <p><code>Line 5</code> returns the final <code>count</code> value.</p>
+                    <p><code>Line 5</code> uses an abbreviated <code>if</code> statement to check whether there are pre-existing objects within <code>list</code> by testing whether the number of keys are greater than 0. If <code>true</code>, then all of the values and objects within <code>list</code> are copied to <code>temp</code></code>. But if <code>false</code>, then <code>temp</code> is given the value of <code>null</code> since <code>list</code> is completely empy.</p>
 
-                    <h4>Part II:</h4>
-                    <p><code>countChar</code> uses the same code just with an extra parameter called <code>character</code> to refer to the particular letter being referenced in the comparison.</p>
+                    <p><code>Line 6</code> creates the object key of <code>value</code> and assigns it to the current value in <code>array</code>.</p>
+
+                    <p><code>Line 7</code> creates the object key of <code>rest</code> and gives it the previous objects, or <code>null</code>, within <code>temp</code>.</p>
+
+                    <p><code>Line 9</code> returns the newly created <code>list</code>.</p>
+
+                    <p><code>Line 12</code> creates the function <code>listToArray</code> with <code>list</code> as its only parameter.</p>
+
+                    <p><code>Line 13</code> declares an empty array named <code>array</code>.</p>
+
+                    <p><code>Line 14</code> uses a <code>for</code> loop to iterate through each object within <code>list</code>. <code>node</code> is set to the object of <code>list</code>. Then, while it exists, node moves on to its <code>rest</code> value which is in itself, another object.</p>
+
+                    <p><code>Line 15</code> adds the current <code>value</code> of the current object to <code>array</code></p>
+
+                    <p><code>Line 17</code> returns the new array.</p>
+
+                    <p><code>Line 20</code> creates the function <code>prepend</code> with the <code>newValue</code> and <code>list</code> as its only parameters.</p>
+
+                    <p><code>Line 21</code> declares an empty object called <code>newList</code>.</p>
+
+                    <p><code>Line 22</code> creates <code>value</code> as a object key and sets it to the <code>newValue</code>.</p>
+
+                    <p><code>Line 23</code> creates <code>rest</code> as a object key and sets it the previous object given by <code>list</code>.</p>
+
+                    <p><code>Line 24</code> returns the <code>newList</code>.</p>
+
+                    <p><code>Line 27</code> creates the function <code>nth</code> with <code>list</code> and <code>position</code> as its only parameters.</p>
+
+                    <p><code>Line 28 - 29</code> checks whether <code>list</code> does not exist, if <code>true</code> then <code>undefined</code>is returned.</p>
+
+                    <p><code>Line 30 - 31</code> checks whether <code>position</code> has already been achieved or if there are still more values to check. If true, then <code>nth</code> is recursively called with <code>list</code> set to the next object within <code>list.rest</code> and the position substracted by one since it has moved through one value.</p>
+                
+                    <p><code>Line 32 - 33</code> returns the current <code>value</code> if <code>position</code> equals 0.</p>
                 </div>
 
                 <div id="official-answer3" class="body">
                     <h3>Author's Answer</h3>
 
-                    <h4>Part II:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countChar(string, ch) {
-    let counted = 0;
-    for (let i = 0; i < string.length; i++) {
-        if (string[i] == ch) {
-            counted += 1;
-        }
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function arrayToList(array) {
+    let list = null;
+    for (let i = array.length - 1; i >= 0; i--) {
+        list = {value: array[i], rest: list};
     }
-    return counted;
-}                   </code></pre>
-
-                    <h4>Part I:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countBs(string) {
-    return countChar(string, "B");
+    return list;
+}
+                      
+function listToArray(list) {
+    let array = [];
+    for (let node = list; node; node = node.rest) {
+        array.push(node.value);
+    }
+    return array;
+}
+                      
+function prepend(value, list) {
+    return {value, rest: list};
+}
+                      
+function nth(list, n) {
+    if (!list) return undefined;
+    else if (n == 0) return list.value;
+    else return nth(list.rest, n - 1);
 }                   </code></pre>
                 </div>
 
                 <div id="official-answer-explanation3" class="body">
-                    <h4>Part II:</h4>
-                    <p>The author uses the same code just with different variable names and expressions.</p>
+                    <p><code>Line 1</code> creates the function <code>arrayToList</code> with <code>array</code> as its only parameter.</p>
 
-                    <h4>Part I:</h4>
-                    <p>The author just uses <code>countBs</code> to call the <code>countChar</code> function with the <code>ch</code> parameter set to the character <code>"B"</code> in <code>Line 2</code></p>
+                    <p><code>Line 2</code> sets a variable called <code>list</code> and sets it to <code>null</code>.</p>
+
+                    <p><code>Line 3</code> uses a <code>for</code> loop to iterate backwards through <code>array</code>.</p>
+
+                    <p><code>Line 4</code> sets <code>list</code> to an object with <code>value</code> equaling the current number in <code>array</code> and <code>rest</code> to the pre-existing <code>list</code>.</p>
+
+                    <p><code>Line 6</code> returns the new <code>list</code> after all of the values have been added.</p>
+
+                    <p><code>Line 9 - 15</code> uses the same code and corresponds with <code>Line 12 - 18</code> in my personal answer.</p>
+
+                    <p><code>Line 17</code> creates the function <code>prepend</code> with <code>value</code> and <code>list</code> as its only parameters.</p>
+
+                    <p><code>Line 18</code> returns a new list with <code>value</code> equaling the parameter and <code>rest</code> equaling the previous list.</p>
+
+                    <p><code>Line 21</code> creates the function <code>nth</code> with <code>list</code> and <code>n</code> as its only parameters.</p>
+
+                    <p><code>Line 22</code> returns <code>undefined</code> if <code>list</code>  does not exist.</p>
+
+                    <p><code>Line 23</code> returns the <code>value</code> of <code>list</code> if <code>n</code> equals 0.</p>
+
+                    <p><code>Line 24</code> recursively calls <code>nth</code> with the new parameters equaling <code>list.rest</code> and <code>n - 1</code> as the next value needs to be checked.</p>
+                </div>
+            </section>
+
+            <section id="exercise4" class="panel">
+                <div id="exercise-header4" class="header"><h2 style="font-weight: normal">Deep Comparison</h2></div>
+
+                <div id="exercise-question4" class="body">
+                    <h3>Question</h3>
+
+                    <p>For this exercise, write two functions, <code>reverseArray</code> and <code>reverseArrayInPlace</code>.</p> 
+                    
+                    <p>The first, <code>reverseArray</code>, takes an array as argument and produces a new array that has the same elements in the inverse order. </p>
+                </div>
+
+                <div id="personal-answer4" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function reverseArray(array) {
+    newArray = []; 
+    for (let i = array.length - 1; i >= 0; i--) {
+        newArray.push(array[i]);
+    }
+    return newArray; 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation4" class="body">
+                    <p><code>Line 1</code> declares <code>reverseArray</code> as a function with one parameter.</p>
+                
+                    <p><code>Line 2</code> creates an empty array for the reversed values.</p>
+                    
+                    <p><code>Line 3</code> uses a <code>for</code> loop; however, <code>i</code> is initialized to the last value of <code>array</code>. As a result, while <code>i</code> is greater than or equal to 0, it is subtracted by one through each iteration and loops backwards through <code>array</code>.</p>
+                    
+                    <p><code>Line 4</code> adds the current value of <code>i</code> in <code>array</code> to <code>newArray</code>.</p>
+                
+                    <p><code>Line 6</code> returns <code>newArray</code> with the reversed values.</p>
+                </div>
+
+                <div id="official-answer4" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function reverseArray(array) {
+    let output = [];
+    for (let i = array.length - 1; i >= 0; i--) {
+        output.push(array[i]);
+    }
+    return output;
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation4" class="body">
+                    <p>The author's answer uses the same code just with different variable names.</p>
                 </div>
             </section>
 
