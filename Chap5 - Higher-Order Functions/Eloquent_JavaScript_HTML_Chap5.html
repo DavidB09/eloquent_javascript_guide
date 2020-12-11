@@ -22,6 +22,165 @@
 
         <article id="exercise-problems">
 
+            <section id="exercise1" class="panel">
+                <div id="exercise-header" class="header"><h2 style="font-weight: normal">Flattening</h2></div>
+
+                <div id="exercise-question" class="body">
+                    <h3>Question</h3>
+                
+                    <p>Use the <code>reduce</code> method in combination with the <code>concat</code> method to “flatten” an array of arrays into a single array that has all the elements of the original arrays.</p>                        
+                </div>
+
+                <div id="personal-answer" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">console.log(arrays.reduce((firstVal, currentVal) => firstVal.concat(currentVal)));</code></pre>
+                </div>
+
+                <div id="personal-answer-explanation" class="body">
+                    <p><code>Line 1</code> calls the <code>reduce</code> method with <code>firstVal</code> equaling the first element of the original array and <code>currentVal</code> moving on through the next elements. The <code>currentVal</code> is then added to <code>firstVal</code> using the <code>concat</code> method to create one array with all of the values.</p>
+                </div>
+
+                <div id="official-answer" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">console.log(arrays.reduce((flat, current) => flat.concat(current), []));</code></pre>
+                </div>
+
+                <div id="official-answer-explanation" class="body">
+                    <p><code>Line 1</code> calls the <code>reduce</code> method with <code>flat</code> initialized to an empty array. The <code>current</code> values are then added to <code>flat</code> to create one array.</p>
+                </div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2 style="font-weight: normal">Your Own Loop</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write a higher-order function <code>loop</code> that provides something like a <code>for</code> loop statement. It takes a <code>value</code>, a <code>test</code> function, an <code>update</code> function, and a <code>body</code> function. Each iteration, it first runs the <code>test</code> function on the current loop value and stops if that returns <code>false</code>. Then it calls the <code>body</code> function, giving it the current value. Finally, it calls the <code>update</code> function to create a new value and starts from the beginning.</p> 
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function loop(value, test, update, body) {
+    while(test(value)) {
+        body(value);
+        value = update(value);
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+                    <p><code>Line 1</code> declares <code>loop</code> as a function with <code>value</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
+                
+                    <p><code>Line 2</code> checks whether the <code>test</code> function returns <code>true</code> with <code>value</code> as the input.</p>
+                    
+                    <p>While <code>true</code>, <code>Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
+                    
+                    <p><code>Line 4</code> updates the current value of <code>value</code> by setting it to the output of the <code>update</code> function.</p>
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function loop(start, test, update, body) {
+    for (let value = start; test(value); value = update(value)) {
+        body(value);
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    <p><code>Line 1</code> declares <code>loop</code> as a function with <code>start</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
+
+                    <p><code>Line 2</code> uses a <code>for</code> loop to set <code>value</code> to <code>start</code>, check whether <code>test</code> returns <code>true</code> with <code>value</code> as the input, and set <code>value</code> to the output of <code>update</code>.</p>
+
+                    <p><code>Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
+                </div>
+            </section>
+
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2 style="font-weight:normal">Everything</h2></div>
+                
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>Implement <code>every</code> as a function that takes an array and a predicate function as parameters. Write two versions, one using a loop and one using the <code>some</code> method.</p>                 
+                </div>
+
+                <div id="personal-answer3-pt1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <h4>Part I:</h4>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function every(array, test) {
+    for (let i = 0; i < array.length; i++) {
+        if (test(array[i]) == false)
+            return false;
+        }
+    return true; 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3-pt1" class="body">
+                    <p><code>Line 1</code> creates the function <code>every</code> with <code>array</code> and <code>test</code>as its only parameters.</p>
+
+                    <p><code>Line 2</code> declares an <code>for</code> loop to iterate through the values of <code>array</code>.</p>
+
+                    <p><code>Line 3 - 4</code> checks whether the <code>test</code> function returns <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code> the result is returned.</p>
+
+                    <p><code>Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>test</code> function.</p>
+                </div>
+
+                <div id="personal-answer3-pt2" class="body">
+                    <h4>Part II:</h4>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function every2(array, test) {
+    return !(array.some((n) => !test(n)))
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3-pt2" class="body">
+                    <p><code>Line 1</code> creates the function <code>every2</code> with <code>array</code> and <code>test</code> as its only parameters.</p>
+
+                    <p><code>Line 2</code> returns <code>true</code> if there are no values in <code>array</code> that fail <code>test</code> while returning <code>false</code> whenever there are <code>some</code> values that fail the <code>test</code>.</p>
+                </div>
+
+
+                <div id="official-answer3-pt1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <h4>Part I:</h4>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function every(array, predicate) {
+    for (let element of array) {
+        if (!predicate(element)) return false;
+    }
+    return true;
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3-pt1" class="body">
+                    <p><code>Line 1</code> creates the function <code>every</code> with <code>array</code> and <code>predicate</code> as its only parameters.</p>
+
+                    <p><code>Line 2</code> loops through each <code>element</code> of <code>array</code>.</p>
+
+                    <p><code>Line 3</code> checks whether the <code>predicate</code> function is <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code> the result is returned.</p>
+
+                    <p><code>Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>predicate</code> function.</p>
+                </div>
+
+                <div id="official-answer3-pt2" class="body">
+                    <h4>Part II:</h4>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function every2(array, predicate) {
+    return !array.some(element => !predicate(element));
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3-pt2" class="body">
+                    <p>The author uses the same code just with different parameter names.</p>
+                </div>
+            </section>
+
         </article>
 
         <article id="navbar-article">
