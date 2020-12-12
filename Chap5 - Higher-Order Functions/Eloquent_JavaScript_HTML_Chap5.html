@@ -181,6 +181,74 @@
                 </div>
             </section>
 
+            <section id="exercise4" class="panel">
+                <div id="exercise-header4" class="header"><h2 style="font-weight: normal">Dominant Writing Direction</h2></div>
+
+                <div id="exercise-question4" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write a function that computes the dominant writing direction in a string of text. Remember that each script object has a <code>direction</code> property that can be <code>"ltr"</code> (left to right), <code>"rtl"</code> (right to left), or <code>"ttb"</code> (top to bottom). The dominant direction is the direction of a majority of the characters that have a script associated with them.</p> 
+                </div>
+
+                <div id="personal-answer4" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function dominantDirection(text) {
+    let scripts = countBy(text, char => {
+        let script = characterScript(char.codePointAt(0));
+        if (script != null) return script.direction;
+    }).filter(n => n.name != undefined);
+
+    return scripts.reduce((a, b) => a.count >= b.count ? a.name : b.name, 0)
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation4" class="body">
+                    <p><code>Line 1</code> declares <code>dominantDirection</code> as a function with one parameter.</p>
+                
+                    <p><code>Line 2</code> assigns <code>scripts</code> to the return value of <code>countBy</code> with the first parameter being the input and <code>char</code> being the <code>groupName</code> or the testing method.</p>
+                    
+                    <p><code>Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
+                    
+                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists, if <code>true</code> then the direction is returned as an input to the <code>countBy</code>function.</p>
+                
+                    <p><code>Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>undefined</code> values.</p>
+                
+                    <p><code>Line 7</code> returns the <code>name</code> property of the object with the largest <code>count</code>, aka the dominant writing direction.</p>
+                </div>
+
+                <div id="official-answer4" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function dominantDirection(text) {
+    let counted = countBy(text, char => {
+        let script = characterScript(char.codePointAt(0));
+        return script ? script.direction : "none";
+    }).filter(({name}) => name != "none");
+                      
+    if (counted.length == 0) return "ltr";
+                      
+    return counted.reduce((a, b) => a.count > b.count ? a : b).name;
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation4" class="body">
+                    <p><code>Line 1</code> declares <code>dominantDirection</code> as a function with one parameter.</p>
+
+                    <p><code>Line 2</code> assigns <code>counted</code> to the return value of <code>countBy</code> with the first parameter being the input and <code>char</code> being the <code>groupName</code> or the testing method.</p>
+
+                    <p><code>Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
+
+                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists. If <code>true</code> then the direction is returned as an input to the <code>countBy</code>function, else the string <code>"none</code> is given.</p>
+
+                    <p><code>Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>name</code> properties that equal <code>"none"</code>.</p>
+
+                    <p><code>Line 7</code> gives the default value of <code>"ltr"</code> if no objects exist in <code>counted</code></p>
+
+                    <p><code>Line 9</code> returns the <code>name</code> property of the object with the largest <code>count</code>, aka the dominant writing direction.</p>
+                </div>
+            </section>
+
         </article>
 
         <article id="navbar-article">
