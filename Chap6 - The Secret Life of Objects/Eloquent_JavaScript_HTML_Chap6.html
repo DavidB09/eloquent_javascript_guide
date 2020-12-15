@@ -116,46 +116,103 @@
                 <div id="exercise-question2" class="body">
                     <h3>Question</h3>
 
-                    <p>Write a higher-order function <code>loop</code> that provides something like a <code>for</code> loop statement. It takes a <code>value</code>, a <code>test</code> function, an <code>update</code> function, and a <code>body</code> function. Each iteration, it first runs the <code>test</code> function on the current loop value and stops if that returns <code>false</code>. Then it calls the <code>body</code> function, giving it the current value. Finally, it calls the <code>update</code> function to create a new value and starts from the beginning.</p> 
+                    <p>Write a class called <code>Group</code> (since <code>Set</code> is already taken). Like <code>Set</code>, it has <code>add</code>, <code>delete</code>, and <code>has</code> methods. Its <code>constructor</code> creates an empty group, <code>add</code> adds a value to the group (but only if it isn’t already a member), <code>delete</code> removes its argument from the group (if it was a member), and <code>has</code> returns a Boolean value indicating whether its argument is a member of the group.</p> 
+
+                    <p>Give the class a static <code>from</code> method that takes an iterable object as argument and creates a group that contains all the values produced by iterating over it.</p>
                 </div>
 
                 <div id="personal-answer2" class="body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function loop(value, test, update, body) {
-    while(test(value)) {
-        body(value);
-        value = update(value);
-    }
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
+ 
 }                   </code></pre>
                 </div>
 
                 <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> declares <code>loop</code> as a function with <code>value</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
-                
-                    <p><code>Line 2</code> checks whether the <code>test</code> function returns <code>true</code> with <code>value</code> as the input.</p>
-                    
-                    <p>While <code>true</code>, <code>Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
-                    
-                    <p><code>Line 4</code> updates the current value of <code>value</code> by setting it to the output of the <code>update</code> function.</p>
+                    <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
                 </div>
 
                 <div id="official-answer2" class="body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function loop(start, test, update, body) {
-    for (let value = start; test(value); value = update(value)) {
-        body(value);
-    }
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
+
 }                   </code></pre>
                 </div>
 
                 <div id="official-answer-explanation2" class="body">
-                    <p><code>Line 1</code> declares <code>loop</code> as a function with <code>start</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
+                    <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
+                </div>
+            </section>
 
-                    <p><code>Line 2</code> uses a <code>for</code> loop to set <code>value</code> to <code>start</code>, check whether <code>test</code> returns <code>true</code> with <code>value</code> as the input, and set <code>value</code> to the output of <code>update</code>.</p>
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2 style="font-weight: normal">Iterable Groups</h2></div>
 
-                    <p><code>Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>Make the <code>Group</code> class from the previous exercise iterable. Refer to the section about the iterator interface earlier in the chapter if you aren’t clear on the exact form of the interface anymore.</p> 
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group2 {
+ 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+                    <p><code>Line 1</code> creates an class called <code>Group2</code>.</p>
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group2 {
+
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    <p><code>Line 1</code> creates an class called <code>Group2</code>.</p>
+                </div>
+            </section>
+
+            <section id="exercise4" class="panel">
+                <div id="exercise-header4" class="header"><h2 style="font-weight: normal">Borrowing a Method</h2></div>
+
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>Earlier in the chapter I mentioned that an object’s <code>hasOwnProperty</code> can be used as a more robust alternative to the <code>in</code> operator when you want to ignore the prototype’s properties. But what if your map needs to include the word "hasOwnProperty"? You won’t be able to call that method anymore because the object’s own property hides the method value.</p>
+
+                    <p>Can you think of a way to call <code>hasOwnProperty</code> on an object that has its own property by that name?.</p> 
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group2 {
+ 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+                    <p><code>Line 1</code> creates an class called <code>Group2</code>.</p>
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group2 {
+
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    <p><code>Line 1</code> creates an class called <code>Group2</code>.</p>
                 </div>
             </section>
 

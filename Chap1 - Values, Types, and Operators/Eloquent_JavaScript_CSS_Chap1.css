@@ -1,3 +1,5 @@
+/*MAIN ELEMENTS */
+
 html {
     font-size: 62.5%;
     overflow-y: scroll; 
@@ -5,16 +7,34 @@ html {
 
 body {
     margin: 0;
-    font-size: 2rem;
     font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif;
+    font-size: 2rem;
 }
 
 header {
-    padding-top: 7rem; 
-    padding-bottom: 5rem; 
+    padding: 7rem 5rem; 
     font-size: 3rem; 
     background-color: #f8d410; 
     text-align: center; 
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    padding-top: 3rem; 
+}
+
+a {
+    text-decoration: none;
+    color: purple; 
+}
+
+a:hover {
+    color: red; 
 }
 
 #chapter1-text {
@@ -38,23 +58,4 @@ header {
 
 #navbar-section-3rd-Ed:hover {
     background-color: #f8d410;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    padding-top: 3rem; 
-}
-
-a {
-    text-decoration: none;
-    color: purple; 
-}
-
-a:hover {
-    color: red; 
 }

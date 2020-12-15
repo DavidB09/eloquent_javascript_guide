@@ -1,42 +1,46 @@
 //MAIN TITLE AND HEADER
 // Create the div for the main header
 var mainHeaderDiv = document.createElement("header"); 
-mainHeaderDiv.id = "main-header-element"; 
+mainHeaderDiv.id = "main-header"; 
+mainHeaderDiv.classList = "column-flex"; 
 document.body.append(mainHeaderDiv); 
 
 // Create the header for the title
 var mainHeader = document.createElement("h1"); 
 mainHeader.id = "intro-main-header";
 mainHeader.innerHTML = "Welcome to the (Unofficial) Exercise Guide of <em>Eloquent JavaScript<em>";
-document.getElementById("main-header-element").append(mainHeader); 
+document.getElementById("main-header").append(mainHeader); 
 
 // Create the header for the creator's name 
 var secondHeader = document.createElement("h2");
 secondHeader.id = "second-header";
 secondHeader.innerHTML = "Created by David Brunner (A Rookie JavaScript Pupil)"; 
-document.getElementById("main-header-element").append(secondHeader); 
+document.getElementById("main-header").append(secondHeader); 
 
 
 //ELOQUENT JAVASCRIPT LINKS
-//Create a div for the resources
-var bookLinkDiv = document.createElement("article"); 
-bookLinkDiv.id = "resources-article";
-document.body.append(bookLinkDiv); 
+//Create a article for the resources
+var bookLinkArticle = document.createElement("article"); 
+bookLinkArticle.id = "resources-article";
+bookLinkArticle.classList = "column-flex";
+document.body.append(bookLinkArticle); 
 
 //Create a div for the blur effect 
 var bookLinkDiv = document.createElement("div"); 
 bookLinkDiv.id = "inner-resources-div";
+bookLinkDiv.classList = "column-flex";
 document.getElementById("resources-article").append(bookLinkDiv); 
 
 //Create a figure for the book cover
 var bookCoverFigure = document.createElement("figure"); 
 bookCoverFigure.id = "book-cover-figure"; 
+bookCoverFigure.classList = "column-flex";
 document.getElementById("inner-resources-div").append(bookCoverFigure); 
 
 //Create an image of the book cover
 var bookCoverImage = document.createElement("img");
 bookCoverImage.id = "book-cover-image";
-bookCoverImage.src = "../Intro/Book_Cover.jpg"; 
+bookCoverImage.src = "../Intro/Assets/Book_Cover.jpg"; 
 bookCoverImage.alt = "Eloquent JavaScript Cover";
 bookCoverImage.style = "width: 100%; height: 100%" ; 
 document.getElementById("book-cover-figure").append(bookCoverImage); 
@@ -44,6 +48,7 @@ document.getElementById("book-cover-figure").append(bookCoverImage);
 //Create a div for the book links
 var linksDiv = document.createElement("div");
 linksDiv.id = "book-links";
+linksDiv.classList = "column-flex";
 document.getElementById("inner-resources-div").append(linksDiv); 
 
 //Create a div for first link
@@ -86,15 +91,15 @@ document.getElementById("second-link-div").append(link2Element);
 
 
 //NAVBAR
-//Create a div element for the navbar
-var navbarDiv = document.createElement("article");
-navbarDiv.id = "navbar-article"; 
-document.body.append(navbarDiv); 
+//Create a article element for the navbar
+var navbarArticle = document.createElement("article");
+navbarArticle.id = "navbar-article"; 
+document.body.append(navbarArticle); 
 
-//Create a div element for 3rd Ed.
-var navbarDiv3 = document.createElement("section"); 
-navbarDiv3.id = "navbar-section-3rd-Ed"; 
-navbarDiv.append(navbarDiv3); 
+//Create a section element for 3rd Ed.
+var navbarSection3 = document.createElement("section"); 
+navbarSection3.id = "navbar-section-3rd-Ed"; 
+navbarArticle.append(navbarSection3); 
 
 //Create a header for 3rd Ed. 
 var header3rdEd = document.createElement("h3"); 
@@ -109,7 +114,6 @@ document.getElementById("navbar-section-3rd-Ed").append(navbar3);
 
 //Create unorderedList
 var unorderedList3 = document.createElement("ul"); 
-
 
 //Create link for intro
 var page30 = document.createElement("li"); 
@@ -198,136 +202,55 @@ navbar3.append(unorderedList3);
 
 
 // CSS
-
 var styles = `
-    html {
-        font-size: 62.5%;
-        overflow-y: scroll; 
-    }    
+    html { font-size: 62.5%; overflow-y: scroll; }    
 
-    body {
-        margin: 0;
-        font-size: 2rem;
-        font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif;
-    }
+    /* MAIN ELEMENTS */
+    body { margin: 0; font-size: 2rem; font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif; }
 
-    #main-header-element { 
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        margin: 0 auto;
-        padding: 15rem 10rem 10rem 10rem;
-        background-color: #f8d410;
-    }
+    ul { margin: 0; padding: 0; list-style-type: none; }
 
-      #resources-article {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10rem;
-    }
+    li { padding-top: 3rem; }
 
-    #inner-resources-div {
-        display: flex; 
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+    a { color: #800080; text-decoration: none; }
 
-    #book-cover-figure {
-        display: flex; 
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 0; 
-    }
+    a:hover { color: #F00; }
 
-    #book-links {
-        display: flex; 
-        flex-direction: column;
-        position: relative;
-        opacity: 0; 
-    }
+    /* CLASSES */
+    .column-flex { display: flex; flex-direction: column; }
 
-    #first-link-div {
-        position: absolute;
-        text-align: center;
-        transform: translate(-50%, -300%);
-        width: 30rem; 
-        margin-bottom: 1rem;
-        padding: 2rem;
-        background-color: rgb(0,0,0); 
-        background-color: rgba(0,0,0, 0.8);
-        color: white;
-        border: 0.5rem solid white;
-    }
+    /* IDS */
+    /* Header */
+    #main-header { margin: 0 auto; padding: 15rem 10rem 10rem 10rem; background-color: #f8d410; text-align: center; }
 
-    #second-link-div {
-        position: absolute;
-        text-align: center;
-        transform: translate(-50%, -200%);
-        width: 30rem; 
-        margin-top: 1rem;
-        padding: 2rem;
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0, 0.8);
-        color: white;
-        border: 0.5rem solid white;
-    }
+    /* Resource Links */
+    #resources-article { justify-content: center; align-items: center; margin-top: 10rem; }
 
-    #book-links a{
-        color: #ac77f2; 
-    }
+    #inner-resources-div { justify-content: center; align-items: center; }
 
-    #book-cover-figure:hover + #book-links{
-        opacity: 1; 
-    }
+    #book-cover-figure { justify-content: center; align-items: center; margin: 0; }
 
-    #book-links:hover {
-        opacity: 1; 
-    }
+    #book-links { position: relative; opacity: 0; }
 
-    #inner-resources-div:hover #book-cover-image {
-        filter: blur(8px); 
-    }
+    #first-link-div { position: absolute; width: 30rem; margin-bottom: 1rem; padding: 2rem; color: white; background-color: rgba(0,0,0, 0.8); text-align: center; border: 0.5rem solid white; transform: translate(-50%, -300%); }
 
-    #navbar-article {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 8rem;
-    }
+    #second-link-div { position: absolute; width: 30rem; margin-top: 1rem; padding: 2rem; color: white; background-color: rgba(0,0,0, 0.8); text-align: center; border: 0.5rem solid white; transform: translate(-50%, -200%); }
 
-    #navbar-section-3rd-Ed {
-        padding: 5rem;
-        transition: background-color 0.3s ease-out;
-    }
+    #book-links a { color: #ac77f2; }
 
-    #navbar-section-3rd-Ed:hover {
-        background-color: #f8d410;
-    }
+    #book-cover-figure:hover + #book-links{ opacity: 1; }
 
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
+    #book-links:hover { opacity: 1; }
 
-    li {
-        padding-top: 3rem; 
-    }
+    #inner-resources-div:hover #book-cover-image { filter: blur(8px); }
 
-    a {
-        text-decoration: none;
-        color: purple; 
-    }
+    /* Navbar */
+    #navbar-article { display: flex; justify-content: space-around; align-items: center; padding: 8rem; }
 
-    a:hover {
-        color: red; 
-    }
+    #navbar-section-3rd-Ed { padding: 5rem; transition: background-color 0.3s ease-out; }
 
-`
+    #navbar-section-3rd-Ed:hover { background-color: #f8d410; } `
+
 var styleSheet = document.createElement("style"); 
 styleSheet.type = "text/css";
 styleSheet.innerText = styles; 
