@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap2.css"/>
     <link href="../Assets/CSS/prism.css" rel="stylesheet"/>
     <title>Eloquent JavaScript - Chapter 2</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 1, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 2 of Eloquent JavaScript.">
 </head>
 
 <body>
@@ -50,9 +53,13 @@ for (let i = 0; i < 7; i++) {
                 </div>
 
                 <div id="personal-answer-explanation" class="body">
-                    <p><code>Line 1</code> binds <code>answer</code> to the character in the first row of the answer.</p>
+                    <p><code>Line 1</code> binds <code>answer</code> to the characters within the first row of the intended answer.</p>
 
-                    <p><code>Line 2 - Line 5</code> introduce a <code>for</code> loop that checks if <code>i</code> is less than the number of rows in the answer. If the <code><</code> comparison is <code>true</code>, it prints out the current answer and appends the hash sign character to the answer. Then, 1 is added to <code>i</code> and the loop continues to its next iteration.</p> 
+                    <p><code>Line 2</code> introduces <code>for</code> loop that checks if <code>i</code> is less than the number of rows in the intended answer. If the <code><</code> comparison is <code>true</code>, then the following statements are executed and 1 is added to <code>i</code> as the loop continues to its next iteration.</p> 
+                
+                    <p><code>Line 3</code> prints out the current <code>answer</code> to the console.</p>
+
+                    <p><code>Line 4</code> appends an extra hash sign character to the answer.</p>
                 </div>
 
                 <div id="official-answer" class="body">
@@ -65,7 +72,9 @@ console.log(line);  </code></pre>
                 <div id="official-answer-explanation" class="body">
                     <p>The author's answer also uses the <code>for</code> loop but more concisely.</p>
                     
-                    <p><code>Line 1 - Line 2</code> binds <code>line</code> to the character in the first row of the answer. While the length of <code>line</code> is less than the intended number of hash marks in the final row of the answer, a hash sign character is added to the string and the loop continues to its next iteration.</p>
+                    <p><code>Line 1</code> binds <code>line</code> to the character in the first row of the answer. While the length of <code>line</code> is less than the  number of hash marks in the final row of the intended answer, a hash sign character is added to the string and the loop continues to its next iteration.</p>
+
+                    <p><code>Line 2</code> prints out the current <code>line</code> to the console.</p>
                 </div>
             </section>
 
@@ -84,12 +93,10 @@ console.log(line);  </code></pre>
                     <h3>Personal Answer</h3>
 
                     <pre class="language-javascript line-numbers"><code class="language-javascript">for (let i = 1; i <= 100; i++) {
-    if (i % 3 == 0) {
-        if (i % 5) {
-            console.log("FizzBuzz")
-        } else {
-            console.log("Fizz"); 
-        }
+    if (i % 3 == 0 && i % 5 == 0) {
+        console.log("FizzBuzz"); 
+    } else if (i % 3 == 0) {
+        console.log("Fizz"); 
     } else if (i % 5 == 0) {
         console.log("Buzz"); 
     } else {
@@ -99,15 +106,15 @@ console.log(line);  </code></pre>
                 </div>
 
                 <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates a <code>for</code> loop that binds <code>i</code> to 1 and checks if it's value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through it's next statements before moving on to the next iteration.</p>
+                    <p><code>Line 1</code> creates a <code>for</code> loop that binds <code>i</code> to 1 and checks if its value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through the following statements before moving on to the next iteration.</p>
                 
-                    <p><code>Line 2</code> checks if <code>i</code> is divisible by 3 with the remainder of 0 with a conditional statement.</p>
+                    <p><code>Line 2 - Line 3</code> checks whether <code>i</code> is divisible by both 3 and 5 with the remainder of 0 by using a <code>if</code> conditional statement. If <code>true</code>, then <code>FizzBuzz</code> is printed to the console.</p>
                     
-                    <p>If <code>Line 2</code> is <code>true</code>, then <code>Line 3 - 7</code> checks if <code>i</code> is also divisible by 5 with the remainder of 0. If <code>true</code>, then <code>FizzBuzz</code> is printed to the console. Else, <code>Fizz</code> is printed.</p>
-                    
-                    <p>If <code>Line 2</code> is <code>false</code>, then <code>Line 8 - 9</code> checks if <code>i</code> is divisible by 5 with the remainder of 0. If <code>true</code>, then <code>Buzz</code> is printed on the console.</p>
+                    <p>Else if <code>Line 2</code> is <code>false</code>, then <code>Line 4 - Line 5</code> checks if <code>i</code> is divisible by 3 with the remainder of 0. If <code>true</code>, then <code>Fizz</code> is printed to the console.</p>
                 
-                    <p>If all of the previous conditions were <code>false</code>, then <code>i</code>, or the regular number, is printed to the console.</p>
+                    <p>Else if <code>Line 2 and Line 4</code> are <code>false</code>, then <code>Line 6 - Line 7</code> checks if <code>i</code> is divisible by 5 with the remainder of 0. If <code>true</code>, then <code>Buzz</code> is printed to the console.</p>
+
+                    <p>If all of the previous conditions were <code>false</code>, then <code>Line 9</code> prints out <code>i</code>, or the regular number.</p>
                 </div>
 
                 <div id="official-answer2" class="body">
@@ -248,8 +255,8 @@ console.log(board); </code></pre>
 
     </main>
 
-</body>
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap2.js"></script>
 
-<script type="text/javascript" src="Eloquent_JavaScript_JS_Chap2.js"></script>
+</body>
 
 </html>
