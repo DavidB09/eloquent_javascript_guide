@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap5.css">
     <link href="../Assets/CSS/prism.css" rel="stylesheet">
     <title>Eloquent JavaScript - Chapter 5</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 5, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 5 of Eloquent JavaScript.">
 </head>
 
 <body>
@@ -107,6 +110,8 @@
                 <div id="exercise-question3" class="body">
                     <h3>Question</h3>
 
+                    <p>Analogous to the <code>some</code> method, arrays also have an <code>every</code> method. This one returns <code>true</code> when the given function returns <code>true</code> for every element in the array.</p>
+
                     <p>Implement <code>every</code> as a function that takes an array and a predicate function as parameters. Write two versions, one using a loop and one using the <code>some</code> method.</p>                 
                 </div>
 
@@ -145,7 +150,6 @@
 
                     <p><code>Line 2</code> returns <code>true</code> if there are no values in <code>array</code> that fail <code>test</code> while returning <code>false</code> whenever there are <code>some</code> values that fail the <code>test</code>.</p>
                 </div>
-
 
                 <div id="official-answer3-pt1" class="body">
                     <h3>Author's Answer</h3>
@@ -210,7 +214,7 @@
                     
                     <p><code>Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
                     
-                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists, if <code>true</code> then the direction is returned as an input to the <code>countBy</code>function.</p>
+                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists, if <code>true</code> then the direction is returned as an input to the <code>countBy</code> function.</p>
                 
                     <p><code>Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>undefined</code> values.</p>
                 
@@ -275,9 +279,9 @@
         </article>
 
     </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap5.js"></script>
     
 </body>
-
-<script type="text/javascript" src="Eloquent_JavaScript_JS_Chap5.js"></script>
 
 </html>
