@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap7.css">
     <link href="../Assets/CSS/prism.css" rel="stylesheet">
     <title>Eloquent JavaScript - Chapter 7</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 7, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 7 of Eloquent JavaScript.">
 </head>
 
 <body>
@@ -21,6 +24,166 @@
     <main>
 
         <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header1" class="header"><h2 style="font-weight: normal">Measuring a Robot</h2></div>
+
+                <div id="exercise-question1" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write a function <code>compareRobots</code> that takes two robots (and their starting memory). It should generate 100 tasks and let each of the robots solve each of these tasks. When done, it should output the average number of steps each robot took per task.</p> 
+                </div>
+
+                <div id="personal-answer1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function runRobot2(state, robot, memory) {
+    for (let turn = 0;; turn++) {
+        if (state.parcels.length == 0) {
+            return turn; 
+        }
+        let action = robot(state, memory);
+        state = state.move(action.direction);
+        memory = action.memory;
+    }
+}
+                      
+function compareRobots(robot1, memory1, robot2, memory2) {
+    let robot1Result = 0, robot2Result = 0; 
+    for (let tasks = 0; tasks < 100; tasks++) {
+        let currentState = VillageState.random(); 
+        robot1Result += runRobot2(currentState, robot1, memory1); 
+        robot2Result += runRobot2(currentState, robot2, memory2); 
+    }
+    console.log("Robot 1: " + (robot1Result / 100) + "\nRobot 2: " + (robot2Result / 100)); 
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation1" class="body">
+                    <p><code>Line 1</code> creates an variation of the <code>runRobot</code> function with three parameters called <code>state</code>, <code>robot</code>, and <code>memory</code>.</p>
+
+                    <p><code>Line 2</code> counts the number of turns the robot takes until all of the packages are delivered. While <code>turn</code> exists and no value has been returned, one is added to the total count and each of the following statements are run.</p>
+
+                    <p><code>Line 3 - Line 5</code> checks whether the current object called <code>state</code> has any more tasks left to complete by checking the <code>length</code> of the <code>parcels</code> array. If the number is equal to zero, then the total number of turns it took for the robot, or <code>turn</code> is returned.</p>
+
+                    <p><code>Line 6</code> calls the <code>robot</code> function with the object <code>state</code> and the <code>memory</code> of previous steps taken. The robot can then decide what next direction it should take.</p>
+
+                    <p><code>Line 7</code> changes <code>state</code> to the return value of the method <code>move</code> with the parameter set to the <code>direction</code> the robot chose in <code>action</code>.</p>
+
+                    <p><code>Line 8</code> also saves the <code>memory</code> by setting it to the robot's previous <code>memory</code> found in <code>action</code>.</p>
+
+                    <p><code>Line 12</code> creates the <code>compareRobots</code> function with 4 parameters for 2 robots and their respective memories.</p>
+
+                    <p><code>Line 13</code> initializes the results for <code>robot1</code> and <code>robot2</code> to 0.</p>
+
+                    <p><code>Line 14</code> uses a <code>for</code> loop to create 100 <code>tasks</code> for both of the robots to perform.</p>
+
+                    <p><code>Line 15</code> creates a <code>newState</code> by calling the <code>VillageState.random()</code> function. The result is an object with the <code>place</code> property initialized to <code>"Post Office"</code> and the <code>parcels</code> property detailing 5 packages, their current location at <code>place</code> and their destination at <code>address</code>.</p>
+
+                    <p><code>Line 16 - Line 17</code> adds the total number of turns it took for the respective robots to deliver the the same <code>parcels</code> found in <code>currentState</code>.</p>
+
+                    <p><code>Line 19</code> prints to the console each of the robots results by dividing <code>robot1Result</code> and <code>robot2Result</code> by one hundred.</p>
+                </div>
+
+                <div id="official-answer1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countSteps(state, robot, memory) {
+    for (let steps = 0;; steps++) {
+        if (state.parcels.length == 0) return steps;
+        let action = robot(state, memory);
+        state = state.move(action.direction);
+        memory = action.memory;
+    }
+}
+                      
+function compareRobots(robot1, memory1, robot2, memory2) {
+    let total1 = 0, total2 = 0;
+    for (let i = 0; i < 100; i++) {
+        let state = VillageState.random();
+        total1 += countSteps(state, robot1, memory1);
+        total2 += countSteps(state, robot2, memory2);
+    }
+    console.log(`Robot 1 needed ${total1 / 100} steps per task`)
+    console.log(`Robot 2 needed ${total2 / 100}`)
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation1" class="body">
+                    <p>The author used similar code just with different object and function names. He also printed out the results slightly different, using two <code>console.log</code> functions.</p>
+                </div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2 style="font-weight: normal">Robot Efficiency</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>Can you write a robot that finishes the delivery task faster than <code>goalOrientedRobot</code>? If you observe that robot’s behavior, what obviously stupid things does it do? How could those be improved?</p> 
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function yourRobot({place, parcels}, route) {
+    if (route.length == 0) {
+        let shortestValue = 0; 
+        let shortestRoute = findRoute(roadGraph, place, parcels[0].place).length; 
+        for (let i = 0; i < parcels.length; i++) {
+            let currentRoute = findRoute(roadGraph, place, parcels[i].place).length; 
+            if (currentRoute < shortestRoute) {
+                shortestValue = i; 
+            } else if (currentRoute == shortestRoute) {
+                if (parcels[shortestValue].place == place)
+                    shortestValue = i; 
+            }
+        }
+        let parcel = parcels[shortestValue]; 
+        if (parcel.place != place) {
+            route = findRoute(roadGraph, place, parcel.place);
+        } else {
+            route = findRoute(roadGraph, place, parcel.address);
+        }
+    }
+    return {direction: route[0], memory: route.slice(1)};
+}                   
+//Be sure to alter the runRobotAnimation function because for some reason the author doesn't initialize memory to []</code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+                    <p><code>Line 1</code> creates an function called <code>yourRobot</code>.</p>
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function lazyRobot({place, parcels}, route) {
+    if (route.length == 0) {
+        // Describe a route for every parcel
+        let routes = parcels.map(parcel => {
+            if (parcel.place != place) {
+                return {route: findRoute(roadGraph, place, parcel.place), pickUp: true};
+            } else {
+                return {route: findRoute(roadGraph, place, parcel.address), pickUp: false};
+            }
+        });
+        // This determines the precedence a route gets when choosing.
+        // Route length counts negatively, routes that pick up a package
+        // get a small bonus.
+        function score({route, pickUp}) {
+            return (pickUp ? 0.5 : 0) - route.length;
+        }
+        route = routes.reduce((a, b) => score(a) > score(b) ? a : b).route;
+    }
+    return {direction: route[0], memory: route.slice(1)};
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
+                </div>
+            </section>
 
         </article>
 
@@ -48,9 +211,9 @@
         </article>
 
     </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap7.js"></script>
     
 </body>
-
-<script type="text/javascript" src="Eloquent_JavaScript_JS_Chap7.js"></script>
 
 </html>
