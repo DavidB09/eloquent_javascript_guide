@@ -129,7 +129,7 @@ function compareRobots(robot1, memory1, robot2, memory2) {
                     <pre class="language-javascript line-numbers"><code class="language-javascript">function yourRobot({place, parcels}, route) {
     if (route.length == 0) {
         let shortestValue = 0; 
-        let shortestRoute = findRoute(roadGraph, place, parcels[0].place).length; 
+        let shortestRoute = findRoute(roadGraph, place, parcels[shortestValue].place).length; 
         for (let i = 0; i < parcels.length; i++) {
             let currentRoute = findRoute(roadGraph, place, parcels[i].place).length; 
             if (currentRoute < shortestRoute) {
@@ -152,7 +152,35 @@ function compareRobots(robot1, memory1, robot2, memory2) {
                 </div>
 
                 <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates an function called <code>yourRobot</code>.</p>
+                    <p><code>Line 1</code> creates an function called <code>yourRobot</code> with an object, the properties being <code>place</code> and <code>parcels</code>, and a <code>route</code> for the robot to take.</p>
+
+                    <p><code>Line 2</code> checks whether there are any places within <code>route</code> left to be visited by the robot and generates a new path if <code>true</code>.</p>
+
+                    <p><code>Line 3</code> initializes the value in <code>route</code> with the shortest path to potentially be 0, or the first element in the array.</p>
+
+                    <p><code>Line 4</code> finds the current <code>shortestRoute</code> by calling the <code>findRoute</code> function with the <code>place</code> of the <code>parcels</code> set to the <code>shortestValue</code>. The result is the shortest length of an array with all of the potential destinations for robot to travel to. </p>
+
+                    <p><code>Line 5</code> iterates through the each of the <code>parcels</code> that the robot must pick up.</p>
+
+                    <p><code>Line 6</code> finds the shortest path possible for the current package by calling the <code>findRoute</code> with the current <code>parcels</code>. The result is the length of an array containing all of the potential destinations for robot to visit.</p>
+
+                    <p><code>Line 7</code> checks whether the result of <code>Line 6</code> is less than the current <code>shortestRoute</code>. This basically compares the two paths and finds out which one has less destinations that the robot must travel to.</p>
+
+                    <p>If <code>true</code>, then <code>Line 8</code> sets the <code>shortestValue</code> to the value of the current package, or <code>i</code>.</p>
+
+                    <p>Else, <code>Line 10</code> checks whether the two lengths of the paths are equal.</p>
+
+                    <p><code>Line 11 - Line 12</code> goes ahead and checks whether the current <code>parcel</code> is a pickup or delivery for the robot by comparing their <code>place</code> value. If the <code>shortestValue</code> place was a delivery, then it is changed to <code>i</code>.</p>
+                
+                    <p><code>Line 14</code> then uses the information retrieved by the previous statements to set <code>parcel</code> to the package with the shortest path length.</p>
+
+                    <p><code>Line 15</code> checks whether the robot is or is not at the <code>parcel.place</code> by comparing it to the current <code>place</code>.</p>
+
+                    <p>If <code>true</code>, then <code>Line 16</code> uses <code>route</code> to call <code>findRoute</code> and discover the quickest path to the particular <code>place</code> so that the parcel can be picked up.</p>
+
+                    <p>Else, <code>Line 18</code> uses <code>route</code> to call <code>findRoute</code> and discover the shortest path to deliver the parcel.</p>
+
+                    <p><code>Line 21</code> returns an object with the <code>direction</code> of the robot set to the first place within the <code>route</code> and <code>memory</code> equaling the remaining destinations that the robot must travel to.</p>
                 </div>
 
                 <div id="official-answer2" class="body">
@@ -181,7 +209,139 @@ function compareRobots(robot1, memory1, robot2, memory2) {
                 </div>
 
                 <div id="official-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
+                    <p><code>Line 1</code> creates an function called <code>lazyRobot</code> with an object, the properties being <code>place</code> and <code>parcels</code>, and a <code>route</code> for the robot to take.</p>
+
+                    <p><code>Line 2</code> checks whether there are any places within <code>route</code> left to be visited by the robot and generates a new path if <code>true</code>.</p>
+
+                    <p><code>Line 4</code> creates a new value called <code>routes</code> and sets it to an array containing the results of mapping over each <code>parcel</code> within <code>parcels</code>.</p>
+
+                    <p><code>Line 5</code> checks whether the robot is or is not at the <code>parcel.place</code> by comparing it to the current <code>place</code>.</p>
+
+                    <p>If <code>true</code>, then an object is returned with <code>route</code> set to the result of the <code>findRoute</code> function with the <code>parcel.place</code> as a parameter and <code>pickUp</code> equaling <code>true</code>.</p>
+                
+                    <p>Else, an object is returned with <code>route</code> set to the result of the <code>findRoute</code> function with the <code>parcel.address</code> as a parameter and <code>pickUp</code> equaling <code>false</code>.</p>
+
+                    <p><code>Line 14</code> creates a function with an object as a parameter, the two properties equaling <code>route</code> and <code>pickUp</code>.</p>
+
+                    <p><code>Line 15</code> checks whether <code>pickUp</code> equals <code>true</code> and subtracts the resulting 0.5 or 0 by the <code>route.length</code> of the particular package.</p>
+
+                    <p><code>Line 17</code> sets route to the result of iterating through each object in <code>routes</code> and comparing their <code>score</code>, ultimately deciding which package has the most prefered route available for the robot</p>
+
+                    <p><code>Line 19</code> returns an object with the <code>direction</code> of the robot set to the first place within the <code>route</code> and <code>memory</code> equaling the remaining destinations that the robot must travel to.</p>
+                </div>
+            </section>
+
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2 style="font-weight: normal">Persistent Group</h2></div>
+
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write a new class <code>PGroup</code>, similar to the <code>Group</code> class from Chapter 6, which stores a set of values. Like <code>Group</code>, it has <code>add</code>, <code>delete</code>, and <code>has</code> methods.</p> 
+                
+                    <p>Its <code>add</code> method, however, should return a new <code>PGroup</code> instance with the given member added and leave the old one unchanged. Similarly, <code>delete</code> creates a new instance without a given member.</p>
+
+                    <p>The class should work for values of any type, not just strings. It does not have to be efficient when used with large amounts of values.</p>
+
+                    <p>The <code>constructor</code> shouldn’t be part of the class’s interface (though you’ll definitely want to use it internally). Instead, there is an <code>empty</code> instance, <code>PGroup.empty</code>, that can be used as a starting value.</p>
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class PGroup {
+    constructor(array) {
+        this.values = array; 
+    }
+    add(value) {
+        if (this.values.indexOf(value) == -1)
+            return new PGroup(this.values.concat(value)); 
+        else 
+            return this.values; 
+    }
+    delete(value) {
+        if (this.values.indexOf(value) == -1)
+            return this.values; 
+        else 
+            return new PGroup(this.values.filter(v => v != value));  
+    }
+    has(value) {
+        return this.values.indexOf(value) != -1 ? true : false; 
+    }
+}
+                                          
+PGroup.empty = new PGroup([]);</code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+                    <p><code>Line 1</code> creates an class called <code>PGroup</code>.</p>
+
+                    <p><code>Line 2 - Line 3</code> creates a constructor that sets <code>this.values</code> to the <code>array</code> parameter.</p>
+
+                    <p><code>Line 5</code> creates a method called <code>add</code> that takes a <code>value</code> as an input.</p>
+
+                    <p><code>Line 6 - Line 7</code> checks whether <code>value</code> is not already in <code>this.values</code> by using <code>indexOf</code>. If <code>true</code>, then new instance of <code>PGroup</code> is returned with its values equaling <code>this.values</code> and <code>value</code> concatenated together.</p>
+                
+                    <p>Else, <code>Line 8 - Line 9</code> just returns the regular <code>this.values</code> of the current <code>PGroup</code>.</p>
+
+                    <p><code>Line 11</code> creates a method called <code>delete</code> that takes a <code>value</code> as an input.</p>
+
+                    <p><code>Line 12 - Line 13</code> checks whether <code>value</code> is not already in <code>this.values</code> by using <code>indexOf</code>. If <code>true</code>, then just the regular <code>this.values</code> are returned.</p>
+
+                    <p>Else, <code>Line 14 - Line 15</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.values</code> filtered to exclude <code>value</code>.</p>
+
+                    <p><code>Line 17</code> creates a method called <code>has</code> that takes a <code>value</code> as an input.</p>
+
+                    <p><code>Line 18</code> returns the result of checking whether the <code>indexOf</code> <code>value</code> in <code>this.values</code> is equal to -1, basically confirming if the element does or does not exist within the array.</p>
+
+                    <p><code>Line 22</code> adds a property to <code>PGroup</code> called <code>empty</code> that equals a new <code>PGroup</code> instance.</p>
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class PGroup {
+    constructor(members) {
+        this.members = members;
+    }
+    add(value) {
+        if (this.has(value)) return this;
+        return new PGroup(this.members.concat([value]));
+    }
+    delete(value) {
+        if (!this.has(value)) return this;
+        return new PGroup(this.members.filter(m => m !== value));
+    }
+    has(value) {
+        return this.members.includes(value);
+    }
+}
+
+PGroup.empty = new PGroup([]);</code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    <p><code>Line 1</code> creates an class called <code>PGroup</code>.</p>
+
+                    <p><code>Line 2 - Line 3</code> creates a constructor that sets <code>this.members</code> to the <code>members</code> parameter.</p>
+
+                    <p><code>Line 5</code> creates a method called <code>add</code> that takes a <code>value</code> as an input.</p>
+
+                    <p><code>Line 6</code> checks whether <code>this</code> contains <code>value</code> and returns <code>this</code> if <code>true</code>.</p>
+
+                    <p><code>Line 7</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.members</code> and <code>value</code> concatenated together.</p>
+
+                    <p><code>Line 9</code> creates a method called <code>delete</code> that takes a <code>value</code> as an input.</p>
+
+                    <p><code>Line 10</code> checks whether <code>this</code> does not contains <code>value</code> and returns <code>this</code> if <code>true</code>.</p>
+
+                    <p><code>Line 11</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.members</code> filtered to exclude <code>value</code>.</p>
+
+                    <p><code>Line 13</code> creates a method called <code>has</code> that takes a <code>value</code> as an input.</p>
+
+                    <p><code>Line 14</code> returns the result of checking whether <code>this.members</code> <code>includes</code> the <code>value</code> parameter.</p>
+
+                    <p><code>Line 18</code> adds a property to <code>PGroup</code> called <code>empty</code> that equals a new <code>PGroup</code> instance.</p>
                 </div>
             </section>
 
