@@ -19,6 +19,11 @@
 
     <header>
         <h1 id="chapter6-main-header">Chapter 6, "The Secret Life of Objects"</h1>
+
+        <div id="navigation-links">
+            <a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Previous</a>
+            <a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Next</a>
+        </div>
     </header>
 
     <main>
@@ -41,7 +46,7 @@
                 <div id="personal-answer" class="body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Vec {
+                    <pre class="language-javascript line-numbers" ><code class="language-javascript">class Vec {
     constructor(x, y) {
         this.x = x; 
         this.y = y; 
@@ -128,24 +133,90 @@
                     <h3>Personal Answer</h3>
 
                     <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
- 
+    constructor() {
+        this.values = []; 
+    }
+    add(value) {
+        if (!this.values.includes(value)) 
+            this.values.push(value); 
+    } 
+    delete(value) {
+        if (this.values.includes(value))
+            this.values.splice(this.values.indexOf(value)); 
+    }
+    has(value) {
+        return this.values.includes(value);  
+    }
+    static from(array) {
+        let newGroup = new Group; 
+        for (let value of array) {
+            newGroup.add(value); 
+        }
+        return newGroup; 
+    }
 }                   </code></pre>
                 </div>
 
                 <div id="personal-answer-explanation2" class="body">
                     <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
+
+                    <p><code>Line 2 - Line 3</code> creates the <code>constructor</code> method and initializes <code>this.values</code> to an empty array.</p>
+
+                    <p><code>Line 5</code> creates an <code>add</code> method that takes a <code>value</code> as a parameter.</p>
+
+                    <p><code>Line 6 - Line 7</code> checks whether <code>this.values</code> does not contain <code>value</code> by calling the <code>includes</code> function. If <code>true</code>, then <code>value</code> is pushed or added to the end of <code>this.values</code>.</p>
+                
+                    <p><code>Line 9</code> creates an <code>delete</code> method that takes a <code>value</code> as a parameter.</p>
+
+                    <p><code>Line 10 - Line 11</code> checks whether <code>this.values</code> contains <code>value</code> by calling the <code>includes</code> function. If <code>true</code>, then <code>value</code> is removed from <code>this.values</code> by calling the <code>splice</code> function with the <code>indexOf</code> <code>value</code>.</p>
+                
+                    <p><code>Line 13</code> creates an <code>has</code> method that takes a <code>value</code> as a parameter.</p>
+
+                    <p><code>Line 14</code> returns the result of checking whether <code>this.values</code> contains <code>value</code> by calling the <code>includes</code> function.</p>
+
+                    <p><code>Line 16</code> creates a <code>static</code> method called <code>from</code> that takes an array as an input.</p>
+
+                    <p><code>Line 17</code> creates a new instance of the <code>Group</code> class.</p>
+
+                    <p><code>Line 18 - Line 19</code> iterates through each <code>value</code> within <code>array</code> and calls the <code>add</code> method to push the current <code>value</code> to <code>newGroup</code>.</p>
+
+                    <p><code>Line 21</code> returns the <code>newGroup</code> with all of the values.</p>
                 </div>
 
                 <div id="official-answer2" class="body">
                     <h3>Author's Answer</h3>
 
                     <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
-
+    constructor() {
+        this.members = [];
+    }
+    add(value) {
+        if (!this.has(value)) {
+            this.members.push(value);
+        }
+    }
+    delete(value) {
+        this.members = this.members.filter(v => v !== value);
+    }
+    has(value) {
+        return this.members.includes(value);
+    }
+    static from(collection) {
+        let group = new Group;
+        for (let value of collection) {
+            group.add(value);
+        }
+        return group;
+    }
 }                   </code></pre>
                 </div>
 
                 <div id="official-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
+                    <p>The author uses the same code just with a few variations throughout.</p>
+
+                    <p><code>Line 6</code> uses the <code>has</code> method of the class to check whether <code>this.members</code> already contains the <code>value</code> before adding it.</p>
+
+                    <p><code>Line 11</code> calls the <code>filter</code> method on <code>this.members</code> to return a new array without the <code>value</code>.</p>
                 </div>
             </section>
 
@@ -161,32 +232,144 @@
                 <div id="personal-answer3" class="body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group2 {
- 
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
+    constructor() {
+        this.values = []; 
+    }
+    add(value) {
+        if (!this.values.includes(value)) this.values.push(value); 
+    } 
+    delete(value) {
+        if (this.values.includes(value)) this.values.splice(this.values.indexOf(value)); 
+    }
+    has(value) {
+        return this.values.includes(value);  
+    }
+    static from(array) {
+        let newGroup = new Group; 
+        for (let value of array) {
+            newGroup.add(value); 
+        }
+        return newGroup; 
+    }
+    [Symbol.iterator]() {
+        return new GroupIterator(this.values); 
+    }
+}                   
+                    
+class GroupIterator {
+    constructor(group) {
+        this.group = group;
+        this.position = 0;
+    }
+    next() {
+        if (this.position >= this.group.length) {
+            return {done: true};
+        } else {
+            let value = {value: this.group[this.position], done: false};
+            this.position++;
+            return value;
+        }
+    }
 }                   </code></pre>
                 </div>
 
                 <div id="personal-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates an class called <code>Group2</code>.</p>
+                    <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
+
+                    <p><code>Line 2 - Line 3</code> creates the <code>constructor</code> method and initializes <code>this.values</code> to an empty array.</p>
+
+                    <p><code>Line 5 - Line 6</code> creates an <code>add</code> method that takes a <code>value</code> as a parameter. The <code>includes</code> function is called to check whether <code>this.values</code> does not contain <code>value</code> and pushes or adds <code>value</code> if <code>true</code>.</p>
+                
+                    <p><code>Line 8 - Line 9</code> creates an <code>delete</code> method that takes a <code>value</code> as a parameter. The <code>includes</code> function checks whether <code>this.values</code> contains <code>value</code> and removes <code>value</code> by calling the <code>splice</code> function with the <code>indexOf</code> <code>value</code> if <code>true</code>.</p>
+                
+                    <p><code>Line 11 - Line 12</code> creates an <code>has</code> method that takes a <code>value</code> as a parameter. The result of checking whether <code>this.values</code> contains <code>value</code>, by calling the <code>includes</code> function, is returned.</p>
+
+                    <p><code>Line 14 - Line 19</code> creates a <code>static</code> method called <code>from</code> that takes an array as an input. A new instance of the <code>Group</code> class is created, the <code>add</code> method is called with each <code>value</code> within <code>array</code>, and the resulting <code>newGroup</code> is returned.</p>
+
+                    <p><code>Line 21 - Line 22</code> creates the <code>Symbol.iterator</code> method that returns a new instance of the <code>GroupIterator</code> class with <code>this.values</code> as the parameter. This will allow each value to be iterated over.</p>
+                
+                    <p><code>Line 26</code> creates the class called <code>GroupIterator</code>.</p>
+
+                    <p><code>Line 27</code> creates the <code>constructor</code> method with a preexisting <code>group</code> as a parameter.</p>
+
+                    <p><code>Line 28 - Line 29</code> initalizes <code>this.group</code> to the parameter of the <code>constructor</code> and <code>this.position</code> to zero to represent the first element of the array.</p>
+
+                    <p><code>Line 31</code> creates the <code>next</code> method to iterate through each value of <code>group</code>.</p>
+
+                    <p><code>Line 32 - Line 33</code> checks whether <code>this.position</code> is greater than the length of the values in <code>this.group</code>. If <code>true</code>, then an object with the property <code>done</code> being <code>true</code> is returned.</p>
+                    
+                    <p>Else, <code>Line 35</code> creates an object called <code>value</code> and sets the property <code>value</code> to the value at the current <code>this.position</code> within <code>this.group</code> and the property <code>done</code> to <code>false</code> to continue iterating through <code>this.group</code>.</p>
+                
+                    <p><code>Line 36</code> then adds one to <code>this.position</code> to move on to the next value.</p>
+
+                    <p><code>Line 37</code> returns <code>value</code>.</p>
                 </div>
 
                 <div id="official-answer3" class="body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group2 {
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
+    constructor() {
+        this.members = [];
+    }
+    add(value) {
+        if (!this.has(value)) {
+            this.members.push(value);
+        }
+    }
+    delete(value) {
+        this.members = this.members.filter(v => v !== value);
+    }
+    has(value) {
+        return this.members.includes(value);
+    }
+    static from(collection) {
+        let group = new Group;
+        for (let value of collection) {
+            group.add(value);
+        }
+        return group;
+    }
+    [Symbol.iterator]() {
+        return new GroupIterator(this);
+    }
+}
 
+class GroupIterator {
+    constructor(group) {
+        this.group = group;
+        this.position = 0;
+    }
+    next() {
+        if (this.position >= this.group.members.length) {
+            return {done: true};
+        } else {
+            let result = {value: this.group.members[this.position], done: false};
+            this.position++;
+            return result;
+        }
+    }
 }                   </code></pre>
                 </div>
 
                 <div id="official-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates an class called <code>Group2</code>.</p>
+                    <p>The author uses the same code just with a few variations throughout.</p>
+
+                    <p><code>Line 6</code> uses the <code>has</code> method of the class to check whether <code>this.members</code> already contains the <code>value</code> before adding it.</p>
+
+                    <p><code>Line 11</code> calls the <code>filter</code> method on <code>this.members</code> to return a new array without the <code>value</code>.</p>
+
+                    <p><code>Line 24</code> creates a new instance of the class <code>GroupIterator</code> with <code>this</code> as the parameter.</p>
+
+                    <p><code>Line 34 and Line 37</code> uses <code>this.group.members</code> to access the values within <code>this.group</code>.</p>
                 </div>
             </section>
 
             <section id="exercise4" class="panel">
                 <div id="exercise-header4" class="header"><h2 style="font-weight: normal">Borrowing a Method</h2></div>
 
-                <div id="exercise-question3" class="body">
+                <div id="exercise-question4" class="body">
                     <h3>Question</h3>
 
                     <p>Earlier in the chapter I mentioned that an object’s <code>hasOwnProperty</code> can be used as a more robust alternative to the <code>in</code> operator when you want to ignore the prototype’s properties. But what if your map needs to include the word "hasOwnProperty"? You won’t be able to call that method anymore because the object’s own property hides the method value.</p>
@@ -194,28 +377,24 @@
                     <p>Can you think of a way to call <code>hasOwnProperty</code> on an object that has its own property by that name?.</p> 
                 </div>
 
-                <div id="personal-answer3" class="body">
+                <div id="personal-answer4" class="body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group2 {
- 
-}                   </code></pre>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">console.log(Object.prototype.hasOwnProperty.call(map, "one"));</code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates an class called <code>Group2</code>.</p>
+                <div id="personal-answer-explanation4" class="body">
+                    <p>Since <code>map</code> has a property called <code>hasOwnProperty</code>, the <code>prototype</code> of a regular <code>object</code> must be used to call the <code>hasOwnProperty</code> function. The method <code>call</code> must also be called with the parameters <code>map</code> and <code>"one"</code>.</p>
                 </div>
 
-                <div id="official-answer3" class="body">
+                <div id="official-answer4" class="body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group2 {
-
-}                   </code></pre>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">console.log(Object.prototype.hasOwnProperty.call(map, "one"));</code></pre>
                 </div>
 
-                <div id="official-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates an class called <code>Group2</code>.</p>
+                <div id="official-answer-explanation4" class="body">
+                    <p>The author uses the same code.</p>
                 </div>
             </section>
 

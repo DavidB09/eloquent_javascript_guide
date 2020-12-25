@@ -19,6 +19,11 @@
 
     <header>
         <h1 id="chapter5-main-header">Chapter 5, "Higher-Order Functions"</h1>
+
+        <div id="navigation-links">
+            <a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Previous</a>
+            <a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Next</a>
+        </div>
     </header>
 
     <main>
@@ -129,11 +134,11 @@
                 </div>
 
                 <div id="personal-answer-explanation3-pt1" class="body">
-                    <p><code>Line 1</code> creates the function <code>every</code> with <code>array</code> and <code>test</code>as its only parameters.</p>
+                    <p><code>Line 1</code> creates the function <code>every</code> with <code>array</code> and <code>test</code> as its only parameters.</p>
 
                     <p><code>Line 2</code> declares an <code>for</code> loop to iterate through the values of <code>array</code>.</p>
 
-                    <p><code>Line 3 - 4</code> checks whether the <code>test</code> function returns <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code> the result is returned.</p>
+                    <p><code>Line 3 - 4</code> checks whether the <code>test</code> function returns <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code>, the result is returned.</p>
 
                     <p><code>Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>test</code> function.</p>
                 </div>
@@ -243,11 +248,11 @@
 
                     <p><code>Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
 
-                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists. If <code>true</code> then the direction is returned as an input to the <code>countBy</code>function, else the string <code>"none</code> is given.</p>
+                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists. If <code>true</code>, then the direction is returned as an input to the <code>countBy</code> function; else, the string <code>"none</code> is given.</p>
 
                     <p><code>Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>name</code> properties that equal <code>"none"</code>.</p>
 
-                    <p><code>Line 7</code> gives the default value of <code>"ltr"</code> if no objects exist in <code>counted</code></p>
+                    <p><code>Line 7</code> gives the default value of <code>"ltr"</code> if no objects exist in <code>counted</code>.</p>
 
                     <p><code>Line 9</code> returns the <code>name</code> property of the object with the largest <code>count</code>, aka the dominant writing direction.</p>
                 </div>

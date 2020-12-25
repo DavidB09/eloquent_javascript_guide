@@ -18,6 +18,10 @@ header {
    text-align: center; 
 }
 
+header a {
+   font-size: 3.5rem; 
+}
+
 ul {
    margin: 0;
    padding: 0;
@@ -38,6 +42,12 @@ a:hover {
 }
 
 /* IDS */
+
+/* Header */
+#navigation-links {
+   display: flex; 
+   justify-content: space-between;
+}
 
 /* Chapter Text */
 #exercise-problems .panel {
