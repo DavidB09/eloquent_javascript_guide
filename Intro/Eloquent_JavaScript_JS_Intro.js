@@ -196,17 +196,86 @@ page37.appendChild(page37Link);
 unorderedList3.append(page37); 
 
 //Create a link for eigth chapter 
+var page38 = document.createElement("li"); 
+var page38Link = document.createElement("a"); 
+page38Link.innerText = "Chapter 8"; 
+page38Link.href = "../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html"; 
+page38Link.alt = "Chapter 8 Link"; 
+page38Link.title = "Chapter 8"; 
+page38.appendChild(page38Link); 
+unorderedList3.append(page38); 
+
+//Create a link for ninth chapter 
+var page39 = document.createElement("li"); 
+var page39Link = document.createElement("a"); 
+page39Link.innerText = "Chapter 9"; 
+page39Link.href = "../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html"; 
+page39Link.alt = "Chapter 9 Link"; 
+page39Link.title = "Chapter 9"; 
+page39.appendChild(page39Link); 
+unorderedList3.append(page39); 
+
+//Create a link for tenth chapter 
+var page310 = document.createElement("li"); 
+var page310Link = document.createElement("a"); 
+page310Link.innerText = "Chapter 10"; 
+page310Link.href = "../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html"; 
+page310Link.alt = "Chapter 10 Link"; 
+page310Link.title = "Chapter 10"; 
+page310.appendChild(page310Link); 
+unorderedList3.append(page310); 
+
+//Create a link for eleventh chapter 
+var page311 = document.createElement("li"); 
+var page311Link = document.createElement("a"); 
+page311Link.innerText = "Chapter 11"; 
+page311Link.href = "../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html"; 
+page311Link.alt = "Chapter 11 Link"; 
+page311Link.title = "Chapter 11"; 
+page311.appendChild(page311Link); 
+unorderedList3.append(page311); 
+
+//Create a link for twelfth chapter 
+var page312 = document.createElement("li"); 
+var page312Link = document.createElement("a"); 
+page312Link.innerText = "Chapter 12"; 
+page312Link.href = "../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html"; 
+page312Link.alt = "Chapter 12 Link"; 
+page312Link.title = "Chapter 12"; 
+page312.appendChild(page312Link); 
+unorderedList3.append(page312); 
+
+//Create a link for thirteenth chapter 
+var page313 = document.createElement("li"); 
+var page313Link = document.createElement("a"); 
+page313Link.innerText = "Chapter 13"; 
+page313Link.href = "../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html"; 
+page313Link.alt = "Chapter 13 Link"; 
+page313Link.title = "Chapter 13"; 
+page313.appendChild(page313Link); 
+unorderedList3.append(page313); 
+
+//Create a link for fourteenth chapter 
+var page314 = document.createElement("li"); 
+var page314Link = document.createElement("a"); 
+page314Link.innerText = "Chapter 14"; 
+page314Link.href = "../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html"; 
+page314Link.alt = "Chapter 14 Link"; 
+page314Link.title = "Chapter 14"; 
+page314.appendChild(page314Link); 
+unorderedList3.append(page314); 
 
 // Add links to the unordered list
 navbar3.append(unorderedList3); 
 
-
 // CSS
 var styles = `
-    html { font-size: 62.5%; overflow-y: scroll; }    
+    html { font-size: 62.5%; overflow-y: scroll; }
 
     /* MAIN ELEMENTS */
-    body { margin: 0; font-size: 2rem; font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif; }
+    body { margin: 0; font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif; font-size: 2rem; }
+
+    header { max-width: 100%; margin: 0 auto; padding: 15rem 10rem 10rem 10rem; background-color: #f8d410; text-align: center; }
 
     ul { margin: 0; padding: 0; list-style-type: none; }
 
@@ -217,28 +286,23 @@ var styles = `
     a:hover { color: #F00; }
 
     /* CLASSES */
-    .column-flex { display: flex; flex-direction: column; }
+    .column-flex { display: flex; flex-direction: column; align-items: center; }
 
     /* IDS */
-    /* Header */
-    #main-header { margin: 0 auto; padding: 15rem 10rem 10rem 10rem; background-color: #f8d410; text-align: center; }
-
     /* Resource Links */
-    #resources-article { justify-content: center; align-items: center; margin-top: 10rem; }
+    #resources-article { position: relative; justify-content: center; align-items: center; margin-top: 10rem; }
 
-    #inner-resources-div { justify-content: center; align-items: center; }
+    #inner-resources-div { position: relative; justify-content: center; align-items: center; margin: 2rem; }
 
     #book-cover-figure { justify-content: center; align-items: center; margin: 0; }
 
-    #book-links { position: relative; opacity: 0; }
+    #book-links { position: absolute; display: flex; opacity: 0; }
 
-    #first-link-div { position: absolute; width: 30rem; margin-bottom: 1rem; padding: 2rem; color: white; background-color: rgba(0,0,0, 0.8); text-align: center; border: 0.5rem solid white; transform: translate(-50%, -300%); }
-
-    #second-link-div { position: absolute; width: 30rem; margin-top: 1rem; padding: 2rem; color: white; background-color: rgba(0,0,0, 0.8); text-align: center; border: 0.5rem solid white; transform: translate(-50%, -200%); }
+    #book-links div { width: 30rem; margin-bottom: 1rem; padding: 2rem; color: white; background-color: rgba(0,0,0, 0.8); text-align: center; border: 0.5rem solid white; }
 
     #book-links a { color: #ac77f2; }
 
-    #book-cover-figure:hover + #book-links{ opacity: 1; }
+    #book-cover-figure:hover + #book-links { opacity: 1; }
 
     #book-links:hover { opacity: 1; }
 
@@ -249,7 +313,31 @@ var styles = `
 
     #navbar-section-3rd-Ed { padding: 5rem; transition: background-color 0.3s ease-out; }
 
-    #navbar-section-3rd-Ed:hover { background-color: #f8d410; } `
+    #navbar-section-3rd-Ed:hover { background-color: #f8d410; } 
+
+    /* MEDIA QUERY */
+    
+    @media only screen and (max-width: 600px) {
+        body {
+            font-size: 1.8rem; 
+        }
+
+        header {
+            padding: 1rem 2rem; 
+            text-align: start; 
+        }
+
+        #book-links div {
+            width: 15rem; 
+            font-size: 2rem;
+        }
+    } 
+    
+    @media only screen and (max-width: 400px) {
+        #book-links div {
+            font-size: 1.5rem;
+        }
+    } `
 
 var styleSheet = document.createElement("style"); 
 styleSheet.type = "text/css";

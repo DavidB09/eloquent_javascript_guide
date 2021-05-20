@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap11.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
+    <title>Eloquent JavaScript - Chapter 11</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 11, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 11 of Eloquent JavaScript.">
+</head>
+
+<body>
+
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+    <header>
+        <h1 id="chapter11-main-header">Chapter 11, "Asynchronous Programming"</h1>
+        
+        <div id="navigation-links">
+            <a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Previous</a>
+            <a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header1" class="header"><h2>Tracking the Scalpel</h2></div>
+
+                <div id="exercise-question1" class="body">
+                    <h3>Question</h3>
+
+                    <p>The village crows own an old scalpel that they occasionally use on special missions—say, to cut through screen doors or packaging. To be able to quickly track it down, every time the scalpel is moved to another nest, an entry is added to the storage of both the nest that had it and the nest that took it, under the name "scalpel", with its new location as the value.</p>
+
+                    <p>This means that finding the scalpel is a matter of following the breadcrumb trail of storage entries, until you find a nest where that points at the nest itself.</p>
+
+                    <p>Write an <code>async</code> function <code>locateScalpel</code> that does this, starting at the nest on which it runs. You can use the <code>anyStorage</code> function defined earlier to access storage in arbitrary nests. The scalpel has been going around long enough that you may assume that every nest has a "scalpel" entry in its data storage.</p>
+
+                    <p>Next, write the same function again without using <code>async</code> and <code>await</code>.</p> 
+                </div>
+
+                <div id="personal-answer1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">async function locateScalpel(nest) {
+    for (neighbor of nest.neighbors) {
+        let result = await anyStorage(nest, neighbor, "scalpel"); 
+        if (result == neighbor) 
+            return neighbor; 
+    }
+}
+
+function locateScalpel2(nest) {
+    function runPromise(index) {
+        let neighbor = nest.neighbors[index];
+        return anyStorage(nest, neighbor, "scalpel").then((answer) => {
+            return answer == neighbor ? answer : runPromise(index + 1); 
+        }); 
+    }
+    return runPromise(0);   
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation1" class="body">
+                    <p><code>Line 1</code> creates an <code>async</code> function called <code>locateScalpel</code> that receives a <code>nest</code> object as the parameter.</p>
+
+                    <p><code>Line 2</code> uses a <code>for</code> loop to iterate through each <code>neighbor</code> of the current location.</p>
+
+                    <p><code>Line 3</code> uses the <code>await</code> asynchronous functionality to call the <code>anyStorage</code> function, checking the storage of the current <code>neighbor</code> and returning the name of the <code>neighbor</code> if it has encountered the scalpel.</p>
+
+                    <p><code>Line 4 - Line 5</code> then checks whether the result of the <code>anyStorage</code> function is equal to the current <code>neighbor</code>, and returns the name of the current <code>neighbor</code> if <code>true</code> as this means that it is the current location of the scalpel.</p>
+
+                    <p><code>Line 9</code> creates the ordinary function called <code>locateScalpel2</code> which also receives a <code>nest</code> object as the parameter.</p>
+
+                    <p><code>Line 10</code> creates another function called <code>runPromise</code> that receives an <code>index</code> integer as the parameter.</p>
+
+                    <p><code>Line 11</code> creates and sets <code>neighbor</code> to the current <code>neighbor</code> within the object <code>nest</code>.</p>
+
+                    <p><code>Line 12</code> calls and return the <code>anyStorage</code> function, checking the storage of the current <code>neighbor</code> and returning the name if it has encountered the scalpel.</p>
+
+                    <p><code>Line 13</code> then retrieves the <code>answer</code> object returned from the <code>anyStorage</code> function, checks whether it is equal to the current <code>neighbor</code>, and either returns the name or recursively calls the <code>runPromise</code> function to move on to the next neighbor.</p>
+
+                    <p><code>Line 16</code> begins the process of searching for the scalpel by calling the <code>runPromise</code> function with the first index.</p>
+                </div>
+
+                <div id="official-answer1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">async function locateScalpel(nest) {
+    let current = nest.name;
+    for (;;) {
+        let next = await anyStorage(nest, current, "scalpel");
+        if (next == current) return current;
+        current = next;
+    }
+}
+
+function locateScalpel2(nest) {
+    function loop(current) {
+        return anyStorage(nest, current, "scalpel").then(next => {
+            if (next == current) return current;
+            else return loop(next);
+        });
+    }
+    return loop(nest.name);
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation1" class="body">
+                    <p><code>Line 1</code> creates an <code>async</code> function called <code>locateScalpel</code> that receives a <code>nest</code> object as the parameter.</p>
+
+                    <p><code>Line 2</code> creates and initializes the variable <code>current</code> to the first location within the <code>nest</code> object.</p>
+
+                    <p><code>Line 3</code> creates a <code>for</code> loop that continues to iterate until a value is returned.</p>
+
+                    <p><code>Line 4</code> creates the <code>next</code> variable and sets it to the result of calling the <code>anyStorage</code> function to look for the path through which the scalpel traveled.</p>
+
+                    <p><code>Line 5</code> checks whether the current location within the path of the scalpel is equal to the current location within the <code>nest</code>, and returns <code>current</code> if <code>true</code></p>
+
+                    <p><code>Line 6</code> sets the <code>current</code> variable to <code>next</code> to continue looking for the scalpel.</p>
+
+                    <p><code>Line 9</code> creates the ordinary function called <code>locateScalpel2</code> which also receives a <code>nest</code> object as the parameter.</p>
+
+                    <p><code>Line 10</code> creates another function called <code>loop</code> that receives an <code>current</code> variable as the parameter.</p>
+
+                    <p><code>Line 12</code> calls and return the <code>anyStorage</code> function, checking the storage of the <code>current</code> variable and returning the name if it has encountered the scalpel.</p>
+
+                    <p><code>Line 13</code> then retrieves the <code>next</code> object returned from the <code>anyStorage</code> function, checks whether it is equal to the <code>current</code> variable, and returns <code>current</code> if <code>true</code>.</p>
+
+                    <p>Else, <code>Line 14</code> recursively calls the <code>loop</code> function with the <code>next</code> variable.</p>
+
+                    <p><code>Line 17</code> begins the process of searching for the scalpel by calling the <code>loop</code> function with the first location of the <code>nest</code>.</p>
+                </div>
+
+                <div id="exercise-close" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2>Building Promise.ALL</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>Given an array of promises, <code>Promise.all</code> returns a promise that waits for all of the promises in the array to finish. It then succeeds, yielding an array of result values. If a promise in the array fails, the promise returned by all fails too, with the failure reason from the failing promise.</p>
+
+                    <p>Implement something like this yourself as a regular function called <code>Promise_all</code>.</p> 
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function Promise_all(promises) {
+    return new Promise((resolve, reject) => {
+        let finishArray = []; 
+        if (promises.length == 0) {
+            resolve([]); 
+        } else {
+            for (let i = 0; i < promises.length; i++) {
+                promises[i].then((result) => {
+                    if (i == promises.length - 1) {
+                        finishArray.push(result); 
+                        resolve(finishArray);  
+                    } else {
+                        finishArray.push(result); 
+                    }
+                }).catch((error) => reject(error)); 
+            } 
+        }; 
+    });
+};                  </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+                    <p><code>Line 1</code> creates an function called <code>Promise_all</code> that receives an array of promises as its parameter.</p>
+
+                    <p><code>Line 2</code> returns a new <code>Promise</code> with the <code>resolve</code> and <code>reject</code> functions.</p>
+
+                    <p><code>Line 3</code> initializes an empty array called <code>finishArray</code>.</p>
+
+                    <p><code>Line 4 - Line 5</code> checks whether the <code>promises</code> array is empty and calls the <code>resolve</code> function with an empty array if <code>true</code>.</p>
+
+                    <p>Else, <code>Line 7</code> creates a <code>for</code> loop to iterate through each <code>Promise</code> object within <code>promises</code>.</p>
+
+                    <p><code>Line 8</code> calls the <code>then</code> function to attempt to resolve the current <code>Promise</code> object.</p>
+
+                    <p><code>Line 9</code> checks whether the current resolved <code>Promise</code> is the last one within the array of <code>promises</code>.</p>
+
+                    <p>If <code>true</code>, <code>Line 10 - Line 11</code> pushed the result of the current <code>Promise</code> into the <code>finishArray</code> and returns the resulting array.</p>
+
+                    <p>Else, <code>Line 13</code> pushes the result of the current <code>Promise</code> into the <code>promises</code> array.</p>
+
+                    <p><code>Line 15</code> uses the <code>catch</code> function for whenever the current <code>Promise</code> fails to resolve and calls the <code>reject</code> function with the resulting <code>error</code>.</p>
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function Promise_all(promises) {
+    return new Promise((resolve, reject) => {
+        let results = [];
+        let pending = promises.length;
+        for (let i = 0; i < promises.length; i++) {
+            promises[i].then(result => {
+                results[i] = result;
+                pending--;
+                if (pending == 0) resolve(results);
+            }).catch(reject);
+        }
+        if (promises.length == 0) resolve(results);
+    });
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    <p><code>Line 1</code> creates an function called <code>Promise_all</code> that receives an array of promises as its parameter.</p>
+
+                    <p><code>Line 2</code> returns a new <code>Promise</code> with the <code>resolve</code> and <code>reject</code> functions.</p>
+
+                    <p><code>Line 3</code> initializes an empty array called <code>finishArray</code>.</p>
+
+                    <p><code>Line 4</code> creates a variable for the total number of <code>Promise</code> objects by setting <code>pending</code> to the length of the <code>promises</code> array.</p>
+
+                    <p><code>Line 5</code> creates a <code>for</code> loop to iterate through each <code>Promise</code> object within <code>promises</code>.</p>
+
+                    <p><code>Line 6</code> calls the <code>then</code> function to attempt to resolve the current <code>Promise</code> object.</p>
+
+                    <p><code>Line 7</code> adds the current <code>result</code> object to the array called <code>results</code>.</p>
+
+                    <p><code>Line 8</code> subtracts <code>pending</code> by one to continue on to the next <code>Promise</code>.</p>
+
+                    <p><code>Line 9</code> checks whether the number of pending objects within <code>promises</code> is equal to zero and calls the <code>resolve</code> function with the <code>results</code> array if <code>true</code>.</p>
+
+                    <p><code>Line 10</code> uses the <code>catch</code> function for whenever the current <code>Promise</code> fails to resolve and calls the <code>reject</code> function.</p>
+
+                    <p><code>Line 12</code> checks whether the <code>promises</code> array is empty and calls the <code>resolve</code> function with an empty array if <code>true</code>.</p>
+                </div>
+
+                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+            </section>
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap11.js"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap14.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
+    <title>Eloquent JavaScript - Chapter 14</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 14, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 14 of Eloquent JavaScript.">
+</head>
+
+<body>
+
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+    <header>
+        <h1 id="chapter14-main-header">Chapter 14, "The Document Object Model"</h1>
+        
+        <div id="navigation-links">
+            <a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Previous</a>
+            <a href=".." alt="Chapter 15 Link" title="Chapter 15">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header1" class="header"><h2>Build a Table</h2></div>
+
+                <div id="exercise-question1" class="body">
+                    <h3>Question</h3>
+
+                    <p>An HTML table is built with the following tag structure:</p>
+
+                    <pre class="language-markup line-numbers"><code class="language-markup">&lt;table>
+    &lt;tr>
+        &lt;th>name</th>
+        &lt;th>height</th>
+        &lt;th>place</th>
+    &lt;/tr>
+    &lt;tr>
+        &lt;td>Kilimanjaro</td>
+        &lt;td>5895</td>
+        &lt;td>Tanzania</td>
+    &lt;/tr>
+&lt;/table>         </code></pre>
+
+                    <p>For each row, the <code>&lt;table>&lt;/table></code> tag contains a <code>&lt;tr></code> tag. Inside of these <code>&lt;tr></code> tags, we can put cell elements: either heading cells (<code>&lt;th></code>) or regular cells (<code>&lt;td></code>).</p>
+
+                    <p>Given a data set of mountains, an array of objects with <code>name</code>, <code>height</code>, and <code>properties</code>, generate the DOM structure for a table that enumerates the objects. It should have one column per key and one row per object, plus a header row with <code>&lt;th></code> elements at the top, listing the column names.</p>
+
+                    <p>Write this so that the columns are automatically derived from the objects, by taking the property names of the first object in the data.</p>
+
+                    <p>Add the resulting table to the element with an <code>id</code> attribute of <code>"mountains"</code> so that it becomes visible in the document.</p>
+
+                    <p>Once you have this working, right-align cells that contain number values by setting their <code>style.textAlign</code> property to <code>"right"</code>.</p>
+                </div>
+
+                <div id="personal-answer1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function generateTable(containerNode, values) {
+    let header = document.createElement("tr");
+    containerNode.appendChild(header);
+
+    for (let value of values) {
+        let data = document.createElement("tr");
+        containerNode.appendChild(data);
+
+        let keys = Object.keys(value);
+        keys.forEach((key) => {
+
+            if (header.childNodes.length != keys.length) {
+                let currentHeader = document.createElement("th");
+                currentHeader.appendChild(document.createTextNode(key));
+                header.appendChild(currentHeader);
+            }
+
+            let currentData = document.createElement("td");
+            currentData.appendChild(document.createTextNode(value[key]));
+            if (typeof value[key] == "number") {
+                currentData.style.textAlign = "right";
+            }
+            data.appendChild(currentData);
+        });
+    }
+}
+
+generateTable(document.getElementById("mountains"), MOUNTAINS);
+                    </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation1" class="body">
+                    <p><code>Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+
+                </div>
+
+                <div id="official-answer1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div id="official-answer-explanation1" class="body">
+                    <p>The author used the same logic just expressed in more concise code.</p>
+                </div>
+
+                <div id="exercise-close1" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2>Closure</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>The way we have defined <code>fun</code> allows functions in Egg to reference the surrounding scope, allowing the function’s body to use local values that were visible at the time the function was defined, just like JavaScript functions do.</p>
+
+                    <p>The following program illustrates this: function <code>f</code> returns a function that adds its argument to <code>f</code>’s argument, meaning that it needs access to the local scope inside <code>f</code> to be able to use binding <code>a</code>.</p>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">run(`
+    do(define(f, fun(a, fun(b, +(a, b)))),
+        print(f(4)(5)))
+`);
+// → 9              </code></pre>
+
+                    <p>Go back to the definition of the <code>fun</code> form and explain which mechanism causes this to work.</p> 
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <p>Within the definition of <code>fun</code> within the <code>specialForms</code> object, a new local scope is created for each function. The data within that new local scope object comes from the <code>scope</code> parameter that is defined whenever the <code>fun</code> feature is called within Egg.</p>
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <p>Again, we are riding along on a JavaScript mechanism to get the equivalent feature in Egg. Special forms are passed the local scope in which they are evaluated so that they can evaluate their subforms in that scope. The function returned by <code>fun</code> has access to the <code>scope</code> argument given to its enclosing function and uses that to create the function’s local scope when it is called.</p>
+                </div>
+
+                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2>Comments</h2></div>
+
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>It would be nice if we could write comments in Egg. For example, whenever we find a hash sign (#), we could treat the rest of the line as a comment and ignore it, similar to <code>//</code> in JavaScript.</p>
+
+                    <p>We do not have to make any big changes to the parser to support this. We can simply change <code>skipSpace</code> to skip comments as if they are whitespace so that all the points where <code>skipSpace</code> is called will now also skip comments. Make this change.</p> 
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    
+                </div>
+
+                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise4" class="panel">
+                <div id="exercise-header4" class="header"><h2>Fixing Scope</h2></div>
+
+                <div id="exercise-question4" class="body">
+                    <h3>Question</h3>
+
+                    <p>Add a special form <code>set</code>, similar to <code>define</code>, which gives a binding a new value, updating the binding in an outer scope if it doesn’t already exist in the inner scope. If the binding is not defined at all, throw a <code>ReferenceError</code> (another standard error type).</p>
+
+                    <p>The technique of representing scopes as simple objects, which has made things convenient so far, will get in your way a little at this point. You might want to use the <code>Object.getPrototypeOf</code> function, which returns the prototype of an object.</p> 
+                </div>
+
+                <div id="personal-answer4" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div id="personal-answer-explanation4" class="body">
+                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+
+                </div>
+
+                <div id="official-answer4" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div id="official-answer-explanation4" class="body">
+                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+
+                </div>
+
+                <div id="exercise-close4" class="body close"><p>⇮</p></div>
+            </section>
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap14.js"></script>
+    
+</body>
+
+</html>

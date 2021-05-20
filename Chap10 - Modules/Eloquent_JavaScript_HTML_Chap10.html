@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap10.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
+    <title>Eloquent JavaScript - Chapter 10</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 10, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 10 of Eloquent JavaScript.">
+</head>
+
+<body>
+
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+    <header>
+        <h1 id="chapter10-main-header">Chapter 10, "Modules"</h1>
+        
+        <div id="navigation-links">
+            <a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Previous</a>
+            <a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header1" class="header"><h2>A Modular Robot</h2></div>
+
+                <div id="exercise-question1" class="body">
+                    <h3>Question</h3>
+
+                    <p>These are the bindings that the project from Chapter 7 creates:</p>
+
+                    <ul>
+                        <li><code>roads</code></li>
+                        <li><code>buildGraph</code></li>
+                        <li><code>roadGraph</code></li>
+                        <li><code>VillageState</code></li>
+                        <li><code>runRobot</code></li>
+                        <li><code>randomPick</code></li>
+                        <li><code>randomRobot</code></li>
+                        <li><code>mailRoute</code></li>
+                        <li><code>routeRobot</code></li>
+                        <li><code>findRoute</code></li>
+                        <li><code>goalOrientedRobot</code></li>
+                    </ul>
+                        
+                    <p>If you were to write that project as a modular program, what modules would you create? Which module would depend on which other module, and what would their interfaces look like?</p>
+                        
+                    <p>Which pieces are likely to be available prewritten on NPM? Would you prefer to use an NPM package or write them yourself?</p>
+                </div>
+
+                <div id="personal-answer1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <p>To begin the project, I would most likely separate the <code>roads</code> array into a <code>Roads</code> module combined with the <code>buildGraph</code> and <code>roadGraph</code> functions to separate the entire process of creating the village structure. This would also allow me to add or delete elements from the <code>roads</code> array without worrying about any repercussions occurring throughout the rest of the program. My <code>exports</code> would include the final <code>roadGraph</code> data structure.</p>
+
+                    <p>My next step would be creating a <code>Village</code> module for the <code>VillageState</code> class as well the functions <code>VillageState.random</code> and <code>randomPick</code>. This module would depend on the <code>VillageRoads</code> module for creating a new state for the village and creating new tasks to be completed. The <code>export</code> would be the <code>VillageState</code> class and <code>VillageState.random</code> function.</p>
+
+                    <p>I most likely would skip using the <code>randomRobot</code> function as it is a terribly inefficient robot and just wastes space. Same goes for the <code>routeRobot</code> and its corresponding array, <code>mailRoute</code>.</p>
+
+                    <p>The next <code>GoalRobot</code> module would created to contain the <code>goalOrientedRobot</code> and the necessary <code>findRoute</code> function. This module would depend on the <code>VillageState</code> module to travel through the route and deliver packages. The results of running the robot would also be exported.</p>
+
+                    <p>The <code>Dijkstrajs</code> module would be for importing the <code>dijkstrajs</code> package from NPM as well as creating a function that provides the correct input. This will allow me to use an alternative pathfinding algorithm and check which one is more efficient. This module would <code>require</code> <code>VillageState</code> and export the result of running the algorithm.</p>
+
+                    <p>The <code>RunRobot</code> module would contain the <code>runRobot</code> function as well as any other algorithm I create to compare the results of different robots. The dependencies would rely on the <code>Village</code> module as well as any other robot modules such as <code>GoalRobot</code> or <code>Dijkstrajs</code>. This module wouldn't have any exports as this will just be used to print the results out to the console for the user to observe.</p>
+                </div>
+
+                <div id="official-answer1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <p>The code used to build the road graph lives in the <code>graph</code> module. Because I’d rather use <code>dijkstrajs</code> from NPM than our own pathfinding code, we’ll make this build the kind of graph data that <code>dijkstrajs</code> expects. This module exports a single function, <code>buildGraph</code>. I’d have <code>buildGraph</code> accept an array of two-element arrays, rather than strings containing hyphens, to make the module less dependent on the input format.</p>
+
+                    <p>The <code>roads</code> module contains the raw road data (the <code>roads</code> array) and the <code>roadGraph</code> binding. This module depends on <code>./graph</code> and exports the road graph.</p>
+
+                    <p>The <code>VillageState</code> class lives in the <code>state</code> module. It depends on the <code>./roads</code> module because it needs to be able to verify that a given road exists. It also needs <code>randomPick</code>. Since that is a three-line function, we could just put it into the <code>state</code> module as an internal helper function. But <code>randomRobot</code> needs it too. So we’d have to either duplicate it or put it into its own module. Since this function happens to exist on NPM in the <code>random-item</code> package, a good solution is to just make both modules depend on that. We can add the <code>runRobot</code> function to this module as well, since it’s small and closely related to state management. The module exports both the <code>VillageState</code> class and the <code>runRobot</code> function.</p>
+
+                    <p>Finally, the robots, along with the values they depend on such as <code>mailRoute</code>, could go into an <code>example-robots</code> module, which depends on <code>./roads</code> and exports the robot functions. To make it possible for <code>goalOrientedRobot</code> to do route-finding, this module also depends on <code>dijkstrajs</code>.</p>
+
+                    <p>By offloading some work to NPM modules, the code became a little smaller. Each individual module does something rather simple and can be read on its own. Dividing code into modules also often suggests further improvements to the program’s design. In this case, it seems a little odd that the <code>VillageState</code> and the robots depend on a specific road graph. It might be a better idea to make the graph an argument to the state’s constructor and make the robots read it from the state object—this reduces dependencies (which is always good) and makes it possible to run simulations on different maps (which is even better).</p>
+
+                    <p>Is it a good idea to use NPM modules for things that we could have written ourselves? In principle, yes—for nontrivial things like the pathfinding function you are likely to make mistakes and waste time writing them yourself. For tiny functions like <code>random-item</code>, writing them yourself is easy enough. But adding them wherever you need them does tend to clutter your modules.</p>
+
+                    <p>However, you should also not underestimate the work involved in finding an appropriate NPM package. And even if you find one, it might not work well or may be missing some feature you need. On top of that, depending on NPM packages means you have to make sure they are installed, you have to distribute them with your program, and you might have to periodically upgrade them.</p>
+                </div>
+
+                <div id="exercise-close" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2>Roads Module</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write a CommonJS module, based on the example from Chapter 7, that contains the array of roads and exports the graph data structure representing them as <code>roadGraph</code>. It should depend on a module <code>./graph</code>, which exports a function <code>buildGraph</code> that is used to build the graph. This function expects an array of two-element arrays (the start and end points of the roads).</p>
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">const {buildGraph} = require("./graph"); 
+
+const roads = [
+    "Alice's House-Bob's House",   "Alice's House-Cabin",
+    "Alice's House-Post Office",   "Bob's House-Town Hall",
+    "Daria's House-Ernie's House", "Daria's House-Town Hall",
+    "Ernie's House-Grete's House", "Grete's House-Farm",
+    "Grete's House-Shop",          "Marketplace-Farm",
+    "Marketplace-Post Office",     "Marketplace-Shop",
+    "Marketplace-Town Hall",       "Shop-Town Hall"
+];
+                        
+exports.roadGraph = buildGraph(roads.map((path) => path.split("-")));</code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+                    <p><code>Line 1</code> imports the <code>./graph</code> module and by using the <code>require</code> function.</p>
+
+                    <p><code>Line 3 - Line 11</code> are the values in an array provided by the <code>const</code> called <code>roads</code>.</p>
+
+                    <p><code>Line 13</code> sets the <code>exports</code> to the results of running the <code>buildGraph</code> function (imported from <code>./graph</code>) with a copy of <code>roads</code> as the input. Each element within the copy of <code>roads</code> is changed to a array containing the two locations after being <code>split</code> at the <code>"-"</code> character.</p>
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">const {buildGraph} = require("./graph");
+
+const roads = [
+    "Alice's House-Bob's House",   "Alice's House-Cabin",
+    "Alice's House-Post Office",   "Bob's House-Town Hall",
+    "Daria's House-Ernie's House", "Daria's House-Town Hall",
+    "Ernie's House-Grete's House", "Grete's House-Farm",
+    "Grete's House-Shop",          "Marketplace-Farm",
+    "Marketplace-Post Office",     "Marketplace-Shop",
+    "Marketplace-Town Hall",       "Shop-Town Hall"
+];
+
+exports.roadGraph = buildGraph(roads.map(r => r.split("-")));</code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    <p><code>Line 1 - Line 13</code> is explained within my personal explanation.</p>
+
+                </div>
+
+                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2>Circular Dependencies</h2></div>
+
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>CommonJS modules allow a limited form of cyclic dependencies. As long as the modules do not replace their default exports object and don’t access each other’s interface until after they finish loading, cyclic dependencies are okay.</p>
+
+                    <p>The <code>require</code> function given earlier in this chapter supports this type of dependency cycle. Can you see how it handles cycles? What would go wrong when a module in a cycle does replace its default exports object?</p>
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <p>The cycles are begin by checking whether the module has already been previously loaded and is present within the <code>cache</code>. If the module isn't, then the contents of the file are read, the <code>module</code> variable is created with the <code>exports</code> object, and the <code>module</code> is added to the <code>require.cache</code> before running the <code>wrapper</code> function. This prevents other modules from accessing each other before being loaded and from overwriting their default <code>exports</code> object. This is important since replacing the default <code>exports</code> object would made the module insecure and risky to run as the user would never know whether the original functions and variables remain intact or whether they were previously altered.</p>
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <p>The trick is that <code>require</code> adds modules to its cache before it starts loading the module. That way, if any <code>require</code> call made while it is running tries to load it, it is already known, and the current interface will be returned, rather than starting to load the module once more (which would eventually overflow the stack).</p>
+
+                    <p>If a module overwrites its module.exports value, any other module that has received its interface value before it finished loading will have gotten hold of the default interface object (which is likely empty), rather than the intended interface value.</p>
+                </div>
+
+                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+            </section>
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap10.js"></script>
+    
+</body>
+
+</html>

@@ -22,7 +22,7 @@
         
         <div id="navigation-links">
             <a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Previous</a>
-            <a href="#" alt="Chapter 8 Link" title="Chapter 8">Next</a>
+            <a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Next</a>
         </div>
     </header>
 
@@ -31,7 +31,7 @@
         <article id="exercise-problems">
 
             <section id="exercise1" class="panel">
-                <div id="exercise-header1" class="header"><h2 style="font-weight: normal">Measuring a Robot</h2></div>
+                <div id="exercise-header1" class="header"><h2>Measuring a Robot</h2></div>
 
                 <div id="exercise-question1" class="body">
                     <h3>Question</h3>
@@ -117,10 +117,12 @@ function compareRobots(robot1, memory1, robot2, memory2) {
                 <div id="official-answer-explanation1" class="body">
                     <p>The author used similar code just with different object and function names. He also printed out the results slightly different, using two <code>console.log</code> functions.</p>
                 </div>
+
+                <div id="exercise-close" class="body close"><p>⇮</p></div>
             </section>
 
             <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2 style="font-weight: normal">Robot Efficiency</h2></div>
+                <div id="exercise-header2" class="header"><h2>Robot Efficiency</h2></div>
 
                 <div id="exercise-question2" class="body">
                     <h3>Question</h3>
@@ -134,8 +136,8 @@ function compareRobots(robot1, memory1, robot2, memory2) {
                     <pre class="language-javascript line-numbers"><code class="language-javascript">function yourRobot({place, parcels}, route) {
     if (route.length == 0) {
         let shortestValue = 0; 
-        let shortestRoute = findRoute(roadGraph, place, parcels[shortestValue].place).length; 
         for (let i = 0; i < parcels.length; i++) {
+            let shortestRoute = findRoute(roadGraph, place, parcels[shortestValue].place).length; 
             let currentRoute = findRoute(roadGraph, place, parcels[i].place).length; 
             if (currentRoute < shortestRoute) {
                 shortestValue = i; 
@@ -163,9 +165,9 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 
                     <p><code>Line 3</code> initializes the value in <code>route</code> with the shortest path to potentially be 0, or the first element in the array.</p>
 
-                    <p><code>Line 4</code> finds the current <code>shortestRoute</code> by calling the <code>findRoute</code> function with the <code>place</code> of the <code>parcels</code> set to the <code>shortestValue</code>. The result is the shortest length of an array with all of the potential destinations for robot to travel to. </p>
+                    <p><code>Line 4</code> iterates through the each of the <code>parcels</code> that the robot must pick up.</p>
 
-                    <p><code>Line 5</code> iterates through the each of the <code>parcels</code> that the robot must pick up.</p>
+                    <p><code>Line 5</code> finds the current <code>shortestRoute</code> by calling the <code>findRoute</code> function with the <code>place</code> of the <code>parcels</code> set to the <code>shortestValue</code>. The result is the shortest length of an array with all of the potential destinations for robot to travel to. </p>
 
                     <p><code>Line 6</code> finds the shortest path possible for the current package by calling the <code>findRoute</code> with the current <code>parcels</code>. The result is the length of an array containing all of the potential destinations for robot to visit.</p>
 
@@ -234,10 +236,12 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 
                     <p><code>Line 19</code> returns an object with the <code>direction</code> of the robot set to the first place within the <code>route</code> and <code>memory</code> equaling the remaining destinations that the robot must travel to.</p>
                 </div>
+
+                <div id="exercise-close2" class="body close"><p>⇮</p></div>
             </section>
 
             <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2 style="font-weight: normal">Persistent Group</h2></div>
+                <div id="exercise-header3" class="header"><h2>Persistent Group</h2></div>
 
                 <div id="exercise-question3" class="body">
                     <h3>Question</h3>
@@ -348,6 +352,8 @@ PGroup.empty = new PGroup([]);</code></pre>
 
                     <p><code>Line 18</code> adds a property to <code>PGroup</code> called <code>empty</code> that equals a new <code>PGroup</code> instance.</p>
                 </div>
+
+                <div id="exercise-close3" class="body close"><p>⇮</p></div>
             </section>
 
         </article>
@@ -368,6 +374,13 @@ PGroup.empty = new PGroup([]);</code></pre>
                     <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
                     <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
                     <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
                 </ul>
                 </nav>
 

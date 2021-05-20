@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap9.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
+    <title>Eloquent JavaScript - Chapter 9</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 9, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 9 of Eloquent JavaScript.">
+</head>
+
+<body>
+
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+    <header>
+        <h1 id="chapter9-main-header">Chapter 9, "Regular Expressions"</h1>
+        
+        <div id="navigation-links">
+            <a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Previous</a>
+            <a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header1" class="header"><h2>RegExp Golf</h2></div>
+
+                <div id="exercise-question1" class="body">
+                    <h3>Question</h3>
+
+                    <p>For each of the following items, write a regular expression to test whether any of the given substrings occur in a string. The regular expression should match only strings containing one of the substrings described. Do not worry about word boundaries unless explicitly mentioned. When your expression works, see whether you can make it any smaller.</p>
+
+                    <ol>
+                        <li>car and cat</li>
+                        <li>pop and prop</li>
+                        <li>ferret, ferry, and ferrari</li>
+                        <li>Any word ending in ious</li>
+                        <li>A whitespace character followed by a period, comma, colon, or semicolon</li>
+                        <li>A word longer than six letters</li>
+                        <li>A word without the letter e (or E)</li>
+                    </ol>
+                </div>
+
+                <div id="personal-answer1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">verify(/ca[r|t]/,
+        ["my car", "bad cats"],
+        ["camper", "high art"]);
+
+verify(/pr?op/,
+        ["pop culture", "mad props"],
+        ["plop", "prrrop"]);
+
+verify(/ferr[et|y|ari]/,
+        ["ferret", "ferry", "ferrari"],
+        ["ferrum", "transfer A"]);
+
+verify(/ious\s|ious$/,
+        ["how delicious", "spacious room"],
+        ["ruinous", "consciousness"]);
+
+verify(/\s[.|,|;|:]/,
+        ["bad punctuation ."],
+        ["escape the period"]);
+
+verify(/\w{6,}/,
+        ["Siebentausenddreihundertzweiundzwanzig"],
+        ["no", "three small words"]);
+
+verify(/\b[^e\s]+\b/i,
+        ["red platypus", "wobbling nest"],
+        ["earth bed", "learning ape", "BEET"]);
+
+
+function verify(regexp, yes, no) {
+    // Ignore unfinished exercises
+    if (regexp.source == "...") return;
+    for (let str of yes) if (!regexp.test(str)) {
+        console.log(`Failure to match '${str}'`);
+    }
+    for (let str of no) if (regexp.test(str)) {
+        console.log(`Unexpected match for '${str}'`);
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation1" class="body">
+                    <p><code>Line 1</code> calls the <code>verify</code> function with a Regular Expression that selects the characters "c", "a", and the option of "r" or "t".</p>
+
+                    <p><code>Line 5</code> calls the <code>verify</code> function with a Regular Expression that selects the character "p" with the possible choice of "r", followed by "o" and "p".</p>
+
+                    <p><code>Line 9</code> calls the <code>verify</code> function with a Regular Expression that selects the characters "f", "e" and "r". A list is also included, presenting the choice of characters found in either "et", "y", or "ari".</p>
+
+                    <p><code>Line 13</code> calls the <code>verify</code> function with a Regular Expression that selects the characters "ious" followed by a whitespace character or located at the end of the string.</p>
+
+                    <p><code>Line 17</code> calls the <code>verify</code> function with a Regular Expression that selects a whitespace character along with a list presenting the choice of ".", ",", ";", or ":".</p>
+
+                    <p><code>Line 21</code> calls the <code>verify</code> function with a Regular Expression that selects a six or more word characters.</p>
+
+                    <p><code>Line 25</code> calls the <code>verify</code> function with a Regular Expression that selects a string between two word boundaries, excluding any whitespace character, that doesn't contain the character "e", case insensitive.</p>
+
+                    <p><code>Line 30 - Line 39</code> skips the empty Regular Expressions by returning nothing and iterates through each String found in the array <code>yes</code>, warning the user if the <code>test</code> function returns <code>false</code>. It also iterates through each String in the array <code>no</code> and warns the user if the <code>test</code> return <code>true</code>.</p>
+                </div>
+
+                <div id="official-answer1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">verify(/ca[rt]/,
+        ["my car", "bad cats"],
+        ["camper", "high art"]);
+
+verify(/pr?op/,
+        ["pop culture", "mad props"],
+        ["plop", "prrrop"]);
+
+verify(/ferr(et|y|ari)/,
+        ["ferret", "ferry", "ferrari"],
+        ["ferrum", "transfer A"]);
+
+verify(/ious\b/,
+        ["how delicious", "spacious room"],
+        ["ruinous", "consciousness"]);
+
+verify(/\s[.,:;]/,
+        ["bad punctuation ."],
+        ["escape the dot"]);
+
+verify(/\w{7}/,
+        ["Siebentausenddreihundertzweiundzwanzig"],
+        ["no", "three small words"]);
+
+verify(/\b[^\We]+\b/i,
+        ["red platypus", "wobbling nest"],
+        ["earth bed", "learning ape", "BEET"]);
+
+
+function verify(regexp, yes, no) {
+    // Ignore unfinished exercises
+    if (regexp.source == "...") return;
+    for (let str of yes) if (!regexp.test(str)) {
+        console.log(`Failure to match '${str}'`);
+    }
+    for (let str of no) if (regexp.test(str)) {
+        console.log(`Unexpected match for '${str}'`);
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation1" class="body">
+                    <p><code>Line 1</code> calls the <code>verify</code> function with a Regular Expression that selects the characters "c", "a", and a character present in the list of "r" or "t".</p>
+
+                    <p><code>Line 5</code> is explained in my personal answer.</p>
+
+                    <p><code>Line 9</code> is explained in my personal answer.</p>
+
+                    <p><code>Line 13</code> calls the <code>verify</code> function with a Regular Expression that selects the characters "ious" followed by a word boundary.</p>
+
+                    <p><code>Line 17</code> calls the <code>verify</code> function with a Regular Expression that selects a whitespace character along with a character present in the list of ".", ",", ";", or ":".</p>
+
+                    <p><code>Line 21</code> calls the <code>verify</code> function with a Regular Expression that selects seven word characters.</p>
+
+                    <p><code>Line 25</code> calls the <code>verify</code> function with a Regular Expression that selects a string between two word boundaries, excluding any whitespace character, that doesn't contain the character "e" one or more times, case insensitive.</p>
+
+                    <p><code>Line 30- Line 39</code> is explained in my personal answer.</p>
+                </div>
+
+                <div id="exercise-close" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2>Quoting Style</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>Imagine you have written a story and used single quotation marks throughout to mark pieces of dialogue. Now you want to replace all the dialogue quotes with double quotes, while keeping the single quotes used in contractions like aren’t.</p>
+
+                    <p>Think of a pattern that distinguishes these two kinds of quote usage and craft a call to the <code>replace</code> method that does the proper replacement.</p>
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">let text = "'I'm the cook,' he said, 'it's my job.'";
+
+console.log(text.replace(/\B'/g, "\""));</code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+                    <p><code>Line 1</code> creates a string for testing the Regex Expression.</p>
+
+                    <p><code>Line 3</code> replaces all global instances of a non-word boundary followed by a single quotation mark with the string <code>\"</code>.</p>
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">let text = "'I'm the cook,' he said, 'it's my job.'";
+
+console.log(text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2'));</code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    <p><code>Line 1</code> creates a string for testing the Regex Expression.</p>
+
+                    <p><code>Line 3</code> replaces all global selections by the Regular Expression with the string <code>\"</code>. The Regular Expression consists of the choice between two groups; the single quotation mark following either the beginning of a string or any non-word character, or the single quotation mark precending either any non-word character or the end of a string.</p>
+                </div>
+
+                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2>Numbers Again</h2></div>
+
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write an expression that matches only JavaScript-style numbers. It must support an optional minus or plus sign in front of the number, the decimal dot, and exponent notation—<code>5e-3</code> or <code>1E10</code>—again with an optional sign in front of the exponent. Also note that it is not necessary for there to be digits in front of or after the dot, but the number cannot be a dot alone. That is, <code>.5</code> and <code>5.</code> are valid JavaScript numbers, but a lone dot isn’t.</p>
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">// Fill in this regular expression.
+let number = /^(\+|\-)?(\.\d+|\d+\.)?(\d*)(e(\+|\-)?\d+)?$/i;
+                    
+// Tests:
+for (let str of ["1", "-1", "+15", "1.55", ".5", "5.", "1.3e2", "1E-4", "1e+12"]) {
+    if (!number.test(str)) {
+        console.log(`Failed to match '${str}'`);
+    }
+}
+for (let str of ["1a", "+-1", "1.2.3", "1+1", "1e4.5", ".5.", "1f5", "."]) {
+    if (number.test(str)) {
+        console.log(`Incorrectly accepted '${str}'`);
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+                    <p><code>Line 2</code> creates the a Regular Expression divided into four main capturing groups. The first group begins the string with either the plus or minus character, matched either zero or one time. The second group presents the choice of either the period character preceded or followed by at least one digit, matched either zero or one time. The third group matches zero or more digits. The fourth group selects the "e" character followed by one or zero occurrences of either the plus or minus symbol and at least one digit, matched either zero or one time.</p>
+
+                    <p><code>Line 4 - 9</code> creates a <code>for</code> loop that iterates through an array of strings, testing each value with the previously created Regular Expression, and warning the user if the result was false.</p>
+
+                    <p><code>Line 10 - 14</code> creates a <code>for</code> loop that iterates through an array of strings, testing each value with the previously created Regular Expression, and warning the user if the result was true.</p>
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">// Fill in this regular expression.
+let number = /^[+\-]?(\d+(\.\d*)?|\.\d+)([eE][+\-]?\d+)?$/;
+
+// Tests:
+for (let str of ["1", "-1", "+15", "1.55", ".5", "5.", "1.3e2", "1E-4", "1e+12"]) {
+    if (!number.test(str)) {
+        console.log(`Failed to match '${str}'`);
+    }
+}
+for (let str of ["1a", "+-1", "1.2.3", "1+1", "1e4.5", ".5.", "1f5", "."]) {
+    if (number.test(str)) {
+        console.log(`Incorrectly accepted '${str}'`);
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    <p><code>Line 2</code> creates the a Regular Expression. It begins by checking the start of the string, matching the addition, subtraction, or no character zero or one time. Then, a capturing group is created that provides the choice of at least one digit followed by a period and zero or more digits, matched zero or one time, or just a period and zero or more digits. The second capturing group matches a character within the list of either "e" or "E", followed by one or zero occurrences of either a plus or minus symbol, and ends with at least one digit, all matched zero or one time.</p>
+
+                    <p><code>Line 4 - 14</code> is explained in my personal answer.</p>
+                </div>
+
+                <div id="exercise-close" class="body close"><p>⇮</p></div>
+            </section>
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap9.js"></script>
+    
+</body>
+
+</html>

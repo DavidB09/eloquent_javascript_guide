@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap8.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
+    <title>Eloquent JavaScript - Chapter 8</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 8, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 8 of Eloquent JavaScript.">
+</head>
+
+<body>
+
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+    <header>
+        <h1 id="chapter8-main-header">Chapter 8, "Bugs and Errors"</h1>
+        
+        <div id="navigation-links">
+            <a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Previous</a>
+            <a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header1" class="header"><h2>Retry</h2></div>
+
+                <div id="exercise-question1" class="body">
+                    <h3>Question</h3>
+
+                    <p>Say you have a function <code>primitiveMultiply</code> that in 20 percent of cases multiplies two numbers and in the other 80 percent of cases raises an exception of type <code>MultiplicatorUnitFailure</code>. Write a function that wraps this clunky function and just keeps trying until a call succeeds, after which it returns the result.</p>
+                </div>
+
+                <div id="personal-answer1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class MultiplicatorUnitFailure extends Error {}
+
+function primitiveMultiply(a, b) {
+    if (Math.random() < 0.2) {
+        return a * b;
+    } else {
+        throw new MultiplicatorUnitFailure("Klunk");
+    }
+}
+
+function reliableMultiply(a, b) {
+    try {
+        return primitiveMultiply(a, b); 
+    } catch(error) {
+        if (error instanceof MultiplicatorUnitFailure) {
+            return reliableMultiply(a, b); 
+        } else {
+            throw error;
+        }
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation1" class="body">
+                    <p><code>Line 1</code> extends the class of <code>Error</code> to <code>MultiplicatorUnitFailure</code>.</p>
+
+                    <p><code>Line 3 - Line 9</code> creates a function called <code>primitiveMultiply</code> that returns <code>a * b</code> if <code>Math.random</code> is less than 0.2 or <code>throw</code> a <code>new MultiplicatorUnitFailure</code>. Thus, the end result of calling the function is never known beforehand.</p>
+
+                    <p><code>Line 11</code> creates a function called <code>reliableMultiply</code> which also recieves two parameters.</p>
+
+                    <p><code>Line 12 - Line 13</code> uses the <code>try</code> body to return the result of calling <code>primitiveMultiply</code> with the same parameters.</p>
+
+                    <p><code>Line 14</code> uses the <code>catch</code> body to check whether an error occurred.</p>
+
+                    <p><code>Line 15 - Line 16</code> uses an <code>if</code> statement to check whether the <code>error</code> is an <code>instanceof</code> the class <code>MultiplicatorUnitFailure</code>. If <code>true</code>, then the function <code>reliableMultiply</code> is called again and the process is repeated until an actual numeric result is returned.</p>
+
+                    <p>Else, <code>Line 17 - Line 18</code> checks if any other mistake has occurred during the process and <code>throw</code> an <code>error</code>.</p>
+                </div>
+
+                <div id="official-answer1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class MultiplicatorUnitFailure extends Error {}
+
+function primitiveMultiply(a, b) {
+    if (Math.random() < 0.2) {
+        return a * b;
+    } else {
+        throw new MultiplicatorUnitFailure("Klunk");
+    }
+}
+
+function reliableMultiply(a, b) {
+    for (;;) {
+        try {
+            return primitiveMultiply(a, b);
+        } catch (e) {
+            if (!(e instanceof MultiplicatorUnitFailure))
+                throw e;
+        }
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation1" class="body">
+                    <p><code>Line 1 - Line 9</code> is explained in the personal answer.</p>
+
+                    <p><code>Line 11</code> creates a function called <code>reliableMultiply</code> which also recieves two parameters.</p>
+
+                    <p><code>Line 12</code> uses a <code>for</code> loop to continue the process of calling <code>primitiveMultiply</code> until a numberic value is returned.</p>
+
+                    <p><code>Line 12 - Line 13</code> uses the <code>try</code> body to return the result of calling <code>primitiveMultiply</code> with the same parameters.</p>
+
+                    <p><code>Line 14</code> uses the <code>catch</code> body to check whether an error occurred.</p>
+
+                    <p><code>Line 15 - Line 16</code> uses an <code>if</code> statement to check whether the error is an <code>instanceof</code> the class <code>MultiplicatorUnitFailure</code>. If it isn't, then a regular <code>error</code> is thrown; else, the loop continues to its next iteration and reattempts the process.</p>
+                    
+                    <p>This is a more relable solution than my personal answer, as it prevents the string of failures from overflowing the stack, an unlikely but still possible occurrence.</p>
+                </div>
+
+                <div id="exercise-close" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2>The Locked Box</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>Consider the following (rather contrived) object:</p>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">const box = {
+    locked: true,
+    unlock() { this.locked = false; },
+    lock() { this.locked = true;  },
+    _content: [],
+    get content() {
+        if (this.locked) throw new Error("Locked!");
+        return this._content;
+    }
+};                  </code></pre>
+
+                    <p>It is a box with a lock. There is an array in the box, but you can get at it only when the box is unlocked. Directly accessing the private <code>_content</code> property is forbidden.</p>
+
+                    <p>Write a function called <code>withBoxUnlocked</code> that takes a function value as argument, unlocks the box, runs the function, and then ensures that the box is locked again before returning, regardless of whether the argument function returned normally or threw an exception.</p> 
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">const box = {
+    locked: true,
+    unlock() { this.locked = false; },
+    lock() { this.locked = true;  },
+    _content: [],
+    get content() {
+        if (this.locked) throw new Error("Locked!");
+        return this._content;
+    }
+};
+
+function withBoxUnlocked(body) {
+    if (box.locked) {
+        box.unlock(); 
+        try {
+            body(); 
+        } finally {
+            box.lock(); 
+        }
+    } else {
+        body(); 
+    }
+}
+
+withBoxUnlocked(function() {
+    box.content.push("gold piece");
+});
+
+try {
+    withBoxUnlocked(function() {
+        throw new Error("Pirates on the horizon! Abort!");
+    });
+} catch (e) {
+    console.log("Error raised:", e);
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+                    <p><code>Line 1 - Line 10</code> creates an constant called <code>box</code> with a property <code>locked</code>, function <code>unlock</code> that changed <code>this.locked</code> to <code>false</code>, function <code>lock</code> that changed <code>this.locked</code> to <code>true</code>, and an empty array called <code>_content</code>.</p>
+
+                    <p><code>Line 6 - Line 9</code> also contains a <code>get</code> function called <code>content</code> that <code>throw</code> a <code>new Error</code> if <code>locked</code> is <code>true</code> and returns <code>this._content</code> if the <code>box</code> is unlocked.</p>
+
+                    <p><code>Line 12</code> creates a function called <code>withBoxUnlocked</code>.</p>
+
+                    <p><code>Line 13</code> checks whether the property <code>locked</code> in <code>box</code> is <code>true</code>.</p>
+
+                    <p><code>Line 14</code> calls the <code>unlock</code> function to change <code>locked</code> to <code>false</code>.</p>
+
+                    <p><code>Line 15 - Line 16</code> uses the <code>try</code> block to call the function <code>body</code>.</p>
+
+                    <p><code>Line 17 - Line 18</code> uses the <code>finally</code> block to call the <code>lock</code> function no matter what occurs with the <code>body</code> function.</p>
+
+                    <p>Else if <code>locked</code> is <code>false</code>, <code>Line 20 - Line 22</code> just calls the <code>body</code> function while leaving the <code>locked</code> property unchanged.</p>
+
+                    <p><code>Line 25 - Line 27</code> calls a <code>function</code> that adds a string to <code>box.content</code>.</p>
+
+                    <p><code>Line 29 - Line 32</code> uses a <code>try</code> block to call the <code>withBoxUnlocked</code> function with another function that <code>throw</code> a <code>New Error</code>.</p>
+
+                    <p><code>Line 33 - Line 35</code> uses a <code>catch</code> block to display the type of error raised.</p>
+
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">const box = {
+    locked: true,
+    unlock() { this.locked = false; },
+    lock() { this.locked = true;  },
+    _content: [],
+    get content() {
+        if (this.locked) throw new Error("Locked!");
+        return this._content;
+    }
+};
+
+function withBoxUnlocked(body) {
+    let locked = box.locked;
+    if (!locked) {
+        return body();
+    }
+
+    box.unlock();
+    try {
+        return body();
+    } finally {
+        box.lock();
+    }
+}
+
+withBoxUnlocked(function() {
+    box.content.push("gold piece");
+});
+
+try {
+    withBoxUnlocked(function() {
+        throw new Error("Pirates on the horizon! Abort!");
+    });
+} catch (e) {
+    console.log("Error raised:", e);
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    <p><code>Line 1 - Line 10</code> is explained within my personal explanation.</p>
+
+                    <p><code>Line 12</code> creates a function called <code>withBoxUnlocked</code>.</p>
+
+                    <p><code>Line 13</code> sets the property <code>locked</code> to the boolean provided by <code>box.locked</code>.</p>
+
+                    <p><code>Line 14 - Line 15</code> checks whether <code>box</code> is unlocked and returns the function <code>body</code> if <code>true</code>.</p>
+
+                    <p><code>Line 18</code> calls the <code>unlock</code> function to change the <code>locked</code> value to <code>false</code>.</p>
+
+                    <p><code>Line 19 - Line 20</code> uses the <code>try</code> block to return the function <code>body</code>.</p>
+
+                    <p><code>Line 21 - Line 23</code> uses the <code>finally</code> block to call the <code>lock</code> function no matter what occurs with the <code>body</code> function.</p>
+
+                    <p><code>Line 26 - Line 36</code> is explained within my personal explanation.</p>
+                </div>
+
+                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+            </section>
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap8.js"></script>
+    
+</body>
+
+</html>

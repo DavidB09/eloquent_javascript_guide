@@ -45,12 +45,12 @@ a:hover {
 /* Header */
 #navigation-links {
     display: flex; 
-    justify-content: flex-end;
+    justify-content: space-between;
     font-size: 3.5rem; 
-}
+ }
 
 /* Chapter Text */ 
-#chapter1-text {
+#chapter13-text {
     display: flex; 
     flex-direction: column; 
     padding: 7rem 5rem;
