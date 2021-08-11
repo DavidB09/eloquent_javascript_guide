@@ -1,0 +1,22 @@
+{
+  "name": "eloquent_javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Chap20 - Node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidB09/Eloquent-JavaScript-Guide.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidB09/Eloquent-JavaScript-Guide/issues"
+  },
+  "homepage": "https://github.com/DavidB09/Eloquent-JavaScript-Guide#readme",
+  "dependencies": {
+    "mime": "^2.2.0"
+  }
+}

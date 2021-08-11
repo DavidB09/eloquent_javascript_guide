@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap19.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
+    <title>Eloquent JavaScript - Chapter 19</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 19, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 19 of Eloquent JavaScript.">
+</head>
+
+<body>
+
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+    <header>
+        <h1 id="chapter19-main-header">Chapter 19, "A Pixel Art Editor"</h1>
+        
+        <div id="navigation-links">
+            <a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Previous</a>
+            <a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header1" class="header"><h2>Keyboard Bindings</h2></div>
+
+                <div id="exercise-question1" class="body">
+                    <h3>Question</h3>
+
+                    <p>Add keyboard shortcuts to the application. The first letter of a tool’s name selects the tool, and <code>control-Z</code> or <code>command-Z</code> activates undo.</p>
+
+                    <p>Do this by modifying the <code>PixelEditor</code> component. Add a <code>tabIndex</code> property of 0 to the wrapping <code>&gt;div></code> element so that it can receive keyboard focus. Note that the property corresponding to the <code>tabindex</code> attribute is called <code>tabIndex</code>, with a capital I, and our <code>elt</code> function expects property names. Register the key event handlers directly on that element. This means you have to click, touch, or tab to the application before you can interact with it with the keyboard.</p>
+
+                    <p>Remember that keyboard events have <code>ctrlKey</code> and <code>metaKey</code> (for the <code>COMMAND</code> key on Mac) properties that you can use to see whether those keys are held down.</p>
+                </div>
+
+                <div id="personal-answer1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class PixelEditor {
+    constructor(state, config) {
+        let {tools, controls, dispatch} = config;
+        this.state = state;
+        
+        this.canvas = new PictureCanvas(state.picture, pos => {
+            let tool = tools[this.state.tool];
+            let onMove = tool(pos, this.state, dispatch);
+            if (onMove) {
+                return pos => onMove(pos, this.state, dispatch);
+            }
+        });
+        this.controls = controls.map(Control => new Control(state, config));
+        this.dom = elt("div", 
+                        {
+                            tabIndex: 0, 
+                            onkeydown: event => {
+                                    if ((event.ctrlKey || event.metaKey) && event.key == 'z')
+                                        dispatch({undo: true}); 
+                                    else if (!event.ctrlKey && !event.metaKey && !event.altKey) {
+                                        for (let toolName in tools) {
+                                            if (event.key == toolName[0]) 
+                                                dispatch({tool: toolName}); 
+                                        }
+                                    }
+                            }
+                        }, 
+                        this.canvas.dom, elt("br"), ...this.controls.reduce((a, c) => a.concat(" ", c.dom), []));
+    }
+    syncState(state) {
+        this.state = state;
+        this.canvas.syncState(state.picture);
+        for (let ctrl of this.controls) ctrl.syncState(state);
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation1" class="body">
+                    <p><code>Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+
+                </div>
+
+                <div id="official-answer1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">class PixelEditor {
+    constructor(state, config) {
+        let {tools, controls, dispatch} = config;
+        this.state = state;
+
+        this.canvas = new PictureCanvas(state.picture, pos => {
+            let tool = tools[this.state.tool];
+            let onMove = tool(pos, this.state, dispatch);
+            if (onMove) {
+                return pos => onMove(pos, this.state, dispatch);
+            }
+        });
+        this.controls = controls.map(Control => new Control(state, config));
+        this.dom = elt("div", {
+            tabIndex: 0,
+            onkeydown: event => this.keyDown(event, config)
+        }, this.canvas.dom, elt("br"), ...this.controls.reduce((a, c) => a.concat(" ", c.dom), []));
+    }
+    keyDown(event, config) {
+        if (event.key == "z" && (event.ctrlKey || event.metaKey)) {
+            event.preventDefault();
+            config.dispatch({undo: true});
+        } else if (!event.ctrlKey && !event.metaKey && !event.altKey) {
+            for (let tool of Object.keys(config.tools)) {
+                if (tool[0] == event.key) {
+                    event.preventDefault();
+                    config.dispatch({tool});
+                    return;
+                }
+            }
+        }
+    }
+    syncState(state) {
+        this.state = state;
+        this.canvas.syncState(state.picture);
+        for (let ctrl of this.controls) ctrl.syncState(state);
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation1" class="body">
+                    <p>The author used the same logic just expressed in more concise code.</p>
+                </div>
+
+                <div id="exercise-close1" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2>Efficient Drawing</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>During drawing, the majority of work that our application does happens in <code>drawPicture</code>. Creating a new state and updating the rest of the DOM isn’t very expensive, but repainting all the pixels on the canvas is quite a bit of work.</p>
+
+                    <p>Find a way to make the <code>syncState</code> method of <code>PictureCanvas</code> faster by redrawing only the pixels that actually changed.</p>
+
+                    <p>Remember that <code>drawPicture</code> is also used by the save button, so if you change it, either make sure the changes don’t break the old use or create a new version with a different name.</p>
+
+                    <p>Also note that changing the size of a <code>&lt;canvas></code> element, by setting its <code>width</code> or <code>height</code> properties, clears it, making it entirely transparent again.</p> 
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">PictureCanvas.prototype.syncState = function(newPicture) {
+    if (this.picture == newPicture) return;
+    drawPicture(newPicture, this.dom, scale, this.picture);
+    this.picture = newPicture; 
+};
+
+function drawPicture(newPicture, canvas, scale, oldPicture) {
+    if (newPicture.width != oldPicture?.width) canvas.width = newPicture.width * scale;
+    if (newPicture.height != oldPicture?.height) canvas.height = newPicture.height * scale;
+    let cx = canvas.getContext("2d");
+
+    for (let y = 0; y < newPicture.height; y++) {
+        for (let x = 0; x < newPicture.width; x++) {
+            let currNewPixel = newPicture.pixel(x, y); 
+            if (currNewPixel != oldPicture?.pixel(x, y)) {
+                cx.fillStyle = currNewPixel;
+                cx.fillRect(x * scale, y * scale, scale, scale);
+            }
+        }
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">PictureCanvas.prototype.syncState = function(picture) {
+    if (this.picture == picture) return;
+    drawPicture(picture, this.dom, scale, this.picture);
+    this.picture = picture;
+}
+
+function drawPicture(picture, canvas, scale, previous) {
+    if (previous == null || previous.width != picture.width || previous.height != picture.height) {
+        canvas.width = picture.width * scale;
+        canvas.height = picture.height * scale;
+        previous = null;
+    }
+
+    let cx = canvas.getContext("2d");
+    for (let y = 0; y < picture.height; y++) {
+        for (let x = 0; x < picture.width; x++) {
+            let color = picture.pixel(x, y);
+            if (previous == null || previous.pixel(x, y) != color) {
+                cx.fillStyle = color;
+                cx.fillRect(x * scale, y * scale, scale, scale);
+            }
+        }
+    }
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    
+                </div>
+
+                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2>Circles</h2></div>
+
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>Define a tool called <code>circle</code> that draws a filled circle when you drag. The center of the circle lies at the point where the drag or touch gesture starts, and its radius is determined by the distance dragged.</p> 
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function circle(center, state, dispatch) {
+    function drawCircle(endpoint) {
+        let radius = Math.sqrt(Math.pow(endpoint.x - center.x, 2) + Math.pow(endpoint.y - center.y, 2)); 
+
+        let drawn = [];
+        for (let y = center.y - Math.floor(radius); y <= center.y + Math.ceil(radius); y++) {
+            for (let x = center.x - Math.floor(radius); x <= center.x + Math.ceil(radius); x++) {
+                if (y < 0 || x < 0 || x >= state.picture.width || y >= state.picture.height) continue; 
+                if (Math.sqrt(Math.pow(x - center.x, 2) + Math.pow(y - center.y, 2)) <= radius) {
+                    drawn.push({x, y, color: state.color});
+                }
+            }
+        }
+
+        dispatch({picture: state.picture.draw(drawn)});
+    }
+    drawCircle(center);
+    return drawCircle;
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function circle(pos, state, dispatch) {
+    function drawCircle(to) {
+        let radius = Math.sqrt(Math.pow(to.x - pos.x, 2) + Math.pow(to.y - pos.y, 2));
+        let radiusC = Math.ceil(radius);
+        let drawn = [];
+        for (let dy = -radiusC; dy <= radiusC; dy++) {
+            for (let dx = -radiusC; dx <= radiusC; dx++) {
+                let dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+                if (dist > radius) continue;
+                let y = pos.y + dy, x = pos.x + dx;
+                if (y < 0 || y >= state.picture.height || x < 0 || x >= state.picture.width) continue;
+                drawn.push({x, y, color: state.color});
+            }
+        }
+        dispatch({picture: state.picture.draw(drawn)});
+    }
+    drawCircle(pos);
+    return drawCircle;
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+
+                </div>
+
+                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise4" class="panel">
+                <div id="exercise-header4" class="header"><h2>Proper Lines</h2></div>
+
+                <div id="exercise-question4" class="body">
+                    <h3>Question</h3>
+
+                    <p>On most browsers, when you select the <code>draw</code> tool and quickly drag across the picture, you don’t get a closed line. Rather, you get dots with gaps between them because the <code>"mousemove"</code> or <code>"touchmove"</code> events did not fire quickly enough to hit every pixel.</p>
+
+                    <p>Improve the <code>draw</code> tool to make it draw a full line. This means you have to make the motion handler function remember the previous position and connect that to the current one.</p>
+
+                    <p>To do this, since the pixels can be an arbitrary distance apart, you’ll have to write a general line drawing function.</p>
+
+                    <p>A line between two pixels is a connected chain of pixels, as straight as possible, going from the start to the end. Diagonally adjacent pixels count as a connected.</p> 
+
+                    <p>Finally, if we have code that draws a line between two arbitrary points, we might as well use it to also define a <code>line</code> tool, which draws a straight line between the start and end of a drag.</p>
+                </div>
+
+                <div id="personal-answer4" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function draw(pos, state, dispatch) {
+    let oldPos = pos; 
+    
+    function drawPixel({x, y}, state) {
+        dispatch({picture: state.picture.draw(findLine(oldPos, {x, y}, state.color))});
+        oldPos = {x, y}; 
+    }
+    drawPixel(pos, state);
+    return drawPixel;
+}
+
+function findLine(start, end, color) {
+    const move = {
+        'right': {x: 1}, 
+        'left': {x: -1}, 
+        'up': {y: -1}, 
+        'down': {y: 1}, 
+        'equal': {x: 0, y: 0}, 
+    }; 
+
+    const findAngle = (opp, adj) => {
+        let tanAngle = Math.atan(opp / adj) * (180 / Math.PI); 
+        return !isFinite(tanAngle) ? 0 : tanAngle 
+    }; 
+
+    let mainAngle = findAngle(Math.abs(end.y - start.y), Math.abs(end.x - start.x)); 
+
+    let linePoints = [{point: start, line: []}]; 
+    for (let i = 0; i < linePoints.length; i++) {
+        let {point, line} = linePoints[i]; 
+
+        let xMove = point.x < end.x ? 'right' : point.x > end.x ? 'left' : 'equal'; 
+        let yMove = point.y < end.y ? 'down' : point.y > end.y ? 'up' : 'equal'; 
+
+        let newPoint = ['p1', 'p2', 'p3'].reduce((init, curr, i) => {
+            if (i == 0) return init; 
+
+            curr = {x: point.x + move[i == 1 ? xMove : 'equal'].x, y: point.y + move[i == 1 ? 'equal' : yMove].y, color};  
+
+            let currAngle = findAngle(Math.abs(curr.y - start.y), Math.abs(curr.x - start.x));
+            let initAngle = findAngle(Math.abs(init.y - start.y), Math.abs(init.x - start.x)); 
+
+            return Math.abs(currAngle - mainAngle) < Math.abs(initAngle - mainAngle) ? curr : init;
+        }, {x: point.x + move[xMove].x, y: point.y + move[yMove].y, color});   
+
+        if (newPoint.x == end.x && newPoint.y == end.y) return line.concat(newPoint); 
+
+        linePoints.push({point: newPoint, line: line.concat(newPoint)});
+    }
+}
+
+function line(pos, state, dispatch) {
+    function drawLine(endpoint) {
+        let drawn = [{...pos, color: state.color}, ...findLine(pos, endpoint, state.color)]; 
+        dispatch({picture: state.picture.draw(drawn)});
+    }
+    drawLine(pos);
+    return drawLine;
+}                   </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation4" class="body">
+                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+
+                </div>
+
+                <div id="official-answer4" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function drawLine(from, to, color) {
+    let points = [];
+    if (Math.abs(from.x - to.x) > Math.abs(from.y - to.y)) {
+        if (from.x > to.x) [from, to] = [to, from];
+        let slope = (to.y - from.y) / (to.x - from.x);
+        for (let {x, y} = from; x <= to.x; x++) {
+            points.push({x, y: Math.round(y), color});
+            y += slope;
+        }
+    } else {
+        if (from.y > to.y) [from, to] = [to, from];
+        let slope = (to.x - from.x) / (to.y - from.y);
+        for (let {x, y} = from; y <= to.y; y++) {
+            points.push({x: Math.round(x), y, color});
+            x += slope;
+        }
+    }
+    return points;
+}
+
+function draw(pos, state, dispatch) {
+    function connect(newPos, state) {
+        let line = drawLine(pos, newPos, state.color);
+        pos = newPos;
+        dispatch({picture: state.picture.draw(line)});
+    }
+    connect(pos, state);
+    return connect;
+}
+
+function line(pos, state, dispatch) {
+    return end => {
+        let line = drawLine(pos, end, state.color);
+        dispatch({picture: state.picture.draw(line)});
+    };
+}                   </code></pre>
+                </div>
+
+                <div id="official-answer-explanation4" class="body">
+                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+                </div>
+
+                <div id="exercise-close4" class="body close"><p>⇮</p></div>
+            </section>
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap19.js"></script>
+    
+</body>
+
+</html>

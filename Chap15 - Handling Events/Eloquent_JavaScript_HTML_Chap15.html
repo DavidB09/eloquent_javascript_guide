@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap15.css">
+    <link href="../Assets/CSS/prism.css" rel="stylesheet">
+    <title>Eloquent JavaScript - Chapter 15</title>
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 15, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 15 of Eloquent JavaScript.">
+</head>
+
+<body class="match-braces">
+
+    <header>
+        <h1 id="chapter15-main-header">Chapter 15, "Handling Events"</h1>
+        
+        <div id="navigation-links">
+            <a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Previous</a>
+            <a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="exercise-problems">
+
+            <section id="exercise1" class="panel">
+                <div id="exercise-header-1" class="header"><h2>Balloon</h2></div>
+
+                <div id="exercise-question-1" class="body">
+                    <h3>Question</h3>
+
+                    <p>Write a page that displays a balloon (using the balloon emoji, 🎈). When you press the up arrow, it should inflate (grow) 10 percent, and when you press the down arrow, it should deflate (shrink) 10 percent.</p>
+
+                    <p>You can control the size of text (emoji are text) by setting the <code>font-size</code> CSS property (<code>style.fontSize</code>) on its parent element. Remember to include a unit in the value—for example, pixels (<code>10px</code>).</p>
+
+                    <p>The key names of the arrow keys are "ArrowUp" and "ArrowDown". Make sure the keys change only the balloon, without scrolling the page.</p>
+
+                    <p>When that works, add a feature where, if you blow up the balloon past a certain size, it explodes. In this case, exploding means that it is replaced with an 💥 emoji, and the event handler is removed (so that you can’t inflate or deflate the explosion).</p>
+                </div>
+
+                <div id="personal-answer-1" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="linkable" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let balloon = document.querySelector("p");
+let fontSize = 20;
+
+document.addEventListener("keydown", function balloonChange(event) {
+    event.preventDefault();
+
+    if (event.key == "ArrowUp")
+        fontSize *= 1.1;
+    else if (event.key == "ArrowDown")
+        fontSize *= 0.9;
+
+    balloon.style.fontSize = fontSize + "px";
+
+    if (fontSize > 70) {
+        balloon.innerText = "💥";
+        document.removeEventListener("keydown", balloonChange);
+    };
+});                 </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation-1" class="body">
+                    <p><code class="clickable" data-line-number="1">Line 1</code> creates the <code>balloon</code> variable and sets it to the DOM element whose query is equal to <code>"p"</code>.</p>
+
+                    <p><code>Line 2</code> creates the <code>fontSize</code> variable and initializes it to 20.</p>
+
+                    <p><code>Line 4</code> adds an Event Listener to the <code>document</code> that waits for a key to be pressed, calling the <code>balloonChange</code> function whenever it occurs.</p>
+
+                    <p><code>Line 5</code> calls the <code>preventDefault</code> method on the <code>event</code> object provided by the Event Listener.</p>
+
+                    <p><code>Line 7</code> checks whether the key that was pressed was the Arrow Up key.</p>
+
+                    <p>If <code>true</code>, then <code>Line 8</code> increases <code>fontSize</code> by 10%.</p>
+
+                    <p>Else, <code>Line 9</code> checks whether the key that was pressed was the Arrow Down key.</p>
+
+                    <p>If <code>true</code>, then <code>Line 10</code> decreases <code>fontSize</code> by 10%.</p>
+
+                    <p><code>Line 12</code> sets the <code>fontSize</code> <code>style</code> property of <code>balloon</code> to equal the current <code>fontSize</code> value.</p>
+
+                    <p><code>Line 14</code> checks whether the <code>fontSize</code> value is greater than <code>70</code>.</p>
+
+                    <p>If <code>true</code>, then <code>Line 15</code> sets the <code>innerText</code> property of <code>balloon</code> to an explosion.</p>
+
+                    <p><code>Line 16</code> removes the Event Listener from the <code>document</code>.</p>
+                </div>
+
+                <div id="official-answer1" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">let p = document.querySelector("p");
+let size;
+function setSize(newSize) {
+    size = newSize;
+    p.style.fontSize = size + "px";
+}
+setSize(20);
+
+function handleArrow(event) {
+    if (event.key == "ArrowUp") {
+        if (size > 70) {
+            p.textContent = "💥";
+            document.body.removeEventListener("keydown", handleArrow);
+        } else {
+            setSize(size * 1.1);
+            event.preventDefault();
+        }
+    } else if (event.key == "ArrowDown") {
+        setSize(size * 0.9);
+        event.preventDefault();
+    }
+}
+document.body.addEventListener("keydown", handleArrow);
+                    </code></pre>
+                </div>
+
+                <div id="official-answer-explanation1" class="body">
+                    <p>The author used the same logic just expressed in more concise code.</p>
+                </div>
+
+                <div id="exercise-close1" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise2" class="panel">
+                <div id="exercise-header2" class="header"><h2>Mouse Trail</h2></div>
+
+                <div id="exercise-question2" class="body">
+                    <h3>Question</h3>
+
+                    <p>In JavaScript’s early days, which was the high time of gaudy home pages with lots of animated images, people came up with some truly inspiring ways to use the language.</p>
+
+                    <p>One of these was the mouse trail—a series of elements that would follow the mouse pointer as you moved it across the page.</p>
+
+                    <p>In this exercise, I want you to implement a mouse trail. Use absolutely positioned <code>&lt;div></code> elements with a fixed size and background color (refer to the code in the “Mouse Clicks” section for an example). Create a bunch of such elements and, when the mouse moves, display them in the wake of the mouse pointer.</p>
+
+                    <p>There are various possible approaches here. You can make your solution as simple or as complex as you want. A simple solution to start with is to keep a fixed number of trail elements and cycle through them, moving the next one to the mouse’s current position every time a <code>"mousemove"</code> event occurs.</p> 
+                </div>
+
+                <div id="personal-answer2" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">let dots = [];
+let positions = [];
+
+for (let i = 0; i < 10; i++) {
+    let dot = document.createElement("div");
+    dot.className = "trail";
+    dots.push(dot);
+    document.body.appendChild(dot);
+}
+
+document.addEventListener("mousemove", event => {
+    positions.push({x: event.clientX, y: event.clientY}); 
+
+    positions = positions.length <= 10 ? positions : positions.slice(positions.length - 10, positions.length - 1);
+
+    for (let i = positions.length - 1, j = 0; i >= 0; i--, j++) {
+        let {x, y} = positions[i];
+
+        dots[j].style.left = x + "px";
+        dots[j].style.top = y + "px";
+    }
+});                 </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation2" class="body">
+
+                </div>
+
+                <div id="official-answer2" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">let dots = [];
+for (let i = 0; i < 12; i++) {
+    let node = document.createElement("div");
+    node.className = "trail";
+    document.body.appendChild(node);
+    dots.push(node);
+}
+let currentDot = 0;
+
+window.addEventListener("mousemove", event => {
+    let dot = dots[currentDot];
+    dot.style.left = (event.pageX - 3) + "px";
+    dot.style.top = (event.pageY - 3) + "px";
+    currentDot = (currentDot + 1) % dots.length;
+});                 </code></pre>
+                </div>
+
+                <div id="official-answer-explanation2" class="body">
+                    
+                </div>
+
+                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+            </section>
+
+            <section id="exercise3" class="panel">
+                <div id="exercise-header3" class="header"><h2>Tabs</h2></div>
+
+                <div id="exercise-question3" class="body">
+                    <h3>Question</h3>
+
+                    <p>Tabbed panels are widely used in user interfaces. They allow you to select an interface panel by choosing from a number of tabs “sticking out” above an element.</p>
+
+                    <p>In this exercise you must implement a simple tabbed interface. Write a function, <code>asTabs</code>, that takes a DOM node and creates a tabbed interface showing the child elements of that node. It should insert a list of <code>&lt;button></code> elements at the top of the node, one for each child element, containing text retrieved from the <code>data-tabname</code> attribute of the child. All but one of the original children should be hidden (given a <code>display</code> style of none). The currently visible node can be selected by clicking the buttons.</p>
+
+                    <p>When that works, extend it to style the button for the currently selected tab differently so that it is obvious which tab is selected.</p> 
+                </div>
+
+                <div id="personal-answer3" class="body">
+                    <h3>Personal Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function asTabs(node) {
+    let tabs = Array.from(node.childNodes).filter(tab => tab.nodeType == Node.ELEMENT_NODE);
+
+    let buttonContainer = document.createElement("div");
+    let buttons = tabs.map((tab, index) => {
+        let button = document.createElement("button");
+        button.innerText = tab.getAttribute("data-tabname");
+        buttonContainer.appendChild(button);
+        button.addEventListener("click", () => handleClick(index));
+
+        return button
+    });
+
+    function handleClick(index) {
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].style.display = index == i ? "flex" : "none";
+            buttons[i].style.backgroundColor = index == i ? "lightblue" : "";
+        };
+    }
+
+    node.prepend(buttonContainer);
+    handleClick(0);
+}
+asTabs(document.querySelector("tab-panel"));
+                    </code></pre>
+                </div>
+
+                <div id="personal-answer-explanation3" class="body">
+                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+
+                </div>
+
+                <div id="official-answer3" class="body">
+                    <h3>Author's Answer</h3>
+
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">function asTabs(node) {
+    let tabs = Array.from(node.children).map(node => {
+        let button = document.createElement("button");
+        button.textContent = node.getAttribute("data-tabname");
+        let tab = {node, button};
+        button.addEventListener("click", () => selectTab(tab));
+        return tab;
+    });
+
+    let tabList = document.createElement("div");
+    for (let {button} of tabs) tabList.appendChild(button);
+    node.insertBefore(tabList, node.firstChild);
+
+    function selectTab(selectedTab) {
+        for (let tab of tabs) {
+            let selected = tab == selectedTab;
+            tab.node.style.display = selected ? "" : "none";
+            tab.button.style.color = selected ? "red" : "";
+        }
+    }
+    selectTab(tabs[0]);
+}
+
+asTabs(document.querySelector("tab-panel"));
+                    </code></pre>
+                </div>
+
+                <div id="official-answer-explanation3" class="body">
+                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+
+                </div>
+
+                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+            </section>
+
+        </article>
+
+        <article id="navbar-article">
+
+            <section id="navbar-section-3rd-Ed">
+                
+                <h3>3rd Edition</h3>
+
+                <nav id="navbar-3rd-Ed">
+                <ul>
+                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
+                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap15.js"></script>
+    <script src="../Assets/JavaScript/prism.js"></script>
+
+</body>
+
+</html>

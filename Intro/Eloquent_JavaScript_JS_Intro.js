@@ -265,6 +265,76 @@ page314Link.title = "Chapter 14";
 page314.appendChild(page314Link); 
 unorderedList3.append(page314); 
 
+//Create a link for fifteenth chapter 
+var page315 = document.createElement("li"); 
+var page315Link = document.createElement("a"); 
+page315Link.innerText = "Chapter 15"; 
+page315Link.href = "../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html"; 
+page315Link.alt = "Chapter 15 Link"; 
+page315Link.title = "Chapter 15"; 
+page315.appendChild(page315Link); 
+unorderedList3.append(page315); 
+
+//Create a link for sixteenth chapter 
+var page316 = document.createElement("li"); 
+var page316Link = document.createElement("a"); 
+page316Link.innerText = "Chapter 16"; 
+page316Link.href = "../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html"; 
+page316Link.alt = "Chapter 16 Link"; 
+page316Link.title = "Chapter 16"; 
+page316.appendChild(page316Link); 
+unorderedList3.append(page316); 
+
+//Create a link for seventeenth chapter 
+var page317 = document.createElement("li"); 
+var page317Link = document.createElement("a"); 
+page317Link.innerText = "Chapter 17"; 
+page317Link.href = "../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html"; 
+page317Link.alt = "Chapter 17 Link"; 
+page317Link.title = "Chapter 17"; 
+page317.appendChild(page317Link); 
+unorderedList3.append(page317); 
+
+//Create a link for eighteenth chapter 
+var page318 = document.createElement("li"); 
+var page318Link = document.createElement("a"); 
+page318Link.innerText = "Chapter 18"; 
+page318Link.href = "../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html"; 
+page318Link.alt = "Chapter 18 Link"; 
+page318Link.title = "Chapter 18"; 
+page318.appendChild(page318Link); 
+unorderedList3.append(page318); 
+
+//Create a link for nineteenth chapter 
+var page319 = document.createElement("li"); 
+var page319Link = document.createElement("a"); 
+page319Link.innerText = "Chapter 19"; 
+page319Link.href = "../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html"; 
+page319Link.alt = "Chapter 19 Link"; 
+page319Link.title = "Chapter 19"; 
+page319.appendChild(page319Link); 
+unorderedList3.append(page319); 
+
+//Create a link for twentieth chapter 
+var page320 = document.createElement("li"); 
+var page320Link = document.createElement("a"); 
+page320Link.innerText = "Chapter 20"; 
+page320Link.href = "../Chap20 - Node.js/index.html"; 
+page320Link.alt = "Chapter 20 Link"; 
+page320Link.title = "Chapter 20"; 
+page320.appendChild(page320Link); 
+unorderedList3.append(page320); 
+
+//Create a link for twenty-first chapter 
+var page321 = document.createElement("li"); 
+var page321Link = document.createElement("a"); 
+page321Link.innerText = "Chapter 21"; 
+page321Link.href = "../Chap21 - Skill-Sharing Website/index.html"; 
+page321Link.alt = "Chapter 21 Link"; 
+page321Link.title = "Chapter 21"; 
+page321.appendChild(page321Link); 
+unorderedList3.append(page321); 
+
 // Add links to the unordered list
 navbar3.append(unorderedList3); 
 
@@ -340,7 +410,6 @@ var styles = `
     } `
 
 var styleSheet = document.createElement("style"); 
-styleSheet.type = "text/css";
 styleSheet.innerText = styles; 
 document.head.appendChild(styleSheet); 
 
