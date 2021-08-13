@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 18, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 18 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 18</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+
+    <header>
+        <h1>Chapter 18, "HTTP and Forms"</h1>
+
+        <div class="header-navigation-links">
+            <a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Previous</a>
+            <a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article class="container-exercise-problems">
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Content Negotiation</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>One of the things HTTP can do is called <i>content negotiation</i>. The <code>Accept</code> request header is used to tell the server what type of document the client would like to get. Many servers ignore this header, but when a server knows of various ways to encode a resource, it can look at this header and send the one that the client prefers.</p>
+
+                    <p>The URL <i>https://eloquentjavascript.net/author</i> is configured to respond with either plaintext, HTML, or JSON, depending on what the client asks for. These formats are identified by the standardized <i>media types</i> <code>text/plain</code>, <code>text/html</code>, and <code>application/json</code>.</p>
+
+                    <p>Send requests to fetch all three formats of this resource. Use the <code>headers</code> property in the options object passed to <code>fetch</code> to set the header named <code>Accept</code> to the desired media type.</p>
+
+                    <p>Finally, try asking for the media type <code>application/rainbows+unicorns</code> and see which status code that produces.</p>
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">const mainSource = "https://eloquentjavascript.net/author"; 
+const mainTypes = ["text/plain", "text/html", "application/json", "application/rainbows+unicorns"]; 
+
+async function getFetchData(source, types) {
+    for (let dataType of types) {
+        let resp = await fetch(source, {headers: {Accept: dataType}})
+        let text = await resp.text(); 
+        console.log(`\n${dataType}: \n${text}`); 
+    }
+}
+
+getFetchData(mainSource, mainTypes); 
+                    </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">const url = "https://eloquentjavascript.net/author";
+const types = ["text/plain",
+                "text/html",
+                "application/json",
+                "application/rainbows+unicorns"];
+
+async function showTypes() {
+    for (let type of types) {
+        let resp = await fetch(url, {headers: {accept: type}});
+        console.log(`${type}: ${await resp.text()}\n`);
+    }
+}
+
+showTypes();        </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p>The author used the same logic just expressed in more concise code.</p>
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>A JavaScript Workbench</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>Build an interface that allows people to type and run pieces of JavaScript code.</p>
+
+                    <p>Put a button next to a <code>&lt;textarea></code> field that, when pressed, uses the <code>Function</code> constructor we saw in Chapter 10 to wrap the text in a function and call it. Convert the return value of the function, or any error it raises, to a string and display it below the text field.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let textarea = document.getElementById("code"); 
+document.getElementById("button").addEventListener("click", runCode); 
+
+function runCode() {
+    let result; 
+    try {
+        result = new Function(textarea.value)(); 
+    } catch(error) {
+        result = error; 
+    }
+    document.getElementById("output").innerText = result;
+}                   </code></pre>
+                </div>
+
+                <div class="exercise-body">
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">document.querySelector("#button").addEventListener("click", () => {
+    let code = document.querySelector("#code").value;
+    let outputNode = document.querySelector("#output");
+    try {
+        let result = Function(code)();
+        outputNode.innerText = String(result);
+    } catch (e) {
+        outputNode.innerText = "Error: " + e;
+    }
+});                 </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>A Monster</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>It is traditional for platform games to have enemies that you can jump on top of to defeat. This exercise asks you to add such an actor type to the game.</p>
+
+                    <p>We’ll call it a monster. Monsters move only horizontally. You can make them move in the direction of the player, bounce back and forth like horizontal lava, or have any movement pattern you want. The class doesn’t have to handle falling, but it should make sure the monster doesn’t walk through walls.</p>
+
+                    <p>When a monster touches the player, the effect depends on whether the player is jumping on top of them or not. You can approximate this by checking whether the player’s bottom is near the monster’s top. If this is the case, the monster disappears. If not, the game is lost.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class GameOfLife {
+
+    constructor(height, width, container) {
+        this.values = []; 
+        this.height = height; 
+        this.width = width; 
+        this.container = container; 
+
+        this.container.addEventListener("click", this.updateSingleValue.bind(this)); 
+        this.initiateGame(); 
+    }
+
+    initiateGame() {
+        for (let i = 0; i < this.height; i++) {
+            let row = []; 
+            let div = document.createElement("div"); 
+
+            for (let j = 0; j < this.width; j++) {
+                let value = Math.random() < 0.5; 
+                row.push(value);
+
+                let checkbox = document.createElement("input"); 
+                checkbox.type = "checkbox"; 
+                checkbox.id = `${i}-${j}`; 
+                checkbox.checked = value; 
+                div.append(checkbox); 
+            }
+
+            this.values.push(row); 
+            this.container.append(div); 
+        }
+    }
+
+    evaluateValues() {
+        let changeValues = []; 
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 0; j < this.width; j++) {
+                let isLive = this.values[i][j]; 
+                let neighborNum = this.countNeighbor(i, j); 
+
+                if (isLive && (neighborNum < 2 || neighborNum > 3)) {
+                    changeValues.push(`${i}-${j}`); 
+                }
+
+                if (!isLive && neighborNum === 3) {
+                    changeValues.push(`${i}-${j}`); 
+                }
+            }
+        }
+
+        this.updateValues(changeValues); 
+    }
+
+    countNeighbor(row, column) {
+        let count = 0; 
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                if (row + i === row && column + j === column) continue; 
+                count = this.values?.[row + i]?.[column + j] ? ++count : count; 
+            }
+        }
+        return count; 
+    }
+
+    updateValues(change) {
+        for (let i = 0; i < change.length; i++) {
+            let [row, column] = change[i].split("-"); 
+            this.values[row][column] = !this.values[row][column]; 
+            let inputElement = document.getElementById(`${change[i]}`); 
+            inputElement.checked = !inputElement.checked; 
+        }
+    }
+
+    updateSingleValue(e) {
+        if (e.target.nodeName == "INPUT") {
+            let [i, j] = e.target.id.split("-"); 
+            this.values[i][j] = e.target.checked; 
+        }
+    }
+
+}
+
+const game = new GameOfLife(10, 15, document.querySelector("#grid")); 
+
+const nextButton = document.querySelector("#next"); 
+nextButton.addEventListener("click", game.evaluateValues.bind(game)); 
+
+/** Add &lt;button id="auto">Autoplay&lt;/button> to function correctly **/
+const autoplayButton = document.querySelector("#auto"); 
+let isRunning = false, autoplayInterval; 
+
+autoplayButton.addEventListener("click", () => {
+    if (isRunning)
+        clearInterval(autoplayInterval); 
+    else
+        autoplayInterval = setInterval(game.evaluateValues.bind(game), 1500); 
+
+    isRunning = !isRunning; 
+});                 </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">const width = 30, height = 15;
+
+// I will represent the grid as an array of booleans.
+
+let gridNode = document.querySelector("#grid");
+// This holds the checkboxes that display the grid in the document.
+let checkboxes = [];
+for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+        let box = document.createElement("input");
+        box.type = "checkbox";
+        gridNode.appendChild(box);
+        checkboxes.push(box);
+    }
+    gridNode.appendChild(document.createElement("br"));
+}
+
+function gridFromCheckboxes() {
+    return checkboxes.map(box => box.checked);
+}
+function checkboxesFromGrid(grid) {
+    grid.forEach((value, i) => checkboxes[i].checked = value);
+}
+function randomGrid() {
+    let result = [];
+    for (let i = 0; i < width * height; i++) {
+        result.push(Math.random() < 0.3);
+    }
+    return result;
+}
+
+checkboxesFromGrid(randomGrid());
+
+// This does a two-dimensional loop over the square around the given
+// x,y position, counting all fields that have a cell but are not the
+// center field.
+function countNeighbors(grid, x, y) {
+    let count = 0;
+    for (let y1 = Math.max(0, y - 1); y1 <= Math.min(height - 1, y + 1); y1++) {
+        for (let x1 = Math.max(0, x - 1); x1 <= Math.min(width - 1, x + 1); x1++) {
+            if ((x1 != x || y1 != y) && grid[x1 + y1 * width]) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+function nextGeneration(grid) {
+    let newGrid = new Array(width * height);
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            let neighbors = countNeighbors(grid, x, y);
+            let offset = x + y * width;
+            if (neighbors < 2 || neighbors > 3) {
+                newGrid[offset] = false;
+            } else if (neighbors == 2) {
+                newGrid[offset] = grid[offset];
+            } else {
+                newGrid[offset] = true;
+            }
+        }
+    }
+    return newGrid;
+}
+
+function turn() {
+    checkboxesFromGrid(nextGeneration(gridFromCheckboxes()));
+}
+
+document.querySelector("#next").addEventListener("click", turn);
+
+let running = null;
+document.querySelector("#run").addEventListener("click", () => {
+    if (running) {
+        clearInterval(running);
+        running = null;
+    } else {
+        running = setInterval(turn, 400);
+    }
+});                 </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+        </article>
+
+        <article class="container-navbar">
+
+            <section>
+
+                <h3>3rd Edition</h3>
+
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
+
+</body>
+
+</html>

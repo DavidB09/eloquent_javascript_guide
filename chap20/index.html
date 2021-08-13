@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 20, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 20 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 20</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+
+    <header>
+        <h1>Chapter 20, "Node.js"</h1>
+        
+        <div class="header-navigation-links">
+            <a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Previous</a>
+            <a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article class="container-exercise-problems">
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Search Tool</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>On Unix systems, there is a command line tool called <code>grep</code> that can be used to quickly search files for a regular expression.</p>
+
+                    <p>Write a Node script that can be run from the command line and acts somewhat like <code>grep</code>. It treats its first command line argument as a regular expression and treats any further arguments as files to search. It should output the names of any file whose content matches the regular expression.</p>
+
+                    <p>When that works, extend it so that when one of the arguments is a directory, it searches through all files in that directory and its subdirectories.</p>
+
+                    <p>Use asynchronous or synchronous file system functions as you see fit. Setting things up so that multiple asynchronous actions are requested at the same time might speed things up a little, but not a huge amount, since most file systems can read only one thing at a time.</p>
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">const {stat, readdir, readFile} = require('fs').promises; 
+
+async function handleInput() {
+    if (process.argv.length < 4) return 'Wrong Usage: node jsfile.js regex sourcefile';
+
+    let fileNames = []; 
+    try {
+        for (let i = 3; i < process.argv.length; i++) {
+            fileNames.push(...await handleFile(process.argv[i], process.argv[2], [])); 
+        }
+        return fileNames; 
+    } catch (error) {
+        throw error
+    }
+}
+
+handleInput()
+    .then(files => console.log(`Files: ${files.length > 0 ? files.join(', ') : 'None'}`))
+    .catch(error => console.log(error)); 
+
+async function handleFile(resource, test, currNames) {    
+    try {
+        let stats = await stat(resource); 
+
+        if (stats.isDirectory()) {
+            let dirFiles = await readdir(resource); 
+            for (let i = 0; i < dirFiles.length; i++) {
+                currNames.push(...await handleFile(`${resource}/${dirFiles[i]}`, test, [])); 
+            }
+            return currNames; 
+        }
+
+        if (stats.isFile()) {
+            let text = await readFile(resource, "utf8"); 
+            let regex = new RegExp(test, 'g'); 
+
+            if (regex.test(text)) return [...currNames, resource]; 
+            else return []; 
+        }
+
+    } catch (error) {
+        throw 'File not found'; 
+    }
+}                   </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">const {statSync, readdirSync, readFileSync} = require("fs");
+
+let searchTerm = new RegExp(process.argv[2]);
+
+for (let arg of process.argv.slice(3)) {
+    search(arg);
+}
+
+function search(file) {
+    let stats = statSync(file);
+    if (stats.isDirectory()) {
+        for (let f of readdirSync(file)) {
+            search(file + "/" + f);
+        }
+    } else if (searchTerm.test(readFileSync(file, "utf8"))) {
+        console.log(file);
+    }
+}                   </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p>The author used the same logic just expressed in more concise code.</p>
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Directory Creation</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>Though the <code>DELETE</code> method in our file server is able to delete directories (using <code>rmdir</code>), the server currently does not provide any way to create a directory.</p>
+
+                    <p>Add support for the <code>MKCOL</code> method (“make collection”), which should create a directory by calling <code>mkdir</code> from the <code>fs</code> module. <code>MKCOL</code> is not a widely used HTTP method, but it does exist for this same purpose in the WebDAV standard, which specifies a set of conventions on top of HTTP that make it suitable for creating documents.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">const {mkdir} = require("fs").promises; 
+
+methods.MKCOL = async function(request) {
+    let path = urlPath(request.url); 
+    try {
+        let stats = await stat(path); 
+        if (stats.isDirectory()) return {status: 204}; 
+        else return {status: 400, body: "Name already exists as a file"}; 
+    } catch (error) {
+        if (error.code != "ENOENT") throw error; 
+        await mkdir(path); 
+        return {status: 204}; 
+    }
+};                  </code></pre>
+                </div>
+
+                <div class="exercise-body">
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">const {mkdir} = require("fs").promises;
+
+methods.MKCOL = async function(request) {
+    let path = urlPath(request.url);
+    let stats;
+    try {
+        stats = await stat(path);
+    } catch (error) {
+        if (error.code != "ENOENT") throw error;
+        await mkdir(path);
+        return {status: 204};
+    }
+    if (stats.isDirectory()) return {status: 204};
+    else return {status: 400, body: "Not a directory"};
+};                  </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>A Public Space On The Web</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>Since the file server serves up any kind of file and even includes the right <code>Content-Type</code> header, you can use it to serve a website. Since it allows everybody to delete and replace files, it would be an interesting kind of website: one that can be modified, improved, and vandalized by everybody who takes the time to create the right HTTP request.</p>
+
+                    <p>Write a basic HTML page that includes a simple JavaScript file. Put the files in a directory served by the file server and open them in your browser.</p>
+
+                    <p>Next, as an advanced exercise or even a weekend project, combine all the knowledge you gained from this book to build a more user-friendly interface for modifying the website—from inside the website.</p>
+
+                    <p>Use an HTML form to edit the content of the files that make up the website, allowing the user to update them on the server by using HTTP requests, as described in Chapter 18.</p>
+
+                    <p>Start by making only a single file editable. Then make it so that the user can select which file to edit. Use the fact that our file server returns lists of files when reading a directory.</p>
+
+                    <p>Don’t work directly in the code exposed by the file server since if you make a mistake, you are likely to damage the files there. Instead, keep your work outside of the publicly accessible directory and copy it there when testing.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"> </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+        </article>
+
+        <article class="container-navbar">
+
+            <section>
+
+                <h3>3rd Edition</h3>
+
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
+ 
+</body>
+
+</html>

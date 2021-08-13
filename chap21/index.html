@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 21, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 21 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 21</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+
+    <header>
+        <h1>Chapter 21, "Skill-Sharing Website"</h1>
+        
+        <div class="header-navigation-links">
+            <a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Previous</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article class="container-exercise-problems">
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Game Over</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>It’s traditional for platform games to have the player start with a limited number of lives and subtract one life each time they die. When the player is out of lives, the game restarts from the beginning.</p>
+
+                    <p>Adjust <code>runGame</code> to implement lives. Have the player start with three. Output the current number of lives (using <code>console.log</code>) every time a level starts.</p>
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p>The author used the same logic just expressed in more concise code.</p>
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Pausing the Game</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>Make it possible to pause (suspend) and unpause the game by pressing the Esc key.</p>
+
+                    <p>This can be done by changing the <code>runLevel</code> function to use another keyboard event handler and interrupting or resuming the animation whenever the Esc key is hit.</p>
+
+                    <p>The <code>runAnimation</code> interface may not look like it is suitable for this at first glance, but it is if you rearrange the way <code>runLevel</code> calls it.</p>
+
+                    <p>When you have that working, there is something else you could try. The way we have been registering keyboard event handlers is somewhat problematic. The <code>arrowKeys</code> object is currently a global binding, and its event handlers are kept around even when no game is running. You could say they leak out of our system. Extend <code>trackKeys</code> to provide a way to unregister its handlers and then change <code>runLevel</code> to register its handlers when it starts and unregister them again when it is finished.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div class="exercise-body">
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>A Monster</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>It is traditional for platform games to have enemies that you can jump on top of to defeat. This exercise asks you to add such an actor type to the game.</p>
+
+                    <p>We’ll call it a monster. Monsters move only horizontally. You can make them move in the direction of the player, bounce back and forth like horizontal lava, or have any movement pattern you want. The class doesn’t have to handle falling, but it should make sure the monster doesn’t walk through walls.</p>
+
+                    <p>When a monster touches the player, the effect depends on whether the player is jumping on top of them or not. You can approximate this by checking whether the player’s bottom is near the monster’s top. If this is the case, the monster disappears. If not, the game is lost.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"> </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+        </article>
+
+        <article class="container-navbar">
+
+            <section>
+
+                <h3>3rd Edition</h3>
+
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script src="../script.js"></script>
+
+</body>
+
+</html>

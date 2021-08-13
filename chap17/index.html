@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
+    <meta name="author" content="David Brunner">
+    <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 17, Exercises">
+    <meta name="description" content="Solutions and explanations for exercises in Chapter 17 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 17</title>
+
+    <link href="../style.css" rel="stylesheet">
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+
+    <header>
+        <h1>Chapter 17, "Drawing on Canvas"</h1>
+        
+        <div class="header-navigation-links">
+            <a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Previous</a>
+            <a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Next</a>
+        </div>
+    </header>
+
+    <main>
+
+        <article class="container-exercise-problems">
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Shapes</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>Write a program that draws the following shapes on a canvas:</p>
+
+                    <ol>
+                        <li>A trapezoid (a rectangle that is wider on one side)</li>
+                        <li>A red diamond (a rectangle rotated 45 degrees or ¼π radians)</li>
+                        <li>A zigzagging line</li>
+                        <li>A spiral made up of 100 straight line segments</li>
+                        <li>A yellow star</li>
+                    </ol>
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let cx = document.querySelector("canvas").getContext("2d");
+
+function drawTrapazoid(x, y, width, height) {
+    cx.moveTo(x + Math.floor(width / 4), y);
+    cx.lineTo(x + width, 20); 
+    cx.lineTo(x + Math.floor(width * 1.25), y + height); 
+    cx.lineTo(x, 20 + height);
+    cx.lineTo(x + Math.floor(width / 4), y);
+}
+
+function drawDiamond(x, y, width, height) {
+    cx.fillStyle = "red"; 
+    cx.save();
+    cx.translate(x, y);
+    cx.rotate(45 * (Math.PI / 180));
+    cx.fillRect(0, 0, width, height);
+    cx.restore();
+}
+
+function drawZigZag(x, y, width, height, num) {
+    cx.moveTo(x, y);
+    for (let i = 0; i <= num; i++) {
+        if (i % 2 == 0) cx.lineTo(x, y + height * i);
+        else cx.lineTo(x + width, y + height * i); 
+    }; 
+}
+
+function drawSpiral(x, y, width, height) {
+    cx.moveTo(x, y);
+    let angle = 0; 
+    let gradient = 1; 
+    for (let i = 1; i < 100; i++) {
+        let newX = (Math.cos(angle) * (width * gradient) + x); 
+        let newY = (Math.sin(angle) * (height * gradient) + y); 
+        
+        cx.lineTo(newX, newY);
+        angle += 0.3; 
+        gradient += 0.1; 
+    }
+    cx.stroke(); 
+}
+
+function drawStar(x, y, width) {
+    cx.beginPath();
+    let currentPosition = 0; 
+    let [currentX, currentY] = [x + width, y]; 
+    let [nextX, nextY] = [0, 0]; 
+    for (let i = 0; i < 9; i++, currentPosition += 45) {
+        nextX = Math.cos(currentPosition * (Math.PI / 180)) * width + x; 
+        nextY = Math.sin(currentPosition * (Math.PI / 180)) * width + y; 
+        
+        i == 0 ? cx.moveTo(nextX, nextY) : cx.quadraticCurveTo(x, y, nextX, nextY); 
+
+        [currentX, currentY] = [nextX, nextY]; 
+    }
+    cx.fillStyle = "gold";
+    cx.fill();
+}
+
+cx.beginPath();
+drawTrapazoid(10, 20, 50, 30);
+drawDiamond(110, 20, 25, 25);
+drawZigZag(150, 20, 40, 10, 5);
+drawSpiral(275, 70, 5, 5);
+drawStar(400, 50, 40); 
+                    </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let cx = document.querySelector("canvas").getContext("2d");
+
+function trapezoid(x, y) {
+    cx.beginPath();
+    cx.moveTo(x, y);
+    cx.lineTo(x + 50, y);
+    cx.lineTo(x + 70, y + 50);
+    cx.lineTo(x - 20, y + 50);
+    cx.closePath();
+    cx.stroke();
+}
+trapezoid(30, 30);
+
+function diamond(x, y) {
+    cx.translate(x + 30, y + 30);
+    cx.rotate(Math.PI / 4);
+    cx.fillStyle = "red";
+    cx.fillRect(-30, -30, 60, 60);
+    cx.resetTransform();
+}
+diamond(140, 30);
+
+function zigzag(x, y) {
+    cx.beginPath();
+    cx.moveTo(x, y);
+    for (let i = 0; i < 8; i++) {
+        cx.lineTo(x + 80, y + i * 8 + 4);
+        cx.lineTo(x, y + i * 8 + 8);
+    }
+    cx.stroke();
+}
+zigzag(240, 20);
+
+function spiral(x, y) {
+    let radius = 50, xCenter = x + radius, yCenter = y + radius;
+    cx.beginPath();
+    cx.moveTo(xCenter, yCenter);
+    for (let i = 0; i < 300; i++) {
+        let angle = i * Math.PI / 30;
+        let dist = radius * i / 300;
+        cx.lineTo(xCenter + Math.cos(angle) * dist, yCenter + Math.sin(angle) * dist);
+    }
+    cx.stroke();
+}
+spiral(340, 20);
+
+function star(x, y) {
+    let radius = 50, xCenter = x + radius, yCenter = y + radius;
+    cx.beginPath();
+    cx.moveTo(xCenter + radius, yCenter);
+    for (let i = 1; i <= 8; i++) {
+        let angle = i * Math.PI / 4;
+        cx.quadraticCurveTo(xCenter, yCenter, xCenter + Math.cos(angle) * radius, yCenter + Math.sin(angle) * radius);
+    }
+    cx.fillStyle = "gold";
+    cx.fill();
+}
+star(440, 20);      </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p>The author used the same logic just expressed in more concise code.</p>
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>The Pie Chart</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>Earlier in the chapter, we saw an example program that drew a pie chart. Modify this program so that the name of each category is shown next to the slice that represents it. Try to find a pleasing-looking way to automatically position this text that would work for other data sets as well. You may assume that categories are big enough to leave ample room for their labels.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let cx = document.querySelector("canvas").getContext("2d");
+let total = results.reduce((sum, {count}) => sum + count, 0);
+let currentAngle = -0.5 * Math.PI;
+let centerX = 300, centerY = 150;
+
+for (let result of results) {
+    let sliceAngle = (result.count / total) * 2 * Math.PI;
+    let middleAngle = currentAngle + sliceAngle / 2; 
+    
+    cx.beginPath();
+    
+    let textX = Math.cos(middleAngle) * 120 + centerX; 
+    let textY = Math.sin(middleAngle) * 120 + centerY; 
+    cx.textAlign = middleAngle > 0.5 * Math.PI ? "end" : "start"; 
+    cx.fillStyle = "black"; 
+    cx.fillText(result.name, textX, textY); 
+    
+    cx.arc(centerX, centerY, 100, currentAngle, currentAngle + sliceAngle);
+    currentAngle += sliceAngle;
+    cx.lineTo(centerX, centerY);
+    cx.fillStyle = result.color;
+    cx.fill();
+}                   </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let cx = document.querySelector("canvas").getContext("2d");
+let total = results.reduce(function(sum, choice) {
+    return sum + choice.count;
+}, 0);
+
+let currentAngle = -0.5 * Math.PI;
+let centerX = 300, centerY = 150;
+
+results.forEach(function(result) {
+    let sliceAngle = (result.count / total) * 2 * Math.PI;
+    cx.beginPath();
+    cx.arc(centerX, centerY, 100, currentAngle, currentAngle + sliceAngle);
+
+    let middleAngle = currentAngle + 0.5 * sliceAngle;
+    let textX = Math.cos(middleAngle) * 120 + centerX;
+    let textY = Math.sin(middleAngle) * 120 + centerY;
+    cx.textBaseLine = "middle";
+    if (Math.cos(middleAngle) > 0) {
+        cx.textAlign = "left";
+    } else {
+        cx.textAlign = "right";
+    }
+    cx.font = "15px sans-serif";
+    cx.fillStyle = "black";
+    cx.fillText(result.name, textX, textY);
+
+    currentAngle += sliceAngle;
+    cx.lineTo(centerX, centerY);
+    cx.fillStyle = result.color;
+    cx.fill();
+});                 </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>A Bouncing Ball</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>Use the <code>requestAnimationFrame</code> technique that we saw in Chapter 14 and Chapter 16 to draw a box with a bouncing ball in it. The ball moves at a constant speed and bounces off the box’s sides when it hits them.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let lineWidth = 5; 
+let rectLeftX = 100, rectLeftY = 100, rectWidth = 200; 
+let circleX = 200, circleY = 100 + lineWidth, circleRadius = 5; 
+let speedX = 150, speedY = 175; 
+
+function updateAnimation(step) {
+    cx.beginPath(); 
+    
+    cx.clearRect(rectLeftX, rectLeftY, rectWidth, rectWidth); 
+    cx.strokeStyle = "purple", cx.lineWidth = `${lineWidth}px`; 
+    cx.strokeRect(rectLeftX, rectLeftY, rectWidth, rectWidth), 
+
+    circleX += step * speedX, circleY += step * speedY; 
+    
+    cx.strokeStyle = "red", cx.fillStyle = "red"; 
+    cx.arc(circleX, circleY, circleRadius, 0, 2 * Math.PI);
+    cx.fill();
+
+    if (circleX + circleRadius + lineWidth >= rectLeftX + rectWidth 
+      || circleX - circleRadius - lineWidth <= rectLeftX) {
+        speedX *= -1;
+    }
+
+    if (circleY + circleRadius + lineWidth >= rectLeftY + rectWidth) speedY = -175; 
+    if (circleY - circleRadius - lineWidth <= rectLeftY) speedY = 175; 
+    
+}                   </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let x = 100, y = 300;
+let radius = 10;
+let speedX = 100, speedY = 60;
+
+function updateAnimation(step) {
+    cx.clearRect(0, 0, 400, 400);
+    cx.strokeStyle = "blue";
+    cx.lineWidth = 4;
+    cx.strokeRect(25, 25, 350, 350);
+    
+    x += step * speedX;
+    y += step * speedY;
+    if (x < 25 + radius || x > 375 - radius) speedX = -speedX;
+    if (y < 25 + radius || y > 375 - radius) speedY = -speedY;
+    cx.fillStyle = "red";
+    cx.beginPath();
+    cx.arc(x, y, radius, 0, 7);
+    cx.fill();
+}                   </code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Precomputed Mirroring</h2></div>
+
+                <div class="exercise-body">
+                    <h3>Question</h3>
+
+                    <p>One unfortunate thing about transformations is that they slow down the drawing of bitmaps. The position and size of each pixel has to be transformed, and though it is possible that browsers will get cleverer about transformation in the future, they currently cause a measurable increase in the time it takes to draw a bitmap.</p>
+
+                    <p>In a game like ours, where we are drawing only a single transformed sprite, this is a nonissue. But imagine that we need to draw hundreds of characters or thousands of rotating particles from an explosion.</p>
+
+                    <p>Think of a way to allow us to draw an inverted character without loading additional image files and without having to make transformed drawImage calls every frame.</p> 
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Personal Answer</h3>
+
+                    <pre id="code7" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div class="body">
+
+                </div>
+
+                <div class="exercise-body">
+                    <h3>Author's Answer</h3>
+
+                    <pre id="code8" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                </div>
+
+                <div class="exercise-body">
+                    
+                </div>
+
+                <button class="exercise-body exercise-close">⇮</button>
+            </section>
+
+        </article>
+
+        <article class="container-navbar">
+
+            <section>
+
+                <h3>3rd Edition</h3>
+
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
+                </nav>
+
+            </section>
+
+        </article>
+
+    </main>
+
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+/*
+
+    Stylesheet for regular pages that contain exercises. 
+
+*/
+
+html {
+    font-size: 62.5%;
+    overflow-y: scroll; 
+}
+
+:root {
+    --main-color: #f8d410; 
+    --secondary-color: #800080; 
+    --third-color: #f00; 
+}
+
+/**** MAIN ELEMENT ****/
+
+body {
+    margin: 0;
+    font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif;
+    font-size: 2rem;
+    line-height: 1.7;
+}
+
+header {
+    display: flex; 
+    flex-direction: column; 
+    padding: 5rem 7rem; 
+    background-color: var(--main-color); 
+    font-size: 3rem; 
+    text-align: center; 
+}
+
+h2 {
+    font-weight: normal; 
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    padding-top: 3rem; 
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+a:hover {
+    color: var(--third-color); 
+}
+
+code {
+    padding: 0 2px; 
+    font-family: 'PT Mono';
+}
+
+/**** CLASS ****/
+
+/* Header */
+.header-navigation-links {
+    display: flex; 
+    justify-content: space-between;
+    font-size: 3.5rem; 
+}
+
+/* Chapter Text */
+.container-exercise-problems .exercise-panel {
+    display: flex; 
+    flex-direction: column; 
+    margin: 2rem;
+    padding: 2rem; 
+    border: solid 1px var(--main-color);
+}
+
+.container-exercise-problems .exercise-header {
+    display: flex; 
+    justify-content: flex-start; 
+    margin-left: 2rem; 
+    color: var(--secondary-color); 
+    font-size: 2rem;
+}
+
+.container-exercise-problems .exercise-header:hover {
+    color: var(--third-color); 
+    cursor: pointer; 
+}
+
+.container-exercise-problems .exercise-body {
+    display: none;
+}
+
+.container-exercise-problems .active .exercise-body {
+    display : flex;
+    flex-direction: column; 
+    justify-content: flex-start; 
+    margin: auto 2.5rem;
+    padding: 0.5rem; 
+}
+
+.desc {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.desc:hover {
+    color: var(--secondary-color);
+}
+
+.exercise-close {
+    width: 10rem; 
+    height: 10rem;
+    align-self: center;
+    background-color: #fff;
+    font-size: 6rem;
+    border: none;
+    cursor: pointer;
+}
+
+.exercise-close:hover {
+    color: var(--third-color); 
+}
+
+/* Navbar */
+.container-navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8rem;
+}
+
+.container-navbar section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3.5rem;
+    transition: background-color 0.3s ease-out;
+}
+
+.container-navbar section:hover {
+    background-color: var(--main-color);
+}
+
+.container-navbar nav {
+    display: flex;
+    align-items: space-between;
+}
+
+.container-navbar ul {
+    margin: 2rem; 
+}
+
+/**** MEDIA QUERY ****/
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 1.7rem; 
+    }
+
+    header {
+        padding: 2rem 3rem; 
+        font-size: 2rem; 
+    }
+
+    h2 {
+        font-size: 2.5rem; 
+    }
+
+    .header-navigation-links {
+        font-size: 2.5rem; 
+    }
+
+    .code-toolbar {
+        font-size: 1.4rem; 
+    }
+}

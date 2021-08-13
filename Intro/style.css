@@ -1,0 +1,154 @@
+html { 
+    font-size: 62.5%; 
+    overflow-y: scroll; 
+}
+
+:root {
+    --main-color: #f8d410; 
+}
+
+/**** MAIN ELEMENT ****/
+
+body { 
+    margin: 0; 
+    font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif; 
+    font-size: 2rem; 
+}
+
+header { 
+    max-width: 100%; 
+    margin: 0 auto; 
+    padding: 15rem 10rem 10rem 10rem; 
+    background-color: var(--main-color); 
+    text-align: center; 
+}
+
+ul { 
+    margin: 0; 
+    padding: 0; 
+    list-style-type: none; 
+}
+
+li { 
+    padding-top: 3rem; 
+}
+
+a { 
+    color: #800080; 
+    text-decoration: none; 
+}
+
+a:hover { 
+    color: #F00; 
+}
+
+/**** CLASS ****/
+
+.flex-column { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+/* Resource Links */
+.container-resources { 
+    position: relative; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 10rem; 
+}
+
+.container-resources section { 
+    position: relative; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 2rem; 
+}
+
+.img-book { 
+    width: 100%; 
+    height: 100%;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0; 
+}
+
+.book-links { position: absolute; display: flex; opacity: 0; }
+
+.book-links div { 
+    width: 30rem; 
+    margin-bottom: 1rem; 
+    padding: 2rem; color: #fff; 
+    background-color: rgba(0,0,0, 0.8); 
+    text-align: center; 
+    border: 0.5rem solid #fff; 
+}
+
+.book-links a { 
+    color: #ac77f2; 
+}
+
+.img-book:hover + .book-links { 
+    opacity: 1; 
+}
+
+.book-links:hover { 
+    opacity: 1; 
+}
+
+.container-resources section:hover .img-book { 
+    filter: blur(8px); 
+}
+
+/* Navbar */
+.container-navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8rem;
+}
+
+.container-navbar section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3.5rem;
+    transition: background-color 0.3s ease-out;
+}
+
+.container-navbar section:hover {
+    background-color: var(--main-color);
+}
+
+.container-navbar nav {
+    display: flex;
+    align-items: space-between;
+}
+
+.container-navbar ul {
+    margin: 2rem; 
+}
+
+/**** MEDIA QUERY ****/
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 1.8rem; 
+    }
+
+    header {
+        padding: 1rem 2rem; 
+        text-align: start; 
+    }
+
+    .book-links div {
+        width: 15rem; 
+        font-size: 2rem;
+    }
+} 
+
+@media only screen and (max-width: 400px) {
+    .book-links div {
+        font-size: 1.5rem;
+    }
+}
