@@ -5,40 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap14.css">
-    <link href="../Assets/CSS/prism.css" rel="stylesheet">
-    <title>Eloquent JavaScript - Chapter 14</title>
     <meta name="author" content="David Brunner">
     <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 14, Exercises">
     <meta name="description" content="Solutions and explanations for exercises in Chapter 14 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 14</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
 
-    <script src="../Assets/JavaScript/prism.js"></script>
-
     <header>
-        <h1 id="chapter14-main-header">Chapter 14, "The Document Object Model"</h1>
+        <h1>Chapter 14, "The Document Object Model"</h1>
         
-        <div id="navigation-links">
-            <a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Previous</a>
-            <a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Next</a>
+        <div class="header-navigation-links">
+            <a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Previous</a>
+            <a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Next</a>
         </div>
     </header>
 
     <main>
 
-        <article id="exercise-problems">
+        <article class="container-exercise-problems">
 
-            <section id="exercise1" class="panel">
-                <div id="exercise-header1" class="header"><h2>Build a Table</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Build a Table</h2></div>
 
-                <div id="exercise-question1" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>An HTML table is built with the following tag structure:</p>
 
-                    <pre class="language-markup line-numbers"><code class="language-markup">&lt;table>
+                    <pre class="language-markup"><code class="language-markup">&lt;table>
     &lt;tr>
         &lt;th>name</th>
         &lt;th>height</th>
@@ -62,10 +62,10 @@
                     <p>Once you have this working, right-align cells that contain number values by setting their <code>style.textAlign</code> property to <code>"right"</code>.</p>
                 </div>
 
-                <div id="personal-answer1" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function generateTable(values) {
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function generateTable(values) {
     let containerNode = document.createElement("table"); 
 
     let header = document.createElement("tr");
@@ -94,54 +94,53 @@
     return containerNode; 
 }
 
-document.getElementById("mountains").appendChild(generateTable(MOUNTAINS)); 
-                    </code></pre>
+document.getElementById("mountains").appendChild(generateTable(MOUNTAINS));</code></pre>
                 </div>
 
-                <div id="personal-answer-explanation1" class="body">
-                    <p><code>Line 1</code> defines the <code>generateTable</code> function with the <code>values</code> parameter representing the array of values.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>generateTable</code> function with the <code>values</code> parameter representing the array of values.</p>
 
-                    <p><code>Line 2</code> creates a <code>&lt;table></code> DOM node and assigns its reference to <code>containerNode</code>.</p>
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> creates a <code>&lt;table></code> DOM node and assigns its reference to <code>containerNode</code>.</p>
 
-                    <p><code>Line 4</code> creates a <code>&lt;tr></code> DOM node and assigns its reference to <code>header</code>.</p>
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> creates a <code>&lt;tr></code> DOM node and assigns its reference to <code>header</code>.</p>
 
-                    <p><code>Line 5</code> appends <code>header</code> as a child node to <code>containerNode</code>.</p>
+                    <p><code class="desc desc-code1" data-line="5">Line 5</code> appends <code>header</code> as a child node to <code>containerNode</code>.</p>
 
-                    <p><code>Line 7</code> loops through each <code>value</code> object within the array referenced by the parameter <code>values</code>.</p>
+                    <p><code class="desc desc-code1" data-line="7">Line 7</code> loops through each <code>value</code> object within the array referenced by the parameter <code>values</code>.</p>
 
-                    <p><code>Line 8</code> creates a <code>&lt;tr></code> DOM node and assigns its reference to <code>data</code>.</p>
+                    <p><code class="desc desc-code1" data-line="8">Line 8</code> creates a <code>&lt;tr></code> DOM node and assigns its reference to <code>data</code>.</p>
 
-                    <p><code>Line 9</code> appends <code>data</code> as a child node to <code>containerNode</code>.</p>
+                    <p><code class="desc desc-code1" data-line="9">Line 9</code> appends <code>data</code> as a child node to <code>containerNode</code>.</p>
 
-                    <p><code>Line 11</code> calls the <code>Object.keys</code> method to retrieve an array of the keys within the <code>value</code> object.</p>
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> calls the <code>Object.keys</code> method to retrieve an array of the keys within the <code>value</code> object.</p>
 
-                    <p><code>Line 12</code> uses the <code>forEach</code> method to iterate through each <code>key</code> value within <code>keys</code>.</p>
+                    <p><code class="desc desc-code1" data-line="12">Line 12</code> uses the <code>forEach</code> method to iterate through each <code>key</code> value within <code>keys</code>.</p>
 
-                    <p><code>Line 13</code> checks if the number of child nodes within <code>header</code> is equal to the number of values within <code>keys</code>.</p>
+                    <p><code class="desc desc-code1" data-line="13">Line 13</code> checks if the number of child nodes within <code>header</code> is equal to the number of values within <code>keys</code>.</p>
 
-                    <p>If <code>true</code>, then <code>Line 14</code> creates a <code>&lt;th></code> DOM node and assigns its reference to <code>currentHeader</code>.</p>
+                    <p>If <code>true</code>, then <code class="desc desc-code1" data-line="14">Line 14</code> creates a <code>&lt;th></code> DOM node and assigns its reference to <code>currentHeader</code>.</p>
 
-                    <p><code>Line 15</code> creates a text node with the inner text value of <code>key</code> and appends it as a child node to <code>currentHeader</code>.</p>
+                    <p><code class="desc desc-code1" data-line="15">Line 15</code> creates a text node with the inner text value of <code>key</code> and appends it as a child node to <code>currentHeader</code>.</p>
 
-                    <p><code>Line 16</code> appends <code>currentHeader</code> as a child node to <code>header</code>.</p>
+                    <p><code class="desc desc-code1" data-line="16">Line 16</code> appends <code>currentHeader</code> as a child node to <code>header</code>.</p>
 
-                    <p><code>Line 19</code> creates a <code>&lt;td></code> DOM node and assigns its reference to <code>currentData</code>.</p>
+                    <p><code class="desc desc-code1" data-line="19">Line 19</code> creates a <code>&lt;td></code> DOM node and assigns its reference to <code>currentData</code>.</p>
 
-                    <p><code>Line 20</code> creates a text node with the inner text of the value referenced by the <code>key</code> property in <code>value</code> and appends it as a child node to <code>currentData</code>.</p>
+                    <p><code class="desc desc-code1" data-line="20">Line 20</code> creates a text node with the inner text of the value referenced by the <code>key</code> property in <code>value</code> and appends it as a child node to <code>currentData</code>.</p>
 
-                    <p><code>Line 21</code> checks whether the <code>typeof</code> of the <code>key</code> property in <code>value</code> is equal to <code>"number</code> and adjusts the <code>textAlign</code> style attribute accordingly.</p>
+                    <p><code class="desc desc-code1" data-line="21">Line 21</code> checks whether the <code>typeof</code> of the <code>key</code> property in <code>value</code> is equal to <code>"number</code> and adjusts the <code>textAlign</code> style attribute accordingly.</p>
 
-                    <p><code>Line 23</code> appends <code>currentData</code> as a child node to <code>data</code>.</p>
+                    <p><code class="desc desc-code1" data-line="23">Line 23</code> appends <code>currentData</code> as a child node to <code>data</code>.</p>
 
-                    <p><code>Line 27</code> returns the <code>containerNode</code> element.</p>
+                    <p><code class="desc desc-code1" data-line="27">Line 27</code> returns the <code>containerNode</code> element.</p>
 
-                    <p><code>Line 30</code> retrieves the DOM element whose id attribute is equal to <code>"mountains"</code> and appends the child node returned by calling <code>generateTable</code> with the <code>MOUNTAINS</code> array.</p>
+                    <p><code class="desc desc-code1" data-line="30">Line 30</code> retrieves the DOM element whose id attribute is equal to <code>"mountains"</code> and appends the child node returned by calling <code>generateTable</code> with the <code>MOUNTAINS</code> array.</p>
                 </div>
 
-                <div id="official-answer1" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function buildTable(data) {
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function buildTable(data) {
     let table = document.createElement("table");
     
     let fields = Object.keys(data[0]);
@@ -169,57 +168,56 @@ document.getElementById("mountains").appendChild(generateTable(MOUNTAINS));
     return table;
 }
 
-document.querySelector("#mountains").appendChild(buildTable(MOUNTAINS));
-                    </code></pre>
+document.querySelector("#mountains").appendChild(buildTable(MOUNTAINS));</code></pre>
                 </div>
 
-                <div id="official-answer-explanation1" class="body">
-                    <p><code>Line 1</code> defines the <code>buildTable</code> function with the <code>data</code> parameter representing the array of values.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> defines the <code>buildTable</code> function with the <code>data</code> parameter representing the array of values.</p>
 
-                    <p><code>Line 2</code> creates a <code>&lt;table></code> DOM node and assigns its reference to <code>table</code>.</p>
+                    <p><code class="desc desc-code2" data-line="2">Line 2</code> creates a <code>&lt;table></code> DOM node and assigns its reference to <code>table</code>.</p>
 
-                    <p><code>Line 4</code> calls the <code>Object.keys</code> method on the first element within the <code>data</code> array and assigns the results to <code>fields</code>.</p>
+                    <p><code class="desc desc-code2" data-line="4">Line 4</code> calls the <code>Object.keys</code> method on the first element within the <code>data</code> array and assigns the results to <code>fields</code>.</p>
 
-                    <p><code>Line 5</code> creates a <code>&lt;tr></code> DOM node and assigns its reference to <code>headRow</code>.</p>
+                    <p><code class="desc desc-code2" data-line="5">Line 5</code> creates a <code>&lt;tr></code> DOM node and assigns its reference to <code>headRow</code>.</p>
 
-                    <p><code>Line 6</code> uses the <code>forEach</code> method to iterate through each <code>field</code> value within <code>fields</code>.</p>
+                    <p><code class="desc desc-code2" data-line="6">Line 6</code> uses the <code>forEach</code> method to iterate through each <code>field</code> value within <code>fields</code>.</p>
 
-                    <p><code>Line 7</code> creates a <code>&lt;th></code> DOM node and assigns its reference to <code>headCell</code>.</p>
+                    <p><code class="desc desc-code2" data-line="7">Line 7</code> creates a <code>&lt;th></code> DOM node and assigns its reference to <code>headCell</code>.</p>
 
-                    <p><code>Line 8</code> creates a text node with the inner text value of <code>field</code> and appends it as a child node to <code>headCell</code>.</p>
+                    <p><code class="desc desc-code2" data-line="8">Line 8</code> creates a text node with the inner text value of <code>field</code> and appends it as a child node to <code>headCell</code>.</p>
 
-                    <p><code>Line 9</code> appends <code>headCell</code> as a child node to <code>headRow</code>.</p>
+                    <p><code class="desc desc-code2" data-line="9">Line 9</code> appends <code>headCell</code> as a child node to <code>headRow</code>.</p>
 
-                    <p><code>Line 11</code> appends <code>headRow</code> as a child node to <code>table</code>.</p>
+                    <p><code class="desc desc-code2" data-line="11">Line 11</code> appends <code>headRow</code> as a child node to <code>table</code>.</p>
 
-                    <p><code>Line 13</code> uses the <code>forEach</code> method to iterate through each <code>object</code> value within <code>data</code>.</p>
+                    <p><code class="desc desc-code2" data-line="13">Line 13</code> uses the <code>forEach</code> method to iterate through each <code>object</code> value within <code>data</code>.</p>
 
-                    <p><code>Line 14</code> creates a <code>&lt;tr></code> DOM node and assigns its reference to <code>row</code>.</p>
+                    <p><code class="desc desc-code2" data-line="14">Line 14</code> creates a <code>&lt;tr></code> DOM node and assigns its reference to <code>row</code>.</p>
 
-                    <p><code>Line 15</code> uses the <code>forEach</code> method to iterate through each <code>field</code> value within <code>fields</code>.</p>
+                    <p><code class="desc desc-code2" data-line="15">Line 15</code> uses the <code>forEach</code> method to iterate through each <code>field</code> value within <code>fields</code>.</p>
 
-                    <p><code>Line 16</code> creates a <code>&lt;td></code> DOM node and assigns its reference to <code>cell</code>.</p>
+                    <p><code class="desc desc-code2" data-line="16">Line 16</code> creates a <code>&lt;td></code> DOM node and assigns its reference to <code>cell</code>.</p>
 
-                    <p><code>Line 17</code> creates a text node with the inner text of the value referenced by the <code>field</code> property in <code>object</code> and appends it as a child node to <code>cell</code>.</p>
+                    <p><code class="desc desc-code2" data-line="17">Line 17</code> creates a text node with the inner text of the value referenced by the <code>field</code> property in <code>object</code> and appends it as a child node to <code>cell</code>.</p>
 
-                    <p><code>Line 18</code> checks whether the <code>typeof</code> of the <code>field</code> property in <code>object</code> is equal to <code>"number</code>.</p>
+                    <p><code class="desc desc-code2" data-line="18">Line 18</code> checks whether the <code>typeof</code> of the <code>field</code> property in <code>object</code> is equal to <code>"number</code>.</p>
 
-                    <p>If <code>true</code>, then <code>Line 19</code> sets the <code>textAlign</code> style attribute of <code>cell</code> to <code>"right"</code>.</p>
+                    <p>If <code>true</code>, then <code  class="desc desc-code2" data-line="19">Line 19</code> sets the <code>textAlign</code> style attribute of <code>cell</code> to <code>"right"</code>.</p>
 
-                    <p><code>Line 21</code> appends <code>row</code> as a child node to <code>table</code>.</p>
+                    <p><code class="desc desc-code2" data-line="21">Line 21</code> appends <code>row</code> as a child node to <code>table</code>.</p>
 
-                    <p><code>Line 26</code> returns the <code>containerNode</code> element.</p>
+                    <p><code  class="desc desc-code2" data-line="26">Line 26</code> returns the <code>containerNode</code> element.</p>
 
-                    <p><code>Line 29</code> retrieves the DOM element whose query attribute is equal to <code>"#mountains"</code> and appends the child node returned by calling <code>buildTable</code> with the <code>MOUNTAINS</code> array.</p>
+                    <p><code  class="desc desc-code2" data-line="29">Line 29</code> retrieves the DOM element whose query attribute is equal to <code>"#mountains"</code> and appends the child node returned by calling <code>buildTable</code> with the <code>MOUNTAINS</code> array.</p>
                 </div>
 
-                <div id="exercise-close1" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2>Elements by Tag Name</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Elements by Tag Name</h2></div>
 
-                <div id="exercise-question2" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>The <code>document.getElementsByTagName</code> method returns all child elements with a given tag name. Implement your own version of this as a function that takes a node and a string (the tag name) as arguments and returns an array containing all descendant element nodes with the given tag name.</p>
@@ -227,24 +225,24 @@ document.querySelector("#mountains").appendChild(buildTable(MOUNTAINS));
                     <p>To find the tag name of an element, use its <code>nodeName</code> property. But note that this will return the tag name in all uppercase. Use the <code>toLowerCase</code> or <code>toUpperCase</code> string methods to compensate for this.</p> 
                 </div>
 
-                <div id="personal-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function byTagName(node, tagName) {
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function byTagName(node, tagName) {
     return document.querySelectorAll(node.tagName + " " + tagName);
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> defines the <code>byTagName</code> function with the <code>node</code> and the <code>tagName</code> parameters representing the parent and the tag name of child DOM elements respectively.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> defines the <code>byTagName</code> function with the <code>node</code> and the <code>tagName</code> parameters representing the parent and the tag name of child DOM elements respectively.</p>
 
-                    <p><code>Line 2</code> returns the result of selecting all the DOM elements within the document whose query attribute is equal to the tag name of the parent and the child together.</p>
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> returns the result of selecting all the DOM elements within the document whose query attribute is equal to the tag name of the parent and the child together.</p>
                 </div>
 
-                <div id="official-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function byTagName(node, tagName) {
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function byTagName(node, tagName) {
     let found = [];
     tagName = tagName.toUpperCase();
 
@@ -263,35 +261,35 @@ document.querySelector("#mountains").appendChild(buildTable(MOUNTAINS));
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation2" class="body">
-                    <p><code>Line 1</code> defines the <code>byTagName</code> function with the <code>node</code> and the <code>tagName</code> parameters representing the parent and the tag name of child DOM elements respectively.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> defines the <code>byTagName</code> function with the <code>node</code> and the <code>tagName</code> parameters representing the parent and the tag name of child DOM elements respectively.</p>
 
-                    <p><code>Line 2</code> creates an empty array and assigns its value to <code>found</code>.</p>
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> creates an empty array and assigns its value to <code>found</code>.</p>
 
-                    <p><code>Line 3</code> changes the <code>tagName</code> string to all uppercase letters.</p>
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> changes the <code>tagName</code> string to all uppercase letters.</p>
 
-                    <p><code>Line 5</code> defines the <code>explore</code> function with the <code>node</code> parameter representing a DOM node.</p>
+                    <p><code class="desc desc-code4" data-line="5">Line 5</code> defines the <code>explore</code> function with the <code>node</code> parameter representing a DOM node.</p>
 
-                    <p><code>Line 6</code> creates a <code>for</code> loop that iterates through each child node of the <code>node</code> element.</p>
+                    <p><code class="desc desc-code4" data-line="6">Line 6</code> creates a <code>for</code> loop that iterates through each child node of the <code>node</code> element.</p>
 
-                    <p><code>Line 7</code> creates the <code>child</code> element and assigns its value to the current child node of <code>node</code>.</p>
+                    <p><code class="desc desc-code4" data-line="7">Line 7</code> creates the <code>child</code> element and assigns its value to the current child node of <code>node</code>.</p>
 
-                    <p><code>Line 8</code> checks whether the <code>nodeType</code> of <code>child</code> is equal to <code>tagName</code> and adds the <code>child</code> element to <code>found</code> if <code>true</code>.</p>
+                    <p><code class="desc desc-code4" data-line="8">Line 8</code> checks whether the <code>nodeType</code> of <code>child</code> is equal to <code>tagName</code> and adds the <code>child</code> element to <code>found</code> if <code>true</code>.</p>
 
-                    <p><code>Line 9</code> recursively calls the <code>explore</code> function with the <code>child</code> element to continue searching for DOM child nodes with the particular <code>tagName</code>.</p>
+                    <p><code class="desc desc-code4" data-line="9">Line 9</code> recursively calls the <code>explore</code> function with the <code>child</code> element to continue searching for DOM child nodes with the particular <code>tagName</code>.</p>
 
-                    <p><code>Line 15</code> calls the <code>explore</code> function with the DOM element represented by the <code>node</code> parameter.</p>
+                    <p><code class="desc desc-code4" data-line="15">Line 15</code> calls the <code>explore</code> function with the DOM element represented by the <code>node</code> parameter.</p>
 
-                    <p><code>Line 16</code> returns the <code>found</code> array.</p>
+                    <p><code class="desc desc-code4" data-line="16">Line 16</code> returns the <code>found</code> array.</p>
                 </div>
 
-                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2>The Cat’s Hat</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>The Cat’s Hat</h2></div>
 
-                <div id="exercise-question3" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Extend the cat animation defined earlier so that both the cat and his hat (<code>&lt;img src="img/hat.png"></code>) orbit at opposite sides of the ellipse.</p>
@@ -301,10 +299,10 @@ document.querySelector("#mountains").appendChild(buildTable(MOUNTAINS));
                     <p>To make positioning multiple objects easier, it is probably a good idea to switch to absolute positioning. This means that <code>top</code> and <code>left</code> are counted relative to the top left of the document. To avoid using negative coordinates, which would cause the image to move outside of the visible page, you can add a fixed number of pixels to the position values.</p> 
                 </div>
 
-                <div id="personal-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">let cat = document.querySelector("#cat");
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let cat = document.querySelector("#cat");
 let hat = document.querySelector("#hat");
 
 let angle = 0;
@@ -324,38 +322,38 @@ requestAnimationFrame(animate);
                     </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates the <code>cat</code> variable and sets it to the DOM element whose query is equal to <code>"#cat"</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> creates the <code>cat</code> variable and sets it to the DOM element whose query is equal to <code>"#cat"</code>.</p>
 
-                    <p><code>Line 2</code> creates the <code>hat</code> variable and sets it to the DOM element whose query is equal to <code>"#hat"</code>.</p>
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> creates the <code>hat</code> variable and sets it to the DOM element whose query is equal to <code>"#hat"</code>.</p>
 
-                    <p><code>Line 4</code> creates the <code>angle</code> variable and initializes it to the value of <code>0</code>.</p>
+                    <p><code class="desc desc-code5" data-line="4">Line 4</code> creates the <code>angle</code> variable and initializes it to the value of <code>0</code>.</p>
 
-                    <p><code>Line 5</code> creates the <code>lastTime</code> variable and initializes it to the value of <code>null</code>.</p>
+                    <p><code class="desc desc-code5" data-line="5">Line 5</code> creates the <code>lastTime</code> variable and initializes it to the value of <code>null</code>.</p>
 
-                    <p><code>Line 6</code> creates the <code>animate</code> function with the parameter <code>time</code> to represent the total duration of the animation.</p>
+                    <p><code class="desc desc-code5" data-line="6">Line 6</code> creates the <code>animate</code> function with the parameter <code>time</code> to represent the total duration of the animation.</p>
 
-                    <p><code>Line 7</code> checks whether <code>lastTime</code> does not equal <code>null</code>, or whether the animation has already run, and increases <code>angle</code> by the value calculated by the mathimatical operation.</p>
+                    <p><code class="desc desc-code5" data-line="7">Line 7</code> checks whether <code>lastTime</code> does not equal <code>null</code>, or whether the animation has already run, and increases <code>angle</code> by the value calculated by the mathimatical operation.</p>
 
-                    <p><code>Line 8</code> sets <code>lastTime</code> to the current <code>time</code> value.</p>
+                    <p><code class="desc desc-code5" data-line="8">Line 8</code> sets <code>lastTime</code> to the current <code>time</code> value.</p>
 
-                    <p><code>Line 9</code> sets the <code>top</code> attribute of <code>cat</code> to an updated position in the rotation that is 40 pixels high and 40 pixels below the starting position of <code>cat</code>  on the y-axis.</p>
+                    <p><code class="desc desc-code5" data-line="9">Line 9</code> sets the <code>top</code> attribute of <code>cat</code> to an updated position in the rotation that is 40 pixels high and 40 pixels below the starting position of <code>cat</code>  on the y-axis.</p>
 
-                    <p><code>Line 10</code> sets the <code>left</code> attribute of <code>cat</code> to an updated position in the rotation that is 200 pixels wide and 230 pixels to the right of the starting position of <code>cat</code> on the x-axis.</p> 
+                    <p><code class="desc desc-code5" data-line="10">Line 10</code> sets the <code>left</code> attribute of <code>cat</code> to an updated position in the rotation that is 200 pixels wide and 230 pixels to the right of the starting position of <code>cat</code> on the x-axis.</p> 
 
-                    <p><code>Line 12</code> sets the <code>top</code> attribute of <code>hat</code> to an updated position in the rotation that is 40 pixels high and 60 pixels below the starting position of <code>hat</code> on the y-axis, but this time with <code>angle</code> increased by <code>Math.PI</code> to reverse its position (Using the mathematical properties of sine and cos functions).</p>
+                    <p><code class="desc desc-code5" data-line="12">Line 12</code> sets the <code>top</code> attribute of <code>hat</code> to an updated position in the rotation that is 40 pixels high and 60 pixels below the starting position of <code>hat</code> on the y-axis, but this time with <code>angle</code> increased by <code>Math.PI</code> to reverse its position (Using the mathematical properties of sine and cos functions).</p>
 
-                    <p><code>Line 13</code> sets the <code>left</code> attribute of <code>hat</code> to an updated position in the rotation that is 200 pixels wide and 230 pixels to the right of the starting position of <code>hat</code> on the x-axis, but this time with <code>angle</code> increased by <code>Math.PI</code> to reverse its position (Using the mathematical properties of sine and cos functions).</p> 
+                    <p><code class="desc desc-code5" data-line="13">Line 13</code> sets the <code>left</code> attribute of <code>hat</code> to an updated position in the rotation that is 200 pixels wide and 230 pixels to the right of the starting position of <code>hat</code> on the x-axis, but this time with <code>angle</code> increased by <code>Math.PI</code> to reverse its position (Using the mathematical properties of sine and cos functions).</p> 
 
-                    <p><code>Line 15</code> calls the global <code>requestAnimationFrame</code> function with a new recursive call to <code>animate</code>, running the entire animation.</p>
+                    <p><code class="desc desc-code5" data-line="15">Line 15</code> calls the global <code>requestAnimationFrame</code> function with a new recursive call to <code>animate</code>, running the entire animation.</p>
 
-                    <p><code>Line 17</code> calls the global <code>requestAnimationFrame</code> function with a new call to <code>animate</code>, running the entire animation.</p>
+                    <p><code class="desc desc-code5" data-line="17">Line 17</code> calls the global <code>requestAnimationFrame</code> function with a new call to <code>animate</code>, running the entire animation.</p>
                 </div>
 
-                <div id="official-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">let cat = document.querySelector("#cat");
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let cat = document.querySelector("#cat");
 let hat = document.querySelector("#hat");
 
 let angle = 0;
@@ -374,46 +372,48 @@ requestAnimationFrame(animate);
                     </code></pre>
                 </div>
 
-                <div id="official-answer-explanation3" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author uses the same code just with different values for the arc of the <code>hat</code> element.</p>
                 </div>
 
-                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
         </article>
 
-        <article id="navbar-article">
+        <article class="container-navbar">
 
-            <section id="navbar-section-3rd-Ed">
-                
+            <section>
+
                 <h3>3rd Edition</h3>
 
-                <nav id="navbar-3rd-Ed">
-                <ul>
-                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
-                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
-                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
-                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
-                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
-                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
-                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
-                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
-                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
-                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
-                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
-                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
-                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
-                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
-                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
-                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
-                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
-                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
-                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
-                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
-                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
-                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
                 </nav>
 
             </section>
@@ -422,8 +422,9 @@ requestAnimationFrame(animate);
 
     </main>
 
-    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap14.js"></script>
-    
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
+
 </body>
 
 </html>

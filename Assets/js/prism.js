@@ -1852,9 +1852,12 @@ Prism.languages.js = Prism.languages.javascript;
 				line.addEventListener('click', function() {
 					var hash = id + '.' + lineNumber; 
 
-					scrollIntoView = true;
-					location.hash = hash;
-					applyHash(); 
+					// this will prevent scrolling since the span is obviously in view
+					scrollIntoView = false;
+					location.hash = hash;					
+					setTimeout(function () {
+						scrollIntoView = true;
+					}, 1);
 				}); 
 			}); 
 		}
@@ -1893,7 +1896,7 @@ Prism.languages.js = Prism.languages.javascript;
 		mutateDom();
 
 		if (scrollIntoView) {
-			document.querySelector('.temporary.line-highlight').scrollIntoView({behavior: "smooth", block: "center"});
+			document.querySelector('.temporary.line-highlight').scrollIntoView({behavior: "smooth"});
 		}
 	}
 

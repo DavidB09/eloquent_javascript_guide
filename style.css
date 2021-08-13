@@ -100,8 +100,18 @@ code {
     display : flex;
     flex-direction: column; 
     justify-content: flex-start; 
-    margin: auto 2.5rem;
-    padding: 0.5rem; 
+    margin: 1rem 2.5rem;
+}
+
+.exercise-desc {
+    overflow-y: auto;
+    max-height: 45rem; 
+    height: auto; 
+    box-shadow: inset 0 0 10px #e3e2e1;
+}
+
+.exercise-desc p {
+    margin-left: 2rem;
 }
 
 .desc {
