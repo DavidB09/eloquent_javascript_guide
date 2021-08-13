@@ -71,6 +71,13 @@ code {
 }
 
 /* Chapter Text */
+.container-text {
+    display: flex; 
+    flex-direction: column; 
+    padding: 7rem 5rem;
+    text-align: center; 
+}
+
 .container-exercise-problems .exercise-panel {
     display: flex; 
     flex-direction: column; 
