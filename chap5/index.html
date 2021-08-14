@@ -5,76 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap5.css">
-    <link href="../Assets/CSS/prism.css" rel="stylesheet">
-    <title>Eloquent JavaScript - Chapter 5</title>
     <meta name="author" content="David Brunner">
     <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 5, Exercises">
     <meta name="description" content="Solutions and explanations for exercises in Chapter 5 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 5</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
 
-    <script src="../Assets/JavaScript/prism.js"></script>
-
     <header>
-        <h1 id="chapter5-main-header">Chapter 5, "Higher-Order Functions"</h1>
+        <h1>Chapter 5, "Higher-Order Functions"</h1>
 
-        <div id="navigation-links">
-            <a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Previous</a>
-            <a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Next</a>
+        <div class="header-navigation-links">
+            <a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Previous</a>
+            <a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Next</a>
         </div>
     </header>
 
     <main>
 
-        <article id="exercise-problems">
+        <article class="container-exercise-problems">
 
-            <section id="exercise1" class="panel">
-                <div id="exercise-header" class="header"><h2>Flattening</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Flattening</h2></div>
 
-                <div id="exercise-question" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
                 
                     <p>Use the <code>reduce</code> method in combination with the <code>concat</code> method to “flatten” an array of arrays into a single array that has all the elements of the original arrays.</p>                        
                 </div>
 
-                <div id="personal-answer" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">console.log(arrays.reduce((firstVal, currentVal) => firstVal.concat(currentVal)));</code></pre>
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">console.log(arrays.reduce((firstVal, currentVal) => firstVal.concat(currentVal)));</code></pre>
                 </div>
 
-                <div id="personal-answer-explanation" class="body">
-                    <p><code>Line 1</code> calls the <code>reduce</code> method with <code>firstVal</code> equaling the first element of the original array and <code>currentVal</code> moving on through the next elements. The <code>currentVal</code> is then added to <code>firstVal</code> using the <code>concat</code> method to create one array with all of the values.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> calls the <code>reduce</code> method with <code>firstVal</code> equaling the first element of the original array and <code>currentVal</code> moving on through the next elements. The <code>currentVal</code> is then added to <code>firstVal</code> using the <code>concat</code> method to create one array with all of the values.</p>
                 </div>
 
-                <div id="official-answer" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">console.log(arrays.reduce((flat, current) => flat.concat(current), []));</code></pre>
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">console.log(arrays.reduce((flat, current) => flat.concat(current), []));</code></pre>
                 </div>
 
-                <div id="official-answer-explanation" class="body">
-                    <p><code>Line 1</code> calls the <code>reduce</code> method with <code>flat</code> initialized to an empty array. The <code>current</code> values are then added to <code>flat</code> to create one array.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> calls the <code>reduce</code> method with <code>flat</code> initialized to an empty array. The <code>current</code> values are then added to <code>flat</code> to create one array.</p>
                 </div>
 
-                <div id="exercise-close" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2>Your Own Loop</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Your Own Loop</h2></div>
 
-                <div id="exercise-question2" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a higher-order function <code>loop</code> that provides something like a <code>for</code> loop statement. It takes a <code>value</code>, a <code>test</code> function, an <code>update</code> function, and a <code>body</code> function. Each iteration, it first runs the <code>test</code> function on the current loop value and stops if that returns <code>false</code>. Then it calls the <code>body</code> function, giving it the current value. Finally, it calls the <code>update</code> function to create a new value and starts from the beginning.</p> 
                 </div>
 
-                <div id="personal-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function loop(value, test, update, body) {
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function loop(value, test, update, body) {
     while(test(value)) {
         body(value);
         value = update(value);
@@ -82,41 +82,41 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> declares <code>loop</code> as a function with <code>value</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> declares <code>loop</code> as a function with <code>value</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
                 
-                    <p><code>Line 2</code> checks whether the <code>test</code> function returns <code>true</code> with <code>value</code> as the input.</p>
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> checks whether the <code>test</code> function returns <code>true</code> with <code>value</code> as the input.</p>
                     
-                    <p>While <code>true</code>, <code>Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
+                    <p>While <code>true</code>, <code class="desc desc-code3" data-line="3">Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
                     
-                    <p><code>Line 4</code> updates the current value of <code>value</code> by setting it to the output of the <code>update</code> function.</p>
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> updates the current value of <code>value</code> by setting it to the output of the <code>update</code> function.</p>
                 </div>
 
-                <div id="official-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function loop(start, test, update, body) {
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function loop(start, test, update, body) {
     for (let value = start; test(value); value = update(value)) {
         body(value);
     }
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation2" class="body">
-                    <p><code>Line 1</code> declares <code>loop</code> as a function with <code>start</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> declares <code>loop</code> as a function with <code>start</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
 
-                    <p><code>Line 2</code> uses a <code>for</code> loop to set <code>value</code> to <code>start</code>, check whether <code>test</code> returns <code>true</code> with <code>value</code> as the input, and set <code>value</code> to the output of <code>update</code>.</p>
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> uses a <code>for</code> loop to set <code>value</code> to <code>start</code>, check whether <code>test</code> returns <code>true</code> with <code>value</code> as the input, and set <code>value</code> to the output of <code>update</code>.</p>
 
-                    <p><code>Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
                 </div>
 
-                <div id="exercise-close-2" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2>Everything</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Everything</h2></div>
                 
-                <div id="exercise-question3" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Analogous to the <code>some</code> method, arrays also have an <code>every</code> method. This one returns <code>true</code> when the given function returns <code>true</code> for every element in the array.</p>
@@ -124,11 +124,11 @@
                     <p>Implement <code>every</code> as a function that takes an array and a predicate function as parameters. Write two versions, one using a loop and one using the <code>some</code> method.</p>                 
                 </div>
 
-                <div id="personal-answer3-pt1" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
                     <h4>Part I:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function every(array, test) {
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function every(array, test) {
     for (let i = 0; i < array.length; i++) {
         if (test(array[i]) == false)
             return false;
@@ -137,34 +137,34 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3-pt1" class="body">
-                    <p><code>Line 1</code> creates the function <code>every</code> with <code>array</code> and <code>test</code> as its only parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> creates the function <code>every</code> with <code>array</code> and <code>test</code> as its only parameters.</p>
 
-                    <p><code>Line 2</code> declares an <code>for</code> loop to iterate through the values of <code>array</code>.</p>
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> declares an <code>for</code> loop to iterate through the values of <code>array</code>.</p>
 
-                    <p><code>Line 3 - 4</code> checks whether the <code>test</code> function returns <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code>, the result is returned.</p>
+                    <p><code class="desc desc-code5" data-line="3-4">Line 3 - 4</code> checks whether the <code>test</code> function returns <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code>, the result is returned.</p>
 
-                    <p><code>Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>test</code> function.</p>
+                    <p><code class="desc desc-code5" data-line="6">Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>test</code> function.</p>
                 </div>
 
-                <div id="personal-answer3-pt2" class="body">
+                <div class="exercise-body">
                     <h4>Part II:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function every2(array, test) {
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function every2(array, test) {
     return !(array.some((n) => !test(n)))
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3-pt2" class="body">
-                    <p><code>Line 1</code> creates the function <code>every2</code> with <code>array</code> and <code>test</code> as its only parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> creates the function <code>every2</code> with <code>array</code> and <code>test</code> as its only parameters.</p>
 
-                    <p><code>Line 2</code> returns <code>true</code> if there are no values in <code>array</code> that fail <code>test</code> while returning <code>false</code> whenever there are <code>some</code> values that fail the <code>test</code>.</p>
+                    <p><code class="desc desc-code6" data-line="2">Line 2</code> returns <code>true</code> if there are no values in <code>array</code> that fail <code>test</code> while returning <code>false</code> whenever there are <code>some</code> values that fail the <code>test</code>.</p>
                 </div>
 
-                <div id="official-answer3-pt1" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
                     <h4>Part I:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function every(array, predicate) {
+                    <pre id="code7" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function every(array, predicate) {
     for (let element of array) {
         if (!predicate(element)) return false;
     }
@@ -172,43 +172,43 @@
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation3-pt1" class="body">
-                    <p><code>Line 1</code> creates the function <code>every</code> with <code>array</code> and <code>predicate</code> as its only parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code7" data-line="1">Line 1</code> creates the function <code>every</code> with <code>array</code> and <code>predicate</code> as its only parameters.</p>
 
-                    <p><code>Line 2</code> loops through each <code>element</code> of <code>array</code>.</p>
+                    <p><code class="desc desc-code7" data-line="2">Line 2</code> loops through each <code>element</code> of <code>array</code>.</p>
 
-                    <p><code>Line 3</code> checks whether the <code>predicate</code> function is <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code> the result is returned.</p>
+                    <p><code class="desc desc-code7" data-line="3">Line 3</code> checks whether the <code>predicate</code> function is <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code> the result is returned.</p>
 
-                    <p><code>Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>predicate</code> function.</p>
+                    <p><code class="desc desc-code7" data-line="6">Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>predicate</code> function.</p>
                 </div>
 
-                <div id="official-answer3-pt2" class="body">
+                <div class="exercise-body">
                     <h4>Part II:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function every2(array, predicate) {
+                    <pre id="code8" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function every2(array, predicate) {
     return !array.some(element => !predicate(element));
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation3-pt2" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author uses the same code just with different parameter names.</p>
                 </div>
 
-                <div id="exercise-close-3" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise4" class="panel">
-                <div id="exercise-header4" class="header"><h2>Dominant Writing Direction</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Dominant Writing Direction</h2></div>
 
-                <div id="exercise-question4" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a function that computes the dominant writing direction in a string of text. Remember that each script object has a <code>direction</code> property that can be <code>"ltr"</code> (left to right), <code>"rtl"</code> (right to left), or <code>"ttb"</code> (top to bottom). The dominant direction is the direction of a majority of the characters that have a script associated with them.</p> 
                 </div>
 
-                <div id="personal-answer4" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function dominantDirection(text) {
+                    <pre id="code9" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function dominantDirection(text) {
     let scripts = countBy(text, char => {
         let script = characterScript(char.codePointAt(0));
         if (script != null) return script.direction;
@@ -218,24 +218,24 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation4" class="body">
-                    <p><code>Line 1</code> declares <code>dominantDirection</code> as a function with one parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code9" data-line="1">Line 1</code> declares <code>dominantDirection</code> as a function with one parameter.</p>
                 
-                    <p><code>Line 2</code> assigns <code>scripts</code> to the return value of <code>countBy</code> with the first parameter being the input and <code>char</code> being the <code>groupName</code> or the testing method.</p>
+                    <p><code class="desc desc-code9" data-line="2">Line 2</code> assigns <code>scripts</code> to the return value of <code>countBy</code> with the first parameter being the input and <code>char</code> being the <code>groupName</code> or the testing method.</p>
                     
-                    <p><code>Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
+                    <p><code class="desc desc-code9" data-line="3">Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
                     
-                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists, if <code>true</code> then the direction is returned as an input to the <code>countBy</code> function.</p>
+                    <p><code class="desc desc-code9" data-line="4">Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists, if <code>true</code> then the direction is returned as an input to the <code>countBy</code> function.</p>
                 
-                    <p><code>Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>undefined</code> values.</p>
+                    <p><code class="desc desc-code9" data-line="5">Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>undefined</code> values.</p>
                 
-                    <p><code>Line 7</code> returns the <code>name</code> property of the object with the largest <code>count</code>, aka the dominant writing direction.</p>
+                    <p><code class="desc desc-code9" data-line="7">Line 7</code> returns the <code>name</code> property of the object with the largest <code>count</code>, aka the dominant writing direction.</p>
                 </div>
 
-                <div id="official-answer4" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function dominantDirection(text) {
+                    <pre id="code10" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function dominantDirection(text) {
     let counted = countBy(text, char => {
         let script = characterScript(char.codePointAt(0));
         return script ? script.direction : "none";
@@ -247,58 +247,60 @@
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation4" class="body">
-                    <p><code>Line 1</code> declares <code>dominantDirection</code> as a function with one parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code10" data-line="1">Line 1</code> declares <code>dominantDirection</code> as a function with one parameter.</p>
 
-                    <p><code>Line 2</code> assigns <code>counted</code> to the return value of <code>countBy</code> with the first parameter being the input and <code>char</code> being the <code>groupName</code> or the testing method.</p>
+                    <p><code class="desc desc-code10" data-line="2">Line 2</code> assigns <code>counted</code> to the return value of <code>countBy</code> with the first parameter being the input and <code>char</code> being the <code>groupName</code> or the testing method.</p>
 
-                    <p><code>Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
+                    <p><code class="desc desc-code10" data-line="3">Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
 
-                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists. If <code>true</code>, then the direction is returned as an input to the <code>countBy</code> function; else, the string <code>"none</code> is given.</p>
+                    <p><code class="desc desc-code10" data-line="4">Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists. If <code>true</code>, then the direction is returned as an input to the <code>countBy</code> function; else, the string <code>"none</code> is given.</p>
 
-                    <p><code>Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>name</code> properties that equal <code>"none"</code>.</p>
+                    <p><code class="desc desc-code10" data-line="5">Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>name</code> properties that equal <code>"none"</code>.</p>
 
-                    <p><code>Line 7</code> gives the default value of <code>"ltr"</code> if no objects exist in <code>counted</code>.</p>
+                    <p><code class="desc desc-code10" data-line="7">Line 7</code> gives the default value of <code>"ltr"</code> if no objects exist in <code>counted</code>.</p>
 
-                    <p><code>Line 9</code> returns the <code>name</code> property of the object with the largest <code>count</code>, aka the dominant writing direction.</p>
+                    <p><code class="desc desc-code10" data-line="9">Line 9</code> returns the <code>name</code> property of the object with the largest <code>count</code>, aka the dominant writing direction.</p>
                 </div>
 
-                <div id="exercise-close-4" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
         </article>
 
-        <article id="navbar-article">
+        <article class="container-navbar">
 
-            <section id="navbar-section-3rd-Ed">
-                
+            <section>
+
                 <h3>3rd Edition</h3>
 
-                <nav id="navbar-3rd-Ed">
-                <ul>
-                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
-                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
-                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
-                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
-                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
-                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
-                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
-                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
-                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
-                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
-                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
-                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
-                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
-                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
-                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
-                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
-                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
-                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
-                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
-                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
-                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
-                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
                 </nav>
 
             </section>
@@ -307,8 +309,9 @@
 
     </main>
 
-    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap5.js"></script>
-    
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
+
 </body>
 
 </html>

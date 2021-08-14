@@ -5,44 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap12.css">
-    <link href="../Assets/CSS/prism.css" rel="stylesheet">
-    <title>Eloquent JavaScript - Chapter 12</title>
     <meta name="author" content="David Brunner">
     <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 12, Exercises">
     <meta name="description" content="Solutions and explanations for exercises in Chapter 12 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 12</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
 
-    <script src="../Assets/JavaScript/prism.js"></script>
 
     <header>
-        <h1 id="chapter12-main-header">Chapter 12, "A Programming Language"</h1>
-        
-        <div id="navigation-links">
-            <a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Previous</a>
-            <a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Next</a>
+        <h1>Chapter 12, "A Programming Language"</h1>
+
+        <div class="header-navigation-links">
+            <a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Previous</a>
+            <a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Next</a>
         </div>
     </header>
 
     <main>
 
-        <article id="exercise-problems">
+        <article class="container-exercise-problems">
 
-            <section id="exercise1" class="panel">
-                <div id="exercise-header1" class="header"><h2>Arrays</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Arrays</h2></div>
 
-                <div id="exercise-question1" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Add support for arrays to Egg by adding the following three functions to the top scope: <code>array(...values)</code> to construct an array containing the argument values, <code>length(array)</code> to get an array’s length, and <code>element(array, n)</code> to fetch the nth element from an array.</p> 
                 </div>
 
-                <div id="personal-answer1" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">topScope.array = (...array) => {
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">topScope.array = (...array) => {
     return array; 
 };
 
@@ -55,24 +56,24 @@ topScope.element = (array, index) => {
 };                  </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation1" class="body">
-                    <p><code>Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
 
-                    <p><code>Line 2</code> returns the resulting array provided by the parameter <code>array</code>.</p>
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> returns the resulting array provided by the parameter <code>array</code>.</p>
 
-                    <p><code>Line 5</code> defines the <code>length</code> method within the <code>topScope</code> object that receives an array as its parameter.</p>
+                    <p><code class="desc desc-code1" data-line="5">Line 5</code> defines the <code>length</code> method within the <code>topScope</code> object that receives an array as its parameter.</p>
 
-                    <p><code>Line 6</code> returns the length of the parameter <code>array</code>.</p>
+                    <p><code class="desc desc-code1" data-line="6">Line 6</code> returns the length of the parameter <code>array</code>.</p>
 
-                    <p><code>Line 9</code> defines the <code>element</code> method within the <code>topScope</code> object that receives an array and index number as its parameter.</p>
+                    <p><code class="desc desc-code1" data-line="9">Line 9</code> defines the <code>element</code> method within the <code>topScope</code> object that receives an array and index number as its parameter.</p>
 
-                    <p><code>Line 10</code> returns the value found within <code>array</code> at the specific index designated by the <code>index</code> parameter.</p>
+                    <p><code class="desc desc-code1" data-line="10">Line 10</code> returns the value found within <code>array</code> at the specific index designated by the <code>index</code> parameter.</p>
                 </div>
 
-                <div id="official-answer1" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">topScope.array = (...values) => values;
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">topScope.array = (...values) => values;
 
 topScope.length = array => array.length;
 
@@ -80,24 +81,24 @@ topScope.element = (array, i) => array[i];
                     </code></pre>
                 </div>
 
-                <div id="official-answer-explanation1" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author used the same logic just expressed in more concise code.</p>
                 </div>
 
-                <div id="exercise-close1" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2>Closure</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Closure</h2></div>
 
-                <div id="exercise-question2" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>The way we have defined <code>fun</code> allows functions in Egg to reference the surrounding scope, allowing the function’s body to use local values that were visible at the time the function was defined, just like JavaScript functions do.</p>
 
                     <p>The following program illustrates this: function <code>f</code> returns a function that adds its argument to <code>f</code>’s argument, meaning that it needs access to the local scope inside <code>f</code> to be able to use binding <code>a</code>.</p>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">run(`
+                    <pre class="language-javascript"><code class="language-javascript">run(`
     do(define(f, fun(a, fun(b, +(a, b)))),
         print(f(4)(5)))
 `);
@@ -106,7 +107,7 @@ topScope.element = (array, i) => array[i];
                     <p>Go back to the definition of the <code>fun</code> form and explain which mechanism causes this to work.</p> 
                 </div>
 
-                <div id="personal-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
                     <p>Within the definition of <code>fun</code> within the <code>specialForms</code> object, a new local scope is created for each function. The data within that new local scope object comes from the <code>scope</code> parameter that is defined whenever the <code>fun</code> feature is called within Egg.</p>
@@ -114,7 +115,7 @@ topScope.element = (array, i) => array[i];
                     <p>Thus, whenever <code>fun</code> is invoked for <code>b</code>, it is given access to an object containing the scope of <code>a</code> and its values for the current operation. Its new local scope for the value <code>b</code> is then returned and used for the value <code>a</code>.</p>
                 </div>
 
-                <div id="official-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
                     <p>Again, we are riding along on a JavaScript mechanism to get the equivalent feature in Egg. Special forms are passed the local scope in which they are evaluated so that they can evaluate their subforms in that scope. The function returned by <code>fun</code> has access to the <code>scope</code> argument given to its enclosing function and uses that to create the function’s local scope when it is called.</p>
@@ -122,13 +123,13 @@ topScope.element = (array, i) => array[i];
                     <p>This means that the prototype of the local scope will be the scope in which the function was created, which makes it possible to access bindings in that scope from the function. This is all there is to implementing closure (though to compile it in a way that is actually efficient, you’d need to do some more work).</p>
                 </div>
 
-                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2>Comments</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Comments</h2></div>
 
-                <div id="exercise-question3" class="body">
+                <div class="exercise-body exercise-desc">
                     <h3>Question</h3>
 
                     <p>It would be nice if we could write comments in Egg. For example, whenever we find a hash sign (#), we could treat the rest of the line as a comment and ignore it, similar to <code>//</code> in JavaScript.</p>
@@ -136,10 +137,10 @@ topScope.element = (array, i) => array[i];
                     <p>We do not have to make any big changes to the parser to support this. We can simply change <code>skipSpace</code> to skip comments as if they are whitespace so that all the points where <code>skipSpace</code> is called will now also skip comments. Make this change.</p> 
                 </div>
 
-                <div id="personal-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function skipSpace(string) {
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function skipSpace(string) {
     let newString = string.replace(/#[ ]?\S+(?=\n)/g, "");
     let first = newString.search(/\S/);
     if (first == -1) return "";
@@ -147,27 +148,27 @@ topScope.element = (array, i) => array[i];
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3" class="body">
+                <div class="exercise-body">
 
                 </div>
 
-                <div id="official-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript"></code></pre>
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
                 </div>
 
-                <div id="official-answer-explanation3" class="body">
+                <div class="exercise-body exercise-desc">
                     
                 </div>
 
-                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise4" class="panel">
-                <div id="exercise-header4" class="header"><h2>Fixing Scope</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Fixing Scope</h2></div>
 
-                <div id="exercise-question4" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Add a special form <code>set</code>, similar to <code>define</code>, which gives a binding a new value, updating the binding in an outer scope if it doesn’t already exist in the inner scope. If the binding is not defined at all, throw a <code>ReferenceError</code> (another standard error type).</p>
@@ -175,10 +176,10 @@ topScope.element = (array, i) => array[i];
                     <p>The technique of representing scopes as simple objects, which has made things convenient so far, will get in your way a little at this point. You might want to use the <code>Object.getPrototypeOf</code> function, which returns the prototype of an object.</p> 
                 </div>
 
-                <div id="personal-answer4" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">specialForms.set = (args, scope) => {
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">specialForms.set = (args, scope) => {
     if (args.length != 2 || args[0].type != "word") {
         throw new SyntaxError("Wrong usage");
     }
@@ -197,34 +198,34 @@ topScope.element = (array, i) => array[i];
 };                  </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation4" class="body">
-                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
 
-                    <p><code>Line 2</code> checks whether the length of the arguments is not equal to two or the first type is not equal to <code>"word"</code>.</p>
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> checks whether the length of the arguments is not equal to two or the first type is not equal to <code>"word"</code>.</p>
 
-                    <p>If <code>true</code>, then <code>Line 3</code> throws a <code>new SyntaxError</code> since the user of the function did not use the appropriate parameters. </p>
+                    <p>If <code>true</code>, then <code class="desc desc-code5" data-line="3">Line 3</code> throws a <code>new SyntaxError</code> since the user of the function did not use the appropriate parameters. </p>
 
-                    <p><code>Line 6</code> defines a <code>parentScope</code> variable that points to the prototype Object of the value provided by the <code>scope</code> parameter.</p>
+                    <p><code class="desc desc-code5" data-line="6">Line 6</code> defines a <code>parentScope</code> variable that points to the prototype Object of the value provided by the <code>scope</code> parameter.</p>
 
-                    <p><code>Line 8</code> initializes a <code>do-while</code> loop.</p>
+                    <p><code class="desc desc-code5" data-line="8">Line 8</code> initializes a <code>do-while</code> loop.</p>
 
-                    <p><code>Line 9</code> checks whether the <code>parentScope</code> object contains the property provided by the first object in <code>args</code>.</p>
+                    <p><code class="desc desc-code5" data-line="9">Line 9</code> checks whether the <code>parentScope</code> object contains the property provided by the first object in <code>args</code>.</p>
 
-                    <p>If <code>true</code>, then <code>Line 10</code> defines a <code>value</code> variable that points to the value returned by calling the <code>evaluate</code> function with the second object in <code>args</code> and <code>scope</code>.</p>
+                    <p>If <code>true</code>, then <code class="desc desc-code5" data-line="10">Line 10</code> defines a <code>value</code> variable that points to the value returned by calling the <code>evaluate</code> function with the second object in <code>args</code> and <code>scope</code>.</p>
 
-                    <p><code>Line 11</code> updates the property variable within <code>parentScope</code> to the value provided by <code>value</code>.</p>
+                    <p><code class="desc desc-code5" data-line="11">Line 11</code> updates the property variable within <code>parentScope</code> to the value provided by <code>value</code>.</p>
 
-                    <p><code>Line 12</code> returns the value provided by <code>value</code> since the property variable has been updated.</p>
+                    <p><code class="desc desc-code5" data-line="12">Line 12</code> returns the value provided by <code>value</code> since the property variable has been updated.</p>
 
-                    <p><code>Line 14</code> checks whether the prototype Object of <code>parentScope</code> does not equal <code>null</code> which would result in a falsey value.</p>
+                    <p><code class="desc desc-code5" data-line="14">Line 14</code> checks whether the prototype Object of <code>parentScope</code> does not equal <code>null</code> which would result in a falsey value.</p>
 
-                    <p>If the <code>do-while</code> loop was finished without returning a value, then <code>Line 16</code> throws a <code>new ReferenceError</code> since the property variable hasn't been created yet.</p>
+                    <p>If the <code>do-while</code> loop was finished without returning a value, then <code class="desc desc-code5" data-line="16">Line 16</code> throws a <code>new ReferenceError</code> since the property variable hasn't been created yet.</p>
                 </div>
 
-                <div id="official-answer4" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">specialForms.set = (args, env) => {
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">specialForms.set = (args, env) => {
     if (args.length != 2 || args[0].type != "word") {
         throw new SyntaxError("Bad use of set");
     }
@@ -241,64 +242,66 @@ topScope.element = (array, i) => array[i];
 };                  </code></pre>
                 </div>
 
-                <div id="official-answer-explanation4" class="body">
-                    <p><code>Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
 
-                    <p><code>Line 2</code> checks whether the length of the arguments is not equal to two or the first type is not equal to <code>"word"</code>.</p>
+                    <p><code class="desc desc-code6" data-line="2">Line 2</code> checks whether the length of the arguments is not equal to two or the first type is not equal to <code>"word"</code>.</p>
 
-                    <p>If <code>true</code>, then <code>Line 3</code> throws a <code>new SyntaxError</code> since the user of the function did not use the appropriate parameters. </p>
+                    <p>If <code>true</code>, then <code class="desc desc-code6" data-line="3">Line 3</code> throws a <code>new SyntaxError</code> since the user of the function did not use the appropriate parameters. </p>
 
-                    <p><code>Line 5</code> defines a <code>varName</code> variable that points to the name of the property provided by the first object in <code>args</code>.</p>
+                    <p><code class="desc desc-code6" data-line="5">Line 5</code> defines a <code>varName</code> variable that points to the name of the property provided by the first object in <code>args</code>.</p>
 
-                    <p><code>Line 6</code> defines a <code>value</code> variable that points to the value returned by calling the <code>evaluate</code> function with the second object in <code>args</code> and <code>env</code>.</p>
+                    <p><code class="desc desc-code6" data-line="6">Line 6</code> defines a <code>value</code> variable that points to the value returned by calling the <code>evaluate</code> function with the second object in <code>args</code> and <code>env</code>.</p>
 
-                    <p><code>Line 8</code> creates a <code>for</code> loop that defines a <code>scope</code> variable and continues to get the prototype object as long as its value does not equal <code>false</code>.</p>
+                    <p><code class="desc desc-code6" data-line="8">Line 8</code> creates a <code>for</code> loop that defines a <code>scope</code> variable and continues to get the prototype object as long as its value does not equal <code>false</code>.</p>
 
-                    <p><code>Line 9</code> checks whether the <code>scope</code> object contains the property whose name is provided by <code>varName</code>.</p>
+                    <p><code class="desc desc-code6" data-line="9">Line 9</code> checks whether the <code>scope</code> object contains the property whose name is provided by <code>varName</code>.</p>
 
-                    <p>If <code>true</code>, then <code>Line 10</code> updates the property variable within <code>scope</code> to the value provided by <code>value</code>.</p>
+                    <p>If <code>true</code>, then <code  class="desc desc-code6" data-line="10">Line 10</code> updates the property variable within <code>scope</code> to the value provided by <code>value</code>.</p>
 
-                    <p><code>Line 11</code> returns the value provided by <code>value</code> since the property variable has been updated.</p>
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> returns the value provided by <code>value</code> since the property variable has been updated.</p>
 
-                    <p>If the <code>for</code> loop was finished without returning a value, then <code>Line 14</code> throws a <code>new ReferenceError</code> since the property variable hasn't been created yet.</p>
+                    <p>If the <code>for</code> loop was finished without returning a value, then <code class="desc desc-code6" data-line="14">Line 14</code> throws a <code>new ReferenceError</code> since the property variable hasn't been created yet.</p>
                 </div>
 
-                <div id="exercise-close4" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
         </article>
 
-        <article id="navbar-article">
+        <article class="container-navbar">
 
-            <section id="navbar-section-3rd-Ed">
-                
+            <section>
+
                 <h3>3rd Edition</h3>
 
-                <nav id="navbar-3rd-Ed">
-                <ul>
-                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
-                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
-                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
-                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
-                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
-                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
-                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
-                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
-                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
-                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
-                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
-                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
-                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
-                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
-                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
-                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
-                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
-                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
-                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
-                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
-                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
-                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
                 </nav>
 
             </section>
@@ -307,8 +310,9 @@ topScope.element = (array, i) => array[i];
 
     </main>
 
-    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap12.js"></script>
-    
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
+
 </body>
 
 </html>

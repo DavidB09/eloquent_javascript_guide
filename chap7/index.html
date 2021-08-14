@@ -5,44 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap7.css">
-    <link href="../Assets/CSS/prism.css" rel="stylesheet">
-    <title>Eloquent JavaScript - Chapter 7</title>
     <meta name="author" content="David Brunner">
     <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 7, Exercises">
     <meta name="description" content="Solutions and explanations for exercises in Chapter 7 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 7</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
 
-    <script src="../Assets/JavaScript/prism.js"></script>
-
     <header>
-        <h1 id="chapter7-main-header">Chapter 7, "Project: A Robot"</h1>
-        
-        <div id="navigation-links">
-            <a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Previous</a>
-            <a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Next</a>
+        <h1>Chapter 7, "Project: A Robot"</h1>
+
+        <div class="header-navigation-links">
+            <a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Previous</a>
+            <a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Next</a>
         </div>
     </header>
 
     <main>
 
-        <article id="exercise-problems">
+        <article class="container-exercise-problems">
 
-            <section id="exercise1" class="panel">
-                <div id="exercise-header1" class="header"><h2>Measuring a Robot</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Measuring a Robot</h2></div>
 
-                <div id="exercise-question1" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a function <code>compareRobots</code> that takes two robots (and their starting memory). It should generate 100 tasks and let each of the robots solve each of these tasks. When done, it should output the average number of steps each robot took per task.</p> 
                 </div>
 
-                <div id="personal-answer1" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function runRobot2(state, robot, memory) {
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function runRobot2(state, robot, memory) {
     for (let turn = 0;; turn++) {
         if (state.parcels.length == 0) {
             return turn; 
@@ -64,36 +64,36 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation1" class="body">
-                    <p><code>Line 1</code> creates an variation of the <code>runRobot</code> function with three parameters called <code>state</code>, <code>robot</code>, and <code>memory</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> creates an variation of the <code>runRobot</code> function with three parameters called <code>state</code>, <code>robot</code>, and <code>memory</code>.</p>
 
-                    <p><code>Line 2</code> counts the number of turns the robot takes until all of the packages are delivered. While <code>turn</code> exists and no value has been returned, one is added to the total count and each of the following statements are run.</p>
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> counts the number of turns the robot takes until all of the packages are delivered. While <code>turn</code> exists and no value has been returned, one is added to the total count and each of the following statements are run.</p>
 
-                    <p><code>Line 3 - Line 5</code> checks whether the current object called <code>state</code> has any more tasks left to complete by checking the <code>length</code> of the <code>parcels</code> array. If the number is equal to zero, then the total number of turns it took for the robot, or <code>turn</code> is returned.</p>
+                    <p><code class="desc desc-code1" data-line="3-5">Line 3 - Line 5</code> checks whether the current object called <code>state</code> has any more tasks left to complete by checking the <code>length</code> of the <code>parcels</code> array. If the number is equal to zero, then the total number of turns it took for the robot, or <code>turn</code> is returned.</p>
 
-                    <p><code>Line 6</code> calls the <code>robot</code> function with the object <code>state</code> and the <code>memory</code> of previous steps taken. The robot can then decide what next direction it should take.</p>
+                    <p><code class="desc desc-code1" data-line="6">Line 6</code> calls the <code>robot</code> function with the object <code>state</code> and the <code>memory</code> of previous steps taken. The robot can then decide what next direction it should take.</p>
 
-                    <p><code>Line 7</code> changes <code>state</code> to the return value of the method <code>move</code> with the parameter set to the <code>direction</code> the robot chose in <code>action</code>.</p>
+                    <p><code class="desc desc-code1" data-line="7">Line 7</code> changes <code>state</code> to the return value of the method <code>move</code> with the parameter set to the <code>direction</code> the robot chose in <code>action</code>.</p>
 
-                    <p><code>Line 8</code> also saves the <code>memory</code> by setting it to the robot's previous <code>memory</code> found in <code>action</code>.</p>
+                    <p><code class="desc desc-code1" data-line="8">Line 8</code> also saves the <code>memory</code> by setting it to the robot's previous <code>memory</code> found in <code>action</code>.</p>
 
-                    <p><code>Line 12</code> creates the <code>compareRobots</code> function with 4 parameters for 2 robots and their respective memories.</p>
+                    <p><code class="desc desc-code1" data-line="12">Line 12</code> creates the <code>compareRobots</code> function with 4 parameters for 2 robots and their respective memories.</p>
 
-                    <p><code>Line 13</code> initializes the results for <code>robot1</code> and <code>robot2</code> to 0.</p>
+                    <p><code class="desc desc-code1" data-line="13">Line 13</code> initializes the results for <code>robot1</code> and <code>robot2</code> to 0.</p>
 
-                    <p><code>Line 14</code> uses a <code>for</code> loop to create 100 <code>tasks</code> for both of the robots to perform.</p>
+                    <p><code class="desc desc-code1" data-line="14">Line 14</code> uses a <code>for</code> loop to create 100 <code>tasks</code> for both of the robots to perform.</p>
 
-                    <p><code>Line 15</code> creates a <code>newState</code> by calling the <code>VillageState.random()</code> function. The result is an object with the <code>place</code> property initialized to <code>"Post Office"</code> and the <code>parcels</code> property detailing 5 packages, their current location at <code>place</code> and their destination at <code>address</code>.</p>
+                    <p><code class="desc desc-code1" data-line="15">Line 15</code> creates a <code>newState</code> by calling the <code>VillageState.random()</code> function. The result is an object with the <code>place</code> property initialized to <code>"Post Office"</code> and the <code>parcels</code> property detailing 5 packages, their current location at <code>place</code> and their destination at <code>address</code>.</p>
 
-                    <p><code>Line 16 - Line 17</code> adds the total number of turns it took for the respective robots to deliver the the same <code>parcels</code> found in <code>currentState</code>.</p>
+                    <p><code class="desc desc-code1" data-line="16-27">Line 16 - Line 17</code> adds the total number of turns it took for the respective robots to deliver the the same <code>parcels</code> found in <code>currentState</code>.</p>
 
-                    <p><code>Line 19</code> prints to the console each of the robots results by dividing <code>robot1Result</code> and <code>robot2Result</code> by one hundred.</p>
+                    <p><code class="desc desc-code1" data-line="19">Line 19</code> prints to the console each of the robots results by dividing <code>robot1Result</code> and <code>robot2Result</code> by one hundred.</p>
                 </div>
 
-                <div id="official-answer1" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countSteps(state, robot, memory) {
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function countSteps(state, robot, memory) {
     for (let steps = 0;; steps++) {
         if (state.parcels.length == 0) return steps;
         let action = robot(state, memory);
@@ -114,26 +114,26 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation1" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author used similar code just with different object and function names. He also printed out the results slightly different, using two <code>console.log</code> functions.</p>
                 </div>
 
-                <div id="exercise-close" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2>Robot Efficiency</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Robot Efficiency</h2></div>
 
-                <div id="exercise-question2" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Can you write a robot that finishes the delivery task faster than <code>goalOrientedRobot</code>? If you observe that robot’s behavior, what obviously stupid things does it do? How could those be improved?</p> 
                 </div>
 
-                <div id="personal-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function yourRobot({place, parcels}, route) {
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function yourRobot({place, parcels}, route) {
     if (route.length == 0) {
         let shortestValue = 0; 
         for (let i = 0; i < parcels.length; i++) {
@@ -158,42 +158,42 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 //Be sure to alter the runRobotAnimation function because for some reason the author doesn't initialize memory to []</code></pre>
                 </div>
 
-                <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates an function called <code>yourRobot</code> with an object, the properties being <code>place</code> and <code>parcels</code>, and a <code>route</code> for the robot to take.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> creates an function called <code>yourRobot</code> with an object, the properties being <code>place</code> and <code>parcels</code>, and a <code>route</code> for the robot to take.</p>
 
-                    <p><code>Line 2</code> checks whether there are any places within <code>route</code> left to be visited by the robot and generates a new path if <code>true</code>.</p>
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> checks whether there are any places within <code>route</code> left to be visited by the robot and generates a new path if <code>true</code>.</p>
 
-                    <p><code>Line 3</code> initializes the value in <code>route</code> with the shortest path to potentially be 0, or the first element in the array.</p>
+                    <p><code class="desc desc-code3" data-line="3">Line 3</code> initializes the value in <code>route</code> with the shortest path to potentially be 0, or the first element in the array.</p>
 
-                    <p><code>Line 4</code> iterates through the each of the <code>parcels</code> that the robot must pick up.</p>
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> iterates through the each of the <code>parcels</code> that the robot must pick up.</p>
 
-                    <p><code>Line 5</code> finds the current <code>shortestRoute</code> by calling the <code>findRoute</code> function with the <code>place</code> of the <code>parcels</code> set to the <code>shortestValue</code>. The result is the shortest length of an array with all of the potential destinations for robot to travel to. </p>
+                    <p><code class="desc desc-code3" data-line="5">Line 5</code> finds the current <code>shortestRoute</code> by calling the <code>findRoute</code> function with the <code>place</code> of the <code>parcels</code> set to the <code>shortestValue</code>. The result is the shortest length of an array with all of the potential destinations for robot to travel to. </p>
 
-                    <p><code>Line 6</code> finds the shortest path possible for the current package by calling the <code>findRoute</code> with the current <code>parcels</code>. The result is the length of an array containing all of the potential destinations for robot to visit.</p>
+                    <p><code class="desc desc-code3" data-line="6">Line 6</code> finds the shortest path possible for the current package by calling the <code>findRoute</code> with the current <code>parcels</code>. The result is the length of an array containing all of the potential destinations for robot to visit.</p>
 
-                    <p><code>Line 7</code> checks whether the result of <code>Line 6</code> is less than the current <code>shortestRoute</code>. This basically compares the two paths and finds out which one has less destinations that the robot must travel to.</p>
+                    <p><code class="desc desc-code3" data-line="7">Line 7</code> checks whether the result of <code>Line 6</code> is less than the current <code>shortestRoute</code>. This basically compares the two paths and finds out which one has less destinations that the robot must travel to.</p>
 
-                    <p>If <code>true</code>, then <code>Line 8</code> sets the <code>shortestValue</code> to the value of the current package, or <code>i</code>.</p>
+                    <p>If <code>true</code>, then <code class="desc desc-code3" data-line="8">Line 8</code> sets the <code>shortestValue</code> to the value of the current package, or <code>i</code>.</p>
 
-                    <p>Else, <code>Line 10</code> checks whether the two lengths of the paths are equal.</p>
+                    <p>Else, <code class="desc desc-code3" data-line="10">Line 10</code> checks whether the two lengths of the paths are equal.</p>
 
-                    <p><code>Line 11 - Line 12</code> goes ahead and checks whether the current <code>parcel</code> is a pickup or delivery for the robot by comparing their <code>place</code> value. If the <code>shortestValue</code> place was a delivery, then it is changed to <code>i</code>.</p>
+                    <p><code class="desc desc-code3" data-line="11-12">Line 11 - Line 12</code> goes ahead and checks whether the current <code>parcel</code> is a pickup or delivery for the robot by comparing their <code>place</code> value. If the <code>shortestValue</code> place was a delivery, then it is changed to <code>i</code>.</p>
                 
-                    <p><code>Line 14</code> then uses the information retrieved by the previous statements to set <code>parcel</code> to the package with the shortest path length.</p>
+                    <p><code class="desc desc-code3" data-line="14">Line 14</code> then uses the information retrieved by the previous statements to set <code>parcel</code> to the package with the shortest path length.</p>
 
-                    <p><code>Line 15</code> checks whether the robot is or is not at the <code>parcel.place</code> by comparing it to the current <code>place</code>.</p>
+                    <p><code class="desc desc-code3" data-line="15">Line 15</code> checks whether the robot is or is not at the <code>parcel.place</code> by comparing it to the current <code>place</code>.</p>
 
-                    <p>If <code>true</code>, then <code>Line 16</code> uses <code>route</code> to call <code>findRoute</code> and discover the quickest path to the particular <code>place</code> so that the parcel can be picked up.</p>
+                    <p>If <code>true</code>, then <code class="desc desc-code3" data-line="16">Line 16</code> uses <code>route</code> to call <code>findRoute</code> and discover the quickest path to the particular <code>place</code> so that the parcel can be picked up.</p>
 
-                    <p>Else, <code>Line 18</code> uses <code>route</code> to call <code>findRoute</code> and discover the shortest path to deliver the parcel.</p>
+                    <p>Else, <code class="desc desc-code3" data-line="18">Line 18</code> uses <code>route</code> to call <code>findRoute</code> and discover the shortest path to deliver the parcel.</p>
 
-                    <p><code>Line 21</code> returns an object with the <code>direction</code> of the robot set to the first place within the <code>route</code> and <code>memory</code> equaling the remaining destinations that the robot must travel to.</p>
+                    <p><code class="desc desc-code3" data-line="21">Line 21</code> returns an object with the <code>direction</code> of the robot set to the first place within the <code>route</code> and <code>memory</code> equaling the remaining destinations that the robot must travel to.</p>
                 </div>
 
-                <div id="official-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function lazyRobot({place, parcels}, route) {
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function lazyRobot({place, parcels}, route) {
     if (route.length == 0) {
         // Describe a route for every parcel
         let routes = parcels.map(parcel => {
@@ -215,35 +215,35 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates an function called <code>lazyRobot</code> with an object, the properties being <code>place</code> and <code>parcels</code>, and a <code>route</code> for the robot to take.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> creates an function called <code>lazyRobot</code> with an object, the properties being <code>place</code> and <code>parcels</code>, and a <code>route</code> for the robot to take.</p>
 
-                    <p><code>Line 2</code> checks whether there are any places within <code>route</code> left to be visited by the robot and generates a new path if <code>true</code>.</p>
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> checks whether there are any places within <code>route</code> left to be visited by the robot and generates a new path if <code>true</code>.</p>
 
-                    <p><code>Line 4</code> creates a new value called <code>routes</code> and sets it to an array containing the results of mapping over each <code>parcel</code> within <code>parcels</code>.</p>
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> creates a new value called <code>routes</code> and sets it to an array containing the results of mapping over each <code>parcel</code> within <code>parcels</code>.</p>
 
-                    <p><code>Line 5</code> checks whether the robot is or is not at the <code>parcel.place</code> by comparing it to the current <code>place</code>.</p>
+                    <p><code class="desc desc-code4" data-line="5">Line 5</code> checks whether the robot is or is not at the <code>parcel.place</code> by comparing it to the current <code>place</code>.</p>
 
                     <p>If <code>true</code>, then an object is returned with <code>route</code> set to the result of the <code>findRoute</code> function with the <code>parcel.place</code> as a parameter and <code>pickUp</code> equaling <code>true</code>.</p>
                 
                     <p>Else, an object is returned with <code>route</code> set to the result of the <code>findRoute</code> function with the <code>parcel.address</code> as a parameter and <code>pickUp</code> equaling <code>false</code>.</p>
 
-                    <p><code>Line 14</code> creates a function with an object as a parameter, the two properties equaling <code>route</code> and <code>pickUp</code>.</p>
+                    <p><code class="desc desc-code4" data-line="14">Line 14</code> creates a function with an object as a parameter, the two properties equaling <code>route</code> and <code>pickUp</code>.</p>
 
-                    <p><code>Line 15</code> checks whether <code>pickUp</code> equals <code>true</code> and subtracts the resulting 0.5 or 0 by the <code>route.length</code> of the particular package.</p>
+                    <p><code class="desc desc-code4" data-line="15">Line 15</code> checks whether <code>pickUp</code> equals <code>true</code> and subtracts the resulting 0.5 or 0 by the <code>route.length</code> of the particular package.</p>
 
-                    <p><code>Line 17</code> sets route to the result of iterating through each object in <code>routes</code> and comparing their <code>score</code>, ultimately deciding which package has the most prefered route available for the robot.</p>
+                    <p><code class="desc desc-code4" data-line="17">Line 17</code> sets route to the result of iterating through each object in <code>routes</code> and comparing their <code>score</code>, ultimately deciding which package has the most prefered route available for the robot.</p>
 
-                    <p><code>Line 19</code> returns an object with the <code>direction</code> of the robot set to the first place within the <code>route</code> and <code>memory</code> equaling the remaining destinations that the robot must travel to.</p>
+                    <p><code class="desc desc-code4" data-line="19">Line 19</code> returns an object with the <code>direction</code> of the robot set to the first place within the <code>route</code> and <code>memory</code> equaling the remaining destinations that the robot must travel to.</p>
                 </div>
 
-                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2>Persistent Group</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Persistent Group</h2></div>
 
-                <div id="exercise-question3" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a new class <code>PGroup</code>, similar to the <code>Group</code> class from Chapter 6, which stores a set of values. Like <code>Group</code>, it has <code>add</code>, <code>delete</code>, and <code>has</code> methods.</p> 
@@ -255,10 +255,10 @@ function compareRobots(robot1, memory1, robot2, memory2) {
                     <p>The <code>constructor</code> shouldn’t be part of the class’s interface (though you’ll definitely want to use it internally). Instead, there is an <code>empty</code> instance, <code>PGroup.empty</code>, that can be used as a starting value.</p>
                 </div>
 
-                <div id="personal-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class PGroup {
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class PGroup {
     constructor(array) {
         this.values = array; 
     }
@@ -282,34 +282,34 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 PGroup.empty = new PGroup([]);</code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates an class called <code>PGroup</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> creates an class called <code>PGroup</code>.</p>
 
-                    <p><code>Line 2 - Line 3</code> creates a constructor that sets <code>this.values</code> to the <code>array</code> parameter.</p>
+                    <p><code class="desc desc-code5" data-line="2-3">Line 2 - Line 3</code> creates a constructor that sets <code>this.values</code> to the <code>array</code> parameter.</p>
 
-                    <p><code>Line 5</code> creates a method called <code>add</code> that takes a <code>value</code> as an input.</p>
+                    <p><code class="desc desc-code5" data-line="5">Line 5</code> creates a method called <code>add</code> that takes a <code>value</code> as an input.</p>
 
-                    <p><code>Line 6 - Line 7</code> checks whether <code>value</code> is not already in <code>this.values</code> by using <code>indexOf</code>. If <code>true</code>, then new instance of <code>PGroup</code> is returned with its values equaling <code>this.values</code> and <code>value</code> concatenated together.</p>
+                    <p><code class="desc desc-code5" data-line="6-7">Line 6 - Line 7</code> checks whether <code>value</code> is not already in <code>this.values</code> by using <code>indexOf</code>. If <code>true</code>, then new instance of <code>PGroup</code> is returned with its values equaling <code>this.values</code> and <code>value</code> concatenated together.</p>
                 
-                    <p>Else, <code>Line 8 - Line 9</code> just returns the regular <code>this.values</code> of the current <code>PGroup</code>.</p>
+                    <p>Else, <code class="desc desc-code5" data-line="8-9">Line 8 - Line 9</code> just returns the regular <code>this.values</code> of the current <code>PGroup</code>.</p>
 
-                    <p><code>Line 11</code> creates a method called <code>delete</code> that takes a <code>value</code> as an input.</p>
+                    <p><code class="desc desc-code5" data-line="11">Line 11</code> creates a method called <code>delete</code> that takes a <code>value</code> as an input.</p>
 
-                    <p><code>Line 12 - Line 13</code> checks whether <code>value</code> is not already in <code>this.values</code> by using <code>indexOf</code>. If <code>true</code>, then just the regular <code>this.values</code> are returned.</p>
+                    <p><code class="desc desc-code5" data-line="12-13">Line 12 - Line 13</code> checks whether <code>value</code> is not already in <code>this.values</code> by using <code>indexOf</code>. If <code>true</code>, then just the regular <code>this.values</code> are returned.</p>
 
-                    <p>Else, <code>Line 14 - Line 15</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.values</code> filtered to exclude <code>value</code>.</p>
+                    <p>Else, <code class="desc desc-code5" data-line="14-15">Line 14 - Line 15</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.values</code> filtered to exclude <code>value</code>.</p>
 
-                    <p><code>Line 17</code> creates a method called <code>has</code> that takes a <code>value</code> as an input.</p>
+                    <p><code class="desc desc-code5" data-line="17">Line 17</code> creates a method called <code>has</code> that takes a <code>value</code> as an input.</p>
 
-                    <p><code>Line 18</code> returns the result of checking whether the <code>indexOf</code> <code>value</code> in <code>this.values</code> is equal to -1, basically confirming if the element does or does not exist within the array.</p>
+                    <p><code class="desc desc-code5" data-line="18">Line 18</code> returns the result of checking whether the <code>indexOf</code> <code>value</code> in <code>this.values</code> is equal to -1, basically confirming if the element does or does not exist within the array.</p>
 
-                    <p><code>Line 22</code> adds a property to <code>PGroup</code> called <code>empty</code> that equals a new <code>PGroup</code> instance.</p>
+                    <p><code class="desc desc-code5" data-line="22">Line 22</code> adds a property to <code>PGroup</code> called <code>empty</code> that equals a new <code>PGroup</code> instance.</p>
                 </div>
 
-                <div id="official-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class PGroup {
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class PGroup {
     constructor(members) {
         this.members = members;
     }
@@ -329,66 +329,68 @@ PGroup.empty = new PGroup([]);</code></pre>
 PGroup.empty = new PGroup([]);</code></pre>
                 </div>
 
-                <div id="official-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates an class called <code>PGroup</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> creates an class called <code>PGroup</code>.</p>
 
-                    <p><code>Line 2 - Line 3</code> creates a constructor that sets <code>this.members</code> to the <code>members</code> parameter.</p>
+                    <p><code class="desc desc-code6" data-line="2-3">Line 2 - Line 3</code> creates a constructor that sets <code>this.members</code> to the <code>members</code> parameter.</p>
 
-                    <p><code>Line 5</code> creates a method called <code>add</code> that takes a <code>value</code> as an input.</p>
+                    <p><code class="desc desc-code6" data-line="5">Line 5</code> creates a method called <code>add</code> that takes a <code>value</code> as an input.</p>
 
-                    <p><code>Line 6</code> checks whether <code>this</code> contains <code>value</code> and returns <code>this</code> if <code>true</code>.</p>
+                    <p><code class="desc desc-code6" data-line="6">Line 6</code> checks whether <code>this</code> contains <code>value</code> and returns <code>this</code> if <code>true</code>.</p>
 
-                    <p><code>Line 7</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.members</code> and <code>value</code> concatenated together.</p>
+                    <p><code class="desc desc-code6" data-line="7">Line 7</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.members</code> and <code>value</code> concatenated together.</p>
 
-                    <p><code>Line 9</code> creates a method called <code>delete</code> that takes a <code>value</code> as an input.</p>
+                    <p><code class="desc desc-code6" data-line="9">Line 9</code> creates a method called <code>delete</code> that takes a <code>value</code> as an input.</p>
 
-                    <p><code>Line 10</code> checks whether <code>this</code> does not contains <code>value</code> and returns <code>this</code> if <code>true</code>.</p>
+                    <p><code class="desc desc-code6" data-line="10">Line 10</code> checks whether <code>this</code> does not contains <code>value</code> and returns <code>this</code> if <code>true</code>.</p>
 
-                    <p><code>Line 11</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.members</code> filtered to exclude <code>value</code>.</p>
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> returns a new instance of <code>PGroup</code> with its values equaling <code>this.members</code> filtered to exclude <code>value</code>.</p>
 
-                    <p><code>Line 13</code> creates a method called <code>has</code> that takes a <code>value</code> as an input.</p>
+                    <p><code class="desc desc-code6" data-line="13">Line 13</code> creates a method called <code>has</code> that takes a <code>value</code> as an input.</p>
 
-                    <p><code>Line 14</code> returns the result of checking whether <code>this.members</code> <code>includes</code> the <code>value</code> parameter.</p>
+                    <p><code class="desc desc-code6" data-line="14">Line 14</code> returns the result of checking whether <code>this.members</code> <code>includes</code> the <code>value</code> parameter.</p>
 
-                    <p><code>Line 18</code> adds a property to <code>PGroup</code> called <code>empty</code> that equals a new <code>PGroup</code> instance.</p>
+                    <p><code class="desc desc-code6" data-line="18">Line 18</code> adds a property to <code>PGroup</code> called <code>empty</code> that equals a new <code>PGroup</code> instance.</p>
                 </div>
 
-                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
         </article>
 
-        <article id="navbar-article">
+        <article class="container-navbar">
 
-            <section id="navbar-section-3rd-Ed">
-                
+            <section>
+
                 <h3>3rd Edition</h3>
 
-                <nav id="navbar-3rd-Ed">
-                <ul>
-                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
-                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
-                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
-                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
-                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
-                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
-                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
-                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
-                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
-                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
-                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
-                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
-                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
-                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
-                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
-                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
-                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
-                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
-                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
-                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
-                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
-                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
                 </nav>
 
             </section>
@@ -397,8 +399,9 @@ PGroup.empty = new PGroup([]);</code></pre>
 
     </main>
 
-    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap7.js"></script>
-    
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
+
 </body>
 
 </html>

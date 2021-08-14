@@ -5,35 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap4.css">
-    <link href="../Assets/CSS/prism.css" rel="stylesheet">
-    <title>Eloquent JavaScript - Chapter 4</title>
     <meta name="author" content="David Brunner">
     <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 4, Exercises">
     <meta name="description" content="Solutions and explanations for exercises in Chapter 4 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 4</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
 
-    <script src="../Assets/JavaScript/prism.js"></script>
-
     <header>
-        <h1 id="chapter4-main-header">Chapter 4, "Data Structures: Objects and Arrays"</h1>
+        <h1>Chapter 4, "Data Structures: Objects and Arrays"</h1>
 
-        <div id="navigation-links">
-            <a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Previous</a>
-            <a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Next</a>
+        <div class="header-navigation-links">
+            <a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Previous</a>
+            <a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Next</a>
         </div>
     </header>
 
     <main>
 
-        <article id="exercise-problems">
+        <article class="container-exercise-problems">
 
-            <section id="exercise1" class="panel">
-                <div id="exercise-header" class="header"><h2>The Sum of a Range</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>The Sum of a Range</h2></div>
 
-                <div id="exercise-question" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
                 
                     <p>Write a <code>range</code> function that takes two arguments, start and end, and returns an array containing all the numbers from start up to (and including) end.</p>
@@ -43,10 +43,10 @@
                     <p>As a bonus assignment, modify your range function to take an optional third argument that indicates the “step” value used when building the array. If no step is given, the elements go up by increments of one, corresponding to the old behavior.</p>
                 </div>
 
-                <div id="personal-answer" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function range(startNum, endNum, step = startNum < endNum ? 1 : -1) {
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function range(startNum, endNum, step = startNum < endNum ? 1 : -1) {
     let values = []; 
     for (let i = startNum; i != endNum; i += step) {
         values.push(i); 
@@ -64,30 +64,30 @@ function sum(array) {
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation" class="body">
-                    <p><code>Line 1</code> declares <code>range</code> as a function with three parameters. The <code>step</code> parameter is initialized to 1 or -1 in case no value is given, depending on whether <code>startNum</code> is larger or smaller than <code>endNum</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> declares <code>range</code> as a function with three parameters. The <code>step</code> parameter is initialized to 1 or -1 in case no value is given, depending on whether <code>startNum</code> is larger or smaller than <code>endNum</code>.</p>
 
-                    <p><code>Line 2</code> creates an empty array named <code>values</code>.</p>
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> creates an empty array named <code>values</code>.</p>
                     
-                    <p><code>Line 3</code> uses a <code>for</code> loop with <code>i</code> initialized to <code>startNum</code>. While <code>i</code> does not equal than <code>endNum</code>, the value is increased or decreased by the value provided by <code>step</code>.</p> 
+                    <p><code class="desc desc-code1" data-line="3">Line 3</code> uses a <code>for</code> loop with <code>i</code> initialized to <code>startNum</code>. While <code>i</code> does not equal than <code>endNum</code>, the value is increased or decreased by the value provided by <code>step</code>.</p> 
                     
-                    <p><code>Line 4</code> adds the current <code>i</code> value to the end of <code>values</code>. <code>Line 6</code> also concludes by adding <code>endNum</code> since it wasn't referenced by <code>i</code> in the previous loop.</p>
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> adds the current <code>i</code> value to the end of <code>values</code>. <code>Line 6</code> also concludes by adding <code>endNum</code> since it wasn't referenced by <code>i</code> in the previous loop.</p>
 
-                    <p><code>Line 7</code> returns the array called <code>values</code>.</p>
+                    <p><code class="desc desc-code1" data-line="7">Line 7</code> returns the array called <code>values</code>.</p>
 
-                    <p><code>Line 10</code> declares a new function called <code>sum</code> with its parameters pointing to an array.</p>
+                    <p><code class="desc desc-code1" data-line="10">Line 10</code> declares a new function called <code>sum</code> with its parameters pointing to an array.</p>
 
-                    <p><code>Line 11</code> initializes <code>sum</code> to 0.</p>
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> initializes <code>sum</code> to 0.</p>
 
-                    <p><code>Line 12 - Line 13</code> loops through each number in the array and adds the current value to <code>sum</code>.</p>
+                    <p><code class="desc desc-code1" data-line="12-13">Line 12 - Line 13</code> loops through each number in the array and adds the current value to <code>sum</code>.</p>
 
-                    <p><code>Line 15</code> returns the total of <code>sum</code>.</p>
+                    <p><code class="desc desc-code1" data-line="15">Line 15</code> returns the total of <code>sum</code>.</p>
                 </div>
 
-                <div id="official-answer" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function range(start, end, step = start < end ? 1 : -1) {
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function range(start, end, step = start < end ? 1 : -1) {
     let array = [];
                       
     if (step > 0) {
@@ -107,35 +107,35 @@ function sum(array) {
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation" class="body">
-                    <p><code>Line 1</code> declares <code>range</code> as a function with three parameters. The <code>step</code> parameter is initialized to 1 or -1 in case no value is given, depending on whether <code>start</code> is larger or smaller than <code>end</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> declares <code>range</code> as a function with three parameters. The <code>step</code> parameter is initialized to 1 or -1 in case no value is given, depending on whether <code>start</code> is larger or smaller than <code>end</code>.</p>
                 
-                    <p><code>Line 2</code> creates an empty array.</p>
+                    <p><code class="desc desc-code2" data-line="2">Line 2</code> creates an empty array.</p>
 
-                    <p><code>Line 4</code> uses an <code>if</code> statement to check whether <code>step</code> is greater than 0.</p>
+                    <p><code class="desc desc-code2" data-line="4">Line 4</code> uses an <code>if</code> statement to check whether <code>step</code> is greater than 0.</p>
 
-                    <p>If <code>Line 4</code> returns <code>true</code>, <code>Line 5</code> uses a <code>for</code> loop with <code>i</code> initialized to <code>start</code>. Since <code>start</code> is smaller than <code>end</code>, the comparison is set to <code><=</code>. <code>i</code> is then increased by <code>step</code> and the resulting value is pushed to <code>array</code>.</p>
+                    <p>If <code class="desc desc-code2" data-line="4">Line 4</code> returns <code>true</code>, <code>Line 5</code> uses a <code>for</code> loop with <code>i</code> initialized to <code>start</code>. Since <code>start</code> is smaller than <code>end</code>, the comparison is set to <code><=</code>. <code>i</code> is then increased by <code>step</code> and the resulting value is pushed to <code>array</code>.</p>
                 
-                    <p>If <code>Line 4</code> is <code>false</code>, <code>Line 7</code> also uses a <code>for</code> loop with <code>i</code> initialized to <code>start</code>. Since <code>start</code> is larger than <code>end</code>, the comparison is set to <code>>=</code>. <code>i</code> is then decreased by <code>step</code> and the resulting value is pushed to <code>array</code>.</p>
+                    <p>If <code>Line 4</code> is <code>false</code>, <code class="desc desc-code2" data-line="7">Line 7</code> also uses a <code>for</code> loop with <code>i</code> initialized to <code>start</code>. Since <code>start</code> is larger than <code>end</code>, the comparison is set to <code>>=</code>. <code>i</code> is then decreased by <code>step</code> and the resulting value is pushed to <code>array</code>.</p>
 
-                    <p><code>Line 9</code> returns the array.</p>
+                    <p><code class="desc desc-code2" data-line="9">Line 9</code> returns the array.</p>
 
-                    <p><code>Line 12</code> declares a new function called <code>sum</code> with one parameter.</p>
+                    <p><code class="desc desc-code2" data-line="12">Line 12</code> declares a new function called <code>sum</code> with one parameter.</p>
 
-                    <p><code>Line 13</code> initializes <code>total</code> to 0.</p>
+                    <p><code class="desc desc-code2" data-line="13">Line 13</code> initializes <code>total</code> to 0.</p>
 
-                    <p><code>Line 14 - Line 16</code> loops through each <code>value</code> in <code>array</code>  and adds the specific number to <code>total</code>.</p>
+                    <p><code class="desc desc-code2" data-line="14-16">Line 14 - Line 16</code> loops through each <code>value</code> in <code>array</code>  and adds the specific number to <code>total</code>.</p>
 
-                    <p><code>Line 17</code> returns <code>total</code>.</p>
+                    <p><code class="desc desc-code2" data-line="17">Line 17</code> returns <code>total</code>.</p>
                 </div>
 
-                <div id="exercise-close" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2>Reversing an Array</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Reversing an Array</h2></div>
 
-                <div id="exercise-question2" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>For this exercise, write two functions, <code>reverseArray</code> and <code>reverseArrayInPlace</code>.</p> 
@@ -149,11 +149,11 @@ function sum(array) {
                     <p>The second, <code>reverseArrayInPlace</code>, does what the <code>reverse</code> method does: it modifies the array given as argument by reversing its elements</p>
                 </div>
 
-                <div id="personal-answer2-pt1" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
                     <h4>Part I:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function reverseArray(array) {
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function reverseArray(array) {
     let newArray = []; 
     for (let i = array.length - 1; i >= 0; i--) {
         newArray.push(array[i]);
@@ -162,22 +162,22 @@ function sum(array) {
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation2-pt1" class="body">
-                    <p><code>Line 1</code> declares <code>reverseArray</code> as a function with one parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> declares <code>reverseArray</code> as a function with one parameter.</p>
                 
-                    <p><code>Line 2</code> creates an empty <code>newArray</code> for the reversed values.</p>
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> creates an empty <code>newArray</code> for the reversed values.</p>
                     
-                    <p><code>Line 3</code> uses a <code>for</code> loop; however, <code>i</code> is initialized to the last value of <code>array</code>. As a result, while <code>i</code> is greater than or equal to 0, it is subtracted by one through each iteration and loops backwards through <code>array</code>.</p>
+                    <p><code class="desc desc-code3" data-line="3">Line 3</code> uses a <code>for</code> loop; however, <code>i</code> is initialized to the last value of <code>array</code>. As a result, while <code>i</code> is greater than or equal to 0, it is subtracted by one through each iteration and loops backwards through <code>array</code>.</p>
                     
-                    <p><code>Line 4</code> adds the current value of <code>i</code> in <code>array</code> to <code>newArray</code>.</p>
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> adds the current value of <code>i</code> in <code>array</code> to <code>newArray</code>.</p>
                 
-                    <p><code>Line 6</code> returns <code>newArray</code> with the reversed values.</p>
+                    <p><code class="desc desc-code3" data-line="6">Line 6</code> returns <code>newArray</code> with the reversed values.</p>
                 </div>
 
-                <div id="personal-answer2-pt2" class="body">
+                <div class="exercise-body">
                     <h4>Part II:</h4>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function reverseArrayInPlace(array) {
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function reverseArrayInPlace(array) {
     for (let i = 0; i < Math.floor(array.length / 2); i++) {
         let temp = array[i];
         array[i] = array[(array.length - 1) - i]; 
@@ -187,23 +187,23 @@ function sum(array) {
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation2-pt2" class="body">
-                    <p><code>Line 1</code> declares <code>reverseArrayInPlace</code> with one parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> declares <code>reverseArrayInPlace</code> with one parameter.</p>
 
-                    <p><code>Line 2</code> uses a <code>for</code> loop to iterate through the values of <code>array</code>. However, the loop stops whenever <code>i</code> reaches the middle of the length of <code>array</code>.</p>
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> uses a <code>for</code> loop to iterate through the values of <code>array</code>. However, the loop stops whenever <code>i</code> reaches the middle of the length of <code>array</code>.</p>
 
-                    <p><code>Line 3</code> creates a temporary variable to contain the current value of <code>array</code>.</p>
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> creates a temporary variable to contain the current value of <code>array</code>.</p>
 
-                    <p><code>Line 4</code> changes the current value to its corresponding value on the opposite side of <code>array</code>. <code>(array.length - 1) - i</code> moves from the last value to the front of the array as <code>i</code> increases.</p>
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> changes the current value to its corresponding value on the opposite side of <code>array</code>. <code>(array.length - 1) - i</code> moves from the last value to the front of the array as <code>i</code> increases.</p>
                 
-                    <p><code>Line 5</code> sets the corresponding value on the opposite side to the previous current value in <code>array</code>.</p>
+                    <p><code class="desc desc-code4" data-line="5">Line 5</code> sets the corresponding value on the opposite side to the previous current value in <code>array</code>.</p>
                 </div>
 
-                <div id="official-answer2-pt1" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
                     <h4>Part I:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function reverseArray(array) {
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function reverseArray(array) {
     let output = [];
     for (let i = array.length - 1; i >= 0; i--) {
         output.push(array[i]);
@@ -212,14 +212,14 @@ function sum(array) {
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation2-pt1" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author's answer uses the same code just with different variable names.</p>
                 </div>
 
-                <div id="official-answer2-pt2" class="body">
+                <div class="exercise-body">
                     <h4>Part II:</h4>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function reverseArrayInPlace(array) {
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function reverseArrayInPlace(array) {
     for (let i = 0; i < Math.floor(array.length / 2); i++) {
         let old = array[i];
         array[i] = array[array.length - 1 - i];
@@ -229,17 +229,17 @@ function sum(array) {
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation2-pt2" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author's answer uses the same code just with different variable names.</p>
                 </div>
 
-                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2>A List</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>A List</h2></div>
                 
-                <div id="exercise-question3" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a function <code>arrayToList</code> that builds up a list structure like the one shown when given <code>[1, 2, 3]</code> as argument. Also write a <code>listToArray</code> function that produces an array from a list.</p>
@@ -247,10 +247,10 @@ function sum(array) {
                     <p>Then add a helper function <code>prepend</code>, which takes an element and a list and creates a new list that adds the element to the front of the input list, and <code>nth</code>, which takes a list and a number and returns the element at the given position in the list (with zero referring to the first element) or <code>undefined</code> when there is no such element.</p>
                 </div>
 
-                <div id="personal-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function arrayToList(array) {
+                    <pre id="code7" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function arrayToList(array) {
     let list = {}; 
     for (let i = array.length - 1; i >= 0; i--) {
         let temp = {}; 
@@ -286,56 +286,56 @@ function nth(list, position) {
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates the function <code>arrayToList</code> with <code>array</code> as its only parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code7" data-line="1">Line 1</code> creates the function <code>arrayToList</code> with <code>array</code> as its only parameter.</p>
 
-                    <p><code>Line 2</code> declares an empty object named <code>list</code>.</p>
+                    <p><code class="desc desc-code7" data-line="2">Line 2</code> declares an empty object named <code>list</code>.</p>
 
-                    <p><code>Line 3</code> creates a <code>for</code> loop where <code>i</code> represents the last character in <code>array</code>. While <code>i</code> is greater than than 0, it moves on to the previous character within the array.</p>
+                    <p><code class="desc desc-code7" data-line="3">Line 3</code> creates a <code>for</code> loop where <code>i</code> represents the last character in <code>array</code>. While <code>i</code> is greater than than 0, it moves on to the previous character within the array.</p>
 
-                    <p><code>Line 4</code> creates a temporary empty object.</p>
+                    <p><code class="desc desc-code7" data-line="4">Line 4</code> creates a temporary empty object.</p>
 
-                    <p><code>Line 5</code> uses an abbreviated <code>if</code> statement to check whether there are pre-existing objects within <code>list</code> by testing whether the number of keys are greater than 0. If <code>true</code>, then all of the values and objects within <code>list</code> are copied to <code>temp</code></code>. But if <code>false</code>, then <code>temp</code> is given the value of <code>null</code> since <code>list</code> is completely empy.</p>
+                    <p><code class="desc desc-code7" data-line="5">Line 5</code> uses an abbreviated <code>if</code> statement to check whether there are pre-existing objects within <code>list</code> by testing whether the number of keys are greater than 0. If <code>true</code>, then all of the values and objects within <code>list</code> are copied to <code>temp</code></code>. But if <code>false</code>, then <code>temp</code> is given the value of <code>null</code> since <code>list</code> is completely empy.</p>
 
-                    <p><code>Line 6</code> creates the property of <code>value</code> and assigns it to the current value in <code>array</code>.</p>
+                    <p><code class="desc desc-code7" data-line="6">Line 6</code> creates the property of <code>value</code> and assigns it to the current value in <code>array</code>.</p>
 
-                    <p><code>Line 7</code> creates the property of <code>rest</code> and gives it the previous objects, or <code>null</code>, within <code>temp</code>.</p>
+                    <p><code class="desc desc-code7" data-line="7">Line 7</code> creates the property of <code>rest</code> and gives it the previous objects, or <code>null</code>, within <code>temp</code>.</p>
 
-                    <p><code>Line 9</code> returns the newly created <code>list</code>.</p>
+                    <p><code class="desc desc-code7" data-line="9">Line 9</code> returns the newly created <code>list</code>.</p>
 
-                    <p><code>Line 12</code> creates the function <code>listToArray</code> with <code>list</code> as its only parameter.</p>
+                    <p><code class="desc desc-code7" data-line="12">Line 12</code> creates the function <code>listToArray</code> with <code>list</code> as its only parameter.</p>
 
-                    <p><code>Line 13</code> declares an empty array named <code>array</code>.</p>
+                    <p><code class="desc desc-code7" data-line="13">Line 13</code> declares an empty array named <code>array</code>.</p>
 
-                    <p><code>Line 14</code> uses a <code>for</code> loop to iterate through each object within <code>list</code>. <code>currentObject</code> is set to <code>list</code>. Then, while the object exists, <code>currentObject</code> moves on to its <code>rest</code> property which is in itself, another object.</p>
+                    <p><code class="desc desc-code7" data-line="14">Line 14</code> uses a <code>for</code> loop to iterate through each object within <code>list</code>. <code>currentObject</code> is set to <code>list</code>. Then, while the object exists, <code>currentObject</code> moves on to its <code>rest</code> property which is in itself, another object.</p>
 
-                    <p><code>Line 15</code> adds the current <code>value</code> of the current object to <code>array</code></p>
+                    <p><code class="desc desc-code7" data-line="15">Line 15</code> adds the current <code>value</code> of the current object to <code>array</code></p>
 
-                    <p><code>Line 17</code> returns the new array.</p>
+                    <p><code class="desc desc-code7" data-line="17">Line 17</code> returns the new array.</p>
 
-                    <p><code>Line 20</code> creates the function <code>prepend</code> with the <code>newValue</code> and <code>list</code> as its only parameters.</p>
+                    <p><code class="desc desc-code7" data-line="20">Line 20</code> creates the function <code>prepend</code> with the <code>newValue</code> and <code>list</code> as its only parameters.</p>
 
-                    <p><code>Line 21</code> declares an empty object called <code>newList</code>.</p>
+                    <p><code class="desc desc-code7" data-line="21">Line 21</code> declares an empty object called <code>newList</code>.</p>
 
-                    <p><code>Line 22</code> creates <code>value</code> as a property and assigns it to the <code>newValue</code>.</p>
+                    <p><code class="desc desc-code7" data-line="22">Line 22</code> creates <code>value</code> as a property and assigns it to the <code>newValue</code>.</p>
 
-                    <p><code>Line 23</code> creates <code>rest</code> as a property and assigns it the previous object given by <code>list</code>.</p>
+                    <p><code class="desc desc-code7" data-line="23">Line 23</code> creates <code>rest</code> as a property and assigns it the previous object given by <code>list</code>.</p>
 
-                    <p><code>Line 24</code> returns the <code>newList</code>.</p>
+                    <p><code class="desc desc-code7" data-line="24">Line 24</code> returns the <code>newList</code>.</p>
 
-                    <p><code>Line 27</code> creates the function <code>nth</code> with <code>list</code> and <code>position</code> as its only parameters.</p>
+                    <p><code class="desc desc-code7" data-line="27">Line 27</code> creates the function <code>nth</code> with <code>list</code> and <code>position</code> as its only parameters.</p>
 
-                    <p><code>Line 28 - 29</code> checks whether <code>list</code> is an object with properties by ensuring the length of <code>Object.keys</code> is equal to zero. If <code>true</code> then <code>undefined</code> is returned.</p>
+                    <p><code class="desc desc-code7" data-line="28-29">Line 28 - 29</code> checks whether <code>list</code> is an object with properties by ensuring the length of <code>Object.keys</code> is equal to zero. If <code>true</code> then <code>undefined</code> is returned.</p>
 
-                    <p><code>Line 30 - 31</code> checks whether <code>position</code> has already been achieved or if there are still more properties to check. If <code>true</code>, then <code>nth</code> is recursively called with <code>list</code> set to the next object within <code>list.rest</code> and the position substracted by one since it has moved through one property.</p>
+                    <p><code class="desc desc-code7" data-line="30-31">Line 30 - 31</code> checks whether <code>position</code> has already been achieved or if there are still more properties to check. If <code>true</code>, then <code>nth</code> is recursively called with <code>list</code> set to the next object within <code>list.rest</code> and the position substracted by one since it has moved through one property.</p>
                 
-                    <p><code>Line 32 - 33</code> returns the current <code>value</code> if <code>position</code> equals 0.</p>
+                    <p><code class="desc desc-code7" data-line="32-33">Line 32 - 33</code> returns the current <code>value</code> if <code>position</code> equals 0.</p>
                 </div>
 
-                <div id="official-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function arrayToList(array) {
+                    <pre id="code8" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function arrayToList(array) {
     let list = null;
     for (let i = array.length - 1; i >= 0; i--) {
         list = {value: array[i], rest: list};
@@ -362,48 +362,48 @@ function nth(list, n) {
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates the function <code>arrayToList</code> with <code>array</code> as its only parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code8" data-line="1">Line 1</code> creates the function <code>arrayToList</code> with <code>array</code> as its only parameter.</p>
 
-                    <p><code>Line 2</code> sets a variable called <code>list</code> and sets it to <code>null</code>.</p>
+                    <p><code class="desc desc-code8" data-line="2">Line 2</code> sets a variable called <code>list</code> and sets it to <code>null</code>.</p>
 
-                    <p><code>Line 3</code> uses a <code>for</code> loop to iterate backwards through <code>array</code>.</p>
+                    <p><code class="desc desc-code8" data-line="3">Line 3</code> uses a <code>for</code> loop to iterate backwards through <code>array</code>.</p>
 
-                    <p><code>Line 4</code> sets <code>list</code> to an object with <code>value</code> equaling the current number in <code>array</code> and <code>rest</code> to the pre-existing <code>list</code>.</p>
+                    <p><code class="desc desc-code8" data-line="4">Line 4</code> sets <code>list</code> to an object with <code>value</code> equaling the current number in <code>array</code> and <code>rest</code> to the pre-existing <code>list</code>.</p>
 
-                    <p><code>Line 6</code> returns the new <code>list</code> after all of the values have been added.</p>
+                    <p><code class="desc desc-code8" data-line="6">Line 6</code> returns the new <code>list</code> after all of the values have been added.</p>
 
-                    <p><code>Line 9 - 15</code> uses the same code and corresponds with <code>Line 12 - 18</code> in my personal answer just with different variable names.</p>
+                    <p><code class="desc desc-code8" data-line="9-15">Line 9 - 15</code> uses the same code and corresponds with <code>Line 12 - 18</code> in my personal answer just with different variable names.</p>
 
-                    <p><code>Line 17</code> creates the function <code>prepend</code> with <code>value</code> and <code>list</code> as its only parameters.</p>
+                    <p><code class="desc desc-code8" data-line="17">Line 17</code> creates the function <code>prepend</code> with <code>value</code> and <code>list</code> as its only parameters.</p>
 
-                    <p><code>Line 18</code> returns a new list with <code>value</code> equaling the parameter and <code>rest</code> equaling the previous list.</p>
+                    <p><code class="desc desc-code8" data-line="18">Line 18</code> returns a new list with <code>value</code> equaling the parameter and <code>rest</code> equaling the previous list.</p>
 
-                    <p><code>Line 21</code> creates the function <code>nth</code> with <code>list</code> and <code>n</code> as its only parameters.</p>
+                    <p><code class="desc desc-code8" data-line="21">Line 21</code> creates the function <code>nth</code> with <code>list</code> and <code>n</code> as its only parameters.</p>
 
-                    <p><code>Line 22</code> returns <code>undefined</code> if <code>list</code>  does not exist.</p>
+                    <p><code class="desc desc-code8" data-line="22">Line 22</code> returns <code>undefined</code> if <code>list</code>  does not exist.</p>
 
-                    <p><code>Line 23</code> returns the <code>value</code> of <code>list</code> if <code>n</code> equals 0.</p>
+                    <p><code class="desc desc-code8" data-line="23">Line 23</code> returns the <code>value</code> of <code>list</code> if <code>n</code> equals 0.</p>
 
-                    <p><code>Line 24</code> recursively calls <code>nth</code> with the new parameters equaling <code>list.rest</code> and <code>n - 1</code> as the next property needs to be checked.</p>
+                    <p><code class="desc desc-code8" data-line="24">Line 24</code> recursively calls <code>nth</code> with the new parameters equaling <code>list.rest</code> and <code>n - 1</code> as the next property needs to be checked.</p>
                 </div>
 
-                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise4" class="panel">
-                <div id="exercise-header4" class="header"><h2>Deep Comparison</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Deep Comparison</h2></div>
 
-                <div id="exercise-question4" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a function <code>deepEqual</code>  that takes two values and returns <code>true</code> only if they are the same value or are objects with the same properties, where the values of the properties are equal when compared with a recursive call to <code>deepEqual</code>.</p> 
                 </div>
 
-                <div id="personal-answer4" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function deepEqual(object1, object2) {
+                    <pre id="code9" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function deepEqual(object1, object2) {
     if (object1 === object2) return true; 
     if (typeof object1 != typeof object2 || object1 == null || object2 == null) return false;  
     let properties1 = Object.keys(object1), properties2 = Object.keys(object2); 
@@ -416,30 +416,30 @@ function nth(list, n) {
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation4" class="body">
-                    <p><code>Line 1</code> declares <code>deepEqual</code> as a function with two parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code9" data-line="1">Line 1</code> declares <code>deepEqual</code> as a function with two parameters.</p>
 
-                    <p><code>Line 2</code> uses the strict operator to check whether <code>object1</code> is equal to <code>object2</code>. <code>true</code> is returned if the test is true.</p>
+                    <p><code class="desc desc-code9" data-line="2">Line 2</code> uses the strict operator to check whether <code>object1</code> is equal to <code>object2</code>. <code>true</code> is returned if the test is true.</p>
 
-                    <p><code>Line 3</code> checks whether the <code>typeof</code> <code>object1</code> is equal to the <code>typeof</code> <code>object2</code> or if <code>object1</code> or <code>object2</code> is <code>null</code>. <code>false</code> is returned if one of the tests succeeds.</p>
+                    <p><code class="desc desc-code9" data-line="3">Line 3</code> checks whether the <code>typeof</code> <code>object1</code> is equal to the <code>typeof</code> <code>object2</code> or if <code>object1</code> or <code>object2</code> is <code>null</code>. <code>false</code> is returned if one of the tests succeeds.</p>
                     
-                    <p><code>Line 4</code> creates the <code>properties1</code> and <code>properties2</code> variables and retrieves the names of their respective objects properties using <code>Object.keys</code>.</p>
+                    <p><code class="desc desc-code9" data-line="4">Line 4</code> creates the <code>properties1</code> and <code>properties2</code> variables and retrieves the names of their respective objects properties using <code>Object.keys</code>.</p>
 
-                    <p><code>Line 5</code> checks whether <code>object1</code> and <code>object2</code> has the same number of properties. If <code>properties1</code> and <code>properties2</code> do not have the same length, then <code>false</code> is returned.</p>
+                    <p><code class="desc desc-code9" data-line="5">Line 5</code> checks whether <code>object1</code> and <code>object2</code> has the same number of properties. If <code>properties1</code> and <code>properties2</code> do not have the same length, then <code>false</code> is returned.</p>
                 
-                    <p><code>Line 6</code> uses a <code>for</code> loop to iterate through each of the property names in <code>object1</code>.</p>
+                    <p><code class="desc desc-code9" data-line="6">Line 6</code> uses a <code>for</code> loop to iterate through each of the property names in <code>object1</code>.</p>
 
-                    <p><code>Line 7</code> checks whether the properties in <code>object1</code> and <code>object2</code> are the same. <code>false</code> is returned if they are different.</p>
+                    <p><code class="desc desc-code9" data-line="7">Line 7</code> checks whether the properties in <code>object1</code> and <code>object2</code> are the same. <code>false</code> is returned if they are different.</p>
 
-                    <p><code>Line 8</code> recursively calls <code>deepEqual</code> to check the equality of each of the properties within the objects. The result is returned when it equals <code>false</code>.</p>
+                    <p><code class="desc desc-code9" data-line="8">Line 8</code> recursively calls <code>deepEqual</code> to check the equality of each of the properties within the objects. The result is returned when it equals <code>false</code>.</p>
 
-                    <p><code>Line 10</code> returns <code>true</code> if all of the properties in <code>object1</code> and <code>object2</code> are equal.</p>
+                    <p><code class="desc desc-code9" data-line="10">Line 10</code> returns <code>true</code> if all of the properties in <code>object1</code> and <code>object2</code> are equal.</p>
                 </div>
 
-                <div id="official-answer4" class="body">
+                <div class="exercise-body exercise-desc">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function deepEqual(a, b) {
+                    <pre id="code10" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function deepEqual(a, b) {
     if (a === b) return true;
     if (a == null || typeof a != "object" || b == null || typeof b != "object") return false;
     let keysA = Object.keys(a), keysB = Object.keys(b);
@@ -451,50 +451,52 @@ function nth(list, n) {
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation4" class="body">
+                <div class="exercise-body">
                     <p>The author uses similar code just using different names and more concise <code>for</code> loop.</p>
 
-                    <p><code>Line 6</code> iterates through each <code>key</code> or value of the array <code>keysA</code>.</p>
+                    <p><code class="desc desc-code10" data-line="6">Line 6</code> iterates through each <code>key</code> or value of the array <code>keysA</code>.</p>
 
-                    <p><code>Line 7</code> checks whether <code>keysB</code> does not include <code>key</code> and whether <code>deepEqual</code> equals <code>false</code> when inputting the objects properties as the parameters.</p>
+                    <p><code class="desc desc-code10" data-line="7">Line 7</code> checks whether <code>keysB</code> does not include <code>key</code> and whether <code>deepEqual</code> equals <code>false</code> when inputting the objects properties as the parameters.</p>
                 </div>
 
-                <div id="exercise-close4" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
         </article>
 
-        <article id="navbar-article">
+        <article class="container-navbar">
 
-            <section id="navbar-section-3rd-Ed">
-                
+            <section>
+
                 <h3>3rd Edition</h3>
 
-                <nav id="navbar-3rd-Ed">
-                <ul>
-                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
-                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
-                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
-                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
-                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
-                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
-                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
-                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
-                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
-                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
-                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
-                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
-                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>                    
-                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
-                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
-                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
-                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
-                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
-                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
-                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
-                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
-                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
                 </nav>
 
             </section>
@@ -503,7 +505,8 @@ function nth(list, n) {
 
     </main>
     
-    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap4.js"></script>
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
 
 </body>
 

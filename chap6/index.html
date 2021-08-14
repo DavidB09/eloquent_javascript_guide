@@ -5,35 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap6.css">
-    <link href="../Assets/CSS/prism.css" rel="stylesheet">
-    <title>Eloquent JavaScript - Chapter 6</title>
     <meta name="author" content="David Brunner">
     <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 6, Exercises">
     <meta name="description" content="Solutions and explanations for exercises in Chapter 6 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 6</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
 
-    <script src="../Assets/JavaScript/prism.js"></script>
-
     <header>
-        <h1 id="chapter6-main-header">Chapter 6, "The Secret Life of Objects"</h1>
+        <h1>Chapter 6, "The Secret Life of Objects"</h1>
 
-        <div id="navigation-links">
-            <a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Previous</a>
-            <a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Next</a>
+        <div class="header-navigation-links">
+            <a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Previous</a>
+            <a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Next</a>
         </div>
     </header>
 
     <main>
 
-        <article id="exercise-problems">
+        <article class="container-exercise-problems">
 
-            <section id="exercise1" class="panel">
-                <div id="exercise-header" class="header"><h2>A Vector Type</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>A Vector Type</h2></div>
 
-                <div id="exercise-question" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
                 
                     <p>Write a class <code>Vec</code> that represents a vector in two-dimensional space. It takes x and y parameters (numbers), which it should save to properties of the same name.</p>
@@ -43,10 +43,10 @@
                     <p>Add a getter property <code>length</code> to the prototype that computes the length of the vector—that is, the distance of the point (x, y) from the origin (0, 0).</p>
                 </div>
 
-                <div id="personal-answer" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers" ><code class="language-javascript">class Vec {
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class Vec {
     constructor(x, y) {
         this.x = x; 
         this.y = y; 
@@ -66,32 +66,32 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation" class="body">
-                    <p><code>Line 1</code> creates a class called <code>Vec</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> creates a class called <code>Vec</code>.</p>
 
-                    <p><code>Line 2</code> creates the constructor with <code>x</code> and <code>y</code> as the parameters.</p>
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> creates the constructor with <code>x</code> and <code>y</code> as the parameters.</p>
 
-                    <p><code>Line 3</code> sets the <code>this.x</code> value of the new created class to <code>x</code>.</p>
+                    <p><code class="desc desc-code1" data-line="3">Line 3</code> sets the <code>this.x</code> value of the new created class to <code>x</code>.</p>
 
-                    <p><code>Line 4</code> sets the <code>this.y</code> value of the new created class to <code>y</code>.</p>
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> sets the <code>this.y</code> value of the new created class to <code>y</code>.</p>
 
-                    <p><code>Line 7</code> creates a method called <code>plus</code> that takes a vector object as its input.</p>
+                    <p><code class="desc desc-code1" data-line="7">Line 7</code> creates a method called <code>plus</code> that takes a vector object as its input.</p>
 
-                    <p><code>Line 8</code> returns a new <code>Vec</code> object with the <code>x</code> and <code>y</code> properties set to the sum of their respective values within the two previous vectors.</p>
+                    <p><code class="desc desc-code1" data-line="8">Line 8</code> returns a new <code>Vec</code> object with the <code>x</code> and <code>y</code> properties set to the sum of their respective values within the two previous vectors.</p>
 
-                    <p><code>Line 10</code> creates a method called <code>minus</code> that takes a vector object as its input.</p>
+                    <p><code class="desc desc-code1" data-line="10">Line 10</code> creates a method called <code>minus</code> that takes a vector object as its input.</p>
 
-                    <p><code>Line 11</code> returns a new <code>Vec</code> object with the <code>x</code> and <code>y</code> properties set to the difference of their respective values within the two previous vectors.</p>
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> returns a new <code>Vec</code> object with the <code>x</code> and <code>y</code> properties set to the difference of their respective values within the two previous vectors.</p>
 
-                    <p><code>Line 15</code> creates a <code>get</code> method called <code>length</code>.</p>
+                    <p><code class="desc desc-code1" data-line="15">Line 15</code> creates a <code>get</code> method called <code>length</code>.</p>
                     
-                    <p><code>Line 16</code> returns the distance of the point at <code>x</code> and <code>y</code> from the the current vector to (0, 0). It uses the <code>Math.pow</code> method to calculate (x2 - x1)^2 + (y2 - y1)^2 and finds the square root of the result using <code>Math.sqrt</code>.</p>
+                    <p><code class="desc desc-code1" data-line="16">Line 16</code> returns the distance of the point at <code>x</code> and <code>y</code> from the the current vector to (0, 0). It uses the <code>Math.pow</code> method to calculate (x2 - x1)^2 + (y2 - y1)^2 and finds the square root of the result using <code>Math.sqrt</code>.</p>
                 </div>
 
-                <div id="official-answer" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Vec {
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class Vec {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -111,19 +111,19 @@
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author uses the same code just with different variable, object, and method names.</p>
 
-                    <p><code>Line 16</code> also does not use <code>Math.pow</code> but just multiplies the <code>x</code> and <code>y</code> values by themselves since x1 and y1 are both 0.</p>
+                    <p><code class="desc desc-code2" data-line="16">Line 16</code> also does not use <code>Math.pow</code> but just multiplies the <code>x</code> and <code>y</code> values by themselves since x1 and y1 are both 0.</p>
                 </div>
 
-                <div id="exercise-close" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2>Groups</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Groups</h2></div>
 
-                <div id="exercise-question2" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a class called <code>Group</code> (since <code>Set</code> is already taken). Like <code>Set</code>, it has <code>add</code>, <code>delete</code>, and <code>has</code> methods. Its <code>constructor</code> creates an empty group, <code>add</code> adds a value to the group (but only if it isn’t already a member), <code>delete</code> removes its argument from the group (if it was a member), and <code>has</code> returns a Boolean value indicating whether its argument is a member of the group.</p> 
@@ -131,10 +131,10 @@
                     <p>Give the class a static <code>from</code> method that takes an iterable object as argument and creates a group that contains all the values produced by iterating over it.</p>
                 </div>
 
-                <div id="personal-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class Group {
     constructor() {
         this.values = []; 
     }
@@ -159,36 +159,36 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> creates an class called <code>Group</code>.</p>
 
-                    <p><code>Line 2 - Line 3</code> creates the <code>constructor</code> method and initializes <code>this.values</code> to an empty array.</p>
+                    <p><code class="desc desc-code3" data-line="2-3">Line 2 - Line 3</code> creates the <code>constructor</code> method and initializes <code>this.values</code> to an empty array.</p>
 
-                    <p><code>Line 5</code> creates an <code>add</code> method that takes a <code>value</code> as a parameter.</p>
+                    <p><code class="desc desc-code3" data-line="5">Line 5</code> creates an <code>add</code> method that takes a <code>value</code> as a parameter.</p>
 
-                    <p><code>Line 6 - Line 7</code> checks whether <code>this.values</code> does not contain <code>value</code> by calling the <code>includes</code> function. If <code>true</code>, then <code>value</code> is pushed or added to the end of <code>this.values</code>.</p>
+                    <p><code class="desc desc-code3" data-line="6-7">Line 6 - Line 7</code> checks whether <code>this.values</code> does not contain <code>value</code> by calling the <code>includes</code> function. If <code>true</code>, then <code>value</code> is pushed or added to the end of <code>this.values</code>.</p>
                 
-                    <p><code>Line 9</code> creates an <code>delete</code> method that takes a <code>value</code> as a parameter.</p>
+                    <p><code class="desc desc-code3" data-line="9">Line 9</code> creates an <code>delete</code> method that takes a <code>value</code> as a parameter.</p>
 
-                    <p><code>Line 10 - Line 11</code> checks whether <code>this.values</code> contains <code>value</code> by calling the <code>includes</code> function. If <code>true</code>, then <code>value</code> is removed from <code>this.values</code> by calling the <code>splice</code> function with the <code>indexOf</code> <code>value</code>.</p>
+                    <p><code class="desc desc-code3" data-line="10-11">Line 10 - Line 11</code> checks whether <code>this.values</code> contains <code>value</code> by calling the <code>includes</code> function. If <code>true</code>, then <code>value</code> is removed from <code>this.values</code> by calling the <code>splice</code> function with the <code>indexOf</code> <code>value</code>.</p>
                 
-                    <p><code>Line 13</code> creates an <code>has</code> method that takes a <code>value</code> as a parameter.</p>
+                    <p><code class="desc desc-code3" data-line="13">Line 13</code> creates an <code>has</code> method that takes a <code>value</code> as a parameter.</p>
 
-                    <p><code>Line 14</code> returns the result of checking whether <code>this.values</code> contains <code>value</code> by calling the <code>includes</code> function.</p>
+                    <p><code class="desc desc-code3" data-line="14">Line 14</code> returns the result of checking whether <code>this.values</code> contains <code>value</code> by calling the <code>includes</code> function.</p>
 
-                    <p><code>Line 16</code> creates a <code>static</code> method called <code>from</code> that takes an array as an input.</p>
+                    <p><code class="desc desc-code3" data-line="16">Line 16</code> creates a <code>static</code> method called <code>from</code> that takes an array as an input.</p>
 
-                    <p><code>Line 17</code> creates a new instance of the <code>Group</code> class.</p>
+                    <p><code class="desc desc-code3" data-line="17">Line 17</code> creates a new instance of the <code>Group</code> class.</p>
 
-                    <p><code>Line 18 - Line 19</code> iterates through each <code>value</code> within <code>array</code> and calls the <code>add</code> method to push the current <code>value</code> to <code>newGroup</code>.</p>
+                    <p><code class="desc desc-code3" data-line="18-19">Line 18 - Line 19</code> iterates through each <code>value</code> within <code>array</code> and calls the <code>add</code> method to push the current <code>value</code> to <code>newGroup</code>.</p>
 
-                    <p><code>Line 21</code> returns the <code>newGroup</code> with all of the values.</p>
+                    <p><code class="desc desc-code3" data-line="21">Line 21</code> returns the <code>newGroup</code> with all of the values.</p>
                 </div>
 
-                <div id="official-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class Group {
     constructor() {
         this.members = [];
     }
@@ -213,30 +213,30 @@
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation2" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author uses the same code just with a few variations throughout.</p>
 
-                    <p><code>Line 6</code> uses the <code>has</code> method of the class to check whether <code>this.members</code> already contains the <code>value</code> before adding it.</p>
+                    <p><code class="desc desc-code4" data-line="6">Line 6</code> uses the <code>has</code> method of the class to check whether <code>this.members</code> already contains the <code>value</code> before adding it.</p>
 
-                    <p><code>Line 11</code> calls the <code>filter</code> method on <code>this.members</code> to return a new array without the <code>value</code>.</p>
+                    <p><code class="desc desc-code4" data-line="11">Line 11</code> calls the <code>filter</code> method on <code>this.members</code> to return a new array without the <code>value</code>.</p>
                 </div>
 
-                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2>Iterable Groups</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Iterable Groups</h2></div>
 
-                <div id="exercise-question3" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Make the <code>Group</code> class from the previous exercise iterable. Refer to the section about the iterator interface earlier in the chapter if you aren’t clear on the exact form of the interface anymore.</p> 
                 </div>
 
-                <div id="personal-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class Group {
     constructor() {
         this.values = []; 
     }
@@ -278,42 +278,42 @@ class GroupIterator {
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3" class="body">
-                    <p><code>Line 1</code> creates an class called <code>Group</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> creates an class called <code>Group</code>.</p>
 
-                    <p><code>Line 2 - Line 3</code> creates the <code>constructor</code> method and initializes <code>this.values</code> to an empty array.</p>
+                    <p><code class="desc desc-code5" data-line="2-3">Line 2 - Line 3</code> creates the <code>constructor</code> method and initializes <code>this.values</code> to an empty array.</p>
 
-                    <p><code>Line 5 - Line 6</code> creates an <code>add</code> method that takes a <code>value</code> as a parameter. The <code>includes</code> function is called to check whether <code>this.values</code> does not contain <code>value</code> and pushes or adds <code>value</code> if <code>true</code>.</p>
+                    <p><code class="desc desc-code5" data-line="5-6">Line 5 - Line 6</code> creates an <code>add</code> method that takes a <code>value</code> as a parameter. The <code>includes</code> function is called to check whether <code>this.values</code> does not contain <code>value</code> and pushes or adds <code>value</code> if <code>true</code>.</p>
                 
-                    <p><code>Line 8 - Line 9</code> creates an <code>delete</code> method that takes a <code>value</code> as a parameter. The <code>includes</code> function checks whether <code>this.values</code> contains <code>value</code> and removes <code>value</code> by calling the <code>splice</code> function with the <code>indexOf</code> <code>value</code> if <code>true</code>.</p>
+                    <p><code class="desc desc-code5" data-line="8-9">Line 8 - Line 9</code> creates an <code>delete</code> method that takes a <code>value</code> as a parameter. The <code>includes</code> function checks whether <code>this.values</code> contains <code>value</code> and removes <code>value</code> by calling the <code>splice</code> function with the <code>indexOf</code> <code>value</code> if <code>true</code>.</p>
                 
-                    <p><code>Line 11 - Line 12</code> creates an <code>has</code> method that takes a <code>value</code> as a parameter. The result of checking whether <code>this.values</code> contains <code>value</code>, by calling the <code>includes</code> function, is returned.</p>
+                    <p><code class="desc desc-code5" data-line="11-12">Line 11 - Line 12</code> creates an <code>has</code> method that takes a <code>value</code> as a parameter. The result of checking whether <code>this.values</code> contains <code>value</code>, by calling the <code>includes</code> function, is returned.</p>
 
-                    <p><code>Line 14 - Line 19</code> creates a <code>static</code> method called <code>from</code> that takes an array as an input. A new instance of the <code>Group</code> class is created, the <code>add</code> method is called with each <code>value</code> within <code>array</code>, and the resulting <code>newGroup</code> is returned.</p>
+                    <p><code class="desc desc-code5" data-line="14-19">Line 14 - Line 19</code> creates a <code>static</code> method called <code>from</code> that takes an array as an input. A new instance of the <code>Group</code> class is created, the <code>add</code> method is called with each <code>value</code> within <code>array</code>, and the resulting <code>newGroup</code> is returned.</p>
 
-                    <p><code>Line 21 - Line 22</code> creates the <code>Symbol.iterator</code> method that returns a new instance of the <code>GroupIterator</code> class with <code>this.values</code> as the parameter. This will allow each value to be iterated over.</p>
+                    <p><code class="desc desc-code5" data-line="21-22">Line 21 - Line 22</code> creates the <code>Symbol.iterator</code> method that returns a new instance of the <code>GroupIterator</code> class with <code>this.values</code> as the parameter. This will allow each value to be iterated over.</p>
                 
-                    <p><code>Line 26</code> creates the class called <code>GroupIterator</code>.</p>
+                    <p><code class="desc desc-code5" data-line="26">Line 26</code> creates the class called <code>GroupIterator</code>.</p>
 
-                    <p><code>Line 27</code> creates the <code>constructor</code> method with a preexisting <code>group</code> as a parameter.</p>
+                    <p><code class="desc desc-code5" data-line="27">Line 27</code> creates the <code>constructor</code> method with a preexisting <code>group</code> as a parameter.</p>
 
-                    <p><code>Line 28 - Line 29</code> initalizes <code>this.group</code> to the parameter of the <code>constructor</code> and <code>this.position</code> to zero to represent the first element of the array.</p>
+                    <p><code class="desc desc-code5" data-line="28-29">Line 28 - Line 29</code> initalizes <code>this.group</code> to the parameter of the <code>constructor</code> and <code>this.position</code> to zero to represent the first element of the array.</p>
 
-                    <p><code>Line 31</code> creates the <code>next</code> method to iterate through each value of <code>group</code>.</p>
+                    <p><code class="desc desc-code5" data-line="31">Line 31</code> creates the <code>next</code> method to iterate through each value of <code>group</code>.</p>
 
-                    <p><code>Line 32 - Line 33</code> checks whether <code>this.position</code> is greater than the length of the values in <code>this.group</code>. If <code>true</code>, then an object with the property <code>done</code> being <code>true</code> is returned.</p>
+                    <p><code class="desc desc-code5" data-line="32-33">Line 32 - Line 33</code> checks whether <code>this.position</code> is greater than the length of the values in <code>this.group</code>. If <code>true</code>, then an object with the property <code>done</code> being <code>true</code> is returned.</p>
                     
-                    <p>Else, <code>Line 35</code> creates an object called <code>value</code> and sets the property <code>value</code> to the value at the current <code>this.position</code> within <code>this.group</code> and the property <code>done</code> to <code>false</code> to continue iterating through <code>this.group</code>.</p>
+                    <p>Else, <code class="desc desc-code5" data-line="35">Line 35</code> creates an object called <code>value</code> and sets the property <code>value</code> to the value at the current <code>this.position</code> within <code>this.group</code> and the property <code>done</code> to <code>false</code> to continue iterating through <code>this.group</code>.</p>
                 
-                    <p><code>Line 36</code> then adds one to <code>this.position</code> to move on to the next value.</p>
+                    <p><code class="desc desc-code5" data-line="36">Line 36</code> then adds one to <code>this.position</code> to move on to the next value.</p>
 
-                    <p><code>Line 37</code> returns <code>value</code>.</p>
+                    <p><code class="desc desc-code5" data-line="37">Line 37</code> returns <code>value</code>.</p>
                 </div>
 
-                <div id="official-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">class Group {
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class Group {
     constructor() {
         this.members = [];
     }
@@ -357,25 +357,25 @@ class GroupIterator {
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation3" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author uses the same code just with a few variations throughout.</p>
 
-                    <p><code>Line 6</code> uses the <code>has</code> method of the class to check whether <code>this.members</code> already contains the <code>value</code> before adding it.</p>
+                    <p><code class="desc desc-code6" data-line="6">Line 6</code> uses the <code>has</code> method of the class to check whether <code>this.members</code> already contains the <code>value</code> before adding it.</p>
 
-                    <p><code>Line 11</code> calls the <code>filter</code> method on <code>this.members</code> to return a new array without the <code>value</code>.</p>
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> calls the <code>filter</code> method on <code>this.members</code> to return a new array without the <code>value</code>.</p>
 
-                    <p><code>Line 24</code> creates a new instance of the class <code>GroupIterator</code> with <code>this</code> as the parameter.</p>
+                    <p><code class="desc desc-code6" data-line="24">Line 24</code> creates a new instance of the class <code>GroupIterator</code> with <code>this</code> as the parameter.</p>
 
-                    <p><code>Line 34 and Line 37</code> uses <code>this.group.members</code> to access the values within <code>this.group</code>.</p>
+                    <p><code class="desc desc-code6" data-line="34,37">Line 34 and Line 37</code> uses <code>this.group.members</code> to access the values within <code>this.group</code>.</p>
                 </div>
 
-                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise4" class="panel">
-                <div id="exercise-header4" class="header"><h2>Borrowing a Method</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Borrowing a Method</h2></div>
 
-                <div id="exercise-question4" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Earlier in the chapter I mentioned that an object’s <code>hasOwnProperty</code> can be used as a more robust alternative to the <code>in</code> operator when you want to ignore the prototype’s properties. But what if your map needs to include the word "hasOwnProperty"? You won’t be able to call that method anymore because the object’s own property hides the method value.</p>
@@ -383,63 +383,65 @@ class GroupIterator {
                     <p>Can you think of a way to call <code>hasOwnProperty</code> on an object that has its own property by that name?.</p> 
                 </div>
 
-                <div id="personal-answer4" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">console.log(Object.prototype.hasOwnProperty.call(map, "one"));</code></pre>
+                    <pre id="code7" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">console.log(Object.prototype.hasOwnProperty.call(map, "one"));</code></pre>
                 </div>
 
-                <div id="personal-answer-explanation4" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>Since <code>map</code> has a property called <code>hasOwnProperty</code>, the <code>prototype</code> of a regular <code>object</code> must be used to call the <code>hasOwnProperty</code> function. The method <code>call</code> must also be called with the parameters <code>map</code> and <code>"one"</code>.</p>
                 </div>
 
-                <div id="official-answer4" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">console.log(Object.prototype.hasOwnProperty.call(map, "one"));</code></pre>
+                    <pre id="code8" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">console.log(Object.prototype.hasOwnProperty.call(map, "one"));</code></pre>
                 </div>
 
-                <div id="official-answer-explanation4" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author uses the same code.</p>
                 </div>
 
-                <div id="exercise-close4" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
 
         </article>
 
-        <article id="navbar-article">
+        <article class="container-navbar">
 
-            <section id="navbar-section-3rd-Ed">
-                
+            <section>
+
                 <h3>3rd Edition</h3>
 
-                <nav id="navbar-3rd-Ed">
-                <ul>
-                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
-                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
-                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
-                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
-                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
-                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
-                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
-                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
-                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
-                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
-                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
-                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
-                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
-                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
-                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
-                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
-                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
-                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
-                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
-                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
-                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
-                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
                 </nav>
 
             </section>
@@ -448,8 +450,9 @@ class GroupIterator {
 
     </main>
 
-    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap6.js"></script>
-    
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
+
 </body>
 
 </html>

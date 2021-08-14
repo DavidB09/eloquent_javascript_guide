@@ -5,35 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap2.css"/>
-    <link href="../Assets/CSS/prism.css" rel="stylesheet"/>
-    <title>Eloquent JavaScript - Chapter 2</title>
     <meta name="author" content="David Brunner">
     <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 2, Exercises">
     <meta name="description" content="Solutions and explanations for exercises in Chapter 2 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 2</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
-    
-    <script src="../Assets/JavaScript/prism.js"></script>
 
     <header>
-        <h1 id="chapter2-main-header">Chapter 2, "Program Structure"</h1>
+        <h1>Chapter 2, "Program Structure"</h1>
 
-        <div id="navigation-links">
-            <a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Previous</a>
-            <a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Next</a>
+        <div class="header-navigation-links">
+            <a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Previous</a>
+            <a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Next</a>
         </div>
     </header>
 
     <main>
 
-        <article id="exercise-problems">
+        <article class="container-exercise-problems">
 
-            <section id="exercise1" class="panel">
-                <div id="exercise-header" class="header"><h2>Looping a Triangle</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Looping a Triangle</h2></div>
 
-                <div id="exercise-question" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
                 
                     <p>Write a loop that makes seven calls to <code>console.log</code> to output the following triangle:</p>
@@ -47,48 +47,48 @@
 #######            </code></pre>
                 </div>
 
-                <div id="personal-answer" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">let answer = "#";
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let answer = "#";
 for (let i = 0; i < 7; i++) {
     console.log(answer); 
     answer += "#"; 
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation" class="body">
-                    <p><code>Line 1</code> binds <code>answer</code> to the characters within the first row of the intended answer.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> binds <code>answer</code> to the characters within the first row of the intended answer.</p>
 
-                    <p><code>Line 2</code> introduces <code>for</code> loop that checks if <code>i</code> is less than the number of rows in the intended answer. If the <code><</code> comparison is <code>true</code>, then the following statements are executed and 1 is added to <code>i</code> as the loop continues to its next iteration.</p> 
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> introduces <code>for</code> loop that checks if <code>i</code> is less than the number of rows in the intended answer. If the <code><</code> comparison is <code>true</code>, then the following statements are executed and 1 is added to <code>i</code> as the loop continues to its next iteration.</p> 
                 
-                    <p><code>Line 3</code> prints out the current <code>answer</code> to the console.</p>
+                    <p><code class="desc desc-code1" data-line="3">Line 3</code> prints out the current <code>answer</code> to the console.</p>
 
-                    <p><code>Line 4</code> appends an extra hash sign character to the answer.</p>
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> appends an extra hash sign character to the answer.</p>
                 </div>
 
-                <div id="official-answer" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">for (let line = "#"; line.length < 8; line += "#")
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">for (let line = "#"; line.length < 8; line += "#")
 console.log(line);  </code></pre>
                 </div>
 
-                <div id="official-answer-explanation" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author's answer also uses the <code>for</code> loop but more concisely.</p>
                     
-                    <p><code>Line 1</code> binds <code>line</code> to the character in the first row of the answer. While the length of <code>line</code> is less than the  number of hash marks in the final row of the intended answer, a hash sign character is added to the string and the loop continues to its next iteration.</p>
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> binds <code>line</code> to the character in the first row of the answer. While the length of <code>line</code> is less than the  number of hash marks in the final row of the intended answer, a hash sign character is added to the string and the loop continues to its next iteration.</p>
 
-                    <p><code>Line 2</code> prints out the current <code>line</code> to the console.</p>
+                    <p><code class="desc desc-code2" data-line="2">Line 2</code> prints out the current <code>line</code> to the console.</p>
                 </div>
 
-                <div id="exercise-close" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2>FizzBuzz</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>FizzBuzz</h2></div>
 
-                <div id="exercise-question2" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a program that uses <code>console.log</code> to print all the numbers from 1 to 100, with two exceptions. For numbers divisible by 3, print <code>"Fizz"</code> instead of the number, and for numbers divisible by 5 (and not 3), print <code>"Buzz"</code> instead.</p>
@@ -96,10 +96,10 @@ console.log(line);  </code></pre>
                     <p>When you have that working, modify your program to print <code>"FizzBuzz"</code> for numbers that are divisible by both 3 and 5 (and still print <code>"Fizz"</code> or <code>"Buzz"</code> for numbers divisible by only one of those).</p>
                 </div>
 
-                <div id="personal-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">for (let i = 1; i <= 100; i++) {
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">for (let i = 1; i <= 100; i++) {
     if (i % 3 == 0 && i % 5 == 0) {
         console.log("FizzBuzz"); 
     } else if (i % 3 == 0) {
@@ -112,22 +112,22 @@ console.log(line);  </code></pre>
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates a <code>for</code> loop that binds <code>i</code> to 1 and checks if its value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through the following statements before moving on to the next iteration.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> creates a <code>for</code> loop that binds <code>i</code> to 1 and checks if its value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through the following statements before moving on to the next iteration.</p>
                 
-                    <p><code>Line 2 - Line 3</code> checks whether <code>i</code> is divisible by both 3 and 5 with the remainder of 0 by using a <code>if</code> conditional statement. If <code>true</code>, then <code>FizzBuzz</code> is printed to the console.</p>
+                    <p><code class="desc desc-code3" data-line="2-3">Line 2 - Line 3</code> checks whether <code>i</code> is divisible by both 3 and 5 with the remainder of 0 by using a <code>if</code> conditional statement. If <code>true</code>, then <code>FizzBuzz</code> is printed to the console.</p>
                     
-                    <p>Else if <code>Line 2</code> is <code>false</code>, then <code>Line 4 - Line 5</code> checks if <code>i</code> is divisible by 3 with the remainder of 0. If <code>true</code>, then <code>Fizz</code> is printed to the console.</p>
+                    <p>Else if <code>Line 2</code> is <code>false</code>, then <code class="desc desc-code3" data-line="4-5">Line 4 - Line 5</code> checks if <code>i</code> is divisible by 3 with the remainder of 0. If <code>true</code>, then <code>Fizz</code> is printed to the console.</p>
                 
-                    <p>Else if <code>Line 2 and Line 4</code> are <code>false</code>, then <code>Line 6 - Line 7</code> checks if <code>i</code> is divisible by 5 with the remainder of 0. If <code>true</code>, then <code>Buzz</code> is printed to the console.</p>
+                    <p>Else if <code>Line 2 and Line 4</code> are <code>false</code>, then <code class="desc desc-code3" data-line="6-7">Line 6 - Line 7</code> checks if <code>i</code> is divisible by 5 with the remainder of 0. If <code>true</code>, then <code>Buzz</code> is printed to the console.</p>
 
-                    <p>If all of the previous conditions were <code>false</code>, then <code>Line 9</code> prints out <code>i</code>, or the regular number.</p>
+                    <p>If all of the previous conditions were <code>false</code>, then <code class="desc desc-code3" data-line="9">Line 9</code> prints out <code>i</code>, or the regular number.</p>
                 </div>
 
-                <div id="official-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">for (let n = 1; n <= 100; n++) {
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">for (let n = 1; n <= 100; n++) {
     let output = "";
     if (n % 3 == 0) output += "Fizz";
     if (n % 5 == 0) output += "Buzz";
@@ -135,25 +135,25 @@ console.log(line);  </code></pre>
 }                    </code></pre>
                 </div>
 
-                <div id="official-answer-explanation2" class="body">
-                    <p><code>Line 1</code> creates a <code>for</code> loop that binds <code>n</code> to 1 and checks if it's value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through its next statements before moving on to the next interation.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> creates a <code>for</code> loop that binds <code>n</code> to 1 and checks if it's value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through its next statements before moving on to the next interation.</p>
                 
-                    <p><code>Line 2</code> binds <code>output</code> to an empty string.</p>
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> binds <code>output</code> to an empty string.</p>
 
-                    <p><code>Line 3</code> uses a conditional statement to check whether <code>n</code> is divisible by 3 with a remainder of 0. If <code>true</code>, then the string <code>Fizz</code> is added to <code>output</code>.</p>
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> uses a conditional statement to check whether <code>n</code> is divisible by 3 with a remainder of 0. If <code>true</code>, then the string <code>Fizz</code> is added to <code>output</code>.</p>
                 
-                    <p><code>Line 4</code> uses a conditional statement to check whether <code>n</code> is divisible by 5 with a remainder of 0. If <code>true</code>, then the string <code>Buzz</code> is added to <code>output</code>.</p>
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> uses a conditional statement to check whether <code>n</code> is divisible by 5 with a remainder of 0. If <code>true</code>, then the string <code>Buzz</code> is added to <code>output</code>.</p>
                 
-                    <p><code>Line 5</code> uses an "or" operator to check whether <code>output</code> is an empty string. If <code>output</code> has no value, then <code>n</code> is printed to the console. Else, <code>output</code> is printed to the console.</p>
+                    <p><code class="desc desc-code4" data-line="5">Line 5</code> uses an "or" operator to check whether <code>output</code> is an empty string. If <code>output</code> has no value, then <code>n</code> is printed to the console. Else, <code>output</code> is printed to the console.</p>
                 </div>
 
-                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2>Chessboard</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Chessboard</h2></div>
                 
-                <div id="exercise-question3" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>Write a program that creates a string that represents an 8×8 grid, using newline characters to separate lines. At each position of the grid there is either a space or a "#" character. The characters should form a chessboard.</p>
@@ -168,10 +168,10 @@ console.log(line);  </code></pre>
 # # # #             </code></pre>
                 </div>
 
-                <div id="personal-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">let binding = 8; 
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let binding = 8; 
 let finalString = ""; 
 for (let a = 1; a <= binding; a++) {
     for (let b = 1; b <= binding; b++) { 
@@ -186,26 +186,26 @@ for (let a = 1; a <= binding; a++) {
 console.log(finalString);</code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3" class="body">
-                    <p><code>Line 1 - Line 2</code> binds the length and width of the grid to <code>binding</code> and initializes <code>finalString</code> to an empty string.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code5" data-line="1">Line 1 - Line 2</code> binds the length and width of the grid to <code>binding</code> and initializes <code>finalString</code> to an empty string.</p>
 
-                    <p><code>Line 3</code> creates a <code>for</code> loop that is intended to represent each row of the matrix. While <code>a</code> is less than <code>binding</code>, the loop executes its next statements before moving on to the next row.</p>
+                    <p><code class="desc desc-code5" data-line="3">Line 3</code> creates a <code>for</code> loop that is intended to represent each row of the matrix. While <code>a</code> is less than <code>binding</code>, the loop executes its next statements before moving on to the next row.</p>
 
-                    <p><code>Line 4</code> also creates a <code>for</code> loop that represents the characters in a particular row. While <code>b</code> is less than <code>binding</code>, a particular character is added to <code>finalString</code> before moving on to the next character.</p>
+                    <p><code class="desc desc-code5" data-line="4">Line 4</code> also creates a <code>for</code> loop that represents the characters in a particular row. While <code>b</code> is less than <code>binding</code>, a particular character is added to <code>finalString</code> before moving on to the next character.</p>
 
-                    <p><code>Line 5</code> checks whether the current row is divisible by 2 with a remainder of 0, or whether it is even or odd.</p>
+                    <p><code class="desc desc-code5" data-line="5">Line 5</code> checks whether the current row is divisible by 2 with a remainder of 0, or whether it is even or odd.</p>
 
-                    <p>If <code>Line 5</code> is <code>true</code>, <code>Line 6</code> uses an abbreviated version of the <code>if</code> conditional statement to check whether the current character is even or odd. If the <code><</code> comparison preceding the <code>?</code> character is <code>true</code>, then an empty space or <code>" "</code> is added to <code>finalString</code>. Else, a hash sign or <code>"#"</code> is added to <code>finalString</code>.</p>
+                    <p>If <code class="desc desc-code5" data-line="5">Line 5</code> is <code>true</code>, <code>Line 6</code> uses an abbreviated version of the <code>if</code> conditional statement to check whether the current character is even or odd. If the <code><</code> comparison preceding the <code>?</code> character is <code>true</code>, then an empty space or <code>" "</code> is added to <code>finalString</code>. Else, a hash sign or <code>"#"</code> is added to <code>finalString</code>.</p>
                 
                     <p>Since the all of the even chessboard rows begin with a hash sign, the condition statement results in <code>Line 8</code> are switched whenever <code>Line 5</code> is <code>false</code>. Now, if the <code><</code> comparison preceding the <code>?</code> character is <code>true</code>, an hash sign is added <code>finalString</code>. When <code>false</code>, an empty space is added.</p>
                 
-                    <p><code>Line 11</code> adds a newline character to <code>finalString</code> whenever a row is completed, causing the next row to be on a new line instead of one long continuous string.</p>
+                    <p><code class="desc desc-code5" data-line="11">Line 11</code> adds a newline character to <code>finalString</code> whenever a row is completed, causing the next row to be on a new line instead of one long continuous string.</p>
                 </div>
 
-                <div id="official-answer3" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">let size = 8;
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let size = 8;
 let board = "";
 for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
@@ -220,58 +220,60 @@ for (let y = 0; y < size; y++) {
 console.log(board); </code></pre>
                 </div>
 
-                <div id="official-answer-explanation3" class="body">
-                    <p><code>Line 1 - Line 2</code> binds the length and width of the grid to <code>size</code> and initializes <code>board</code> to an empty string.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code6" data-line="1">Line 1 - Line 2</code> binds the length and width of the grid to <code>size</code> and initializes <code>board</code> to an empty string.</p>
 
-                    <p><code>Line 3</code> creates a <code>for</code> loop that is intended to represent each row of the matrix. While <code>y</code> is less than <code>size</code>, the loop executes its next statements before moving on to the next row.</p>
+                    <p><code class="desc desc-code6" data-line="3">Line 3</code> creates a <code>for</code> loop that is intended to represent each row of the matrix. While <code>y</code> is less than <code>size</code>, the loop executes its next statements before moving on to the next row.</p>
 
-                    <p><code>Line 4</code> also creates a <code>for</code> loop that represents the characters in a particular row. While <code>x</code> is less than <code>size</code>, a particular character is added to <code>board</code> before moving on to the next character.</p>
+                    <p><code class="desc desc-code6" data-line="4">Line 4</code> also creates a <code>for</code> loop that represents the characters in a particular row. While <code>x</code> is less than <code>size</code>, a particular character is added to <code>board</code> before moving on to the next character.</p>
 
-                    <p><code>Line 5</code> uses a conditonal statement to check whether the values of <code>x</code> and <code>y</code> added together is even or odd.</p>
+                    <p><code class="desc desc-code6" data-line="5">Line 5</code> uses a conditonal statement to check whether the values of <code>x</code> and <code>y</code> added together is even or odd.</p>
 
-                    <p>If <code>Line 5</code> is true and the result is even, <code>Line 6</code> adds an empty space character to <code>board</code>.</p>
+                    <p>If <code>Line 5</code> is true and the result is even, <code class="desc desc-code6" data-line="6">Line 6</code> adds an empty space character to <code>board</code>.</p>
 
-                    <p>Else, <code>Line 8</code> adds a hash sign character when <code>x</code> and <code>y</code> added together results in an odd value.</p>
+                    <p>Else, <code class="desc desc-code6" data-line="8">Line 8</code> adds a hash sign character when <code>x</code> and <code>y</code> added together results in an odd value.</p>
 
-                    <p><code>Line 11</code> adds a newline character to <code>board</code> whenever a row is completed.</p>
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> adds a newline character to <code>board</code> whenever a row is completed.</p>
                 </div>
 
-                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
         </article>
 
-        <article id="navbar-article">
-            
-            <section id="navbar-section-3rd-Ed">
-                
+        <article class="container-navbar">
+
+            <section>
+
                 <h3>3rd Edition</h3>
 
-                <nav id="navbar-3rd-Ed">
-                <ul>
-                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
-                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
-                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
-                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
-                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
-                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
-                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
-                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
-                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
-                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
-                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
-                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
-                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
-                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
-                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
-                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
-                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
-                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
-                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
-                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
-                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
-                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
                 </nav>
 
             </section>
@@ -280,7 +282,8 @@ console.log(board); </code></pre>
 
     </main>
 
-    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap2.js"></script>
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
 
 </body>
 

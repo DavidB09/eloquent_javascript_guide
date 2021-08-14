@@ -5,44 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eloquent JavaScript practice guide for chapter exercises and examples">
-    <link rel="stylesheet" href="Eloquent_JavaScript_CSS_Chap3.css">
-    <link href="../Assets/CSS/prism.css" rel="stylesheet">
-    <title>Eloquent JavaScript - Chapter 3</title>
     <meta name="author" content="David Brunner">
     <meta name="keywords" content="JavaScript, Eloquent JavaScript, Chapter 3, Exercises">
     <meta name="description" content="Solutions and explanations for exercises in Chapter 3 of Eloquent JavaScript.">
+    <title>Eloquent JavaScript - Chapter 3</title>
+
+    <link href="../style.css" rel="stylesheet" >
+    <link href="../assets/css/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
 
-    <script src="../Assets/JavaScript/prism.js"></script>
-
     <header>
-        <h1 id="chapter3-main-header">Chapter 3, "Functions"</h1>
-        
-        <div id="navigation-links">
-            <a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Previous</a>
-            <a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Next</a>
+        <h1>Chapter 3, "Functions"</h1>
+
+        <div class="header-navigation-links">
+            <a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Previous</a>
+            <a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Next</a>
         </div>
     </header>
 
     <main>
 
-        <article id="exercise-problems">
+        <article class="container-exercise-problems">
 
-            <section id="exercise1" class="panel">
-                <div id="exercise-header" class="header"><h2>Minimum</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Minimum</h2></div>
 
-                <div id="exercise-question" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
                 
                     <p>Write a function <code>min</code> that takes two arguments and returns their minimum.</p>
                 </div>
 
-                <div id="personal-answer" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function min(num1, num2) {
+                    <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function min(num1, num2) {
     if (num1 < num2)
         return num1; 
     else  
@@ -50,34 +50,34 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation" class="body">
-                    <p><code>Line 1</code> declares <code>min</code> as a function with two parameters.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> declares <code>min</code> as a function with two parameters.</p>
 
-                    <p><code>Line 2 - Line 3</code> uses an <code>if</code> statement that checks whether <code>num1</code> is smaller than <code>num2</code>. If <code>true</code>, <code>min</code> returns <code>num1</code>.</p>
+                    <p><code class="desc desc-code1" data-line="2-3">Line 2 - Line 3</code> uses an <code>if</code> statement that checks whether <code>num1</code> is smaller than <code>num2</code>. If <code>true</code>, <code>min</code> returns <code>num1</code>.</p>
                     
                     <p>If <code>Line 2</code> is <code>false</code>, then <code>min</code> returns <code>num2</code>.</p> 
                 </div>
 
-                <div id="official-answer" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function min(a, b) {
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function min(a, b) {
     if (a < b) return a; 
     else return b; 
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author's answer uses similiar code just without indention and different parameter names.</p>
                 </div>
 
-                <div id="exercise-close" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise2" class="panel">
-                <div id="exercise-header2" class="header"><h2>Recursion</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Recursion</h2></div>
 
-                <div id="exercise-question2" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>We’ve seen that <code>%</code> (the remainder operator) can be used to test whether a number is even or odd by using <code>% 2</code> to see whether it’s divisible by two. Here’s another way to define whether a positive whole number is even or odd:</p>
@@ -91,10 +91,10 @@
                     <p>Define a recursive function <code>isEven</code> corresponding to this description. The function should accept a single parameter (a positive, whole number) and return a Boolean.</p>
                 </div>
 
-                <div id="personal-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function isEven(number) {
+                    <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function isEven(number) {
     if (number < 0) 
         return isEven(number + 2); 
     else if (number == 0)
@@ -106,22 +106,22 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation2" class="body">
-                    <p><code>Line 1</code> declares <code>isEven</code> as a function with one parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> declares <code>isEven</code> as a function with one parameter.</p>
                 
-                    <p><code>Line 2 - 3</code> checks if <code>number</code> is negative. If <code>true</code>, then <code>isEven</code> is rerun with a new parameter equal to <code>number + 2</code> since the number is negative and will need to increase to equal 1 or 0.</p>
+                    <p><code class="desc desc-code3" data-line="2-3">Line 2 - 3</code> checks if <code>number</code> is negative. If <code>true</code>, then <code>isEven</code> is rerun with a new parameter equal to <code>number + 2</code> since the number is negative and will need to increase to equal 1 or 0.</p>
                     
-                    <p><code>Line 4 - 5</code> checks if <code>number</code> is equal to 0. If <code>true</code>, then <code>number</code> is even and the Boolean value <code>true</code> is returned.</p>
+                    <p><code class="desc desc-code3" data-line="4-5">Line 4 - 5</code> checks if <code>number</code> is equal to 0. If <code>true</code>, then <code>number</code> is even and the Boolean value <code>true</code> is returned.</p>
                     
-                    <p><code>Line 6 - 7</code> checks if <code>number</code> is equal to 1. If <code>true</code>, then <code>number</code> is odd and the the Boolean value <code>false</code> is returned.</p>
+                    <p><code class="desc desc-code3" data-line="6-7">Line 6 - 7</code> checks if <code>number</code> is equal to 1. If <code>true</code>, then <code>number</code> is odd and the the Boolean value <code>false</code> is returned.</p>
                 
-                    <p>If all other statements are <code>false</code>, then <code>Line 8 - 9</code> recalls <code>isEven</code> with a new parameter equal to <code>number - 2</code> since the number will need to equal either 1 or 0.</p>
+                    <p>If all other statements are <code>false</code>, then <code class="desc desc-code3" data-line="8-9">Line 8 - 9</code> recalls <code>isEven</code> with a new parameter equal to <code>number - 2</code> since the number will need to equal either 1 or 0.</p>
                 </div>
 
-                <div id="official-answer2" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function isEven(n) {
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function isEven(n) {
     if (n == 0) return true; 
     else if (n == 1) return false; 
     else if (n < 0) return isEven(-n); 
@@ -129,19 +129,19 @@
 }                    </code></pre>
                 </div>
 
-                <div id="official-answer-explanation2" class="body">
-                    <p>The author's answer uses similar code with <code>Line 1</code> correlating with <code>Line 1</code>, <code>Line 2</code> with <code>Line 4 - 5</code>, <code>Line 3</code> with <code>Line 6 - 7</code>, and <code>Line 5</code> with <code>Line 8 - 9</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p>The author's answer uses similar code with <code class="desc desc-code4" data-line="1">Line 1</code> correlating with <code>Line 1</code>, <code class="desc desc-code4" data-line="2">Line 2</code> with <code>Line 4 - 5</code>, <code class="desc desc-code4" data-line="3">Line 3</code> with <code>Line 6 - 7</code>, and <code class="desc desc-code4" data-line="5">Line 5</code> with <code>Line 8 - 9</code>.</p>
 
-                    <p><code>Line 4</code> uses a different approach with negative numbers. Instead of adding 2 to the number, the new parameter for <code>isEven</code> is <code>n</code> reversed and made positive.</p>
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> uses a different approach with negative numbers. Instead of adding 2 to the number, the new parameter for <code>isEven</code> is <code>n</code> reversed and made positive.</p>
                 </div>
 
-                <div id="exercise-close2" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
-            <section id="exercise3" class="panel">
-                <div id="exercise-header3" class="header"><h2>Bean Counting</h2></div>
+            <section class="exercise-panel">
+                <div class="exercise-header"><h2>Bean Counting</h2></div>
                 
-                <div id="exercise-question3" class="body">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <h4>Part I:</h4>
@@ -151,11 +151,11 @@
                     <p>Next, write a function called <code>countChar</code> that behaves like <code>countBs</code>, except it takes a second argument that indicates the character that is to be counted (rather than counting only uppercase “B” characters).</p>
                 </div>
 
-                <div id="personal-answer3-pt1" class="body">
+                <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
                     <h4>Part I:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countBs(string) {
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function countBs(string) {
     let count = 0; 
     for (let i = 0; i < string.length; i++) {
         if (string[i] == "B") count++; 
@@ -164,21 +164,21 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3-pt1" class="body">
-                    <p><code>Line 1</code> creates the function <code>countBs</code> with <code>string</code> as its only parameter.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> creates the function <code>countBs</code> with <code>string</code> as its only parameter.</p>
 
-                    <p><code>Line 2</code> initializes <code>count</code> to 0.</p>
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> initializes <code>count</code> to 0.</p>
 
-                    <p><code>Line 3</code> creates a <code>for</code> loop where <code>i</code> represents one specific character in <code>string</code>. While <code>i</code> is less than <code>string</code>'s length, it moves on to the next character.</p>
+                    <p><code class="desc desc-code5" data-line="3">Line 3</code> creates a <code>for</code> loop where <code>i</code> represents one specific character in <code>string</code>. While <code>i</code> is less than <code>string</code>'s length, it moves on to the next character.</p>
 
-                    <p><code>Line 4</code> checks whether the current charater in <code>string</code> is equal to uppercase <code>"B"</code>. If so, then <code>count</code> is increased by one.</p>
+                    <p><code class="desc desc-code5" data-line="4">Line 4</code> checks whether the current charater in <code>string</code> is equal to uppercase <code>"B"</code>. If so, then <code>count</code> is increased by one.</p>
 
-                    <p><code>Line 5</code> returns the final <code>count</code> value.</p>
+                    <p><code class="desc desc-code5" data-line="5">Line 5</code> returns the final <code>count</code> value.</p>
                 </div>
 
-                <div id="personal-answer3-pt2" class="body">
+                <div class="exercise-body">
                     <h4>Part II:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countChar(string, character) {
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function countChar(string, character) {
     let count = 0; 
     for (let i = 0; i < string.length; i++) {
         if (string[i] == character) count++; 
@@ -187,15 +187,15 @@
 }                   </code></pre>
                 </div>
 
-                <div id="personal-answer-explanation3-pt2" class="body">
+                <div class="exercise-body exercise-desc">
                     <p><code>countChar</code> uses the same code just with an extra parameter called <code>character</code> to refer to the particular letter being referenced in the comparison found within the <code>for</code> loop.</p>
                 </div>
 
-                <div id="official-answer3-pt2" class="body">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
                     <h4>Part II:</h4>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countChar(string, ch) {
+                    <pre id="code7" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function countChar(string, ch) {
     let counted = 0;
     for (let i = 0; i < string.length; i++) {
         if (string[i] == ch) {
@@ -206,67 +206,71 @@
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation3-pt2" class="body">
+                <div class="exercise-body exercise-desc">
                     <p>The author uses the same code just with different variable names and expressions.</p>
                 </div>
 
-                <div id="personal-answer-explanation3-pt1" class="body">
+                <div class="exercise-body">
                     <h4>Part I:</h4>
 
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">function countBs(string) {
+                    <pre id="code8" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function countBs(string) {
     return countChar(string, "B");
 }                   </code></pre>
                 </div>
 
-                <div id="official-answer-explanation3-pt1" class="body">
-                    <p>The author just uses <code>countBs</code> to call the <code>countChar</code> function with the <code>ch</code> parameter set to the character <code>"B"</code> in <code>Line 2</code>.</p>
+                <div class="exercise-body exercise-desc">
+                    <p>The author just uses <code>countBs</code> to call the <code>countChar</code> function with the <code>ch</code> parameter set to the character <code>"B"</code> in <code class="desc desc-code8" data-line="2">Line 2</code>.</p>
                 </div>
 
-                <div id="exercise-close3" class="body close"><p>⇮</p></div>
+                <button class="exercise-body exercise-close">⇮</button>
             </section>
 
         </article>
 
-        <article id="navbar-article">
+        <article class="container-navbar">
 
-            <section id="navbar-section-3rd-Ed">
-                
+            <section>
+
                 <h3>3rd Edition</h3>
 
-                <nav id="navbar-3rd-Ed">
-                <ul>
-                    <li><a href="../Intro/Eloquent_JavaScript_HTML_Intro.html" alt="Intro Link" title="Intro">Intro</a></li>
-                    <li><a href="../Chap1 - Values, Types, and Operators/Eloquent_JavaScript_HTML_Chap1.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
-                    <li><a href="../Chap2 - Program Structure/Eloquent_JavaScript_HTML_Chap2.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
-                    <li><a href="../Chap3 - Functions/Eloquent_JavaScript_HTML_Chap3.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
-                    <li><a href="../Chap4 - Data Structures/Eloquent_JavaScript_HTML_Chap4.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
-                    <li><a href="../Chap5 - Higher-Order Functions/Eloquent_JavaScript_HTML_Chap5.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
-                    <li><a href="../Chap6 - The Secret Life of Objects/Eloquent_JavaScript_HTML_Chap6.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
-                    <li><a href="../Chap7 - A Robot Project/Eloquent_JavaScript_HTML_Chap7.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
-                    <li><a href="../Chap8 - Bugs and Errors/Eloquent_JavaScript_HMTL_Chap8.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
-                    <li><a href="../Chap9 - Regular Expressions/Eloquent_JavaScript_HTML_Chap9.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
-                    <li><a href="../Chap10 - Modules/Eloquent_JavaScript_HTML_Chap10.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
-                    <li><a href="../Chap11 - Asynchronous Programming/Eloquent_JavaScript_HTML_Chap11.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
-                    <li><a href="../Chap12 - A Programming Language/Eloquent_JavaScript_HTML_Chap12.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
-                    <li><a href="../Chap13 - Javascript and the Browser/Eloquent_Javascript_HTML_Chap13.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
-                    <li><a href="../Chap14 - The Document Object Model/Eloquent_JavaScript_HTML_Chap14.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
-                    <li><a href="../Chap15 - Handling Events/Eloquent_JavaScript_HTML_Chap15.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
-                    <li><a href="../Chap16 - A Platform Game/Eloquent_JavaScript_HTML_Chap16.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
-                    <li><a href="../Chap17 - Drawing on Canvas/Eloquent_JavaScript_HTML_Chap17.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
-                    <li><a href="../Chap18 - HTTP and Forms/Eloquent_JavaScript_HTML_Chap18.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
-                    <li><a href="../Chap19 - A Pixel Art Editor/Eloquent_JavaScript_HTML_Chap19.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
-                    <li><a href="../Chap20 - Node.js/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
-                    <li><a href="../Chap21 - Skill-Sharing Website/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
+                        <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
+                        <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
+                        <li><a href="../chap4/index.html" alt="Chapter 4 Link" title="Chapter 4">Chapter 4</a></li>
+                        <li><a href="../chap5/index.html" alt="Chapter 5 Link" title="Chapter 5">Chapter 5</a></li>
+                        <li><a href="../chap6/index.html" alt="Chapter 6 Link" title="Chapter 6">Chapter 6</a></li>
+                        <li><a href="../chap7/index.html" alt="Chapter 7 Link" title="Chapter 7">Chapter 7</a></li>
+                        <li><a href="../chap8/index.html" alt="Chapter 8 Link" title="Chapter 8">Chapter 8</a></li>
+                        <li><a href="../chap9/index.html" alt="Chapter 9 Link" title="Chapter 9">Chapter 9</a></li>
+                        <li><a href="../chap10/index.html" alt="Chapter 10 Link" title="Chapter 10">Chapter 10</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="../chap11/index.html" alt="Chapter 11 Link" title="Chapter 11">Chapter 11</a></li>
+                        <li><a href="../chap12/index.html" alt="Chapter 12 Link" title="Chapter 12">Chapter 12</a></li>
+                        <li><a href="../chap13/index.html" alt="Chapter 13 Link" title="Chapter 13">Chapter 13 (Part 2: Browser)</a></li>
+                        <li><a href="../chap14/index.html" alt="Chapter 14 Link" title="Chapter 14">Chapter 14</a></li>
+                        <li><a href="../chap15/index.html" alt="Chapter 15 Link" title="Chapter 15">Chapter 15</a></li>
+                        <li><a href="../chap16/index.html" alt="Chapter 16 Link" title="Chapter 16">Chapter 16</a></li>
+                        <li><a href="../chap17/index.html" alt="Chapter 17 Link" title="Chapter 17">Chapter 17</a></li>
+                        <li><a href="../chap18/index.html" alt="Chapter 18 Link" title="Chapter 18">Chapter 18</a></li>
+                        <li><a href="../chap19/index.html" alt="Chapter 19 Link" title="Chapter 19">Chapter 19</a></li>
+                        <li><a href="../chap20/index.html" alt="Chapter 20 Link" title="Chapter 20">Chapter 20 (Part 3: Node)</a></li>
+                        <li><a href="../chap21/index.html" alt="Chapter 21 Link" title="Chapter 21">Chapter 21</a></li>
+                    </ul>
                 </nav>
 
             </section>
 
         </article>
 
+
     </main>
     
-    <script type="text/javascript" src="Eloquent_JavaScript_JS_Chap3.js"></script>
+    <script src="../script.js"></script>
+    <script src="../assets/js/prism.js"></script>
 
 </body>
 

@@ -70,6 +70,10 @@ code {
     font-size: 3.5rem; 
 }
 
+.header-navigation-links.first-chapter {
+    justify-content: flex-end;
+}
+
 /* Chapter Text */
 .container-text {
     display: flex; 
