@@ -232,7 +232,7 @@ console.log(text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2'));</code></pre>
 
                     <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">// Fill in this regular expression.
 let number = /^(\+|\-)?(\.\d+|\d+\.)?(\d*)(e(\+|\-)?\d+)?$/i;
-                    
+
 // Tests:
 for (let str of ["1", "-1", "+15", "1.55", ".5", "5.", "1.3e2", "1E-4", "1e+12"]) {
     if (!number.test(str)) {
@@ -274,7 +274,7 @@ for (let str of ["1a", "+-1", "1.2.3", "1+1", "1e4.5", ".5.", "1f5", "."]) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code6" data-line="1">Line 2</code> creates the a Regular Expression. It begins by checking the start of the string, matching the addition, subtraction, or no character zero or one time. Then, a capturing group is created that provides the choice of at least one digit followed by a period and zero or more digits, matched zero or one time, or just a period and zero or more digits. The second capturing group matches a character within the list of either "e" or "E", followed by one or zero occurrences of either a plus or minus symbol, and ends with at least one digit, all matched zero or one time.</p>
+                    <p><code class="desc desc-code6" data-line="2">Line 2</code> creates the a Regular Expression. It begins by checking the start of the string, matching the addition, subtraction, or no character zero or one time. Then, a capturing group is created that provides the choice of at least one digit followed by a period and zero or more digits, matched zero or one time, or just a period and zero or more digits. The second capturing group matches a character within the list of either "e" or "E", followed by one or zero occurrences of either a plus or minus symbol, and ends with at least one digit, all matched zero or one time.</p>
 
                     <p><code class="desc desc-code6" data-line="4-14">Line 4 - 14</code> is explained in my personal answer.</p>
                 </div>

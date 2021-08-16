@@ -35,7 +35,7 @@
 
                 <div class="exercise-body">
                     <h3>Question</h3>
-                
+
                     <p>Write a function <code>min</code> that takes two arguments and returns their minimum.</p>
                 </div>
 
@@ -54,8 +54,8 @@
                     <p><code class="desc desc-code1" data-line="1">Line 1</code> declares <code>min</code> as a function with two parameters.</p>
 
                     <p><code class="desc desc-code1" data-line="2-3">Line 2 - Line 3</code> uses an <code>if</code> statement that checks whether <code>num1</code> is smaller than <code>num2</code>. If <code>true</code>, <code>min</code> returns <code>num1</code>.</p>
-                    
-                    <p>If <code>Line 2</code> is <code>false</code>, then <code>min</code> returns <code>num2</code>.</p> 
+
+                    <p>If <code>Line 2</code> is <code>false</code>, then <code class="desc desc-code1" data-line="4-5">Line 4 - 5</code> returns <code>num2</code>.</p> 
                 </div>
 
                 <div class="exercise-body">
@@ -81,13 +81,13 @@
                     <h3>Question</h3>
 
                     <p>We’ve seen that <code>%</code> (the remainder operator) can be used to test whether a number is even or odd by using <code>% 2</code> to see whether it’s divisible by two. Here’s another way to define whether a positive whole number is even or odd:</p>
-                        
+
                     <p>- Zero is even.</p>
-                        
+
                     <p>- One is odd.</p>
-                        
+
                     <p>- For any other number N, its evenness is the same as N - 2.</p>
-                        
+
                     <p>Define a recursive function <code>isEven</code> corresponding to this description. The function should accept a single parameter (a positive, whole number) and return a Boolean.</p>
                 </div>
 
@@ -108,13 +108,13 @@
 
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code3" data-line="1">Line 1</code> declares <code>isEven</code> as a function with one parameter.</p>
-                
+
                     <p><code class="desc desc-code3" data-line="2-3">Line 2 - 3</code> checks if <code>number</code> is negative. If <code>true</code>, then <code>isEven</code> is rerun with a new parameter equal to <code>number + 2</code> since the number is negative and will need to increase to equal 1 or 0.</p>
-                    
+
                     <p><code class="desc desc-code3" data-line="4-5">Line 4 - 5</code> checks if <code>number</code> is equal to 0. If <code>true</code>, then <code>number</code> is even and the Boolean value <code>true</code> is returned.</p>
-                    
+
                     <p><code class="desc desc-code3" data-line="6-7">Line 6 - 7</code> checks if <code>number</code> is equal to 1. If <code>true</code>, then <code>number</code> is odd and the the Boolean value <code>false</code> is returned.</p>
-                
+
                     <p>If all other statements are <code>false</code>, then <code class="desc desc-code3" data-line="8-9">Line 8 - 9</code> recalls <code>isEven</code> with a new parameter equal to <code>number - 2</code> since the number will need to equal either 1 or 0.</p>
                 </div>
 
@@ -173,7 +173,7 @@
 
                     <p><code class="desc desc-code5" data-line="4">Line 4</code> checks whether the current charater in <code>string</code> is equal to uppercase <code>"B"</code>. If so, then <code>count</code> is increased by one.</p>
 
-                    <p><code class="desc desc-code5" data-line="5">Line 5</code> returns the final <code>count</code> value.</p>
+                    <p><code class="desc desc-code5" data-line="6">Line 6</code> returns the final <code>count</code> value.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -268,7 +268,7 @@
 
 
     </main>
-    
+
     <script src="../script.js"></script>
     <script src="../assets/js/prism.js"></script>
 

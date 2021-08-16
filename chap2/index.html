@@ -35,7 +35,7 @@
 
                 <div class="exercise-body">
                     <h3>Question</h3>
-                
+
                     <p>Write a loop that makes seven calls to <code>console.log</code> to output the following triangle:</p>
 
                     <pre class="language-markup"><code class="language-markup">#    
@@ -60,8 +60,8 @@ for (let i = 0; i < 7; i++) {
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code1" data-line="1">Line 1</code> binds <code>answer</code> to the characters within the first row of the intended answer.</p>
 
-                    <p><code class="desc desc-code1" data-line="2">Line 2</code> introduces <code>for</code> loop that checks if <code>i</code> is less than the number of rows in the intended answer. If the <code><</code> comparison is <code>true</code>, then the following statements are executed and 1 is added to <code>i</code> as the loop continues to its next iteration.</p> 
-                
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> uses a <code>for</code> loop to check if <code>i</code> is less than the number of rows in the intended answer. If the <code><</code> comparison is <code>true</code>, then the following statements are executed and 1 is added to <code>i</code> as the loop continues to its next iteration.</p> 
+
                     <p><code class="desc desc-code1" data-line="3">Line 3</code> prints out the current <code>answer</code> to the console.</p>
 
                     <p><code class="desc desc-code1" data-line="4">Line 4</code> appends an extra hash sign character to the answer.</p>
@@ -75,8 +75,6 @@ console.log(line);  </code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p>The author's answer also uses the <code>for</code> loop but more concisely.</p>
-                    
                     <p><code class="desc desc-code2" data-line="1">Line 1</code> binds <code>line</code> to the character in the first row of the answer. While the length of <code>line</code> is less than the  number of hash marks in the final row of the intended answer, a hash sign character is added to the string and the loop continues to its next iteration.</p>
 
                     <p><code class="desc desc-code2" data-line="2">Line 2</code> prints out the current <code>line</code> to the console.</p>
@@ -114,11 +112,11 @@ console.log(line);  </code></pre>
 
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code3" data-line="1">Line 1</code> creates a <code>for</code> loop that binds <code>i</code> to 1 and checks if its value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through the following statements before moving on to the next iteration.</p>
-                
+
                     <p><code class="desc desc-code3" data-line="2-3">Line 2 - Line 3</code> checks whether <code>i</code> is divisible by both 3 and 5 with the remainder of 0 by using a <code>if</code> conditional statement. If <code>true</code>, then <code>FizzBuzz</code> is printed to the console.</p>
-                    
+
                     <p>Else if <code>Line 2</code> is <code>false</code>, then <code class="desc desc-code3" data-line="4-5">Line 4 - Line 5</code> checks if <code>i</code> is divisible by 3 with the remainder of 0. If <code>true</code>, then <code>Fizz</code> is printed to the console.</p>
-                
+
                     <p>Else if <code>Line 2 and Line 4</code> are <code>false</code>, then <code class="desc desc-code3" data-line="6-7">Line 6 - Line 7</code> checks if <code>i</code> is divisible by 5 with the remainder of 0. If <code>true</code>, then <code>Buzz</code> is printed to the console.</p>
 
                     <p>If all of the previous conditions were <code>false</code>, then <code class="desc desc-code3" data-line="9">Line 9</code> prints out <code>i</code>, or the regular number.</p>
@@ -137,13 +135,13 @@ console.log(line);  </code></pre>
 
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code4" data-line="1">Line 1</code> creates a <code>for</code> loop that binds <code>n</code> to 1 and checks if it's value is less than or equal to 100. While the <code><</code> comparison is <code>true</code>, the loop continues through its next statements before moving on to the next interation.</p>
-                
+
                     <p><code class="desc desc-code4" data-line="2">Line 2</code> binds <code>output</code> to an empty string.</p>
 
-                    <p><code class="desc desc-code4" data-line="3">Line 3</code> uses a conditional statement to check whether <code>n</code> is divisible by 3 with a remainder of 0. If <code>true</code>, then the string <code>Fizz</code> is added to <code>output</code>.</p>
-                
-                    <p><code class="desc desc-code4" data-line="4">Line 4</code> uses a conditional statement to check whether <code>n</code> is divisible by 5 with a remainder of 0. If <code>true</code>, then the string <code>Buzz</code> is added to <code>output</code>.</p>
-                
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> uses a <code>if</code> statement to check whether <code>n</code> is divisible by 3 with a remainder of 0. If <code>true</code>, then the string <code>Fizz</code> is added to <code>output</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> uses a <code>if</code> statement to check whether <code>n</code> is divisible by 5 with a remainder of 0. If <code>true</code>, then the string <code>Buzz</code> is added to <code>output</code>.</p>
+
                     <p><code class="desc desc-code4" data-line="5">Line 5</code> uses an "or" operator to check whether <code>output</code> is an empty string. If <code>output</code> has no value, then <code>n</code> is printed to the console. Else, <code>output</code> is printed to the console.</p>
                 </div>
 
@@ -152,7 +150,7 @@ console.log(line);  </code></pre>
 
             <section class="exercise-panel">
                 <div class="exercise-header"><h2>Chessboard</h2></div>
-                
+
                 <div class="exercise-body">
                     <h3>Question</h3>
 
@@ -187,7 +185,7 @@ console.log(finalString);</code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code5" data-line="1">Line 1 - Line 2</code> binds the length and width of the grid to <code>binding</code> and initializes <code>finalString</code> to an empty string.</p>
+                    <p><code class="desc desc-code5" data-line="1-2">Line 1 - Line 2</code> binds the length and width of the grid to <code>binding</code> and initializes <code>finalString</code> to an empty string.</p>
 
                     <p><code class="desc desc-code5" data-line="3">Line 3</code> creates a <code>for</code> loop that is intended to represent each row of the matrix. While <code>a</code> is less than <code>binding</code>, the loop executes its next statements before moving on to the next row.</p>
 
@@ -195,11 +193,13 @@ console.log(finalString);</code></pre>
 
                     <p><code class="desc desc-code5" data-line="5">Line 5</code> checks whether the current row is divisible by 2 with a remainder of 0, or whether it is even or odd.</p>
 
-                    <p>If <code class="desc desc-code5" data-line="5">Line 5</code> is <code>true</code>, <code>Line 6</code> uses an abbreviated version of the <code>if</code> conditional statement to check whether the current character is even or odd. If the <code><</code> comparison preceding the <code>?</code> character is <code>true</code>, then an empty space or <code>" "</code> is added to <code>finalString</code>. Else, a hash sign or <code>"#"</code> is added to <code>finalString</code>.</p>
-                
-                    <p>Since the all of the even chessboard rows begin with a hash sign, the condition statement results in <code>Line 8</code> are switched whenever <code>Line 5</code> is <code>false</code>. Now, if the <code><</code> comparison preceding the <code>?</code> character is <code>true</code>, an hash sign is added <code>finalString</code>. When <code>false</code>, an empty space is added.</p>
-                
+                    <p>If <code>Line 5</code> is <code>true</code>, <code class="desc desc-code5" data-line="6">Line 6</code> uses an abbreviated version of the <code>if</code> conditional statement to check whether the current character is even or odd. If the remainder is equal to 0, then an empty space or <code>" "</code> is added to <code>finalString</code>. Else, a hash sign or <code>"#"</code> is added to <code>finalString</code>.</p>
+
+                    <p>Since the all of the even chessboard rows begin with a hash sign, the condition statement results in <code class="desc desc-code5" data-line="8">Line 8</code> are switched whenever <code>Line 5</code> is <code>false</code>. Now, if the remainder is zero, an hash sign is added <code>finalString</code>. When <code>false</code>, an empty space is added.</p>
+
                     <p><code class="desc desc-code5" data-line="11">Line 11</code> adds a newline character to <code>finalString</code> whenever a row is completed, causing the next row to be on a new line instead of one long continuous string.</p>
+
+                    <p><code class="desc desc-code5" data-line="13">Line 13</code> prints the resulting grid to the <code>console</code>.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -221,7 +221,7 @@ console.log(board); </code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code6" data-line="1">Line 1 - Line 2</code> binds the length and width of the grid to <code>size</code> and initializes <code>board</code> to an empty string.</p>
+                    <p><code class="desc desc-code6" data-line="1-2">Line 1 - Line 2</code> binds the length and width of the grid to <code>size</code> and initializes <code>board</code> to an empty string.</p>
 
                     <p><code class="desc desc-code6" data-line="3">Line 3</code> creates a <code>for</code> loop that is intended to represent each row of the matrix. While <code>y</code> is less than <code>size</code>, the loop executes its next statements before moving on to the next row.</p>
 
@@ -234,6 +234,8 @@ console.log(board); </code></pre>
                     <p>Else, <code class="desc desc-code6" data-line="8">Line 8</code> adds a hash sign character when <code>x</code> and <code>y</code> added together results in an odd value.</p>
 
                     <p><code class="desc desc-code6" data-line="11">Line 11</code> adds a newline character to <code>board</code> whenever a row is completed.</p>
+
+                    <p><code class="desc desc-code6" data-line="13">Line 13</code> prints the resulting grid to the <code>console</code>.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>

@@ -35,7 +35,7 @@
 
                 <div class="exercise-body">
                     <h3>Question</h3>
-                
+
                     <p>Use the <code>reduce</code> method in combination with the <code>concat</code> method to “flatten” an array of arrays into a single array that has all the elements of the original arrays.</p>                        
                 </div>
 
@@ -84,11 +84,11 @@
 
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code3" data-line="1">Line 1</code> declares <code>loop</code> as a function with <code>value</code>, <code>test</code>, <code>update</code>, and <code>body</code> as the parameters.</p>
-                
+
                     <p><code class="desc desc-code3" data-line="2">Line 2</code> checks whether the <code>test</code> function returns <code>true</code> with <code>value</code> as the input.</p>
-                    
+
                     <p>While <code>true</code>, <code class="desc desc-code3" data-line="3">Line 3</code> calls the <code>body</code> function with <code>value</code> as the input.</p>
-                    
+
                     <p><code class="desc desc-code3" data-line="4">Line 4</code> updates the current value of <code>value</code> by setting it to the output of the <code>update</code> function.</p>
                 </div>
 
@@ -115,7 +115,7 @@
 
             <section class="exercise-panel">
                 <div class="exercise-header"><h2>Everything</h2></div>
-                
+
                 <div class="exercise-body">
                     <h3>Question</h3>
 
@@ -220,15 +220,15 @@
 
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code9" data-line="1">Line 1</code> declares <code>dominantDirection</code> as a function with one parameter.</p>
-                
+
                     <p><code class="desc desc-code9" data-line="2">Line 2</code> assigns <code>scripts</code> to the return value of <code>countBy</code> with the first parameter being the input and <code>char</code> being the <code>groupName</code> or the testing method.</p>
-                    
+
                     <p><code class="desc desc-code9" data-line="3">Line 3</code> calls <code>characterScript</code> with the exact Unicode character of the first character in <code>char</code>, moving on throughout each letter in <code>text</code>. The result is an object containing the properties of the particular script.</p>
-                    
+
                     <p><code class="desc desc-code9" data-line="4">Line 4</code> uses an <code>if</code> statement to check whether the Unicode character exists, if <code>true</code> then the direction is returned as an input to the <code>countBy</code> function.</p>
-                
+
                     <p><code class="desc desc-code9" data-line="5">Line 5</code> filters the through each object in the result of the <code>countBy</code> function, one large object containing several others with the <code>name</code> property set to the name of a writing direction and <code>count</code> referencing the number of characters in the string contained that particular writing direction. The final <code>scripts</code> object will not have any <code>undefined</code> values.</p>
-                
+
                     <p><code class="desc desc-code9" data-line="7">Line 7</code> returns the <code>name</code> property of the object with the largest <code>count</code>, aka the dominant writing direction.</p>
                 </div>
 
