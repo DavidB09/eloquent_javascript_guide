@@ -128,7 +128,7 @@ topScope.element = (array, i) => array[i];
             <section class="exercise-panel">
                 <div class="exercise-header"><h2>Comments</h2></div>
 
-                <div class="exercise-body exercise-desc">
+                <div class="exercise-body">
                     <h3>Question</h3>
 
                     <p>It would be nice if we could write comments in Egg. For example, whenever we find a hash sign (#), we could treat the rest of the line as a comment and ignore it, similar to <code>//</code> in JavaScript.</p>
@@ -140,25 +140,34 @@ topScope.element = (array, i) => array[i];
                     <h3>Personal Answer</h3>
 
                     <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function skipSpace(string) {
-    let newString = string.replace(/#[ ]?\S+(?=\n)/g, "");
-    let first = newString.search(/\S/);
-    if (first == -1) return "";
-    return newString.slice(first);
+    let newString = string.replace(/#.*(?=\n)/g, "");
+    return newString.trim();
 }                   </code></pre>
                 </div>
 
-                <div class="exercise-body">
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> creates an function called <code>skipSpace</code> that receives an string to parse.</p>
 
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> parses <code>string</code> by replacing all the instances of a regex that checks for the hash sign followed by zero or more occurrances of any character with a positive lookahead for a newline.</p>
+
+                    <p><code class="desc desc-code3" data-line="3">Line 3</code> returns <code>newString</code> without any whitespace.</p>
                 </div>
 
                 <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                    <pre id="code4" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function skipSpace(string) {
+    let skippable = string.match(/^(\s|#.*)*/);
+    return string.slice(skippable[0].length);
+}                   </code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> creates an function called <code>skipSpace</code> that receives an string to parse.</p>
+
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> parses <code>string</code> by searching for the instances of a regex that checks for a line that begins with zero or more occurrances of any whitespace character or the hash sign followed by zero or more ocurrances of any character.</p>
+
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> returns <code>string</code> with the entire section of the string matched by <code>Line 2</code> removed.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -187,7 +196,7 @@ topScope.element = (array, i) => array[i];
 
     do {
         if (Object.prototype.hasOwnProperty.call(parentScope, args[0].name)) {
-            let value =  evaluate(args[1], scope); 
+            let value = evaluate(args[1], scope); 
             parentScope[args[0].name] = value; 
             return value; 
         }
