@@ -47,11 +47,11 @@
                     <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">async function runGame(plans, Display) {
     for (let level = 0, lives = 3; level < plans.length;) {
         console.log(`Level: ${level + 1}, Lives: ${lives}`);
-        
-        let status = await runLevel(new Level(plans[level]),Display);
+
+        let status = await runLevel(new Level(plans[level]), Display);
         if (status == "won") level++;
         else if (status == "lost") lives--;
-        
+
         if (lives == 0) {
             console.log("Game Over!");
             level = 0, lives = 3;
@@ -59,23 +59,77 @@
     }
     console.log("You've won!");
 }
-runGame(GAME_LEVELS, DOMDisplay);
-                    </code></pre>
+runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the asynchronous function <code>runGame</code> with the parameter <code>plans</code> for the different game levels and <code>Display</code> representing the current game screen.</p>
 
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> uses a <code>for</code> loop that initializes <code>level</code> to 0 and <code>lives</code> to 3 while breaking out of the loop when <code>level</code> is equal to the length of <code>plans</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="3">Line 3</code> consoles to the screen the current <code>level</code> value increased by one and the <code>lives</code> value.</p>
+
+                    <p><code class="desc desc-code1" data-line="5">Line 5</code> assigns a new variable <code>status</code> to the result of calling the asynchronous <code>runLevel</code> function with the current game level and game display.</p>
+
+                    <p><code class="desc desc-code1" data-line="6">Line 6</code> checks whether <code>status</code> returned <code>"won"</code> and increases <code>level</code> by one to move to the next game level if true.</p>
+
+                    <p>Else, <code class="desc desc-code1" data-line="7">Line 7</code> checks whether <code>status</code> returned <code>"lost"</code> and decreases <code>lives</code> by one, staying on the current game level.</p>
+
+                    <p><code class="desc desc-code1" data-line="9">Line 9</code> checks whether <code>lives</code> is equal to 0.</p>
+
+                    <p>If true, <code class="desc desc-code1" data-line="10">Line 10</code> warns the game player that they lost.</p>
+
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> resets the <code>for</code> loop to begin at the first game level with 3 game lives.</p>
+
+                    <p><code class="desc desc-code1" data-line="14">Line 14</code> tells the game player that they won since the <code>for</code> loop, and thus all the game levels, were completed.</p>
+
+                    <p><code class="desc desc-code1" data-line="16">Line 16</code> calls the <code>runGame</code> function with the <code>GAME_LEVELS</code> and <code>DOMDisplay</code> variables.</p>
                 </div>
 
                 <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                    <pre id="code2" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">async function runGame(plans, Display) {
+    let lives = 3;
+    for (let level = 0; level < plans.length && lives > 0;) {
+        console.log(`Level ${level + 1}, lives: ${lives}`);
+
+        let status = await runLevel(new Level(plans[level]), Display);
+        if (status == "won") level++;
+        else lives--;
+    }
+
+    if (lives > 0) {
+        console.log("You've won!");
+    } else {
+        console.log("Game over");
+    }
+}
+runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    <p>The author used the same logic just expressed in more concise code.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> defines the asynchronous function <code>runGame</code> with the parameter <code>plans</code> for the different game levels and <code>Display</code> representing the current game screen.</p>
+
+                    <p><code class="desc desc-code2" data-line="2">Line 2</code> initializes <code>lives</code> to 3.</p>
+
+                    <p><code class="desc desc-code2" data-line="3">Line 3</code> uses a <code>for</code> loop that initializes <code>level</code> to 0 ands breaks out of the loop whenever <code>level</code> is equal to the length of <code>plans</code> or <code>lives</code> is equal to 0.</p>
+
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> consoles to the screen the current <code>level</code> value increased by one and the <code>lives</code> value.</p>
+
+                    <p><code class="desc desc-code2" data-line="6">Line 6</code> assigns a new variable <code>status</code> to the result of calling the asynchronous <code>runLevel</code> function with the current game level and game display.</p>
+
+                    <p><code class="desc desc-code2" data-line="7">Line 7</code> checks whether <code>status</code> returned <code>"won"</code> and increases <code>level</code> by one to move to the next game level if true.</p>
+
+                    <p>Else, <code class="desc desc-code2" data-line="8">Line 8</code> decreases <code>lives</code> by one, staying on the current game level.</p>
+
+                    <p><code class="desc desc-code2" data-line="11">Line 11</code> checks whether <code>lives</code> is greater than 0.</p>
+
+                    <p>If true, <code class="desc desc-code2" data-line="12">Line 12</code> tells the game player that they won since the <code>for</code> loop, and thus all the game levels, were completed without losing more than 3 lives.</p>
+
+                    <p>Else, <code class="desc desc-code2" data-line="14">Line 14</code> warns the game player that they lost.</p>
+
+                    <p><code class="desc desc-code2" data-line="17">Line 17</code> calls the <code>runGame</code> function with the <code>GAME_LEVELS</code> and <code>DOMDisplay</code> variables.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -109,11 +163,11 @@ runGame(GAME_LEVELS, DOMDisplay);
         window.addEventListener("keydown", (data) => {
             if (data.key == "Escape") {
                 isPaused = !isPaused;
-                runGame();
+                run();
             }
         });
 
-        function runGame() {
+        function run() {
             runAnimation(time => {
                 state = state.update(time, arrowKeys)
                 display.syncState(state);
@@ -134,7 +188,7 @@ runGame(GAME_LEVELS, DOMDisplay);
             });
         }; 
 
-        runGame();
+        run();
     });
 }
 
@@ -150,7 +204,7 @@ function trackKeys(keys) {
     down.register = () => {
         window.addEventListener("keydown", track);
         window.addEventListener("keyup", track);
-    }
+    }; 
 
     down.unregister = () => {
         window.removeEventListener("keydown", track);
@@ -162,12 +216,89 @@ function trackKeys(keys) {
 
 const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp"]);
 
-runGame(GAME_LEVELS, DOMDisplay); 
-                    </code></pre>
+runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                 </div>
 
-                <div class="exercise-body">
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> defines the function <code>runLevel</code> with the parameter <code>level</code> for the current game level and <code>Display</code> representing the current game screen.</p>
 
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> creates a new <code>Display</code> object with the current <code>document.body</code> and <code>level</code> value, assigning it to the new variable <code>display</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="3">Line 3</code> creates a new variable <code>state</code>, starting the game at with the value <code>level</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> initializes a variable <code>ending</code> to 1.</p>
+
+                    <p><code class="desc desc-code3" data-line="6">Line 6</code> returns a new <code>Promise</code> from the <code>runLevel</code> function.</p>
+
+                    <p><code class="desc desc-code3" data-line="7">Line 7</code> initializes <code>isPaused</code> to <code>false</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="8">Line 8</code> adds an Event Listener to <code>window</code> that waits for a <code>"keydown"</code> event before calling a function.</p>
+
+                    <p><code class="desc desc-code3" data-line="9">Line 9</code> checks whether the <code>key</code> that was pressed is equal to <code>"Escape"</code> or the escape key.</p>
+
+                    <p>If true, <code class="desc desc-code3" data-line="10">Line 10</code> changes <code>isPaused</code> to its opposite value.</p>
+
+                    <p><code class="desc desc-code3" data-line="11">Line 11</code> calls the <code>run</code> function to continue or pause the game.</p>
+
+                    <p><code class="desc desc-code3" data-line="15">Line 15</code> defines the function <code>run</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="16">Line 16</code> calls the <code>runAnimation</code> to keep updating the game screen.</p>
+
+                    <p><code class="desc desc-code3" data-line="17">Line 17</code> calls the <code>update</code> method of the <code>state</code> object with the current <code>time</code> value and the <code>arrowKey</code> array.</p>
+
+                    <p><code class="desc desc-code3" data-line="18">Line 18</code> keeps the game display synchronized with its state by calling the <code>syncState</code> method of the <code>display</code> object.</p>
+
+                    <p><code class="desc desc-code3" data-line="19">Line 19</code> calls the <code>register</code> method of the <code>arrowKeys</code> object to wait for user input.</p>
+
+                    <p><code class="desc desc-code3" data-line="20">Line 20</code> checks whether the <code>isPaused</code> is <code>true</code>.</p>
+
+                    <p>If true, <code class="desc desc-code3" data-line="21">Line 21</code> returns <code>false</code> from the <code>runAnimation</code> function to keep the game display from updating.</p>
+
+                    <p>Else, <code class="desc desc-code3" data-line="22">Line 22</code> checks whether the <code>status</code> value of <code>state</code> is equal to <code>"playing"</code>.</p>
+
+                    <p>If true, <code class="desc desc-code3" data-line="23">Line 23</code> returns <code>true</code> from the <code>runAnimation</code> function to update the game display.</p>
+
+                    <p>Else, the game is finished so <code class="desc desc-code3" data-line="24">Line 24</code> checks whether the <code>ending</code> is greater than <code>0</code>.</p>
+
+                    <p>If true, <code class="desc desc-code3" data-line="25">Line 25</code> decreases <code>ending</code> by the current <code>time</code> value.</p>
+
+                    <p><code class="desc desc-code3" data-line="26">Line 26</code> returns <code>true</code> from the <code>runAnimation</code> function to update the game display for a second despite the game being finished.</p>
+
+                    <p>Else, <code class="desc desc-code3" data-line="28">Line 28</code> calls the <code>unregister</code> method of <code>arrowKeys</code> to prevent user input.</p>
+
+                    <p><code class="desc desc-code3" data-line="29">Line 29</code> calls the <code>clear</code> method of <code>display</code> to reset the game display.</p>
+
+                    <p><code class="desc desc-code3" data-line="30">Line 30</code> calls the <code>resolve</code> function of the encompassing <code>Promise</code> object with the current <code>status</code> variable of <code>state</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="31">Line 31</code> returns <code>false</code> from the <code>runAnimation</code> function to stop the game display from updating.</p>
+
+                    <p><code class="desc desc-code3" data-line="31">Line 36</code> calls the <code>run</code> function to start updating the game display.</p>
+
+                    <p><code class="desc desc-code3" data-line="40">Line 40</code> defines the function <code>trackKeys</code> with the parameter <code>keys</code> for an array of keyboard keys.</p>
+
+                    <p><code class="desc desc-code3" data-line="41">Line 41</code> creates an empty object and assigns it to <code>down</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="42">Line 42</code> defines the function <code>track</code> with the parameter <code>event</code> for an object generated by an event handler.</p>
+
+                    <p><code class="desc desc-code3" data-line="43">Line 43</code> checks if the array <code>keys</code> includes the value provided by <code>event.key</code>.</p>
+
+                    <p>If true, <code class="desc desc-code3" data-line="44">Line 44</code> sets a value in <code>down</code> with the key corresponding to <code>event.key</code> to the result of comparing <code>event.type</code> and <code>"keydown"</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="45">Line 45</code> prevents the default action of the keydown event.</p>
+
+                    <p><code class="desc desc-code3" data-line="49">Line 49</code> creates the method <code>register</code> on the <code>down</code> object.</p>
+
+                    <p><code class="desc desc-code3" data-line="50-51">Line 50 - 51</code> adds both a <code>"keydown"</code> and <code>"keyup"</code> event listener to <code>window</code> that calls <code>track</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="54">Line 54</code> creates the method <code>unregister</code> on the <code>down</code> object.</p>
+
+                    <p><code class="desc desc-code3" data-line="55-56">Line 55 - 56</code> removes both the <code>"keydown"</code> and <code>"keyup"</code> event listeners from <code>window</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="59">Line 59</code> returns the object <code>down</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="62">Line 62</code> calls the <code>trackKeys</code> function with an array containing the right, left, and up arrow keys and assigns the result to <code>arrowKeys</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="64">Line 64</code> calls the <code>runGame</code> function with the <code>GAME_LEVELS</code> and <code>DOMDisplay</code> variables.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -237,12 +368,99 @@ function trackKeys(keys) {
     return down;
 }
 
-runGame(GAME_LEVELS, DOMDisplay);
-                    </code></pre>
+runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                 </div>
 
-                <div class="exercise-body">
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> defines the function <code>runLevel</code> with the parameter <code>level</code> for the current game level and <code>Display</code> representing the current game screen.</p>
+
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> creates a new <code>Display</code> object with the current <code>document.body</code> and <code>level</code> value, assigning it to the new variable <code>display</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> creates a new variable <code>state</code>, starting the game at with the value <code>level</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> initializes a variable <code>ending</code> to 1.</p>
+
+                    <p><code class="desc desc-code4" data-line="5">Line 5</code> initializes a variable <code>running</code> to the string <code>"yes"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="7">Line 7</code> returns a new <code>Promise</code> from the <code>runLevel</code> function.</p>
+
+                    <p><code class="desc desc-code4" data-line="8">Line 8</code> defines the function <code>escHandler</code> with the parameter <code>event</code> for an object generated by an event handler.</p>
+
+                    <p><code class="desc desc-code4" data-line="9">Line 9</code> returns whenever the <code>key</code> value of <code>event</code> is not equal to <code>"Escape"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="10">Line 10</code> prevents the default action of the event.</p>
+
+                    <p><code class="desc desc-code4" data-line="11">Line 11</code> checks whether the variable <code>running</code> is equal to <code>"no"</code>.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="12">Line 12</code> sets <code>running</code> to <code>"yes"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="13">Line 13</code> calls the <code>runAnimation</code> function to start updating the game display.</p>
+
+                    <p>Else, <code class="desc desc-code4" data-line="14">Line 14</code> checks whether <code>running</code> is equal to <code>"yes"</code>.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="15">Line 15</code> sets <code>running</code> to <code>"running"</code>.</p>
+
+                    <p>Else, <code class="desc desc-code4" data-line="17">Line 17</code> sets <code>running</code> to <code>"yes"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="20">Line 20</code> adds an Event Listener to <code>window</code> that waits for a <code>"keydown"</code> event before calling a escHandler.</p>
+
+                    <p><code class="desc desc-code4" data-line="21">Line 21</code> calls the <code>trackKeys</code> function with an array containing the right, left, and up arrow keys and assigns the result to <code>arrowKeys</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="23">Line 23</code> defines the function <code>frame</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="24">Line 24</code> checks whether <code>running</code> is equal to <code>"pausing"</code>.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="25">Line 25</code> sets <code>running</code> to <code>"no"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="26">Line 26</code> returns <code>false</code> to prevent the game display from updating.</p>
+
+                    <p><code class="desc desc-code4" data-line="29">Line 29</code> calls the <code>update</code> method of the <code>state</code> object with the current <code>time</code> value and the <code>arrowKey</code> array.</p>
+
+                    <p><code class="desc desc-code4" data-line="30">Line 30</code> keeps the game display synchronized with its state by calling the <code>syncState</code> method of the <code>display</code> object.</p>
+
+                    <p>Else, <code class="desc desc-code4" data-line="31">Line 31</code> checks whether the <code>status</code> value of <code>state</code> is equal to <code>"playing"</code>.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="32">Line 32</code> returns <code>true</code> from the <code>runAnimation</code> function to update the game display.</p>
+
+                    <p>Else, the game is finished so <code class="desc desc-code4" data-line="33">Line 33</code> checks whether the <code>ending</code> is greater than <code>0</code>.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="34">Line 34</code> decreases <code>ending</code> by the current <code>time</code> value.</p>
+
+                    <p><code class="desc desc-code4" data-line="35">Line 35</code> returns <code>true</code> from the <code>runAnimation</code> function to update the game display for a second despite the game being finished.</p>
+
+                    <p>Else, <code class="desc desc-code4" data-line="37">Line 37</code> calls the <code>clear</code> method of <code>display</code> to reset the game display.</p>
                     
+                    <p><code class="desc desc-code4" data-line="38">Line 38</code> removes the <code>"keydown"</code> event handler from <code>window</code>.</p>
+
+                    <p>Else, <code class="desc desc-code4" data-line="39">Line 39</code> calls the <code>unregister</code> method of <code>arrowKeys</code> to prevent user input.</p>
+
+                    <p><code class="desc desc-code4" data-line="40">Line 40</code> calls the <code>resolve</code> function of the encompassing <code>Promise</code> object with the current <code>status</code> variable of <code>state</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="41">Line 41</code> returns <code>false</code> from the <code>runAnimation</code> function to stop the game display from updating.</p>
+
+                    <p><code class="desc desc-code4" data-line="44">Line 44</code> calls the <code>runAnimation</code> to start updating the game screen.</p>
+
+                    <p><code class="desc desc-code4" data-line="48">Line 48</code> defines the function <code>trackKeys</code> with the parameter <code>keys</code> for an array of keyboard keys.</p>
+
+                    <p><code class="desc desc-code4" data-line="49">Line 49</code> creates an empty object and assigns it to <code>down</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="50">Line 50</code> defines the function <code>track</code> with the parameter <code>event</code> for an object generated by an event handler.</p>
+
+                    <p><code class="desc desc-code4" data-line="51">Line 51</code> checks if the array <code>keys</code> includes the value provided by <code>event.key</code>.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="52">Line 52</code> sets a value in <code>down</code> with the key corresponding to <code>event.key</code> to the result of comparing <code>event.type</code> and <code>"keydown"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="53">Line 53</code> prevents the default action of the keydown event.</p>
+
+                    <p><code class="desc desc-code4" data-line="56-57">Line 56 - 57</code> adds both a <code>"keydown"</code> and <code>"keyup"</code> event listener to <code>window</code> that calls <code>track</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="58">Line 58</code> creates the method <code>unregister</code> on the <code>down</code> object.</p>
+
+                    <p><code class="desc desc-code4" data-line="59-60">Line 59 - 60</code> removes both the <code>"keydown"</code> and <code>"keyup"</code> event listeners from <code>window</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="62">Line 62</code> returns the object <code>down</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="65">Line 65</code> calls the <code>runGame</code> function with the <code>GAME_LEVELS</code> and <code>DOMDisplay</code> variables.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -295,13 +513,45 @@ runGame(GAME_LEVELS, DOMDisplay);
     }
 }
 
-Monster.prototype.size = new Vec(1.2, 2);
-                    </code></pre>
+Monster.prototype.size = new Vec(1.2, 2);</code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> creates the class called <code>Monster</code>.</p>
 
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> defines the constructor method for <code>Monster</code> that recieves <code>pos</code> and <code>speed</code> variables.</p>
+
+                    <p><code class="desc desc-code5" data-line="3">Line 3</code> sets the variable <code>pos</code> of <code>Monster</code> to <code>pos</code> from the parameter.</p>
+
+                    <p><code class="desc desc-code5" data-line="4">Line 4</code> sets the variable <code>speed</code> of <code>Monster</code> to <code>speed</code> from the parameter.</p>
+
+                    <p><code class="desc desc-code5" data-line="7">Line 7</code> defines the getter method <code>type</code> that returns the string <code>"monster"</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="9">Line 9</code> defines the static method <code>create</code> which takes in <code>pos</code> as a parameter.</p>
+
+                    <p><code class="desc desc-code5" data-line="10">Line 10</code> creates a new instance of <code>Monster</code> with the <code>pos</code> and <code>speed</code> variables defined by a new <code>Vec</code> object.</p>
+
+                    <p><code class="desc desc-code5" data-line="13">Line 13</code> creates the <code>update</code> method that takes <code>time</code> and <code>state</code> as parameters.</p>
+
+                    <p><code class="desc desc-code5" data-line="14">Line 14</code> assigns the new variable <code>newPos</code> to the addition of the current <code>pos</code> value and the result of multiplying the <code>speed</code> of the monster by the <code>time</code> parameter.</p>
+
+                    <p><code class="desc desc-code5" data-line="15">Line 15</code> checks whether the <code>newPos</code> value does not come into contact with any walls by calling the <code>touches</code> method from <code>state.level</code>.</p>
+
+                    <p>If true, <code class="desc desc-code5" data-line="16">Line 16</code> returns a new <code>Monster</code> object with the <code>newPos</code> and the same <code>speed</code> values.</p>
+
+                    <p>Else, <code class="desc desc-code5" data-line="18">Line 18</code> returns a new <code>Monster</code> object with the <code>newPos</code> but opposite <code>speed</code> values, since the monster needs to move in the opposite direction.</p>
+
+                    <p><code class="desc desc-code5" data-line="22">Line 22</code> defines the method <code>collide</code> that is called whenever the player touches a monster, accepting a <code>state</code> object as a parameter.</p>
+
+                    <p><code class="desc desc-code5" data-line="23">Line 23</code> checks whether the difference between the <code>y</code> value of the game player and game monster is less than <code>-1</code>.</p>
+
+                    <p>If true, <code class="desc desc-code5" data-line="24">Line 24</code> sets <code>filtered</code> to all of the <code>state.actors</code> objects that do not equal the current <code>Monster</code> object.</p>
+
+                    <p><code class="desc desc-code5" data-line="25">Line 25</code> returns a new <code>State</code> object with the current game level, actors without the current monster, and the status.</p>
+
+                    <p>Else, <code class="desc desc-code5" data-line="27">Line 27</code> returns a new <code>State</code> object with the current game level, actors, and a losing message for the player since it died from touching the monster.</p>
+
+                    <p><code class="desc desc-code5" data-line="32">Line 32</code> sets the <code>size</code> prototype value of <code>Monster</code> to a new <code>Vec</code> object with sizes <code>1.2</code> and <code>2</code>.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -335,13 +585,45 @@ class Monster {
     }
 }
 
-Monster.prototype.size = new Vec(1.2, 2);
-                    </code></pre>
+Monster.prototype.size = new Vec(1.2, 2);</code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
-                </div>
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> initializes a constant called <code>monsterSpeed</code> with the value of <code>4</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="3">Line 3</code> creates the class called <code>Monster</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="4">Line 4</code> defines the constructor method for <code>Monster</code> that recieves and sets the <code>pos</code> variable.</p>
+
+                    <p><code class="desc desc-code6" data-line="6">Line 6</code> defines the getter method <code>type</code> that returns the string <code>"monster"</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="8">Line 8</code> defines the static method <code>create</code> which takes in <code>pos</code> as the parameter and returns a new instance of <code>Monster</code> with the <code>pos</code> variable increased by a new <code>Vec</code> object.</p>
+
+                    <p><code class="desc desc-code6" data-line="10">Line 10</code> creates the <code>update</code> method that takes <code>time</code> and <code>state</code> as parameters.</p>
+
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> assigns the new variable <code>player</code> to the current <code>state.player</code> object.</p>
+
+                    <p><code class="desc desc-code6" data-line="12">Line 12</code> sets speed to the product of <code>time</code>, <code>monsterSpeed</code>, and either <code>-1</code> or <code>1</code> depending on whether the game player is behind or infront of the current game monster.</p>
+
+                    <p><code class="desc desc-code6" data-line="13">Line 13</code> assigns the new variable <code>newPos</code> to a new <code>Vec</code> object that has the updated <code>pos.x</code> value.</p>
+
+                    <p><code class="desc desc-code6" data-line="14">Line 14</code> returns the current game monster whenever the <code>newPos</code> value come into contact with any walls by calling the <code>touches</code> method from <code>state.level</code>.</p>
+
+                    <p>Else, <code class="desc desc-code6" data-line="15">Line 15</code> returns a new <code>Monster</code> object with the <code>newPos</code> value.</p>
+
+                    <p><code class="desc desc-code6" data-line="18">Line 18</code> defines the method <code>collide</code> that is called whenever the player touches a monster, accepting a <code>state</code> object as a parameter.</p>
+
+                    <p><code class="desc desc-code6" data-line="19">Line 19</code> assigns the new variable <code>player</code> to the current <code>state.player</code> object.</p>
+
+                    <p><code class="desc desc-code6" data-line="20">Line 20</code> checks whether game players <code>y</code> position is higher than the <code>y</code> position of the game monster, including the height of both actors.</p>
+
+                    <p>If true, <code class="desc desc-code6" data-line="21">Line 21</code> sets <code>filtered</code> to all of the <code>state.actors</code> objects that do not equal the current <code>Monster</code> object.</p>
+
+                    <p><code class="desc desc-code6" data-line="22">Line 22</code> returns a new <code>State</code> object with the current game level, actors without the current monster, and the status.</p>
+
+                    <p>Else, <code class="desc desc-code6" data-line="24">Line 24</code> returns a new <code>State</code> object with the current game level, actors, and a losing message for the player since it died from touching the monster.</p>
+
+                    <p><code class="desc desc-code6" data-line="29">Line 29</code> sets the <code>size</code> prototype value of <code>Monster</code> to a new <code>Vec</code> object with sizes <code>1.2</code> and <code>2</code>.</p>                </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
             </section>

@@ -53,10 +53,10 @@
                     <pre id="code1" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let cx = document.querySelector("canvas").getContext("2d");
 
 function drawTrapazoid(x, y, width, height) {
-    cx.moveTo(x + Math.floor(width / 4), y);
-    cx.lineTo(x + width, 20); 
-    cx.lineTo(x + Math.floor(width * 1.25), y + height); 
-    cx.lineTo(x, 20 + height);
+    cx.moveTo(x + Math.floor(width * 0.25), y);
+    cx.lineTo(x + Math.floor(width * 0.75), y); 
+    cx.lineTo(x + width, y + height); 
+    cx.lineTo(x, y + height);
     cx.lineTo(x + Math.floor(width / 4), y);
 }
 
@@ -74,7 +74,7 @@ function drawZigZag(x, y, width, height, num) {
     for (let i = 0; i <= num; i++) {
         if (i % 2 == 0) cx.lineTo(x, y + height * i);
         else cx.lineTo(x + width, y + height * i); 
-    }; 
+    }
 }
 
 function drawSpiral(x, y, width, height) {
@@ -84,7 +84,7 @@ function drawSpiral(x, y, width, height) {
     for (let i = 1; i < 100; i++) {
         let newX = (Math.cos(angle) * (width * gradient) + x); 
         let newY = (Math.sin(angle) * (height * gradient) + y); 
-        
+
         cx.lineTo(newX, newY);
         angle += 0.3; 
         gradient += 0.1; 
@@ -100,9 +100,8 @@ function drawStar(x, y, width) {
     for (let i = 0; i < 9; i++, currentPosition += 45) {
         nextX = Math.cos(currentPosition * (Math.PI / 180)) * width + x; 
         nextY = Math.sin(currentPosition * (Math.PI / 180)) * width + y; 
-        
-        i == 0 ? cx.moveTo(nextX, nextY) : cx.quadraticCurveTo(x, y, nextX, nextY); 
 
+        i == 0 ? cx.moveTo(nextX, nextY) : cx.quadraticCurveTo(x, y, nextX, nextY); 
         [currentX, currentY] = [nextX, nextY]; 
     }
     cx.fillStyle = "gold";
@@ -114,13 +113,107 @@ drawTrapazoid(10, 20, 50, 30);
 drawDiamond(110, 20, 25, 25);
 drawZigZag(150, 20, 40, 10, 5);
 drawSpiral(275, 70, 5, 5);
-drawStar(400, 50, 40); 
-                    </code></pre>
+drawStar(400, 50, 40);</code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> creates the <code>cx</code> variable that initiates the context and allows drawing on the <code>canvas</code> DOM element.</p>
 
+                    <p><code class="desc desc-code1" data-line="3">Line 3</code> defines the <code>drawTrapazoid</code> method that recieves the position and size values of the trapazoid.</p>
+
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> begins drawing the trapazoid by moving the drawing position to the upper-left corner, denoted by addition of <code>x</code> and 1/4 of the <code>width</code> value along with the regular <code>y</code> value.</p>
+
+                    <p><code class="desc desc-code1" data-line="5">Line 5</code> draws a line segment to the upper-right corner, denoted by the addition of <code>x</code> and 3/4 of the <code>width</code> value along with the regular <code>y</code> value.</p>
+
+                    <p><code class="desc desc-code1" data-line="6">Line 6</code> draws a line segment to the lower-right corner, denoted by the addition of <code>x</code> and the total <code>width</code> value along with the addition of <code>y</code> and the total <code>height</code> value.</p>
+
+                    <p><code class="desc desc-code1" data-line="7">Line 7</code> draws a line segment to the lower-left corner, denoted by the regular <code>x</code> value along with the addition of <code>y</code> and the total <code>height</code> value.</p>
+
+                    <p><code class="desc desc-code1" data-line="8">Line 8</code> draws a line segment back to the upper-left corner.</p>
+
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> defines the <code>drawDiamond</code> method that recieves the position and size values of the diamond.</p>
+
+                    <p><code class="desc desc-code1" data-line="12">Line 12</code> sets the <code>fillStyle</code> value of <code>cx</code> to the string <code>"red"</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="13">Line 13</code> saves the original alignment of <code>cx</code> by calling the <code>save</code> method.</p>
+
+                    <p><code class="desc desc-code1" data-line="14">Line 14</code> moves or translates the drawing point to the <code>x</code> and <code>y</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="15">Line 15</code> rotates the canvas drawing element by 45 degrees converted to radians.</p>
+
+                    <p><code class="desc desc-code1" data-line="16">Line 16</code> draws a rectangle by calling the <code>fillRect</code> method with <code>0</code> for the x and y point along with the <code>width</code> and <code>height</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="17">Line 17</code> restores <code>cx</code> to its original alignment <code>cx</code> by calling the <code>restore</code> method.</p>
+
+                    <p><code class="desc desc-code1" data-line="20">Line 20</code> defines the <code>drawZigZag</code> method that recieves the position, size, and total count of zig-zags.</p>
+
+                    <p><code class="desc desc-code1" data-line="21">Line 21</code> moves the drawing point to the <code>x</code> and <code>y</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="22">Line 22</code> iterates using a <code>for</code> loop until the total number of zigzag lines has been drawn.</p>
+
+                    <p><code class="desc desc-code1" data-line="23">Line 23</code> checks whether <code>i</code> is even and draws a line segment to the starting <code>x</code> value along with the addition of <code>y</code> and <code>height</code> multiplied by the current number of lines.</p>
+
+                    <p>Else, <code class="desc desc-code1" data-line="24">Line 24</code> draws a line segment to the ending <code>x</code> value along with the addition of <code>y</code> and <code>height</code> multiplied by the current number of lines.</p>
+
+                    <p><code class="desc desc-code1" data-line="28">Line 28</code> defines the <code>drawSpiral</code> method that recieves the position and size values of the spiral.</p>
+
+                    <p><code class="desc desc-code1" data-line="29">Line 29</code> moves the drawing point to the <code>x</code> and <code>y</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="30">Line 30</code> initializes the new variable <code>angle</code> to zero.</p>
+
+                    <p><code class="desc desc-code1" data-line="31">Line 31</code> initializes the new variable <code>gradient</code> to one.</p>
+
+                    <p><code class="desc desc-code1" data-line="32">Line 32</code> iterates a hundred times using a <code>for</code> loop.</p>
+
+                    <p><code class="desc desc-code1" data-line="33">Line 33</code> creates the variable <code>newX</code> and sets it to the result of multiplying the cosine value calculated by the current <code>angle</code> and the product of <code>width</code> and <code>gradient</code>, all increased by the addition of <code>x</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="34">Line 34</code> creates the variable <code>newY</code> and sets it to the result of multiplying the sin value calculated by the current <code>angle</code> and the product of <code>height</code> and <code>gradient</code>, all increased by the addition of <code>y</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="36">Line 36</code> draws a line segment to the newly calculated <code>newX</code> and <code>newY</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="37">Line 37</code> increases <code>angle</code> by <code>0.3</code> to continue moving in a circle.</p>
+
+                    <p><code class="desc desc-code1" data-line="38">Line 38</code> increases <code>gradient</code> by <code>0.1</code> to continue gradually increasing the size of the circle.</p>
+
+                    <p><code class="desc desc-code1" data-line="40">Line 40</code> calls the <code>stroke</code> method on <code>cx</code> to outline all of the previously drawn line segments.</p>
+
+                    <p><code class="desc desc-code1" data-line="43">Line 43</code> defines the <code>drawStar</code> method that recieves the position and width values of the star.</p>
+
+                    <p><code class="desc desc-code1" data-line="44">Line 44</code> begins a new drawing path of the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="45">Line 45</code> initializes the new variable <code>currentPosition</code> to zero.</p>
+
+                    <p><code class="desc desc-code1" data-line="46">Line 46</code> initializes the new variables <code>currentX</code> and <code>currentY</code> to <code>x</code> increased by <code>width</code> and <code>y</code> respectively.</p>
+
+                    <p><code class="desc desc-code1" data-line="47">Line 47</code> initializes both of the new variables <code>nextX</code> and <code>nextY</code> to zero.</p>
+
+                    <p><code class="desc desc-code1" data-line="48">Line 48</code> iterates nine times using a <code>for</code> loop, increasing <code>currentPosition</code> by <code>45</code> each time.</p>
+
+                    <p><code class="desc desc-code1" data-line="49">Line 49</code> sets <code>nextX</code> to the cosine value of the <code>currentPosition</code> angle converted to radians, multiplied by <code>width</code>, and increased by <code>x</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="50">Line 50</code> sets <code>nextY</code> to the sin value of the <code>currentPosition</code> angle converted to radians, multiplied by <code>width</code>, and increased by <code>y</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="52">Line 52</code> checks if <code>i</code> is equal to <code>0</code>, moving the drawing point to the <code>nextX</code> and <code>nextY</code> values if true, or drawing a quadratic curve from the <code>x</code> and <code>y</code> values to the <code>nextX</code> and <code>nextY</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="53">Line 53</code> updates <code>currentX</code> and <code>currentY</code> values to the <code>nextX</code> and <code>nextY</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="55">Line 55</code> sets the <code>fillStyle</code> property of <code>cx</code> to <code>"gold"</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="56">Line 56</code> calls the <code>fill</code> method of <code>cx</code> to color the previously drawn star.</p>
+
+                    <p><code class="desc desc-code1" data-line="56">Line 56</code> calls the <code>fill</code> method of <code>cx</code> to color the previously drawn star.</p>
+
+                    <p><code class="desc desc-code1" data-line="59">Line 59</code> begins a new drawing path of the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="60">Line 60</code> calls <code>drawTrapazoid</code> with a set of values for the position and size of the shape.</p>
+
+                    <p><code class="desc desc-code1" data-line="61">Line 61</code> calls <code>drawDiamond</code> with a set of values for the position and size of the shape.</p>
+
+                    <p><code class="desc desc-code1" data-line="62">Line 62</code> calls <code>drawZigZag</code> with a set of values for the position, size, and total number of lines.</p>
+
+                    <p><code class="desc desc-code1" data-line="63">Line 63</code> calls <code>drawSpiral</code> with a set of values for the position and size of the shape.</p>
+
+                    <p><code class="desc desc-code1" data-line="64">Line 64</code> calls <code>drawStar</code> with a set of values for the position and width of the shape.</p>
                 </div>
 
                 <div class="exercise-body">
