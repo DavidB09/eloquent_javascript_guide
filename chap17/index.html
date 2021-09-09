@@ -119,7 +119,7 @@ drawStar(400, 50, 40);</code></pre>
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code1" data-line="1">Line 1</code> creates the <code>cx</code> variable that initiates the context and allows drawing on the <code>canvas</code> DOM element.</p>
 
-                    <p><code class="desc desc-code1" data-line="3">Line 3</code> defines the <code>drawTrapazoid</code> method that recieves the position and size values of the trapazoid.</p>
+                    <p><code class="desc desc-code1" data-line="3">Line 3</code> defines the <code>drawTrapazoid</code> function that recieves the position and size values of the trapazoid.</p>
 
                     <p><code class="desc desc-code1" data-line="4">Line 4</code> begins drawing the trapazoid by moving the drawing position to the upper-left corner, denoted by addition of <code>x</code> and 1/4 of the <code>width</code> value along with the regular <code>y</code> value.</p>
 
@@ -131,7 +131,7 @@ drawStar(400, 50, 40);</code></pre>
 
                     <p><code class="desc desc-code1" data-line="8">Line 8</code> draws a line segment back to the upper-left corner.</p>
 
-                    <p><code class="desc desc-code1" data-line="11">Line 11</code> defines the <code>drawDiamond</code> method that recieves the position and size values of the diamond.</p>
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> defines the <code>drawDiamond</code> function that recieves the position and size values of the diamond.</p>
 
                     <p><code class="desc desc-code1" data-line="12">Line 12</code> sets the <code>fillStyle</code> value of <code>cx</code> to the string <code>"red"</code>.</p>
 
@@ -145,7 +145,7 @@ drawStar(400, 50, 40);</code></pre>
 
                     <p><code class="desc desc-code1" data-line="17">Line 17</code> restores <code>cx</code> to its original alignment <code>cx</code> by calling the <code>restore</code> method.</p>
 
-                    <p><code class="desc desc-code1" data-line="20">Line 20</code> defines the <code>drawZigZag</code> method that recieves the position, size, and total count of zig-zags.</p>
+                    <p><code class="desc desc-code1" data-line="20">Line 20</code> defines the <code>drawZigZag</code> function that recieves the position, size, and total count of zig-zags.</p>
 
                     <p><code class="desc desc-code1" data-line="21">Line 21</code> moves the drawing point to the <code>x</code> and <code>y</code> values.</p>
 
@@ -155,7 +155,7 @@ drawStar(400, 50, 40);</code></pre>
 
                     <p>Else, <code class="desc desc-code1" data-line="24">Line 24</code> draws a line segment to the ending <code>x</code> value along with the addition of <code>y</code> and <code>height</code> multiplied by the current number of lines.</p>
 
-                    <p><code class="desc desc-code1" data-line="28">Line 28</code> defines the <code>drawSpiral</code> method that recieves the position and size values of the spiral.</p>
+                    <p><code class="desc desc-code1" data-line="28">Line 28</code> defines the <code>drawSpiral</code> function that recieves the position and size values of the spiral.</p>
 
                     <p><code class="desc desc-code1" data-line="29">Line 29</code> moves the drawing point to the <code>x</code> and <code>y</code> values.</p>
 
@@ -177,7 +177,7 @@ drawStar(400, 50, 40);</code></pre>
 
                     <p><code class="desc desc-code1" data-line="40">Line 40</code> calls the <code>stroke</code> method on <code>cx</code> to outline all of the previously drawn line segments.</p>
 
-                    <p><code class="desc desc-code1" data-line="43">Line 43</code> defines the <code>drawStar</code> method that recieves the position and width values of the star.</p>
+                    <p><code class="desc desc-code1" data-line="43">Line 43</code> defines the <code>drawStar</code> function that recieves the position and width values of the star.</p>
 
                     <p><code class="desc desc-code1" data-line="44">Line 44</code> begins a new drawing path of the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
 
@@ -201,9 +201,7 @@ drawStar(400, 50, 40);</code></pre>
 
                     <p><code class="desc desc-code1" data-line="56">Line 56</code> calls the <code>fill</code> method of <code>cx</code> to color the previously drawn star.</p>
 
-                    <p><code class="desc desc-code1" data-line="56">Line 56</code> calls the <code>fill</code> method of <code>cx</code> to color the previously drawn star.</p>
-
-                    <p><code class="desc desc-code1" data-line="59">Line 59</code> begins a new drawing path of the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+                    <p><code class="desc desc-code1" data-line="59">Line 59</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
 
                     <p><code class="desc desc-code1" data-line="60">Line 60</code> calls <code>drawTrapazoid</code> with a set of values for the position and size of the shape.</p>
 
@@ -279,8 +277,96 @@ function star(x, y) {
 star(440, 20);      </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    <p>The author used the same logic just expressed in more concise code.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> creates the <code>cx</code> variable that initiates the context and allows drawing on the <code>canvas</code> DOM element.</p>
+
+                    <p><code class="desc desc-code2" data-line="3">Line 3</code> defines the <code>trapazoid</code> function that recieves the x and y coordinates of the trapazoid.</p>
+
+                    <p><code class="desc desc-code2" data-line="4">Line 4</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="5">Line 5</code> begins drawing the trapazoid by moving the drawing position to the upper-left corner, denoted by the <code>x</code> and <code>y</code> values.</p>
+
+                    <p><code class="desc desc-code2" data-line="6">Line 6</code> draws a line segment to the upper-right corner, denoted by the addition of <code>x</code> and 50 along with the regular <code>y</code> value.</p>
+
+                    <p><code class="desc desc-code2" data-line="7">Line 7</code> draws a line segment to the lower-right corner, denoted by the addition of <code>x</code> and 70 along with the addition of <code>y</code> and 50.</p>
+
+                    <p><code class="desc desc-code2" data-line="8">Line 8</code> draws a line segment to the lower-left corner, denoted by the subtraction of <code>x</code> and 20 along with the addition of <code>y</code> and 50.</p>
+
+                    <p><code class="desc desc-code2" data-line="9">Line 9</code> closes the drawing path and draws a line segment back to the starting point by calling the <code>closePath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="10">Line 10</code> calls the <code>stroke</code> method on <code>cx</code> to outline all of the previously drawn line segments.</p>
+
+                    <p><code class="desc desc-code2" data-line="12">Line 12</code> calls <code>trapazoid</code> with a set of values for the x and y coordinates of the shape.</p>
+
+                    <p><code class="desc desc-code2" data-line="14">Line 14</code> defines the <code>diamond</code> function that recieves the x and y coordinates of the diamond.</p>
+
+                    <p><code class="desc desc-code2" data-line="15">Line 15</code> moves the drawing point by calling the <code>translate</code> method with the <code>x</code> and <code>y</code> values increased by 30.</p>
+
+                    <p><code class="desc desc-code2" data-line="16">Line 16</code> rotates the canvas drawing element by <code>Math.PI</code> divided by four, or 45 degrees.</p>
+
+                    <p><code class="desc desc-code2" data-line="17">Line 17</code> sets the <code>fillStyle</code> value of <code>cx</code> to the string <code>"red"</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="18">Line 18</code> draws a rectangle by calling the <code>fillRect</code> method with the x and y coordinates for the upper-left corner shifted back 30 pixels and the width and height being 60.</p>
+
+                    <p><code class="desc desc-code2" data-line="19">Line 19</code> calls the <code>resetTransform</code> method of <code>cx</code> to reverse the previous translations and rotations and reset the canvas element to its original alignment.</p>
+
+                    <p><code class="desc desc-code2" data-line="21">Line 21</code> calls <code>diamond</code> with a set of values for the x and y coordinates of the shape.</p>
+
+                    <p><code class="desc desc-code2" data-line="23">Line 23</code> defines the <code>zigzag</code> function that recieves the x and y coordinates of the trapazoid.</p>
+
+                    <p><code class="desc desc-code2" data-line="24">Line 24</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="25">Line 25</code> moves the drawing point by calling the <code>translate</code> method with the <code>x</code> and <code>y</code> values.</p>
+
+                    <p><code class="desc desc-code2" data-line="26">Line 26</code> uses a <code>for</code> loop to iterate 8 times.</p>
+
+                    <p><code class="desc desc-code2" data-line="27">Line 27</code> draws a line segment to the zig point, denoted by <code>x</code> increased by 80 and <code>i</code> multiplied by 8 before being added, along with <code>4</code>, to <code>y</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="28">Line 28</code> draws a line segment to the zag point, denoted by the <code>x</code> value and <code>i</code> multiplied by 8 before being added, along with <code>8</code>, to <code>y</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="30">Line 30</code> calls the <code>stroke</code> method on <code>cx</code> to outline all of the previously drawn line segments.</p>
+
+                    <p><code class="desc desc-code2" data-line="32">Line 32</code> calls <code>zigzag</code> with a set of values for the x and y coordinates of the shape.</p>
+
+                    <p><code class="desc desc-code2" data-line="34">Line 34</code> defines the <code>spiral</code> function that recieves the x and y coordinates of the spiral.</p>
+
+                    <p><code class="desc desc-code2" data-line="35">Line 35</code> initializes <code>radius</code> to 50, <code>xCenter</code> to <code>x</code> plus <code>radius</code>, and <code>yCenter</code> to <code>y</code> plus <code>radius</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="36">Line 36</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="37">Line 37</code> moves the drawing point to the center of the spiral by calling the <code>translate</code> method with the <code>xCenter</code> and <code>yCenter</code> values.</p>
+
+                    <p><code class="desc desc-code2" data-line="38">Line 38</code> uses a <code>for</code> loop to iterate 300 times.</p>
+
+                    <p><code class="desc desc-code2" data-line="39">Line 39</code> creates the <code>angle</code> value and sets it the result of multiplying <code>i</code> by <code>Math.PI</code> divided by 30.</p>
+
+                    <p><code class="desc desc-code2" data-line="40">Line 40</code> creates the <code>dist</code> value and sets it to the result of multiplying <code>radius</code> by <code>i</code> divided by 300.</p>
+
+                    <p><code class="desc desc-code2" data-line="41">Line 41</code> draws a line segment to the next point on the spiral, denoted by <code>xCenter</code> increased by the cosine value of <code>angle</code> multiplied by <code>dist</code>, and <code>yCenter</code> increased by the sine value of <code>angle</code> multiplied by <code>dist</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="43">Line 43</code> calls the <code>stroke</code> method on <code>cx</code> to outline all of the previously drawn line segments.</p>
+
+                    <p><code class="desc desc-code2" data-line="45">Line 45</code> calls <code>spiral</code> with a set of values for the x and y coordinates of the shape.</p>
+
+                    <p><code class="desc desc-code2" data-line="47">Line 47</code> defines the <code>star</code> function that recieves the x and y coordinates of the star.</p>
+
+                    <p><code class="desc desc-code2" data-line="48">Line 48</code> initializes <code>radius</code> to 50, <code>xCenter</code> to <code>x</code> plus <code>radius</code>, and <code>yCenter</code> to <code>y</code> plus <code>radius</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="49">Line 49</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="50">Line 50</code> moves the drawing point by calling the <code>translate</code> method with the <code>xCenter</code> increased by <code>radius</code> and <code>yCenter</code> value.</p>
+
+                    <p><code class="desc desc-code2" data-line="51">Line 51</code> uses a <code>for</code> loop to iterate 8 times.</p>
+
+                    <p><code class="desc desc-code2" data-line="52">Line 52</code> creates the <code>angle</code> value and sets it the result of multiplying <code>i</code> by <code>Math.PI</code> divided by 4.</p>
+
+                    <p><code class="desc desc-code2" data-line="53">Line 53</code> calls the <code>quadraticCurveTo</code> method to draw a curve from <code>xCenter</code> and <code>yCenter</code> to <code>xCenter</code> increased by the consine value of <code>angle</code> multiplied by <code>radius</code> and <code>yCenter</code> increased by the sine value of <code>angle</code> multiplied by <code>radius</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="55">Line 55</code> sets the <code>fillStyle</code> property of <code>cx</code> to <code>"gold"</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="56">Line 56</code> calls the <code>fill</code> method of <code>cx</code> to color the previously drawn star.</p>
+
+                    <p><code class="desc desc-code2" data-line="58">Line 58</code> calls <code>star</code> with a set of values for the x and y coordinates of the shape.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -306,15 +392,15 @@ let centerX = 300, centerY = 150;
 for (let result of results) {
     let sliceAngle = (result.count / total) * 2 * Math.PI;
     let middleAngle = currentAngle + sliceAngle / 2; 
-    
+
     cx.beginPath();
-    
+
     let textX = Math.cos(middleAngle) * 120 + centerX; 
     let textY = Math.sin(middleAngle) * 120 + centerY; 
     cx.textAlign = middleAngle > 0.5 * Math.PI ? "end" : "start"; 
     cx.fillStyle = "black"; 
     cx.fillText(result.name, textX, textY); 
-    
+
     cx.arc(centerX, centerY, 100, currentAngle, currentAngle + sliceAngle);
     currentAngle += sliceAngle;
     cx.lineTo(centerX, centerY);
@@ -323,8 +409,42 @@ for (let result of results) {
 }                   </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> creates the <code>cx</code> variable that initiates the context and allows drawing on the <code>canvas</code> DOM element.</p>
+
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> creates the <code>total</code> variable and assigns it to the result of adding each <code>count</code> value within the <code>results</code> array.</p>
+
+                    <p><code class="desc desc-code3" data-line="3">Line 3</code> initializes <code>currentAngle</code> to the negative half value of <code>Math.PI</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> initializes <code>centerX</code> to 300 and <code>centerY</code> to 150.</p>
+
+                    <p><code class="desc desc-code3" data-line="6">Line 6</code> uses a <code>for</code> loop to interate through each <code>result</code> object within the array <code>results</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="7">Line 7</code> creates <code>sliceAngle</code> to represent how much of the circle the <code>result</code> object should have, and calculates it by dividing the <code>count</code> value by <code>total</code> and multiplying that by 2 and by <code>Math.PI</code>, or 360 degrees.</p>
+
+                    <p><code class="desc desc-code3" data-line="8">Line 8</code> creates <code>middleAngle</code> to find the middle point of the portion that the current <code>result</code> object has, and calculates it by dividing <code>sliceAngle</code> by 2 and adding it to <code>currentAngle</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="10">Line 10</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="12">Line 12</code> creates the <code>textX</code> variable and assigns it to the result of multiplying the cosine valu of <code>middleAngle</code> by 120 before adding <code>centerX</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="13">Line 13</code> creates the <code>textY</code> variable and assigns it to the result of multiplying the sine valu of <code>middleAngle</code> by 120 before adding <code>centerY</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="14">Line 14</code> checks whether <code>middleAngle</code> is greater than half of <code>Math.PI</code>, or 90 degrees, and sets the <code>textAlign</code> value of <code>cx</code> to <code>"end"</code> if true or <code>"start"</code> otherwise.</p>
+
+                    <p><code class="desc desc-code3" data-line="15">Line 15</code> sets the <code>fillStyle</code> value of <code>cx</code> to <code>"black"</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="16">Line 16</code> creates the label by calling the <code>fillText</code> method of <code>cx</code> with the <code>name</code> value of <code>result</code>, the <code>textX</code> value, and the <code>textY</code> value.</p>
+
+                    <p><code class="desc desc-code3" data-line="18">Line 18</code> calls the <code>arc</code> method of <code>cx</code> create an arc with the center located at the <code>centerX</code> and <code>centerY</code> values, the radius being 100 pixels, the start angle at the <code>currentAngle</code>, and the end angle calculated by additing <code>currentAngle</code> and <code>sliceAngle</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="19">Line 19</code> increases <code>currentAngle</code> by <code>sliceAngle</code> to continue drawing the next <code>result</code> object.</p>
+
+                    <p><code class="desc desc-code3" data-line="20">Line 20</code> draws a line segment to the center of the circle.</p>
+
+                    <p><code class="desc desc-code3" data-line="21">Line 21</code> sets the <code>fillStyle</code> value of <code>cx</code> to the <code>color</code> value of <code>result</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="22">Line 22</code> calls the <code>fill</code> method of <code>cx</code> to draw the portion of the circle that represents <code>result</code>.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -363,8 +483,44 @@ results.forEach(function(result) {
 });                 </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1-7">Line 1 - Line 7</code> is explained in my personal answer.</p>
+
+                    <p><code class="desc desc-code4" data-line="9">Line 9</code> iterates through each <code>result</code> object within the <code>results</code> array using a <code>forEach</code> loop.</p>
+
+                    <p><code class="desc desc-code4" data-line="10">Line 10</code> creates <code>sliceAngle</code> to represent how much of the circle the <code>result</code> object should have, and calculates it by dividing the <code>count</code> value by <code>total</code> and multiplying that by 2 and by <code>Math.PI</code>, or 360 degrees.</p>
+
+                    <p><code class="desc desc-code4" data-line="11">Line 11</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="12">Line 12</code> calls the <code>arc</code> method of <code>cx</code> create an arc with the center located at the <code>centerX</code> and <code>centerY</code> values, the radius being 100 pixels, the start angle at the <code>currentAngle</code>, and the end angle calculated by additing <code>currentAngle</code> and <code>sliceAngle</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="14">Line 14</code> creates <code>middleAngle</code> to find the middle point of the portion that the current <code>result</code> object has, and calculates it by multiplying <code>sliceAngle</code> by 0.5 and adding it to <code>currentAngle</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="15">Line 15</code> creates the <code>textX</code> variable and assigns it to the result of multiplying the cosine valu of <code>middleAngle</code> by 120 before adding <code>centerX</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="16">Line 16</code> creates the <code>textY</code> variable and assigns it to the result of multiplying the sine valu of <code>middleAngle</code> by 120 before adding <code>centerY</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="17">Line 17</code> sets the <code>textBaseLine</code> value of <code>cx</code> to <code>"middle"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="18">Line 18</code> checks whether the cosine value of <code>middleAngle</code> is greater than zero.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="19">Line 19</code> sets the <code>textAlign</code> value of <code>cx</code> to <code>"left"</code>.</p>
+
+                    <p>Else, <code class="desc desc-code4" data-line="21">Line 21</code> sets the <code>textAlign</code> value of <code>cx</code> to <code>"right"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="23">Line 23</code> sets the <code>font</code> value of <code>cx</code> to <code>"15px sans-serif"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="24">Line 24</code> sets the <code>fillStyle</code> value of <code>cx</code> to <code>"black"</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="25">Line 25</code> creates the label by calling the <code>fillText</code> method of <code>cx</code> with the <code>name</code> value of <code>result</code>, the <code>textX</code> value, and the <code>textY</code> value.</p>
+
+                    <p><code class="desc desc-code4" data-line="27">Line 27</code> increases <code>currentAngle</code> by <code>sliceAngle</code> to continue drawing the next <code>result</code> object.</p>
+
+                    <p><code class="desc desc-code4" data-line="28">Line 28</code> draws a line segment to the center of the circle.</p>
+
+                    <p><code class="desc desc-code4" data-line="29">Line 29</code> sets the <code>fillStyle</code> value of <code>cx</code> to the <code>color</code> value of <code>result</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="30">Line 30</code> calls the <code>fill</code> method of <code>cx</code> to draw the portion of the circle that represents <code>result</code>.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -389,13 +545,13 @@ let speedX = 150, speedY = 175;
 
 function updateAnimation(step) {
     cx.beginPath(); 
-    
+
     cx.clearRect(rectLeftX, rectLeftY, rectWidth, rectWidth); 
     cx.strokeStyle = "purple", cx.lineWidth = `${lineWidth}px`; 
     cx.strokeRect(rectLeftX, rectLeftY, rectWidth, rectWidth), 
 
     circleX += step * speedX, circleY += step * speedY; 
-    
+
     cx.strokeStyle = "red", cx.fillStyle = "red"; 
     cx.arc(circleX, circleY, circleRadius, 0, 2 * Math.PI);
     cx.fill();
@@ -407,13 +563,45 @@ function updateAnimation(step) {
 
     if (circleY + circleRadius + lineWidth >= rectLeftY + rectWidth) speedY = -175; 
     if (circleY - circleRadius - lineWidth <= rectLeftY) speedY = 175; 
-    
 }                   </code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> initializes <code>lineWidth</code> to 5.</p>
 
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> initializes <code>rectLeftX</code> to 100, <code>rectLeftY</code> to 100, and <code>rectWidth</code> to 200.</p>
+
+                    <p><code class="desc desc-code5" data-line="3">Line 3</code> initializes <code>circleX</code> to 200, <code>circleY</code> to 100 plus <code>lineWidth</code>, and <code>circleRadius</code> to 5.</p>
+
+                    <p><code class="desc desc-code5" data-line="4">Line 4</code> initializes <code>speedX</code> to 150 and <code>speedY</code> to 175.</p>
+
+                    <p><code class="desc desc-code5" data-line="6">Line 6</code> defines the <code>updateAnimation</code> function that recieves a <code>step</code> value.</p>
+
+                    <p><code class="desc desc-code5" data-line="7">Line 7</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="9">Line 9</code> clears the previously drawn rectangle by calling the <code>clearRect</code> method of <code>cx</code> with the previous rectangle values.</p>
+
+                    <p><code class="desc desc-code5" data-line="10">Line 10</code> sets <code>strokeStyle</code> of <code>cx</code> to <code>"purple"</code> and <code>lineWidth</code> of <code>cx</code> to a string literal containing the current <code>lineWidth</code> value in pixels.</p>
+
+                    <p><code class="desc desc-code5" data-line="11">Line 11</code> draws a new rectangle by calling the <code>strokeRect</code> method of <code>cx</code> with the upper-left corner denoted by the <code>rectLeftX</code> and <code>rectLeftY</code> values and the width and height both being the <code>rectWidth</code> value.</p>
+
+                    <p><code class="desc desc-code5" data-line="13">Line 13</code> increments <code>circleX</code> and <code>circleY</code> by the multiplication of <code>step</code> and <code>speedX</code> and <code>speedY</code> respectively.</p>
+
+                    <p><code class="desc desc-code5" data-line="15">Line 15</code> sets the <code>strokeStyle</code> and <code>fillStyle</code> values of <code>cx</code> to <code>"red"</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="16">Line 16</code> calls the <code>arc</code> method of <code>cx</code> create an circle with the center located at the <code>centerX</code> and <code>centerY</code> values, the radius being <code>circleRadius</code>, the start angle at 0, and the end angle at <code>Math.PI</code> multiplied by 2.</p>
+
+                    <p><code class="desc desc-code5" data-line="17">Line 17</code> calls the <code>fill</code> method of <code>cx</code> to draw the circle.</p>
+
+                    <p><code class="desc desc-code5" data-line="19">Line 19</code> checks whether <code>circleX</code>, <code>circleRadius</code>, and <code>lineWidth</code> added together is greater than or equal to <code>rectLeftX</code> and <code>rectWidth</code> added together.</p>
+
+                    <p>Or, <code class="desc desc-code5" data-line="20">Line 20</code> checks whether <code>circleRadius</code> and <code>lineWidth</code> subtracted from <code>circleX</code> is less than or equal to <code>rectLeftX</code>.</p>
+
+                    <p>If true, <code class="desc desc-code5" data-line="21">Line 21</code> reverses <code>speedX</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="24">Line 24</code> checks whether <code>circleY</code>, <code>circleRadius</code>, and <code>lineWidth</code> added together is greater than or equal to <code>rectLeftY</code> and <code>rectWidth</code> added together, changing <code>speedY</code> to -175 if true.</p>
+
+                    <p><code class="desc desc-code5" data-line="25">Line 25</code> checks whether <code>circleRadius</code> and <code>lineWidth</code> subtracted from <code>circleY</code> is less than or equal to <code>rectLeftX</code>, changing <code>speedY</code> to 175 if true.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -428,7 +616,7 @@ function updateAnimation(step) {
     cx.strokeStyle = "blue";
     cx.lineWidth = 4;
     cx.strokeRect(25, 25, 350, 350);
-    
+
     x += step * speedX;
     y += step * speedY;
     if (x < 25 + radius || x > 375 - radius) speedX = -speedX;
@@ -441,8 +629,37 @@ function updateAnimation(step) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> initializes <code>x</code> to 100 and <code>y</code> to 300.</p>
 
+                    <p><code class="desc desc-code6" data-line="2">Line 2</code> initializes <code>radius</code> to 100.</p>
+
+                    <p><code class="desc desc-code6" data-line="3">Line 3</code> initializes <code>speedX</code> to 100 and <code>speedY</code> to 60.</p>
+
+                    <p><code class="desc desc-code6" data-line="5">Line 5</code> defines the <code>updateAnimation</code> function that recieves a <code>step</code> value.</p>
+
+                    <p><code class="desc desc-code6" data-line="6">Line 6</code> clears the previously drawn rectangle by calling the <code>clearRect</code> method of <code>cx</code> with the x and y coordinates at 0 and the size set at 400 pixels.</p>
+
+                    <p><code class="desc desc-code6" data-line="7">Line 7</code> sets <code>strokeStyle</code> of <code>cx</code> to <code>"blue"</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="8">Line 8</code> sets <code>lineWidth</code> of <code>cx</code> to 4.</p>
+
+                    <p><code class="desc desc-code6" data-line="9">Line 9</code> draws a rectangle by calling the <code>strokeRect</code> method of <code>cx</code> with the upper-left corner x and y coordinates at 25 pixels and the width and height both being 350.</p>
+
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> increments <code>x</code> by <code>speedX</code> multiplied by <code>step</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="12">Line 12</code> increments <code>y</code> by <code>speedY</code> multiplied by <code>step</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="13">Line 13</code> checks whether <code>x</code> is less than <code>radius</code> increased by 25 or <code>x</code> is greater than <code>radius</code> subtracted from 375, reversing <code>speedX</code> if true.</p>
+
+                    <p><code class="desc desc-code6" data-line="14">Line 14</code> checks whether <code>y</code> is less than <code>radius</code> increased by 25 or <code>y</code> is greater than <code>radius</code> subtracted from 375, reversing <code>speedY</code> if true.</p>
+
+                    <p><code class="desc desc-code6" data-line="15">Line 15</code> sets <code>fillStyle</code> of <code>cx</code> to <code>"red"</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="16">Line 16</code> begins a new drawing path in the canvas by calling the <code>beginPath</code> method of <code>cx</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="17">Line 17</code> calls the <code>arc</code> method of <code>cx</code> create an circle with the center located at the <code>x</code> and <code>x</code> values, the radius being <code>radius</code>, the start angle at 0, and the end angle at 7.</p>
+
+                    <p><code class="desc desc-code6" data-line="18">Line 18</code> calls the <code>fill</code> method of <code>cx</code> to draw the circle.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -464,21 +681,15 @@ function updateAnimation(step) {
                 <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre id="code7" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
-                </div>
-
-                <div class="body">
-
+                    <p>One solution would be to create a version of the inverted character that allows the user to make copies of it whenever needed. This can be accomplished by creating a <code><code>&lt;canvas></code></code> DOM element, drawing the character using <code>drawImage</code>, transforming the character using <code>scale</code>, <code>rotate</code>, or <code>translate</code>, and converting the canvas to an image using the <code>toDataURL</code> method.</p>
                 </div>
 
                 <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre id="code8" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
-                </div>
+                    <p>The key to the solution is the fact that we can use a canvas element as a source image when using <code>drawImage</code>. It is possible to create an extra <code>&lt;canvas></code> element, without adding it to the document, and draw our inverted sprites to it, once. When drawing an actual frame, we just copy the already inverted sprites to the main canvas.</p>
 
-                <div class="exercise-body">
-                    
+                    <p>Some care would be required because images do not load instantly. We do the inverted drawing only once, and if we do it before the image loads, it won’t draw anything. A <code>"load"</code> handler on the image can be used to draw the inverted images to the extra canvas. This canvas can be used as a drawing source immediately (it’ll simply be blank until we draw the character onto it).</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
