@@ -59,13 +59,25 @@ async function getFetchData(source, types) {
     }
 }
 
-getFetchData(mainSource, mainTypes); 
-                    </code></pre>
+getFetchData(mainSource, mainTypes);</code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> initializes the constant <code>mainSource</code> to a string containing the url of the main server.</p>
 
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> initializes the constant <code>mainTypes</code> to a array containing all of the desired media types.</p>
+
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> defines the <code>getFetchData</code> asynchronous function that recieves the source url and the desired media types of the requests.</p>
+
+                    <p><code class="desc desc-code1" data-line="5">Line 5</code> iterates through each <code>dataType</code> of the array <code>types</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="6">Line 6</code> asynchronously calls the <code>fetch</code> function and assigns the resulting value to <code>resp</code>, initiating an HTTP request for the <code>source</code> url with the <code>Accept</code> header set to the current <code>dataType</code> value.</p>
+
+                    <p><code class="desc desc-code1" data-line="7">Line 7</code> asynchronously calls the <code>text</code> method from the <code>resp</code> object, retrieving the data from the HTTP request.</p>
+
+                    <p><code class="desc desc-code1" data-line="8">Line 8</code> consoles the results, displaying the current <code>dataType</code> and <code>text</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="12">Line 12</code> calls <code>getFetchData</code> with the <code>mainSource</code> and <code>mainTypes</code> constants.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -87,8 +99,20 @@ async function showTypes() {
 showTypes();        </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    <p>The author used the same logic just expressed in more concise code.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> initializes the constant <code>url</code> to a string containing the url of the main server.</p>
+
+                    <p><code class="desc desc-code2" data-line="2-5">Line 2 - Line 5</code> initializes the constant <code>types</code> to a array containing all of the desired media types.</p>
+
+                    <p><code class="desc desc-code2" data-line="7">Line 7</code> defines the <code>showTypes</code> asynchronous function.</p>
+
+                    <p><code class="desc desc-code2" data-line="8">Line 8</code> iterates through each <code>type</code> of the array <code>types</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="9">Line 9</code> asynchronously calls the <code>fetch</code> function and assigns the resulting value to <code>resp</code>, initiating an HTTP request for the <code>url</code> with the <code>accept</code> header set to the current <code>type</code> value.</p>
+
+                    <p><code class="desc desc-code2" data-line="10">Line 10</code> consoles the current <code>type</code> value as well as the resulting data from the <code>resp</code> HTTP request by calling the <code>text</code> method.</p>
+
+                    <p><code class="desc desc-code2" data-line="14">Line 14</code> calls the <code>showTypes</code> function.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -122,8 +146,20 @@ function runCode() {
 }                   </code></pre>
                 </div>
 
-                <div class="exercise-body">
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> retrieves the <code>code</code> DOM element and assigns its reference to <code>textarea</code>.</p>
 
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> adds an event listener to an DOM element with the id of <code>button</code> that waits for a <code>"click"</code> before calling <code>runCode</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> defines the <code>runCode</code> function.</p>
+
+                    <p><code class="desc desc-code3" data-line="5">Line 5</code> initializes <code>result</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="6-7">Line 6 - Line 7</code> attempts, within a <code>try</code> block, to assign <code>result</code> to the return value of a new Function object running the <code>value</code> property of <code>textarea</code>.</p>
+
+                    <p>However if running the <code>value</code> property of <code>textarea</code> results in an error, <code class="desc desc-code3" data-line="8-9">Line 8 - Line 9</code> uses a <code>catch</code> block to assign <code>result</code> to the <code>error</code> value.</p>
+
+                    <p><code class="desc desc-code3" data-line="11">Line 11</code> retrieves the DOM element with the id of <code>"output"</code> and sets its <code>innerText</code> property to the <code>result</code> value.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -141,31 +177,50 @@ function runCode() {
 });                 </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> adds an event listener to an DOM element with the query value of <code>"#button"</code> that waits for a <code>"click"</code> before running any other code.</p>
+
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> retrieves the DOM element with the query value of <code>"#code"</code> and assigns its <code>value</code> property value to <code>code</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> retrieves the DOM element with the query value of <code>"#output"</code> and assigns its reference to <code>outputNode</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> begins a <code>try</code> block.</p>
+
+                    <p><code class="desc desc-code4" data-line="5">Line 5</code> attempts to assign <code>result</code> to the return value of a new Function object running the <code>code</code> value.</p>
+
+                    <p><code class="desc desc-code4" data-line="6">Line 6</code> sets the <code>innerText</code> property of <code>outputNode</code> to <code>result</code> converted into a string object.</p>
+
+                    <p>However if running <code>code</code> results in an error, <code class="desc desc-code4" data-line="7-8">Line 7 - Line 8</code> uses a <code>catch</code> block to set the <code>innerText</code> property of <code>outputNode</code> to a string containing the <code>e</code> object.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
             </section>
 
             <section class="exercise-panel">
-                <div class="exercise-header"><h2>A Monster</h2></div>
+                <div class="exercise-header"><h2>Conway's Game of Life</h2></div>
 
                 <div class="exercise-body">
                     <h3>Question</h3>
 
-                    <p>It is traditional for platform games to have enemies that you can jump on top of to defeat. This exercise asks you to add such an actor type to the game.</p>
+                    <p>Conway’s Game of Life is a simple simulation that creates artificial “life” on a grid, each cell of which is either alive or not. Each generation (turn), the following rules are applied:</p>
 
-                    <p>We’ll call it a monster. Monsters move only horizontally. You can make them move in the direction of the player, bounce back and forth like horizontal lava, or have any movement pattern you want. The class doesn’t have to handle falling, but it should make sure the monster doesn’t walk through walls.</p>
+                    <ol>
+                        <li>Any live cell with fewer than two or more than three live neighbors dies.</li>
+                        <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+                        <li>Any dead cell with exactly three live neighbors becomes a live cell.</li>
+                    </ol>
 
-                    <p>When a monster touches the player, the effect depends on whether the player is jumping on top of them or not. You can approximate this by checking whether the player’s bottom is near the monster’s top. If this is the case, the monster disappears. If not, the game is lost.</p> 
+                    <p>A neighbor is defined as any adjacent cell, including diagonally adjacent ones.</p>
+
+                    <p>Note that these rules are applied to the whole grid at once, not one square at a time. That means the counting of neighbors is based on the situation at the start of the generation, and changes happening to neighbor cells during this generation should not influence the new state of a given cell.</p>
+
+                    <p>Implement this game using whichever data structure you find appropriate. Use <code>Math.random</code> to populate the grid with a random pattern initially. Display it as a grid of checkbox fields, with a button next to it to advance to the next generation. When the user checks or unchecks the checkboxes, their changes should be included when computing the next generation.</p> 
                 </div>
 
                 <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
                     <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">class GameOfLife {
-
     constructor(height, width, container) {
         this.values = []; 
         this.height = height; 
@@ -218,14 +273,14 @@ function runCode() {
     }
 
     countNeighbor(row, column) {
-        let count = 0; 
+        let count = 0;
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
                 if (row + i === row && column + j === column) continue; 
                 count = this.values?.[row + i]?.[column + j] ? ++count : count; 
             }
         }
-        return count; 
+        return count;
     }
 
     updateValues(change) {
@@ -243,7 +298,6 @@ function runCode() {
             this.values[i][j] = e.target.checked; 
         }
     }
-
 }
 
 const game = new GameOfLife(10, 15, document.querySelector("#grid")); 
@@ -266,8 +320,125 @@ autoplayButton.addEventListener("click", () => {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>GameOfLife</code> object.</p>
 
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> defines the <code>constructor</code> method for the <code>GameOfLife</code> class, receiving the <code>height</code>, <code>width</code>, and <code>container</code> properties.</p>
+
+                    <p><code class="desc desc-code5" data-line="3">Line 3</code> initializes the <code>values</code> property of the object to an empty array.</p>
+
+                    <p><code class="desc desc-code5" data-line="4">Line 4</code> initializes the <code>height</code> property of the object to the <code>height</code> value.</p>
+
+                    <p><code class="desc desc-code5" data-line="5">Line 5</code> initializes the <code>width</code> property of the object to the <code>width</code> value.</p>
+
+                    <p><code class="desc desc-code5" data-line="6">Line 6</code> initializes the <code>container</code> property of the object to the <code>container</code> value.</p>
+
+                    <p><code class="desc desc-code5" data-line="8">Line 8</code> adds an event listener to the <code>container</code> property that waits for a <code>"click"</code> before calling the <code>updateSingleValue</code> method with the <code>this</code> keyword still pointing to the overarching <code>GameOfLife</code> object.</p>
+
+                    <p><code class="desc desc-code5" data-line="9">Line 9</code> calls the <code>initiateGame</code> method.</p>
+
+                    <p><code class="desc desc-code5" data-line="12">Line 12</code> defines the <code>initiateGame</code> method for the <code>GameOfLife</code> class.</p>
+
+                    <p><code class="desc desc-code5" data-line="13">Line 13</code> iterates over each row within the Game Of Life grid.</p>
+
+                    <p><code class="desc desc-code5" data-line="14">Line 14</code> initializes <code>row</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code5" data-line="15">Line 15</code> creates a <code>"div"</code> DOM element and assigns its reference to <code>div</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="17">Line 17</code> iterates over each column of the current row within the Game Of Life grid.</p>
+
+                    <p><code class="desc desc-code5" data-line="18">Line 18</code> initializes <code>value</code> the result of checking whether a random number between 0 and 1 is less than 0.5.</p>
+
+                    <p><code class="desc desc-code5" data-line="19">Line 19</code> adds the <code>value</code> boolean to the end of the <code>row</code> array.</p>
+
+                    <p><code class="desc desc-code5" data-line="21">Line 21</code> creates a <code>"input"</code> DOM element for the current cell and assigns its reference to <code>checkbox</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="22">Line 22</code> sets the <code>type</code> property of <code>checkbox</code> to <code>"checkbox"</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="23">Line 23</code> sets the <code>id</code> property of <code>checkbox</code> to a string combining <code>i</code>, or the row value, and <code>j</code>, or the column value, with a dash.</p>
+
+                    <p><code class="desc desc-code5" data-line="24">Line 24</code> sets the <code>checked</code> property of <code>checkbox</code> to the resulting boolean in <code>value</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="25">Line 25</code> adds <code>checkbox</code> as a child element the <code>div</code> DOM element.</p>
+
+                    <p><code class="desc desc-code5" data-line="28">Line 28</code> adds the <code>row</code> array to the end of the <code>values</code> property.</p>
+
+                    <p><code class="desc desc-code5" data-line="29">Line 29</code> adds <code>div</code> as a child element the <code>container</code> DOM element.</p>
+
+                    <p><code class="desc desc-code5" data-line="33">Line 33</code> defines the <code>evaluateValues</code> method for the <code>GameOfLife</code> class.</p>
+
+                    <p><code class="desc desc-code5" data-line="34">Line 34</code> initializes <code>changeValues</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code5" data-line="35">Line 35</code> iterates over each row within the Game Of Life grid.</p>
+
+                    <p><code class="desc desc-code5" data-line="36">Line 36</code> iterates over each column of the current row within the Game Of Life grid.</p>
+
+                    <p><code class="desc desc-code5" data-line="37">Line 37</code> initializes <code>isLive</code> to the current cell value within the Game Of Life grid.</p>
+
+                    <p><code class="desc desc-code5" data-line="38">Line 38</code> initializes <code>neighborNum</code> to the return value of calling <code>countNeighbor</code> with the current cell.</p>
+
+                    <p><code class="desc desc-code5" data-line="40">Line 40</code> checks whether <code>isLive</code> is true and <code>neighborNum</code> is less than 2 or greater than 3.</p>
+
+                    <p>If true, <code class="desc desc-code5" data-line="41">Line 41</code> adds to the end of <code>changeValues</code> a string combining <code>i</code>, or the row value, and <code>j</code>, or the column value, with a dash.</p>
+
+                    <p><code class="desc desc-code5" data-line="44">Line 44</code> checks whether <code>isLive</code> is false and <code>neighborNub</code> is equal to 3.</p>
+
+                    <p>If true, <code class="desc desc-code5" data-line="45">Line 45</code> adds to the end of <code>changeValues</code> a string combining <code>i</code>, or the row value, and <code>j</code>, or the column value, with a dash.</p>
+
+                    <p><code class="desc desc-code5" data-line="50">Line 50</code> calls the <code>updateValues</code> method.</p>
+
+                    <p><code class="desc desc-code5" data-line="53">Line 53</code> defines the <code>countNeighbor</code> method for the <code>GameOfLife</code> class, recieving a <code>row</code> and <code>column</code> index that designates a cell from the grid.</p>
+
+                    <p><code class="desc desc-code5" data-line="54">Line 54</code> initializes <code>count</code> to 0.</p>
+
+                    <p><code class="desc desc-code5" data-line="55">Line 55</code> iterates three times or through each adjacent row, changing <code>i</code> from -1 to 1.</p>
+
+                    <p><code class="desc desc-code5" data-line="56">Line 56</code> iterates three times or through each adjacent column, changing <code>j</code> from -1 to 1.</p>
+
+                    <p><code class="desc desc-code5" data-line="57">Line 57</code> checks whether <code>row</code> combined with <code>i</code> and <code>column</code> combined with <code>j</code> are equal to their original values, meaning the current cell is the same as the one specified by the parameters and the loop must continue on to the next interation.</p>
+
+                    <p><code class="desc desc-code5" data-line="58">Line 58</code> retrieves the boolean value of the current cell within the grid and increases <code>count</code> if true since the neighboring cell is "alive".</p>
+
+                    <p><code class="desc desc-code5" data-line="61">Line 61</code> returns <code>count</code> or the total number of "alive" neighbors.</p>
+
+                    <p><code class="desc desc-code5" data-line="64">Line 64</code> defines the <code>updateValues</code> method for the <code>GameOfLife</code> class, recieving a <code>change</code> array of cells to be updated.</p>
+
+                    <p><code class="desc desc-code5" data-line="65">Line 65</code> iterates through each cell index within <code>change</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="66">Line 66</code> splits the current cell index at the dash, assigning the two resulting values to <code>row</code> and <code>column</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="67">Line 67</code> sets the current cell boolean value to its opposite.</p>
+
+                    <p><code class="desc desc-code5" data-line="68">Line 68</code> retrieves the DOM element with the id value of the current cell index and assigns its reference to <code>inputElement</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="69">Line 69</code> sets the <code>checked</code> property of <code>inputElement</code> to its opposite boolean value.</p>
+
+                    <p><code class="desc desc-code5" data-line="73">Line 73</code> defines the <code>updateSingleValue</code> method for the <code>GameOfLife</code> class, recieving a <code>e</code> event object.</p>
+
+                    <p><code class="desc desc-code5" data-line="74">Line 74</code> checks whether the current <code>nodeName</code> of the event object target is equal to <code>"INPUT"</code>.</p>
+
+                    <p>If true, <code class="desc desc-code5" data-line="75">Line 75</code> splits the current id of the target at the dash, assigning the two resulting values to <code>i</code> and <code>y</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="76">Line 76</code> changes the value of the current cell to the <code>checked</code> property value of the target.</p>
+
+                    <p><code class="desc desc-code5" data-line="81">Line 81</code> assigns to the <code>game</code> constant, a new <code>GameOfLife</code> object with 10 for the height, 15 for the width, and the DOM element whose query equals <code>"#grid"</code> for the container .</p>
+
+                    <p><code class="desc desc-code5" data-line="83">Line 83</code> retrieves the DOM element whose query is equal to <code>"#next"</code> and assigns its reference to <code>nextButton</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="84">Line 84</code> adds an event listener to <code>nextButton</code> that waits for a <code>"click"</code> and calls the <code>evaluateValues</code> method with the <code>this</code> keyword still pointing to the overarching <code>game</code> object.</p>
+
+                    <p><code class="desc desc-code5" data-line="87">Line 87</code> retrieves the DOM element whose query is equal to <code>"#auto"</code> and assigns its reference to <code>autoplayButton</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="88">Line 88</code> initializes <code>isRunning</code> to false and <code>autoplayInterval</code> to an empty value.</p>
+
+                    <p><code class="desc desc-code5" data-line="90">Line 90</code> adds an event listener to <code>autoplayButton</code> that waits for a <code>"click"</code> before running any further code.</p>
+
+                    <p><code class="desc desc-code5" data-line="91">Line 91</code> checks whether <code>isRunning</code> is true.</p>
+
+                    <p>If true, <code class="desc desc-code5" data-line="92">Line 92</code> calls the <code>clearInterval</code> function with <code>autoplayInterval</code>, stopping the game from automatically continuing.</p>
+
+                    <p>Else, <code class="desc desc-code5" data-line="94">Line 94</code> sets <code>autoplayInterval</code> to calling the <code>setInterval</code> function and running the <code>evaluateValues</code> method of <code>game</code> every 1500 milliseconds.</p>
+
+                    <p>Else, <code class="desc desc-code5" data-line="96">Line 96</code> sets <code>isRunning</code> to its opposite boolean value.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -351,14 +522,107 @@ document.querySelector("#run").addEventListener("click", () => {
         clearInterval(running);
         running = null;
     } else {
-        running = setInterval(turn, 400);
+        running = setInterval(turn, 500);
     }
 });                 </code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> initializes <code>width</code> to 30 and <code>height</code> to 15.</p>
 
+                    <p><code class="desc desc-code6" data-line="5">Line 5</code> retrieves the DOM element whose query is equal to <code>"#grid"</code> and assigns its reference to <code>gridNode</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="7">Line 7</code> initializes <code>checkboxes</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code6" data-line="8">Line 8</code> iterates until <code>y</code> is equal to <code>height</code> or each row in the grid is created.</p>
+
+                    <p><code class="desc desc-code6" data-line="9">Line 9</code> iterates until <code>x</code> is equal to <code>width</code> or each column in the grid is created.</p>
+
+                    <p><code class="desc desc-code6" data-line="10">Line 10</code> creates an <code>"input"</code> DOM element representing the current grid cell and assigns its reference to <code>box</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> sets the <code>type</code> property of <code>box</code> to <code>"checkbox"</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="12">Line 12</code> adds <code>box</code> as a child element to <code>gridNode</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="13">Line 13</code> adds <code>box</code> to the end of the <code>checkboxes</code> array.</p>
+
+                    <p><code class="desc desc-code6" data-line="15">Line 15</code> creates a <code>"br"</code> DOM element and adds it as a child element to <code>gridNode</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="18">Line 18</code> defines the <code>gridFromCheckboxes</code> function.</p>
+
+                    <p><code class="desc desc-code6" data-line="19">Line 19</code> returns a new array created by mapping over each <code>box</code> value within <code>checkboxes</code> and replacing it with its <code>checked</code> boolean property.</p>
+
+                    <p><code class="desc desc-code6" data-line="21">Line 21</code> defines the <code>checkboxesFromGrid</code> function that recieves <code>grid</code> or a array of booleans.</p>
+
+                    <p><code class="desc desc-code6" data-line="22">Line 22</code> iterates over each cell within <code>grid</code> and sets the <code>checked</code> property of the corresponding input to the <code>value</code> boolean.</p>
+
+                    <p><code class="desc desc-code6" data-line="24">Line 24</code> defines the <code>randomGrid</code> function.</p>
+
+                    <p><code class="desc desc-code6" data-line="25">Line 25</code> initializes <code>result</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code6" data-line="26">Line 26</code> iterates through each cell within the grid.</p>
+
+                    <p><code class="desc desc-code6" data-line="27">Line 27</code> adds a boolean to the end of <code>result</code>, generated by checking whether a random number between 0 and 1 is less than 0.3.</p>
+
+                    <p><code class="desc desc-code6" data-line="29">Line 29</code> returns the <code>result</code> array.</p>
+
+                    <p><code class="desc desc-code6" data-line="32">Line 32</code> calls the <code>checkboxesFromGrid</code> function with the array returned by calling the <code>randomGrid</code> function.</p>
+
+                    <p><code class="desc desc-code6" data-line="37">Line 37</code> defines the <code>countNeighbors</code> function that recieves a <code>grid</code>, <code>x</code>, and <code>y</code> parameter.</p>
+
+                    <p><code class="desc desc-code6" data-line="38">Line 38</code> initializes <code>count</code> to 0.</p>
+
+                    <p><code class="desc desc-code6" data-line="39">Line 39</code> sets <code>y1</code> to the larger value between 0 and <code>y</code> - 1 and iterates until <code>y1</code> is greater than the smaller value between <code>height</code> - 1 and <code>y</code> + 1, preventing errors from trying to check a nonexisting cell.</p>
+
+                    <p><code class="desc desc-code6" data-line="40">Line 40</code> sets <code>x1</code> to the larger value between 0 and <code>x</code> - 1 and iterates until <code>x1</code> is greater than the smaller value between <code>width</code> - 1 and <code>x</code> + 1, preventing errors from trying to check a nonexisting cell.</p>
+
+                    <p><code class="desc desc-code6" data-line="41">Line 41</code> checks whether <code>x1</code> and <code>y1</code> don't equal to original cell index and the boolean value of the current cell is true.</p>
+
+                    <p>If true, <code class="desc desc-code6" data-line="42">Line 42</code> increases count by one since the neightboring cell is "alive".</p>
+
+                    <p><code class="desc desc-code6" data-line="46">Line 46</code> returns the <code>count</code> value.</p>
+
+                    <p><code class="desc desc-code6" data-line="49">Line 49</code> defines the <code>nextGeneration</code> function that recieves a <code>grid</code> parameter.</p>
+
+                    <p><code class="desc desc-code6" data-line="50">Line 50</code> creates a new array with the same size as <code>grid</code> and assigns it to <code>newGrid</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="51">Line 51</code> iterates until <code>y</code> is equal to <code>height</code> or through each row in the grid.</p>
+
+                    <p><code class="desc desc-code6" data-line="52">Line 52</code> iterates until <code>x</code> is equal to <code>width</code> or through each column in the grid.</p>
+
+                    <p><code class="desc desc-code6" data-line="53">Line 53</code> sets <code>neightbors</code> to the number returned by calling <code>countNeighbors</code> with the current grid and grid cell.</p>
+
+                    <p><code class="desc desc-code6" data-line="54">Line 54</code> sets <code>offset</code> to the current cells index within the <code>newGrid</code> array, calculated by multiplying <code>y</code> by <code>width</code> before adding <code>x</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="55">Line 55</code> checks whether <code>neighbors</code> is less than 2 or greater than 3.</p>
+
+                    <p>If true, <code class="desc desc-code6" data-line="56">Line 56</code> sets the current grid cell boolean value within <code>newGrid</code> to false.</p>
+
+                    <p>Else, <code class="desc desc-code6" data-line="57">Line 57</code> checks whether <code>neighbors</code> is equal to 2.</p>
+
+                    <p>If true, <code class="desc desc-code6" data-line="58">Line 58</code> sets the current grid cell boolean value within <code>newGrid</code> to its previous value.</p>
+
+                    <p>Else, <code class="desc desc-code6" data-line="60">Line 60</code> sets the current grid cell boolean value within <code>newGrid</code> to true.</p>
+
+                    <p><code class="desc desc-code6" data-line="64">Line 64</code> returns <code>newGrid</code> with all the updated grid cell boolean values.</p>
+
+                    <p><code class="desc desc-code6" data-line="67">Line 67</code> defines the <code>turn</code> function.</p>
+
+                    <p><code class="desc desc-code6" data-line="68">Line 68</code> calls the <code>checkboxesFromGrid</code> function with the new values generated by the <code>nextGeneration</code> function whenever <code>gridFromCheckboxes</code> is inputted.</p>
+
+                    <p><code class="desc desc-code6" data-line="71">Line 71</code> adds an event listener to the DOM element whose query is equal to <code>"#next"</code> that waits for <code>"click"</code> before calling <code>turn</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="73">Line 73</code> initializes <code>running</code> to null.</p>
+
+                    <p><code class="desc desc-code6" data-line="74">Line 74</code> adds an event listener to the DOM element whose query is equal to <code>"#run"</code> that waits for <code>"click"</code> before running any code.</p>
+
+                    <p><code class="desc desc-code6" data-line="75">Line 75</code> checks whether <code>running</code> is true.</p>
+
+                    <p>If true, <code class="desc desc-code6" data-line="76">Line 76</code> calls the <code>clearInterval</code> function with <code>running</code>, stopping the game from automatically continuing.</p>
+
+                    <p><code class="desc desc-code6" data-line="77">Line 77</code> sets <code>running</code> to null.</p>
+
+                    <p>Else, <code class="desc desc-code6" data-line="79">Line 79</code> sets <code>running</code> to calling the <code>setInterval</code> function and running the <code>turn</code> function every 1500 milliseconds.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
