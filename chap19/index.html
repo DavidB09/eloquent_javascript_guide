@@ -38,7 +38,7 @@
 
                     <p>Add keyboard shortcuts to the application. The first letter of a tool’s name selects the tool, and <code>control-Z</code> or <code>command-Z</code> activates undo.</p>
 
-                    <p>Do this by modifying the <code>PixelEditor</code> component. Add a <code>tabIndex</code> property of 0 to the wrapping <code>&gt;div></code> element so that it can receive keyboard focus. Note that the property corresponding to the <code>tabindex</code> attribute is called <code>tabIndex</code>, with a capital I, and our <code>elt</code> function expects property names. Register the key event handlers directly on that element. This means you have to click, touch, or tab to the application before you can interact with it with the keyboard.</p>
+                    <p>Do this by modifying the <code>PixelEditor</code> component. Add a <code>tabIndex</code> property of 0 to the wrapping <code>&lt;div></code> element so that it can receive keyboard focus. Note that the property corresponding to the <code>tabindex</code> attribute is called <code>tabIndex</code>, with a capital I, and our <code>elt</code> function expects property names. Register the key event handlers directly on that element. This means you have to click, touch, or tab to the application before you can interact with it with the keyboard.</p>
 
                     <p>Remember that keyboard events have <code>ctrlKey</code> and <code>metaKey</code> (for the <code>COMMAND</code> key on Mac) properties that you can use to see whether those keys are held down.</p>
                 </div>
@@ -50,7 +50,7 @@
     constructor(state, config) {
         let {tools, controls, dispatch} = config;
         this.state = state;
-        
+
         this.canvas = new PictureCanvas(state.picture, pos => {
             let tool = tools[this.state.tool];
             let onMove = tool(pos, this.state, dispatch);
@@ -84,8 +84,53 @@
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>PixelEditor</code> object.</p>
 
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> defines the <code>constructor</code> method for <code>PixelEditor</code> that recieves a <code>state</code> and <code>config</code> objects as the parameters.</p>
+
+                    <p><code class="desc desc-code1" data-line="3">Line 3</code> destructors the <code>config</code> object into the <code>tools</code> object, <code>controls</code> array, and <code>dispatch</code> function.</p>
+
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> assigns the <code>state</code> property of the current object to the <code>state</code> parameter.</p>
+
+                    <p><code class="desc desc-code1" data-line="6">Line 6</code> assigns the <code>canvas</code> property of the current object to a <code>PictureCanvas</code> object that recieves the current <code>picture</code> property of <code>state</code> and an array function that defines the actions for whenever a pointer down event occurs.</p>
+
+                    <p><code class="desc desc-code1" data-line="7">Line 7</code> creates a new variable <code>tool</code> and assigns it to the function corresponding with the current tool selected in the editor.</p>
+
+                    <p><code class="desc desc-code1" data-line="8">Line 8</code> creates a new variable <code>onMove</code> and assigns it to the return value of calling the <code>tool</code> function with the current position of the mouse, state, and <code>dispatch</code> function.</p>
+
+                    <p><code class="desc desc-code1" data-line="9">Line 9</code> checks whether the tool was correctly used, meaning <code>onMove</code>returned a valid value.</p>
+
+                    <p>If true, <code class="desc desc-code1" data-line="10">Line 10</code> returns an arrow function that calls the function returned by <code>onMove</code> with the current position of the mouse, state, and <code>dispatch</code> function.</p>
+
+                    <p><code class="desc desc-code1" data-line="13">Line 13</code> assigns the <code>controls</code> property of the current object to the result of iterating over each object within <code>controls</code> and converting it into a <code>Control</code> object with the current <code>state</code> and <code>config</code> values.</p>
+
+                    <p><code class="desc desc-code1" data-line="14">Line 14</code> assigns the <code>dom</code> property of the current object to the result of calling the <code>elt</code> function to create a <code>&lt;div></code> element.</p>
+
+                    <p><code class="desc desc-code1" data-line="16">Line 16</code> assigns the <code>tabIndex</code> property of the object to 0.</p>
+
+                    <p><code class="desc desc-code1" data-line="17">Line 17</code> assigns the <code>onkeydown</code> property of the object to a arrow function that defines the actions for whenever a keydown event occurs.</p>
+
+                    <p><code class="desc desc-code1" data-line="18">Line 18</code> checks whether the control or meta key, along with the z character, is being pressed by utilizing the <code>event</code> object.</p>
+
+                    <p>If true, <code class="desc desc-code1" data-line="19">Line 19</code> calls the <code>dispatch</code> function with an object whose <code>undo</code> property is true, performing an undo action within the editor.</p>
+
+                    <p>Else, <code class="desc desc-code1" data-line="20">Line 20</code> checks whether neither the control, meta, nor the alt key is being pressed.</p>
+
+                    <p>If true, <code class="desc desc-code1" data-line="21">Line 21</code> interates through each <code>toolName</code> value within <code>tools</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="22">Line 22</code> checks whether the character of the key being pressed is equal to the first character of <code>toolName</code>.</p>
+                    
+                    <p>If true, <code class="desc desc-code1" data-line="23">Line 23</code> calls the <code>dispatch</code> function with an object whose <code>tool</code> property is assigned to the current <code>toolName</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="28">Line 28</code> continues the parameters for the <code>elt</code> function, creating the <code>dom</code> property of <code>this.canvas</code>, a <code>&lt;br></code> element, and all of the values within <code>this.controls</code> as child elements to the <code>&lt;div></code> element.</p>
+
+                    <p><code class="desc desc-code1" data-line="30">Line 30</code> defines the <code>syncState</code> method for <code>PixelEditor</code> that recieves a <code>state</code> object as the parameter.</p>
+
+                    <p><code class="desc desc-code1" data-line="31">Line 31</code> updates the <code>state</code> property for the current object to the <code>state</code> parameter.</p>
+
+                    <p><code class="desc desc-code1" data-line="32">Line 32</code> calls the <code>syncState</code> method of <code>this.canvas</code> with the updated <code>picture</code> property of <code>state</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="33">Line 33</code> iterates through each <code>ctrl</code> object of <code>this.controls</code> and calls their <code>syncState</code> method to update their values.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -131,8 +176,62 @@
 }                   </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    <p>The author used the same logic just expressed in more concise code.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> defines the <code>PixelEditor</code> object.</p>
+
+                    <p><code class="desc desc-code2" data-line="2">Line 2</code> defines the <code>constructor</code> method for <code>PixelEditor</code> that recieves a <code>state</code> and <code>config</code> objects as the parameters.</p>
+
+                    <p><code class="desc desc-code2" data-line="3">Line 3</code> destructors the <code>config</code> object into the <code>tools</code> object, <code>controls</code> array, and <code>dispatch</code> function.</p>
+
+                    <p><code class="desc desc-code2" data-line="4">Line 4</code> assigns the <code>state</code> property of the current object to the <code>state</code> parameter.</p>
+
+                    <p><code class="desc desc-code2" data-line="6">Line 6</code> assigns the <code>canvas</code> property of the current object to a <code>PictureCanvas</code> object that recieves the current <code>picture</code> property of <code>state</code> and an array function that defines the actions for whenever a pointer down event occurs.</p>
+
+                    <p><code class="desc desc-code2" data-line="7">Line 7</code> creates a new variable <code>tool</code> and assigns it to the function corresponding with the current tool selected in the editor.</p>
+
+                    <p><code class="desc desc-code2" data-line="8">Line 8</code> creates a new variable <code>onMove</code> and assigns it to the return value of calling the <code>tool</code> function with the current position of the mouse, state, and <code>dispatch</code> function.</p>
+
+                    <p><code class="desc desc-code2" data-line="9">Line 9</code> checks whether the tool was correctly used, meaning <code>onMove</code>returned a valid value.</p>
+
+                    <p>If true, <code class="desc desc-code2" data-line="10">Line 10</code> returns an arrow function that calls the function returned by <code>onMove</code> with the current position of the mouse, state, and <code>dispatch</code> function.</p>
+
+                    <p><code class="desc desc-code2" data-line="13">Line 13</code> assigns the <code>controls</code> property of the current object to the result of iterating over each object within <code>controls</code> and converting it into a <code>Control</code> object with the current <code>state</code> and <code>config</code> values.</p>
+
+                    <p><code class="desc desc-code2" data-line="14">Line 14</code> assigns the <code>dom</code> property of the current object to the result of calling the <code>elt</code> function to create a <code>&lt;div></code> element.</p>
+
+                    <p><code class="desc desc-code2" data-line="15">Line 15</code> assigns the <code>tabIndex</code> property of the object to 0.</p>
+
+                    <p><code class="desc desc-code2" data-line="16">Line 16</code> assigns the <code>onkeydown</code> property of the object to a arrow function that calls the <code>keyDown</code> method with the <code>event</code> and <code>config</code> objects whenever a keydown event occurs.</p>
+
+                    <p><code class="desc desc-code2" data-line="17">Line 17</code> adds the <code>dom</code> property of <code>this.canvas</code>, a <code>&lt;br></code> element, and all of the values within <code>this.controls</code> as child elements to the <code>&lt;div></code> element.</p>
+
+                    <p><code class="desc desc-code2" data-line="19">Line 19</code> defines the <code>keyDown</code> method for <code>PixelEditor</code> that recieves <code>event</code> and <code>config</code> objects as the parameters.</p>
+
+                    <p><code class="desc desc-code2" data-line="20">Line 20</code> checks whether the z character, along with the control or meta key, is being pressed by utilizing the <code>event</code> object.</p>
+
+                    <p>If true, <code class="desc desc-code2" data-line="21">Line 21</code> calls the <code>preventDefault</code> method of <code>event</code> to prevent any unwanted actions by the browser.</p>
+
+                    <p><code class="desc desc-code2" data-line="22">Line 22</code> calls the <code>dispatch</code> method of <code>config</code> with an object whose <code>undo</code> property is true, performing an undo action within the editor.</p>
+
+                    <p>Else, <code class="desc desc-code2" data-line="23">Line 23</code> checks whether neither the control, meta, nor the alt key is being pressed.</p>
+
+                    <p>If true, <code class="desc desc-code2" data-line="24">Line 24</code> interates through each <code>Object.keys</code> value within the <code>tools</code> property of <code>config</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="25">Line 25</code> checks whether the character of the key being pressed is equal to the first character of <code>tool</code>.</p>
+
+                    <p>If true, <code class="desc desc-code2" data-line="26">Line 26</code> calls the <code>preventDefault</code> method of <code>event</code> to prevent any unwanted actions by the browser.</p>
+                    
+                    <p><code class="desc desc-code2" data-line="27">Line 27</code> calls the <code>dispatch</code> function with an object whose <code>tool</code> property is assigned to the current <code>tool</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="28">Line 28</code> returns from the function.</p>
+
+                    <p><code class="desc desc-code2" data-line="33">Line 33</code> defines the <code>syncState</code> method for <code>PixelEditor</code> that recieves a <code>state</code> object as the parameter.</p>
+
+                    <p><code class="desc desc-code2" data-line="34">Line 34</code> updates the <code>state</code> property for the current object to the <code>state</code> parameter.</p>
+
+                    <p><code class="desc desc-code2" data-line="35">Line 35</code> calls the <code>syncState</code> method of <code>this.canvas</code> with the updated <code>picture</code> property of <code>state</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="36">Line 36</code> iterates through each <code>ctrl</code> object of <code>this.controls</code> and calls their <code>syncState</code> method to update their values.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -179,8 +278,34 @@ function drawPicture(newPicture, canvas, scale, oldPicture) {
 }                   </code></pre>
                 </div>
 
-                <div class="exercise-body">
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> defines the <code>syncState</code> method on the <code>prototype</code> of <code>PictureCanvas</code> as a function that recieves a <code>newPicture</code> object.</p>
 
+                    <p><code class="desc desc-code3" data-line="2">Line 2</code> checks whether the <code>newPicture</code> object from the parameter is equal to the <code>picture</code> property of the current object, and returns if true.</p>
+
+                    <p><code class="desc desc-code3" data-line="3">Line 3</code> calls the <code>drawPicture</code> function with the <code>newPicture</code>, <code>this.dom</code>, <code>scale</code>, and <code>this.picture</code> value to show the updated picture on the editor.</p>
+
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> updates the <code>picture</code> property of the current object to the <code>newPicture</code> value.</p>
+
+                    <p><code class="desc desc-code3" data-line="7">Line 7</code> defines the <code>drawPicture</code> function that recieves <code>newPicture</code>, <code>canvas</code>, <code>scale</code>, and <code>oldPicture</code> values as the parameters.</p>
+
+                    <p><code class="desc desc-code3" data-line="8">Line 8</code> checks whether the <code>width</code> properties of <code>newPicture</code> and <code>oldPicture</code> are not equal, updating the <code>width</code> of <code>canvas</code> to the <code>width</code> property of <code>newPicture</code> multiplied by <code>scale</code> if true.</p>
+
+                    <p><code class="desc desc-code3" data-line="9">Line 9</code> checks whether the <code>height</code> properties of <code>newPicture</code> and <code>oldPicture</code> are not equal, updating the <code>height</code> of <code>canvas</code> to the <code>height</code> property of <code>newPicture</code> multiplied by <code>scale</code> if true.</p>
+
+                    <p><code class="desc desc-code3" data-line="10">Line 10</code> assigns <code>cx</code> to calling the <code>getContext</code> method of <code>canvas</code> with <code>"2d"</code>, allow drawing to occur.</p>
+
+                    <p><code class="desc desc-code3" data-line="12">Line 12</code> uses a for loop to iterate until the <code>y</code> value, initialized to 0, is equal to the <code>height</code> property of <code>newPicture</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="13">Line 13</code> uses a for loop to iterate until the <code>x</code> value, initialized to 0, is equal to the <code>width</code> property of <code>newPicture</code>.</p>
+
+                    <p><code class="desc desc-code3" data-line="14">Line 14</code> assigns <code>currNewPixel</code> to the color value of the current pixel within <code>newPicture</code> by calling the <code>pixel</code> method with the current <code>x</code> and <code>y</code> positions.</p>
+
+                    <p><code class="desc desc-code3" data-line="15">Line 15</code> checks whether the color represented by <code>currNewPixel</code> is not equal to the color value of the current pixel within <code>oldPicture</code> by using the same method.</p>
+
+                    <p>If true, <code class="desc desc-code3" data-line="16">Line 16</code> updates the <code>fillStyle</code> property of <code>cx</code> to the <code>currNewPixel</code> value.</p>
+
+                    <p><code class="desc desc-code3" data-line="17">Line 17</code> calls the <code>fillRect</code> property of <code>cx</code> with the coordinates set to their respective <code>x</code> and <code>y</code> values multiplied by <code>scale</code>, and the width and height both set to <code>scale</code>.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -212,8 +337,38 @@ function drawPicture(picture, canvas, scale, previous) {
 }                   </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> defines the <code>syncState</code> method on the <code>prototype</code> of <code>PictureCanvas</code> as a function that recieves a <code>picture</code> object.</p>
+
+                    <p><code class="desc desc-code4" data-line="2">Line 2</code> checks whether the <code>picture</code> object from the parameter is equal to the <code>picture</code> property of the current object, and returns if true.</p>
+
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> calls the <code>drawPicture</code> function with the <code>picture</code>, <code>this.dom</code>, <code>scale</code>, and <code>this.picture</code> value to show the updated picture on the editor.</p>
+
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> updates the <code>picture</code> property of the current object to the <code>picture</code> value.</p>
+
+                    <p><code class="desc desc-code4" data-line="7">Line 7</code> defines the <code>drawPicture</code> function that recieves <code>picture</code>, <code>canvas</code>, <code>scale</code>, and <code>previous</code> values as the parameters.</p>
+
+                    <p><code class="desc desc-code4" data-line="8">Line 8</code> checks whether <code>previous</code> is equal to <code>null</code>, the <code>width</code> properties of <code>previous</code> and <code>picture</code> are not equal, or the <code>height</code> properties of <code>previous</code> and <code>picture</code> are not equal.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="9">Line 9</code> updates the <code>width</code> of <code>canvas</code> to the <code>width</code> property of <code>picture</code> multiplied by <code>scale</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="10">Line 10</code> updates the <code>height</code> of <code>canvas</code> to the <code>height</code> property of <code>picture</code> multiplied by <code>scale</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="11">Line 11</code> sets <code>previous</code> to <code>null</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="14">Line 14</code> assigns <code>cx</code> to calling the <code>getContext</code> method of <code>canvas</code> with <code>"2d"</code>, allow drawing to occur.</p>
+
+                    <p><code class="desc desc-code4" data-line="15">Line 15</code> uses a for loop to iterate until the <code>y</code> value, initialized to 0, is equal to the <code>height</code> property of <code>picture</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="16">Line 16</code> uses a for loop to iterate until the <code>x</code> value, initialized to 0, is equal to the <code>width</code> property of <code>picture</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="17">Line 17</code> assigns <code>color</code> to the color value of the current pixel within <code>picture</code> by calling the <code>pixel</code> method with the current <code>x</code> and <code>y</code> positions.</p>
+
+                    <p><code class="desc desc-code4" data-line="18">Line 18</code> checks whether <code>previous</code> is equal to <code>null</code> or <code>color</code> is not equal to the color value of the current pixel within <code>previous</code> by using the same method.</p>
+
+                    <p>If true, <code class="desc desc-code4" data-line="19">Line 19</code> updates the <code>fillStyle</code> property of <code>cx</code> to the <code>color</code> value.</p>
+
+                    <p><code class="desc desc-code4" data-line="20">Line 20</code> calls the <code>fillRect</code> property of <code>cx</code> with the coordinates set to their respective <code>x</code> and <code>y</code> values multiplied by <code>scale</code>, and the width and height both set to <code>scale</code>.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -253,8 +408,29 @@ function drawPicture(picture, canvas, scale, previous) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>circle</code> function that recieves <code>center</code>, <code>state</code>, and <code>dispatch</code> as parameters.</p>
 
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> defines the <code>drawCircle</code> function that recieves <code>endpoint</code> as the parameter.</p>
+
+                    <p><code class="desc desc-code5" data-line="3">Line 3</code> creates the <code>radius</code> variable and sets it to the distance between the <code>endpoint</code> and <code>center</code> coordinates.</p>
+
+                    <p><code class="desc desc-code5" data-line="5">Line 5</code> initializes <code>drawn</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code5" data-line="6">Line 6</code> iterates from the y coordinate at the bottom of the circle, calculated by subtracting the rounded down value of <code>radius</code> from <code>center.y</code>, to the y coordinate at the top of the circle, calculated by adding the rounded up value of <code>radius</code> to <code>center.y</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="7">Line 7</code> iterates from the x coordinate at the left of the circle, calculated by subtracting the rounded down value of <code>radius</code> from <code>center.x</code>, to the x coordinate at the right of the circle, calculated by adding the rounded up value of <code>radius</code> to <code>center.x</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="8">Line 8</code> checks whether the current coordinates are outside the borders of the editing tool, continuing to the next interation if true.</p>
+
+                    <p><code class="desc desc-code5" data-line="9">Line 9</code> checks whether the distance between the current coordinates and those from the <code>center</code> is less than or equal to the <code>radius</code> value.</p>
+
+                    <p>If true, <code class="desc desc-code5" data-line="10">Line 10</code> pushes an object containing the current <code>x</code>, <code>y</code>, and <code>state.color</code> values to <code>drawn</code>.</p>
+
+                    <p><code class="desc desc-code5" data-line="15">Line 15</code> calls the <code>dispatch</code> function with an object whose <code>picture</code> property is equal to calling the <code>draw</code> method with the new pixels in the <code>drawn</code> array.</p>
+
+                    <p><code class="desc desc-code5" data-line="17">Line 17</code> calls the <code>drawCircle</code> function with the current <code>center</code> value.</p>
+
+                    <p><code class="desc desc-code5" data-line="18">Line 18</code> returns the <code>drawCircle</code> function.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -282,8 +458,35 @@ function drawPicture(picture, canvas, scale, previous) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>circle</code> function that recieves <code>pos</code>, <code>state</code>, and <code>dispatch</code> as parameters.</p>
 
+                    <p><code class="desc desc-code6" data-line="2">Line 2</code> defines the <code>drawCircle</code> function that recieves <code>to</code> as the parameter.</p>
+
+                    <p><code class="desc desc-code6" data-line="3">Line 3</code> creates the <code>radius</code> variable and sets it to the distance between the <code>to</code> and <code>pos</code> coordinates.</p>
+
+                    <p><code class="desc desc-code6" data-line="4">Line 4</code> creates the <code>radiusC</code> variable and sets it to the rounded up value of <code>radius</code> using <code>Math.ceil</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="5">Line 5</code> initializes <code>drawn</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code6" data-line="6">Line 6</code> iterates from the negative value of <code>radiusC</code> to the positive value of <code>radiusC</code> using <code>dy</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="7">Line 7</code> iterates from the negative value of <code>radiusC</code> to the positive value of <code>radiusC</code> using <code>dx</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="8">Line 8</code> creates the <code>dist</code> variable and sets it to distance of the current <code>dx</code> and <code>dy</code> values.</p>
+
+                    <p><code class="desc desc-code6" data-line="9">Line 9</code> checks whether the <code>dist</code> value is greater than <code>radius</code>, continuing to the next interation if true.</p>
+
+                    <p><code class="desc desc-code6" data-line="10">Line 10</code> creates the <code>y</code> and <code>x</code> variables, setting them to the results of adding <code>dy</code> and <code>pos.y</code> and <code>dx</code> and <code>pos.x</code> respectively.</p>
+
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> checks whether the current coordinates are outside the borders of the editing tool, continuing to the next interation if true.</p>
+
+                    <p><code class="desc desc-code6" data-line="12">Line 12</code> pushes an object containing the current <code>x</code>, <code>y</code>, and <code>state.color</code> values to <code>drawn</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="15">Line 15</code> calls the <code>dispatch</code> function with an object whose <code>picture</code> property is equal to calling the <code>draw</code> method with the new pixels in the <code>drawn</code> array.</p>
+
+                    <p><code class="desc desc-code6" data-line="17">Line 17</code> calls the <code>drawCircle</code> function with the current <code>center</code> value.</p>
+
+                    <p><code class="desc desc-code6" data-line="18">Line 18</code> returns the <code>drawCircle</code> function.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -311,10 +514,9 @@ function drawPicture(picture, canvas, scale, previous) {
 
                     <pre id="code7" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function draw(pos, state, dispatch) {
     let oldPos = pos; 
-    
-    function drawPixel({x, y}, state) {
-        dispatch({picture: state.picture.draw(findLine(oldPos, {x, y}, state.color))});
-        oldPos = {x, y}; 
+    function drawPixel(coord, state) {
+        dispatch({picture: state.picture.draw(findLine(oldPos, coord, state.color))});
+        oldPos = coord; 
     }
     drawPixel(pos, state);
     return drawPixel;
@@ -327,7 +529,7 @@ function findLine(start, end, color) {
         'up': {y: -1}, 
         'down': {y: 1}, 
         'equal': {x: 0, y: 0}, 
-    }; 
+    };
 
     const findAngle = (opp, adj) => {
         let tanAngle = Math.atan(opp / adj) * (180 / Math.PI); 
@@ -371,8 +573,71 @@ function line(pos, state, dispatch) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code7" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
+                    <p><code class="desc desc-code7" data-line="1">Line 1</code> defines the <code>draw</code> function that recieves <code>pos</code>, <code>state</code>, and <code>dispatch</code> as parameters.</p>
 
+                    <p><code class="desc desc-code7" data-line="2">Line 2</code> initializes <code>oldPos</code> to the <code>pos</code> object from the parameter.</p>
+
+                    <p><code class="desc desc-code7" data-line="3">Line 3</code> defines the <code>drawPixel</code> function that recieves <code>coord</code> and <code>state</code> objects as parameters.</p>
+
+                    <p><code class="desc desc-code7" data-line="4">Line 4</code> calls the <code>dispatch</code> function with an object whose <code>picture</code> property is set to the result of calling the <code>draw</code> method from <code>state.picture</code> with the return value of <code>findLine</code> called with <code>oldPos</code>, <code>coord</code>, and <code>state.color</code>.</p>
+
+                    <p><code class="desc desc-code7" data-line="5">Line 5</code> updates <code>oldPos</code> to the <code>coord</code> object from the parameter.</p>
+
+                    <p><code class="desc desc-code7" data-line="7">Line 7</code> calls the <code>drawPixel</code> function with the <code>pos</code> and <code>states</code> objects.</p>
+
+                    <p><code class="desc desc-code7" data-line="8">Line 8</code> returns the <code>drawPixel</code> function.</p>
+
+                    <p><code class="desc desc-code7" data-line="11">Line 11</code> defines the <code>findLine</code> function that recieves <code>start</code>, <code>end</code>, and <code>color</code> as parameters.</p>
+
+                    <p><code class="desc desc-code7" data-line="12-18">Line 12 - Line 18</code> initializes the constant <code>move</code> to an object with certain directions corresponding to the change in coordinates, i.e. increasing the x coordinate results in a movement to the right.</p>
+
+                    <p><code class="desc desc-code7" data-line="20">Line 20</code> initializes the constant <code>findAngle</code> to helper function that recieves <code>opp</code> and <code>adj</code> side lengths before returning an angle of their tangent value.</p>
+
+                    <p><code class="desc desc-code7" data-line="21">Line 21</code> sets <code>tanAngle</code> to the inverse tangent of <code>opp</code> divided by <code>adj</code>, using <code>Math.tan</code>, converted into degrees using 180 divided by <code>Math.PI</code>.</p>
+
+                    <p><code class="desc desc-code7" data-line="22">Line 22</code> checks whether the <code>tanAngle</code> value is not finite using the <code>isFinite</code> function, returning 0 if true or just <code>tanAngle</code> if false.</p>
+
+                    <p><code class="desc desc-code7" data-line="25">Line 25</code> returns the current angle of the line created by the start and end points by calling <code>mainAngle</code> with the differences both between the y coordinates and the x coordinates.</p>
+
+                    <p><code class="desc desc-code7" data-line="27">Line 27</code> initializes <code>linePoints</code> to an array that contains an object with property <code>point</code> initialized to <code>start</code> and <code>line</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code7" data-line="28">Line 28</code> iterates through each value within <code>linePoints</code>, basically until an entire line is created since more objects will be added during some iterations.</p>
+
+                    <p><code class="desc desc-code7" data-line="29">Line 29</code> destructors the current object within <code>linePoints</code> into the <code>point</code> object and <code>line</code> array.</p>
+
+                    <p><code class="desc desc-code7" data-line="31">Line 31</code> creates the variable <code>xMove</code>, setting it to <code>'right'</code> if <code>point.x</code> is less than <code>end.x</code>, <code>'left'</code> if <code>point.x</code> is greater than <code>end.x</code>, or <code>'equal'</code> if equal.</p>
+
+                    <p><code class="desc desc-code7" data-line="32">Line 32</code> creates the variable <code>yMove</code>, setting it to <code>'down'</code> if <code>point.y</code> is less than <code>end.y</code>, <code>'up'</code> if <code>point.y</code> is greater than <code>end.y</code>, or <code>'equal'</code> if equal.</p>
+
+                    <p><code class="desc desc-code7" data-line="34">Line 34</code> creates the <code>newPoint</code> variable and sets it to the result of iterating three times and finding the next point with the angle closest to <code>mainAngle</code>.</p>
+
+                    <p><code class="desc desc-code7" data-line="35">Line 35</code> checks whether the current iteration is the first by comparing <code>i</code> and 0, returning the <code>init</code> value if true.</p>
+
+                    <p><code class="desc desc-code7" data-line="37">Line 37</code> calculates the possibile coordinates of the next point by checking the current interation count, or <code>i</code> and retrieving the resulting movement from <code>move</code>, either the <code>xMove</code> or <code>yMove</code> value for x and y, or just the <code>'equal'</code> property where there is no change for the coordinate.</p>
+
+                    <p><code class="desc desc-code7" data-line="39">Line 39</code> creates the variable <code>currAngle</code> and sets it to the result of calculating the angle for the coordinates of the current possible point, using the <code>findAngle</code> function with the newly generated <code>curr</code> coordinates.</p>
+
+                    <p><code class="desc desc-code7" data-line="40">Line 40</code> creates the variable <code>initAngle</code> and sets it to the result of calculating the angle for the coordinates of the first possible point, using the <code>findAngle</code> function with the <code>init</code> coordinates.</p>
+
+                    <p><code class="desc desc-code7" data-line="42">Line 42</code> compares the differences between <code>currAngle</code> and <code>initAngle</code>, returning the one which is closer to the <code>mainAngle</code> value.</p>
+
+                    <p><code class="desc desc-code7" data-line="43">Line 43</code> defines the <code>init</code> value for the reduce method, setting the x and y properties to the results of combining their original coordinates from <code>point</code> with the new movements from <code>move</code>.</p>
+
+                    <p><code class="desc desc-code7" data-line="45">Line 45</code> checks whether the <code>newPoint</code> coordinates are equal to the <code>end</code> coordinates, returning the <code>line</code> array with <code>newPoint</code> added since the line is now completed.</p>
+
+                    <p><code class="desc desc-code7" data-line="47">Line 47</code> continues the line by adding a new object to <code>linePoints</code> with the <code>point</code> property pointing to <code>newPoint</code>, as well as the <code>line</code> property containing the <code>line</code> array with the current <code>newPoint</code> object added to the end.</p>
+
+                    <p><code class="desc desc-code7" data-line="51">Line 51</code> defines the <code>line</code> function that recieves <code>pos</code>, <code>state</code>, and <code>dispatch</code> as parameters.</p>
+
+                    <p><code class="desc desc-code7" data-line="52">Line 52</code> defines the <code>drawLine</code> function that recieves <code>endpoint</code> as the parameter.</p>
+
+                    <p><code class="desc desc-code7" data-line="53">Line 53</code> creates the <code>drawn</code> variable and sets it to an array combining the current <code>pos</code> and <code>color</code> values along with the return value from calling the <code>findLine</code> function with the current <code>pos</code>, <code>endpoint</code>, and <code>state.color</code> values.</p>
+
+                    <p><code class="desc desc-code7" data-line="54">Line 54</code> calls the <code>dispatch</code> function with an object whose <code>picture</code> property is set to the result of calling the <code>draw</code> method from <code>state.picture</code> with the <code>drawn</code> array.</p>
+
+                    <p><code class="desc desc-code7" data-line="56">Line 56</code> calls the <code>drawLine</code> function with the <code>pos</code> object.</p>
+
+                    <p><code class="desc desc-code7" data-line="57">Line 57</code> returns the <code>drawLine</code> function.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -417,7 +682,55 @@ function line(pos, state, dispatch) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code8" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
+                    <p><code class="desc desc-code8" data-line="1">Line 1</code> defines the <code>drawLine</code> function that recieves <code>from</code>, <code>to</code>, and <code>color</code> as parameters.</p>
+
+                    <p><code class="desc desc-code8" data-line="2">Line 2</code> initializes <code>points</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code8" data-line="3">Line 3</code> checks whether the <code>x</code> coordinates from <code>from</code> and <code>to</code> are further apart than the <code>y</code> coordinates.</p>
+
+                    <p>If true, <code class="desc desc-code8" data-line="4">Line 4</code> checks whether the <code>from</code> <code>x</code> property is greater than the <code>to</code> <code>x</code> property, exchanging the <code>from</code> and <code>to</code> objects if true.</p>
+
+                    <p><code class="desc desc-code8" data-line="5">Line 5</code> assigns the variable <code>slope</code> to the calculated slope of the line between <code>to</code> and <code>from</code>, dividing the difference between the y and x coordinates.</p>
+
+                    <p><code class="desc desc-code8" data-line="6">Line 6</code> uses a for loop to iterate from the <code>x</code> property of <code>from</code> to the <code>x</code> property of <code>to</code>.</p>
+
+                    <p><code class="desc desc-code8" data-line="7">Line 7</code> adds an object containing the current <code>x</code>, rounded <code>y</code>, and <code>color</code> values to the end of the <code>points</code> array.</p>
+
+                    <p><code class="desc desc-code8" data-line="8">Line 8</code> increases <code>y</code> by the <code>slope</code> value.</p>
+
+                    <p>Else, <code class="desc desc-code8" data-line="11">Line 11</code> checks whether the <code>from</code> <code>y</code> property is greater than the <code>to</code> <code>y</code> property, exchanging the <code>from</code> and <code>to</code> objects if true.</p>
+
+                    <p><code class="desc desc-code8" data-line="12">Line 12</code> assigns the variable <code>slope</code> to the calculated slope of the line between <code>to</code> and <code>from</code>, dividing the difference between the x and y coordinates.</p>
+
+                    <p><code class="desc desc-code8" data-line="13">Line 13</code> uses a for loop to iterate from the <code>y</code> property of <code>from</code> to the <code>y</code> property of <code>to</code>.</p>
+
+                    <p><code class="desc desc-code8" data-line="14">Line 14</code> adds an object containing the rounded <code>x</code>, current <code>y</code>, and <code>color</code> values to the end of the <code>points</code> array.</p>
+
+                    <p><code class="desc desc-code8" data-line="15">Line 15</code> increases <code>x</code> by the <code>slope</code> value.</p>
+
+                    <p><code class="desc desc-code8" data-line="18">Line 18</code> returns the <code>points</code> array.</p>
+
+                    <p><code class="desc desc-code8" data-line="21">Line 21</code> defines the <code>draw</code> function that recieves <code>pos</code>, <code>state</code>, and <code>dispatch</code> as parameters.</p>
+
+                    <p><code class="desc desc-code8" data-line="22">Line 22</code> defines the <code>connect</code> function that recieves <code>newPos</code> and <code>state</code> objects as parameters.</p>
+
+                    <p><code class="desc desc-code8" data-line="23">Line 23</code> creates the <code>line</code> variable and sets it to the array returned from calling the <code>drawLine</code> function with the current <code>pos</code>, <code>newPos</code>, and <code>state.color</code> values.</p>
+
+                    <p><code class="desc desc-code8" data-line="24">Line 24</code> updates <code>pos</code> to the <code>newPos</code> object from the parameter.</p>
+                    
+                    <p><code class="desc desc-code8" data-line="25">Line 25</code> calls the <code>dispatch</code> function with an object whose <code>picture</code> property is set to the result of calling the <code>draw</code> method from <code>state.picture</code> with the <code>line</code> array.</p>
+
+                    <p><code class="desc desc-code8" data-line="27">Line 27</code> calls the <code>connect</code> function with the <code>pos</code> and <code>states</code> objects.</p>
+
+                    <p><code class="desc desc-code8" data-line="28">Line 28</code> returns the <code>connect</code> function.</p>
+
+                    <p><code class="desc desc-code8" data-line="31">Line 31</code> defines the <code>line</code> function that recieves <code>pos</code>, <code>state</code>, and <code>dispatch</code> as parameters.</p>
+
+                    <p><code class="desc desc-code8" data-line="32">Line 32</code> returns an arrow function.</p>
+
+                    <p><code class="desc desc-code8" data-line="33">Line 33</code> creates the <code>line</code> variable and sets it to the array returned from calling the <code>drawLine</code> function with the current <code>pos</code>, <code>end</code>, and <code>state.color</code> values.</p>
+
+                    <p><code class="desc desc-code8" data-line="34">Line 34</code> calls the <code>dispatch</code> function with an object whose <code>picture</code> property is set to the result of calling the <code>draw</code> method from <code>state.picture</code> with the <code>line</code> array.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
