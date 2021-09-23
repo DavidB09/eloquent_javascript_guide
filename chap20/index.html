@@ -330,10 +330,59 @@ methods.MKCOL = async function(request) {
                 <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"></code></pre>
+                    <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">let filelist = document.querySelector("#filelist");
+let textarea = document.querySelector("#file");
+
+fetch("/").then(resp => resp.text()).then(files => {
+    for (let file of files.split("\n")) {
+        let option = document.createElement("option");
+        option.textContent = file;
+        filelist.appendChild(option);
+    }
+    loadCurrentFile();
+});
+
+function loadCurrentFile() {
+    fetch(filelist.value).then(resp => resp.text()).then(file => {
+        textarea.value = file;
+    });
+}
+
+filelist.addEventListener("change", loadCurrentFile);
+
+function saveFile() {
+    fetch(filelist.value, {method: "PUT", body: textarea.value});
+}                   </code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> assigns the reference of the DOM element whose query equals <code>"#filelist"</code> to <code>filelist</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="2">Line 2</code> assigns the reference of the DOM element whose query equals <code>"#file"</code> to <code>textarea</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="4">Line 4</code> fetches the current directory using the <code>fetch</code> function and retrieves all the child filenames using the <code>text</code> method.</p>
+
+                    <p><code class="desc desc-code6" data-line="5">Line 5</code> interates through each filename within the array created by the <code>files</code> string split at each newline character.</p>
+
+                    <p><code class="desc desc-code6" data-line="6">Line 6</code> assigns the <code>option</code> variable to a newly created <code>&lt;option></code> element.</p>
+
+                    <p><code class="desc desc-code6" data-line="7">Line 7</code> sets the <code>textContent</code> property of <code>option</code> to the current filename represented by <code>file</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="8">Line 8</code> appends the newly created <code>option</code> as a child element to <code>filelist</code>.</p>
+
+                    <p><code class="desc desc-code6" data-line="10">Line 10</code> calls the <code>loadCurrentFile</code> function.</p>
+
+                    <p><code class="desc desc-code6" data-line="13">Line 13</code> defines the <code>loadCurrentFile</code> function.</p>
+
+                    <p><code class="desc desc-code6" data-line="14">Line 14</code> fetches the current file selected by the user by calling the <code>fetch</code> function with the <code>value</code> property of <code>filelist</code>, before retrieving all of its content by calling the <code>text</code> method.</p>
+
+                    <p><code class="desc desc-code6" data-line="15">Line 15</code> sets the <code>value</code> property of <code>textarea</code> to the <code>file</code> string, allowing the user to edit the content of the currently selected file.</p>
+
+                    <p><code class="desc desc-code6" data-line="19">Line 19</code> adds an event listener to <code>filelist</code> that calls the <code>loadCurrentFile</code> function whenever a <code>"change"</code> event occurs.</p>
+
+                    <p><code class="desc desc-code6" data-line="21">Line 21</code> defines the <code>saveFile</code> function that is called whenever the user clicks the save button.</p>
+
+                    <p><code class="desc desc-code6" data-line="22">Line 22</code> fetches the current file selected by the user and updates its content by calling the <code>fetch</code> function with the HTTP method set to <code>"PUT"</code> along with the <code>body</code> referencing the <code>value</code> property of <code>textarea</code>.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
