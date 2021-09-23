@@ -68,7 +68,7 @@ handleInput()
     .then(files => console.log(`Files: ${files.length > 0 ? files.join(', ') : 'None'}`))
     .catch(error => console.log(error)); 
 
-async function handleFile(resource, test, currNames) {    
+async function handleFile(resource, test, currNames) {
     try {
         let stats = await stat(resource); 
 
@@ -87,7 +87,6 @@ async function handleFile(resource, test, currNames) {
             if (regex.test(text)) return [...currNames, resource]; 
             else return []; 
         }
-
     } catch (error) {
         throw 'File not found'; 
     }
@@ -95,8 +94,57 @@ async function handleFile(resource, test, currNames) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the <code>array</code> method within the <code>topScope</code> object that destructures the values provided by its parameter.</p>
+                    <p><code class="desc desc-code1" data-line="1">Line 1</code> uses the CommonJS system to retrieve the promises version of the <code>stat</code>, <code>readdir</code>, and <code>readFile</code> functionality from the <code>'fs'</code> module.</p>
 
+                    <p><code class="desc desc-code1" data-line="3">Line 3</code> defines the asynchronous function <code>handleInput</code>.</p>
+
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> checks whether the number of arguments passed into the Node command line is less than 4, warning the user of usage error if true.</p>
+
+                    <p><code class="desc desc-code1" data-line="6">Line 6</code> initializes <code>fileNames</code> to an empty array.</p>
+
+                    <p><code class="desc desc-code1" data-line="7">Line 7</code> initializes a try catch block.</p>
+
+                    <p><code class="desc desc-code1" data-line="8">Line 8</code> iterates until <code>i</code>, initialized to 3, is equal to the length of the command line arguments.</p>
+
+                    <p><code class="desc desc-code1" data-line="9">Line 9</code> adds to the <code>fileNames</code> array the return value of calling <code>handleFile</code> with the current command line argument, the source file name from the second command line argument, and an empty array.</p>
+
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> returns the <code>fileNames</code> array.</p>
+
+                    <p><code class="desc desc-code1" data-line="12-13">Line 12 - Line 13</code> catches and rethrows the <code>error</code> object whenever something goes wrong.</p>
+
+                    <p><code class="desc desc-code1" data-line="17">Line 17</code> calls the <code>handleInput</code> function.</p>
+
+                    <p><code class="desc desc-code1" data-line="18">Line 18</code> waits for the return value of the <code>handleInput</code> function before consoling either the filenames joined by a comma, or the string <code>'None'</code> depending on the length of the <code>files</code> array.</p>
+
+                    <p><code class="desc desc-code1" data-line="19">Line 19</code> catches any possible errors and consoles the <code>error</code> object.</p>
+
+                    <p><code class="desc desc-code1" data-line="21">Line 21</code> defines the <code>handleFile</code> asychronous function that recieves <code>resource</code> for the filename, <code>test</code> for the regex, and <code>currNames</code> for the files that passed the test.</p>
+
+                    <p><code class="desc desc-code1" data-line="22">Line 22</code> initializes a try catch block.</p>
+
+                    <p><code class="desc desc-code1" data-line="23">Line 23</code> assigns the <code>stats</code> variable to the file values returned by calling the asynchronous <code>stat</code> function with the <code>resource</code> filename.</p>
+
+                    <p><code class="desc desc-code1" data-line="25">Line 25</code> checks whether the filename provided by <code>resource</code> is a directory by calling the <code>isDirectory</code> method from <code>stats</code>.</p>
+
+                    <p>If true, <code class="desc desc-code1" data-line="26">Line 26</code> assigns the <code>dirFiles</code> variable to the child filenames returned by calling the asynchronous <code>readdir</code> function with the <code>resource</code> filename.</p>
+
+                    <p><code class="desc desc-code1" data-line="27">Line 27</code> iterates throught each filename located in the <code>resource</code> directory.</p>
+
+                    <p><code class="desc desc-code1" data-line="28">Line 28</code> adds to the <code>currNames</code> array the return value of calling <code>handleFile</code> with the current filename, the <code>test</code> source file name, and an empty array.</p>
+
+                    <p><code class="desc desc-code1" data-line="30">Line 30</code> returns the <code>codeNames</code> array.</p>
+
+                    <p><code class="desc desc-code1" data-line="33">Line 33</code> checks whether the filename provided by <code>resource</code> is a directory by calling the <code>isDirectory</code> method from <code>stats</code>.</p>
+
+                    <p>If true, <code class="desc desc-code1" data-line="34">Line 34</code> retrieves the text content of the file by calling the asynchronous <code>readFile</code> function with the <code>resource</code> filename and <code>"utf8</code> decoding.</p>
+
+                    <p><code class="desc desc-code1" data-line="35">Line 35</code> assigns the <code>regex</code> variable to a new Regex object that tests globally for the <code>test</code> string.</p>
+
+                    <p><code class="desc desc-code1" data-line="37">Line 37</code> checks whether the text content of the file tests true fo the regex, returning the <code>currNames</code> array combined with <code>resource</code> if true.</p>
+
+                    <p>Else, <code class="desc desc-code1" data-line="38">Line 38</code> returns an empty array.</p>
+
+                    <p><code class="desc desc-code1" data-line="40-41">Line 40 - Line 41</code> catches any possible errors and consoles the <code>error</code> object.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -122,8 +170,28 @@ function search(file) {
 }                   </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    <p>The author used the same logic just expressed in more concise code.</p>
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code2" data-line="1">Line 1</code> uses the CommonJS system to retrieve the <code>statSync</code>, <code>readdirSync</code>, and <code>readFileSync</code> functionality from the <code>'fs'</code> module.</p>
+
+                    <p><code class="desc desc-code2" data-line="3">Line 3</code> assigns <code>searchTerm</code> to the second command line argument.</p>
+
+                    <p><code class="desc desc-code2" data-line="5">Line 5</code> iterates through each command line argument following the third.</p>
+
+                    <p><code class="desc desc-code2" data-line="6">Line 6</code> calls the <code>search</code> function with the current command line argument.</p>
+
+                    <p><code class="desc desc-code2" data-line="9">Line 9</code> initializes the <code>search</code> function that recieves a <code>file</code> parameter for the filename.</p>
+
+                    <p><code class="desc desc-code2" data-line="10">Line 10</code> assigns <code>stats</code> to the return value of the <code>statSync</code> function with the current <code>file</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="11">Line 11</code> checks whether the filename provided by <code>file</code> is a directory by calling the <code>isDirectory</code> method from <code>stats</code>.</p>
+
+                    <p>If true, <code class="desc desc-code2" data-line="12">Line 12</code> iterates through each filename located within the <code>file</code> directory.</p>
+
+                    <p><code class="desc desc-code2" data-line="13">Line 13</code> calls the <code>search</code> function with the current <code>f</code> filename.</p>
+
+                    <p>Else, <code class="desc desc-code2" data-line="15">Line 15</code> checks whether the <code>searchTerm</code> regex is found within the text content of <code>file</code> by using the <code>readFileSync</code> function with the <code>resource</code> filename and <code>"utf8</code> decoding.</p>
+
+                    <p>If true, <code class="desc desc-code2" data-line="16">Line 16</code> consoles the <code>file</code> filename.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -159,8 +227,28 @@ methods.MKCOL = async function(request) {
 };                  </code></pre>
                 </div>
 
-                <div class="exercise-body">
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code3" data-line="1">Line 1</code> uses the CommonJS system to retrieve the promises version of the <code>mkdir</code> functionality from the <code>'fs'</code> module.</p>
 
+                    <p><code class="desc desc-code3" data-line="3">Line 3</code> assigns the <code>MKCOL</code> property of <code>methods</code> to an asynchronous function that recieves a <code>request</code> parameter.</p>
+
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> assigns the <code>path</code> variable to the return value of the <code>urlPath</code> function called with the <code>request.url</code> property.</p>
+
+                    <p><code class="desc desc-code3" data-line="5">Line 5</code> initializes a try catch block.</p>
+
+                    <p><code class="desc desc-code3" data-line="6">Line 6</code> assigns the <code>stat</code> variable to the file values returned by calling the asynchronous <code>stat</code> function with the <code>path</code> filename.</p>
+
+                    <p><code class="desc desc-code3" data-line="7">Line 7</code> checks whether <code>path</code> is a directory by calling the <code>isDirectory</code> method from <code>stats</code>, returning an object with the <code>status</code> property set to 204 if true.</p>
+
+                    <p>Else, <code class="desc desc-code3" data-line="8">Line 8</code> returns an object with the <code>status</code> property set to 400 and the <code>body</code> property stating that the file already existed.</p>
+
+                    <p><code class="desc desc-code3" data-line="9">Line 9</code> catches any possible errors.</p>
+
+                    <p><code class="desc desc-code3" data-line="10">Line 10</code> checks whether the <code>code</code> property of <code>error</code> is not equal to <code>"ENOENT"</code>, rethrowing the error if true.</p>
+
+                    <p><code class="desc desc-code3" data-line="11">Line 11</code> calls the <code>mkdir</code> function with <code>path</code>, creating a directory.</p>
+
+                    <p><code class="desc desc-code3" data-line="12">Line 12</code> returns an object with the <code>status</code> property set to 204.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -183,8 +271,28 @@ methods.MKCOL = async function(request) {
 };                  </code></pre>
                 </div>
 
-                <div class="exercise-body">
-                    
+                <div class="exercise-body exercise-desc">
+                    <p><code class="desc desc-code4" data-line="1">Line 1</code> uses the CommonJS system to retrieve the promises version of the <code>mkdir</code> functionality from the <code>'fs'</code> module.</p>
+
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> assigns the <code>MKCOL</code> property of <code>methods</code> to an asynchronous function that recieves a <code>request</code> parameter.</p>
+
+                    <p><code class="desc desc-code4" data-line="4">Line 4</code> assigns the <code>path</code> variable to the return value of the <code>urlPath</code> function called with the <code>request.url</code> property.</p>
+
+                    <p><code class="desc desc-code4" data-line="5">Line 5</code> initializes the <code>stats</code> variable.</p>
+
+                    <p><code class="desc desc-code4" data-line="6-7">Line 6 - Line 7</code> initializes a try catch block and attempts to assign <code>stats</code> to the return value of calling <code>stat</code> with the <code>path</code> variable.</p>
+
+                    <p><code class="desc desc-code4" data-line="8">Line 8</code> catches any possible errors.</p>
+
+                    <p><code class="desc desc-code4" data-line="9">Line 9</code> checks whether the <code>code</code> property of <code>error</code> is not equal to <code>"ENOENT"</code>, rethrowing the error if true.</p>
+
+                    <p><code class="desc desc-code4" data-line="10">Line 10</code> calls the <code>mkdir</code> function with <code>path</code>, creating a directory.</p>
+
+                    <p><code class="desc desc-code4" data-line="11">Line 11</code> returns an object with the <code>status</code> property set to 204.</p>
+
+                    <p><code class="desc desc-code4" data-line="13">Line 13</code> checks whether <code>path</code> is a directory by calling the <code>isDirectory</code> method from <code>stats</code>, returning an object with the <code>status</code> property set to 204 if true.</p>
+
+                    <p>Else, <code class="desc desc-code4" data-line="14">Line 14</code> returns an object with the <code>status</code> property set to 400 and the <code>body</code> property stating that the file already existed.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -212,12 +320,11 @@ methods.MKCOL = async function(request) {
                 <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript"> </code></pre>
+                    <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">//In progress </code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code5" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>scope</code> parameters.</p>
-
+                    <p>I ran into issues with running a server on Node and will return to answer the question whenever the opportunity arises.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -227,8 +334,6 @@ methods.MKCOL = async function(request) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code6" data-line="1">Line 1</code> defines the <code>set</code> method found within the <code>specialForms</code> object with the <code>args</code> and <code>env</code> parameters.</p>
-
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
