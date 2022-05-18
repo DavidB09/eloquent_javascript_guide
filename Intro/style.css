@@ -7,20 +7,21 @@ html {
     --main-color: #f8d410; 
 }
 
-/**** MAIN ELEMENT ****/
+/**** ELEMENT ****/
 
 body { 
     margin: 0; 
     font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif; 
-    font-size: 2rem; 
+    font-size: 1.5rem; 
 }
 
 header { 
     max-width: 100%; 
     margin: 0 auto; 
-    padding: 15rem 10rem 10rem 10rem; 
+    padding: 1rem 2rem; 
     background-color: var(--main-color); 
-    text-align: center; 
+    font-size: 1.3rem; 
+    text-align: start; 
 }
 
 ul { 
@@ -51,32 +52,37 @@ a:hover {
 }
 
 /* Resource Links */
+
 .container-resources { 
     position: relative; 
-    justify-content: center; 
     align-items: center; 
+    justify-content: center; 
     margin-top: 10rem; 
 }
 
 .container-resources section { 
     position: relative; 
-    justify-content: center; 
     align-items: center; 
+    justify-content: center; 
     margin: 2rem; 
 }
 
 .img-book { 
     width: 100%; 
     height: 100%;
-    justify-content: center; 
     align-items: center; 
+    justify-content: center; 
     margin: 0; 
 }
 
-.book-links { position: absolute; display: flex; opacity: 0; }
+.book-links { 
+    position: absolute; 
+    display: flex; 
+    opacity: 0; 
+}
 
 .book-links div { 
-    width: 30rem; 
+    width: 15rem; 
     margin-bottom: 1rem; 
     padding: 2rem; color: #fff; 
     background-color: rgba(0,0,0, 0.8); 
@@ -101,10 +107,11 @@ a:hover {
 }
 
 /* Navbar */
+
 .container-navbar {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
     padding: 8rem;
 }
 
@@ -131,24 +138,28 @@ a:hover {
 
 /**** MEDIA QUERY ****/
 
-@media only screen and (max-width: 600px) {
+@media (min-width: 600px) {
     body {
-        font-size: 1.8rem; 
+        font-size: 1.7rem; 
     }
 
     header {
-        padding: 1rem 2rem; 
-        text-align: start; 
+        padding: 15rem 10rem 10rem 10rem; 
+        font-size: 1.8rem; 
+        text-align: center; 
     }
 
     .book-links div {
-        width: 15rem; 
-        font-size: 2rem;
+        width: 30rem; 
     }
 } 
 
-@media only screen and (max-width: 400px) {
-    .book-links div {
-        font-size: 1.5rem;
+@media (min-width: 1200px) {
+    body {
+        font-size: 2rem; 
+    }
+
+    header {
+        font-size: 2.3rem; 
     }
 }

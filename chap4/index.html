@@ -10,7 +10,7 @@
     <meta name="description" content="Solutions and explanations for exercises in Chapter 4 of Eloquent JavaScript.">
     <title>Eloquent JavaScript - Chapter 4</title>
 
-    <link href="../style.css" rel="stylesheet" >
+    <link href="../style.css" rel="stylesheet">
     <link href="../assets/css/prism.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
@@ -274,12 +274,9 @@
                     <h3>Personal Answer</h3>
 
                     <pre id="code9" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function arrayToList(array) {
-    let list = {}; 
+    let list = null; 
     for (let i = array.length - 1; i >= 0; i--) {
-        let temp = {}; 
-        Object.keys(list).length > 0 ? Object.assign(temp, list) : temp = null;
-        list.value = array[i]; 
-        list.rest = temp; 
+        list = Object.assign({}, {value: array[i], rest: list}); 
     }
     return list; 
 }
@@ -296,29 +293,23 @@ function listToArray(list) {
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code9" data-line="1">Line 1</code> creates the function <code>arrayToList</code> with <code>array</code> as its only parameter.</p>
 
-                    <p><code class="desc desc-code9" data-line="2">Line 2</code> declares an empty object named <code>list</code>.</p>
+                    <p><code class="desc desc-code9" data-line="2">Line 2</code> declares an null variable named <code>list</code>.</p>
 
                     <p><code class="desc desc-code9" data-line="3">Line 3</code> creates a <code>for</code> loop where <code>i</code> represents the last character in <code>array</code>. While <code>i</code> is greater than than 0, it moves on to the previous character within the array.</p>
 
-                    <p><code class="desc desc-code9" data-line="4">Line 4</code> creates a temporary empty object.</p>
+                    <p><code class="desc desc-code9" data-line="4">Line 4</code> assigns <code>list</code> to a new object containing the <code>value</code> property set to the current value in <code>array</code>, and the <code>rest</code> property referencing the previous <code>list</code> value.</p>
 
-                    <p><code class="desc desc-code9" data-line="5">Line 5</code> uses an abbreviated <code>if</code> statement to check whether there are pre-existing objects within <code>list</code> by testing whether the number of keys are greater than 0. If <code>true</code>, then all of the values and objects within <code>list</code> are copied to <code>temp</code></code>. But if <code>false</code>, then <code>temp</code> is given the value of <code>null</code> since <code>list</code> is completely empy.</p>
+                    <p><code class="desc desc-code9" data-line="6">Line 6</code> returns the newly created <code>list</code>.</p>
 
-                    <p><code class="desc desc-code9" data-line="6">Line 6</code> creates the property of <code>value</code> and assigns it to the current value in <code>array</code>.</p>
+                    <p><code class="desc desc-code9" data-line="9">Line 9</code> creates the function <code>listToArray</code> with <code>list</code> as its only parameter.</p>
 
-                    <p><code class="desc desc-code9" data-line="7">Line 7</code> creates the property of <code>rest</code> and gives it the previous objects, or <code>null</code>, within <code>temp</code>.</p>
+                    <p><code class="desc desc-code9" data-line="10">Line 10</code> declares an empty array named <code>array</code>.</p>
 
-                    <p><code class="desc desc-code9" data-line="9">Line 9</code> returns the newly created <code>list</code>.</p>
+                    <p><code class="desc desc-code9" data-line="11">Line 11</code> uses a <code>for</code> loop to iterate through each object within <code>list</code>. <code>currentObject</code> is set to <code>list</code>. Then, while the object exists, <code>currentObject</code> moves on to its <code>rest</code> property which is in itself, another object.</p>
 
-                    <p><code class="desc desc-code9" data-line="12">Line 12</code> creates the function <code>listToArray</code> with <code>list</code> as its only parameter.</p>
+                    <p><code class="desc desc-code9" data-line="12">Line 12</code> adds the current <code>value</code> of the current object to <code>array</code></p>
 
-                    <p><code class="desc desc-code9" data-line="13">Line 13</code> declares an empty array named <code>array</code>.</p>
-
-                    <p><code class="desc desc-code9" data-line="14">Line 14</code> uses a <code>for</code> loop to iterate through each object within <code>list</code>. <code>currentObject</code> is set to <code>list</code>. Then, while the object exists, <code>currentObject</code> moves on to its <code>rest</code> property which is in itself, another object.</p>
-
-                    <p><code class="desc desc-code9" data-line="15">Line 15</code> adds the current <code>value</code> of the current object to <code>array</code></p>
-
-                    <p><code class="desc desc-code9" data-line="17">Line 17</code> returns the new array.</p>
+                    <p><code class="desc desc-code9" data-line="14">Line 14</code> returns the new array.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -384,17 +375,7 @@ function listToArray(list) {
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code11" data-line="1">Line 1</code> creates the function <code>arrayToList</code> with <code>array</code> as its only parameter.</p>
-
-                    <p><code class="desc desc-code11" data-line="2">Line 2</code> sets a variable called <code>list</code> and sets it to <code>null</code>.</p>
-
-                    <p><code class="desc desc-code11" data-line="3">Line 3</code> uses a <code>for</code> loop to iterate backwards through <code>array</code>.</p>
-
-                    <p><code class="desc desc-code11" data-line="4">Line 4</code> sets <code>list</code> to an object with <code>value</code> equaling the current number in <code>array</code> and <code>rest</code> to the pre-existing <code>list</code>.</p>
-
-                    <p><code class="desc desc-code11" data-line="6">Line 6</code> returns the new <code>list</code> after all of the values have been added.</p>
-
-                    <p><code class="desc desc-code11" data-line="9-15">Line 9 - 15</code> uses the same code and corresponds with <code>Line 12 - 18</code> in my personal answer just with different variable names.</p>
+                    <p>The author used the same logic and code for their solution.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -470,10 +451,10 @@ function nth(list, n) {
 
                     <p><code class="desc desc-code13" data-line="8">Line 8</code> recursively calls <code>deepEqual</code> to check the equality of each of the properties within the objects. The result is returned when it equals <code>false</code>.</p>
 
-                    <p><code class="desc desc-code13" data-line="10">Line 10</code> returns <code>true</code> if all of the properties in <code>object1</code> and <code>object2</code> are equal.</p>
+                    <p><code class="desc desc-code13" data-line="10">Line 10</code> returns <code>true</code> since all of the properties in <code>object1</code> and <code>object2</code> are equal.</p>
                 </div>
 
-                <div class="exercise-body exercise-desc">
+                <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
                     <pre id="code14" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function deepEqual(a, b) {
@@ -488,7 +469,7 @@ function nth(list, n) {
 }                   </code></pre>
                 </div>
 
-                <div class="exercise-body">
+                <div class="exercise-body exercise-desc">
                     <p>The author uses similar code just using different names and more concise <code>for</code> loop.</p>
 
                     <p><code class="desc desc-code14" data-line="6">Line 6</code> iterates through each <code>key</code> or value of the array <code>keysA</code>.</p>
@@ -509,7 +490,7 @@ function nth(list, n) {
 
                 <nav>
                     <ul>
-                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../index.html" alt="Intro Link" title="Intro">Intro</a></li>
                         <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
                         <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
                         <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>

@@ -10,7 +10,7 @@
     <meta name="description" content="Solutions and explanations for exercises in Chapter 5 of Eloquent JavaScript.">
     <title>Eloquent JavaScript - Chapter 5</title>
 
-    <link href="../style.css" rel="stylesheet" >
+    <link href="../style.css" rel="stylesheet">
     <link href="../assets/css/prism.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
@@ -129,10 +129,8 @@
 
                     <h4>Part I:</h4>
                     <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function every(array, test) {
-    for (let i = 0; i < array.length; i++) {
-        if (test(array[i]) == false)
-            return false;
-        }
+    for (let i = 0; i < array.length; i++)
+        if (!test(array[i])) return false
     return true; 
 }                   </code></pre>
                 </div>
@@ -142,9 +140,9 @@
 
                     <p><code class="desc desc-code5" data-line="2">Line 2</code> declares an <code>for</code> loop to iterate through the values of <code>array</code>.</p>
 
-                    <p><code class="desc desc-code5" data-line="3-4">Line 3 - 4</code> checks whether the <code>test</code> function returns <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code>, the result is returned.</p>
+                    <p><code class="desc desc-code5" data-line="3">Line 3</code> checks whether the <code>test</code> function returns <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code>, the result is returned.</p>
 
-                    <p><code class="desc desc-code5" data-line="6">Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>test</code> function.</p>
+                    <p><code class="desc desc-code5" data-line="4">Line 4</code> returns <code>true</code> if all of the values in <code>array</code> return <code>true</code> within the <code>test</code> function.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -179,7 +177,7 @@
 
                     <p><code class="desc desc-code7" data-line="3">Line 3</code> checks whether the <code>predicate</code> function is <code>false</code> with given the current value in <code>array</code>. If the result does equal <code>false</code> the result is returned.</p>
 
-                    <p><code class="desc desc-code7" data-line="6">Line 6</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>predicate</code> function.</p>
+                    <p><code class="desc desc-code7" data-line="5">Line 5</code> returns <code>true</code> if the all of the values in <code>array</code> return <code>true</code> within the <code>predicate</code> function.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -214,7 +212,7 @@
         if (script != null) return script.direction;
     }).filter(n => n.name != undefined);
 
-    return scripts.reduce((a, b) => a.count >= b.count ? a.name : b.name, 0)
+    return scripts.reduce((a, b) => a.count >= b.count ? a : b).name
 }                   </code></pre>
                 </div>
 
@@ -276,7 +274,7 @@
 
                 <nav>
                     <ul>
-                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../index.html" alt="Intro Link" title="Intro">Intro</a></li>
                         <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
                         <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
                         <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>

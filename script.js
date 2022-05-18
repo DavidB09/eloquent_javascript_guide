@@ -10,12 +10,12 @@ function initAccordion(accordionElem) {
     function handlePanelClick(event) {
         if (event.currentTarget.parentElement.classList.contains("active")) {
             if (event.currentTarget.classList.contains("exercise-close")) {
-                hidePanel(event.currentTarget.parentElement, true);
+                hidePanel(event.currentTarget.parentElement, true); //Hide the div and scroll to the top of the window 
             } else {
-                hidePanel(event.currentTarget.parentElement);
+                hidePanel(event.currentTarget.parentElement); //Hide the div
             }
         } else {
-            showPanel(event.currentTarget.parentElement);
+            showPanel(event.currentTarget.parentElement); //Display the div
         }
     }
 

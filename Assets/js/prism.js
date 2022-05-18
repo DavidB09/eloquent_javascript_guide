@@ -1,5 +1,8 @@
 /* PrismJS 1.23.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript&plugins=line-highlight+line-numbers+toolbar+copy-to-clipboard+match-braces */
+
+//// GO TO LINES 1853-1867, 1878-1881, AND 1964-1967 FOR PERSONAL CHANGES ////
+
 /// <reference lib="WebWorker"/>
 
 var _self = (typeof window !== 'undefined')
@@ -1847,14 +1850,16 @@ Prism.languages.js = Prism.languages.javascript;
 				});
 			});
 
+			//Iterates over all clickable line numbers within exercise descriptions 
 			$$(`.desc-${id}`).forEach(function (line) {
 				var lineNumber = line.dataset.line; 
+
+				//Adds event listener to clickable line number that alters the current hash and highlights the corresponding line
 				line.addEventListener('click', function() {
 					var hash = id + '.' + lineNumber; 
 
-					// this will prevent scrolling since the span is obviously in view
 					scrollIntoView = false;
-					location.hash = hash;					
+					location.hash = hash;
 					setTimeout(function () {
 						scrollIntoView = true;
 					}, 1);
@@ -1870,7 +1875,7 @@ Prism.languages.js = Prism.languages.javascript;
 	function applyHash() {		
 		var hash = location.hash.slice(1);
 
-		//Remove pre-existing temporary lines
+		//Removes pre-existing temporary lines
 		$$('.temporary.line-highlight').forEach(function (line) {
 			line.parentNode.removeChild(line);
 		});
@@ -1956,6 +1961,7 @@ Prism.languages.js = Prism.languages.javascript;
 		actions.forEach(callFunction);
 	});
 
+	//Resets hash whenever page is reloaded, removing current line highlights
 	window.addEventListener('load', function() {
 		this.location.hash = ''; 
 	}); 
