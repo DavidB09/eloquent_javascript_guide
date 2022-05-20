@@ -10,7 +10,7 @@
     <meta name="description" content="Solutions and explanations for exercises in Chapter 14 of Eloquent JavaScript.">
     <title>Eloquent JavaScript - Chapter 14</title>
 
-    <link href="../style.css" rel="stylesheet" >
+    <link href="../style.css" rel="stylesheet">
     <link href="../assets/css/prism.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
@@ -204,7 +204,9 @@ document.querySelector("#mountains").appendChild(buildTable(MOUNTAINS));</code><
 
                     <p>If <code>true</code>, then <code  class="desc desc-code2" data-line="19">Line 19</code> sets the <code>textAlign</code> style attribute of <code>cell</code> to <code>"right"</code>.</p>
 
-                    <p><code class="desc desc-code2" data-line="21">Line 21</code> appends <code>row</code> as a child node to <code>table</code>.</p>
+                    <p><code class="desc desc-code2" data-line="21">Line 21</code> appends the <code>cell</code> as a child node to <code>row</code>.</p>
+
+                    <p><code class="desc desc-code2" data-line="23">Line 23</code> appends <code>row</code> as a child node to <code>table</code>.</p>
 
                     <p><code  class="desc desc-code2" data-line="26">Line 26</code> returns the <code>containerNode</code> element.</p>
 
@@ -274,9 +276,11 @@ document.querySelector("#mountains").appendChild(buildTable(MOUNTAINS));</code><
 
                     <p><code class="desc desc-code4" data-line="7">Line 7</code> creates the <code>child</code> element and assigns its value to the current child node of <code>node</code>.</p>
 
-                    <p><code class="desc desc-code4" data-line="8">Line 8</code> checks whether the <code>nodeType</code> of <code>child</code> is equal to <code>tagName</code> and adds the <code>child</code> element to <code>found</code> if <code>true</code>.</p>
+                    <p><code class="desc desc-code4" data-line="8">Line 8</code> checks whether the <code>nodeType</code> of <code>child</code> is equal to <code>ELEMENT_NODE</code> since that means <code>child</code> might have child nodes.</p>
 
-                    <p><code class="desc desc-code4" data-line="9">Line 9</code> recursively calls the <code>explore</code> function with the <code>child</code> element to continue searching for DOM child nodes with the particular <code>tagName</code>.</p>
+                    <p><code class="desc desc-code4" data-line="9">Line 9</code> checks whether the <code>nodeName</code> of <code>child</code> is equal to <code>tagName</code> and adds the <code>child</code> element to <code>found</code> if <code>true</code>.</p>
+
+                    <p><code class="desc desc-code4" data-line="10">Line 10</code> recursively calls the <code>explore</code> function with the <code>child</code> element to continue searching for DOM child nodes with the particular <code>tagName</code>.</p>
 
                     <p><code class="desc desc-code4" data-line="15">Line 15</code> calls the <code>explore</code> function with the DOM element represented by the <code>node</code> parameter.</p>
 
@@ -389,7 +393,7 @@ requestAnimationFrame(animate);
 
                 <nav>
                     <ul>
-                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../index.html" alt="Intro Link" title="Intro">Intro</a></li>
                         <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
                         <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
                         <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>

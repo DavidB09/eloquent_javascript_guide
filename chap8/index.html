@@ -10,7 +10,7 @@
     <meta name="description" content="Solutions and explanations for exercises in Chapter 8 of Eloquent JavaScript.">
     <title>Eloquent JavaScript - Chapter 8</title>
 
-    <link href="../style.css" rel="stylesheet" >
+    <link href="../style.css" rel="stylesheet">
     <link href="../assets/css/prism.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
@@ -113,11 +113,11 @@ function reliableMultiply(a, b) {
 
                     <p><code class="desc desc-code2" data-line="12">Line 12</code> uses a <code>for</code> loop to continue the process of calling <code>primitiveMultiply</code> until a numberic value is returned.</p>
 
-                    <p><code class="desc desc-code2" data-line="12-13">Line 12 - Line 13</code> uses the <code>try</code> body to return the result of calling <code>primitiveMultiply</code> with the same parameters.</p>
+                    <p><code class="desc desc-code2" data-line="13-14">Line 13 - Line 14</code> uses the <code>try</code> body to return the result of calling <code>primitiveMultiply</code> with the same parameters.</p>
 
-                    <p><code class="desc desc-code2" data-line="14">Line 14</code> uses the <code>catch</code> body to check whether an error occurred.</p>
+                    <p><code class="desc desc-code2" data-line="15">Line 15</code> uses the <code>catch</code> body to check whether an error occurred.</p>
 
-                    <p><code class="desc desc-code2" data-line="15-16">Line 15 - Line 16</code> uses an <code>if</code> statement to check whether the error is an <code>instanceof</code> the class <code>MultiplicatorUnitFailure</code>. If it isn't, then a regular <code>error</code> is thrown; else, the loop continues to its next iteration and reattempts the process.</p>
+                    <p><code class="desc desc-code2" data-line="16-17">Line 16 - Line 17</code> uses an <code>if</code> statement to check whether the error is an <code>instanceof</code> the class <code>MultiplicatorUnitFailure</code>. If it isn't, then a regular <code>error</code> is thrown; else, the loop continues to its next iteration and reattempts the process.</p>
 
                     <p>This is a more relable solution than my personal answer, as it prevents the string of failures from overflowing the stack, an unlikely but still possible occurrence.</p>
                 </div>
@@ -285,7 +285,7 @@ try {
 
                 <nav>
                     <ul>
-                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../index.html" alt="Intro Link" title="Intro">Intro</a></li>
                         <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
                         <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
                         <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>

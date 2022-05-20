@@ -10,7 +10,7 @@
     <meta name="description" content="Solutions and explanations for exercises in Chapter 12 of Eloquent JavaScript.">
     <title>Eloquent JavaScript - Chapter 12</title>
 
-    <link href="../style.css" rel="stylesheet" >
+    <link href="../style.css" rel="stylesheet">
     <link href="../assets/css/prism.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
@@ -111,7 +111,7 @@ topScope.element = (array, i) => array[i];
 
                     <p>Within the definition of <code>fun</code> within the <code>specialForms</code> object, a new local scope is created for each function. The data within that new local scope object comes from the <code>scope</code> parameter that is defined whenever the <code>fun</code> feature is called within Egg.</p>
 
-                    <p>Thus, whenever <code>fun</code> is invoked for <code>b</code>, it is given access to an object containing the scope of <code>a</code> and its values for the current operation. Its new local scope for the value <code>b</code> is then returned and used for the value <code>a</code>.</p>
+                    <p>Thus, whenever a new <code>fun</code> is defined, it's scope has access to all of the data found within the outer scope, aka the local scope of the outer function or the global scope. So when the second parameter for <code>f</code> is defined as a <code>fun</code>, it still has access to the outer <code>fun</code> local scope that contains <code>a</code>.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -285,7 +285,7 @@ topScope.element = (array, i) => array[i];
 
                 <nav>
                     <ul>
-                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../index.html" alt="Intro Link" title="Intro">Intro</a></li>
                         <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
                         <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
                         <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>

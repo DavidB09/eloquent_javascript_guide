@@ -10,7 +10,7 @@
     <meta name="description" content="Solutions and explanations for exercises in Chapter 9 of Eloquent JavaScript.">
     <title>Eloquent JavaScript - Chapter 9</title>
 
-    <link href="../style.css" rel="stylesheet" >
+    <link href="../style.css" rel="stylesheet">
     <link href="../assets/css/prism.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
 </head>
@@ -64,7 +64,7 @@ verify(/ferr[et|y|ari]/,
         ["ferret", "ferry", "ferrari"],
         ["ferrum", "transfer A"]);
 
-verify(/ious\s|ious$/,
+verify(/ious\w/,
         ["how delicious", "spacious room"],
         ["ruinous", "consciousness"]);
 
@@ -100,7 +100,7 @@ function verify(regexp, yes, no) {
 
                     <p><code class="desc desc-code1" data-line="9">Line 9</code> calls the <code>verify</code> function with a Regular Expression that selects the characters "f", "e" and "r". A list is also included, presenting the choice of characters found in either "et", "y", or "ari".</p>
 
-                    <p><code class="desc desc-code1" data-line="13">Line 13</code> calls the <code>verify</code> function with a Regular Expression that selects the characters "ious" followed by a whitespace character or located at the end of the string.</p>
+                    <p><code class="desc desc-code1" data-line="13">Line 13</code> calls the <code>verify</code> function with a Regular Expression that selects the characters "ious" followed by a word boundary.</p>
 
                     <p><code class="desc desc-code1" data-line="17">Line 17</code> calls the <code>verify</code> function with a Regular Expression that selects a whitespace character along with a list presenting the choice of ".", ",", ";", or ":".</p>
 
@@ -292,7 +292,7 @@ for (let str of ["1a", "+-1", "1.2.3", "1+1", "1e4.5", ".5.", "1f5", "."]) {
 
                 <nav>
                     <ul>
-                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../index.html" alt="Intro Link" title="Intro">Intro</a></li>
                         <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
                         <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
                         <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
