@@ -70,7 +70,7 @@ function reliableMultiply(a, b) {
 
                     <p><code class="desc desc-code1" data-line="3-9">Line 3 - Line 9</code> creates a function called <code>primitiveMultiply</code> that returns <code>a * b</code> if <code>Math.random</code> is less than 0.2 or <code>throw</code> a <code>new MultiplicatorUnitFailure</code>. Thus, the end result of calling the function is never known beforehand.</p>
 
-                    <p><code class="desc desc-code1" data-line="11">Line 11</code> creates a function called <code>reliableMultiply</code> which also recieves two parameters.</p>
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> creates a function called <code>reliableMultiply</code> which also receives two parameters.</p>
 
                     <p><code class="desc desc-code1" data-line="12-13">Line 12 - Line 13</code> uses the <code>try</code> body to return the result of calling <code>primitiveMultiply</code> with the same parameters.</p>
 
@@ -109,9 +109,9 @@ function reliableMultiply(a, b) {
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code2" data-line="1-9">Line 1 - Line 9</code> is explained in the personal answer.</p>
 
-                    <p><code class="desc desc-code2" data-line="11">Line 11</code> creates a function called <code>reliableMultiply</code> which also recieves two parameters.</p>
+                    <p><code class="desc desc-code2" data-line="11">Line 11</code> creates a function called <code>reliableMultiply</code> which also receives two parameters.</p>
 
-                    <p><code class="desc desc-code2" data-line="12">Line 12</code> uses a <code>for</code> loop to continue the process of calling <code>primitiveMultiply</code> until a numberic value is returned.</p>
+                    <p><code class="desc desc-code2" data-line="12">Line 12</code> uses a <code>for</code> loop to continue the process of calling <code>primitiveMultiply</code> until a numeric value is returned.</p>
 
                     <p><code class="desc desc-code2" data-line="13-14">Line 13 - Line 14</code> uses the <code>try</code> body to return the result of calling <code>primitiveMultiply</code> with the same parameters.</p>
 
@@ -119,7 +119,7 @@ function reliableMultiply(a, b) {
 
                     <p><code class="desc desc-code2" data-line="16-17">Line 16 - Line 17</code> uses an <code>if</code> statement to check whether the error is an <code>instanceof</code> the class <code>MultiplicatorUnitFailure</code>. If it isn't, then a regular <code>error</code> is thrown; else, the loop continues to its next iteration and reattempts the process.</p>
 
-                    <p>This is a more relable solution than my personal answer, as it prevents the string of failures from overflowing the stack, an unlikely but still possible occurrence.</p>
+                    <p>This is a more reliable solution than my personal answer, as it prevents the string of failures from overflowing the stack, an unlikely but still possible occurrence.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>

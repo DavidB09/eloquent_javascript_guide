@@ -64,7 +64,7 @@ verify(/ferr[et|y|ari]/,
         ["ferret", "ferry", "ferrari"],
         ["ferrum", "transfer A"]);
 
-verify(/ious\w/,
+verify(/ious\b/,
         ["how delicious", "spacious room"],
         ["ruinous", "consciousness"]);
 
@@ -212,7 +212,7 @@ console.log(text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2'));</code></pre>
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code4" data-line="1">Line 1</code> creates a string for testing the Regex Expression.</p>
 
-                    <p><code class="desc desc-code4" data-line="3">Line 3</code> replaces all global selections by the Regular Expression with the string <code>\"</code>. The Regular Expression consists of the choice between two groups; the single quotation mark following either the beginning of a string or any non-word character, or the single quotation mark precending either any non-word character or the end of a string.</p>
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> replaces all global selections by the Regular Expression with the string <code>\"</code>. The Regular Expression consists of the choice between two groups; the single quotation mark following either the beginning of a string or any non-word character, or the single quotation mark preceding either any non-word character or the end of a string.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>

@@ -54,29 +54,31 @@
 
                     <p>If you were to write that project as a modular program, what modules would you create? Which module would depend on which other module, and what would their interfaces look like?</p>
 
-                    <p>Which pieces are likely to be available prewritten on NPM? Would you prefer to use an NPM package or write them yourself?</p>
+                    <p>Which pieces are likely to be available pre-written on NPM? Would you prefer to use an NPM package or write them yourself?</p>
                 </div>
 
                 <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <p>To begin the project, I would most likely separate the <code>roads</code> array into a <code>Roads</code> module combined with the <code>buildGraph</code> and <code>roadGraph</code> functions to separate the entire process of creating the village structure. This would also allow me to add or delete elements from the <code>roads</code> array without worrying about any repercussions occurring throughout the rest of the program. My <code>exports</code> would include the final <code>roadGraph</code> data structure.</p>
+                    <p>To begin the project, I would most likely separate the <code>roads</code> array into a <code>Roads</code> module combined with the <code>buildGraph</code> function and <code>roadGraph</code> object. This allows me to export the final <code>roadGraph</code> data structure for use throughout my program.</p>
 
-                    <p>My next step would be creating a <code>Village</code> module for the <code>VillageState</code> class as well the functions <code>VillageState.random</code> and <code>randomPick</code>. This module would depend on the <code>VillageRoads</code> module for creating a new state for the village and creating new tasks to be completed. The <code>export</code> would be the <code>VillageState</code> class and <code>VillageState.random</code> function.</p>
+                    <p>My next step would be creating a <code>Village</code> module for the <code>VillageState</code> class as well the functions <code>VillageState.random</code> and <code>randomPick</code>. This module depends on the <code>VillageRoads</code> module for maintaining the state of the village and allowing new tasks to be created. The <code>export</code> would be the <code>VillageState</code> class.</p>
 
-                    <p>I most likely would skip using the <code>randomRobot</code> function as it is a terribly inefficient robot and just wastes space. Same goes for the <code>routeRobot</code> and its corresponding array, <code>mailRoute</code>.</p>
+                    <p>I most likely would skip using the <code>randomRobot</code> and <code>randomPick</code> functions as they are for a terribly inefficient robot, just wasting space. Same goes for the <code>routeRobot</code> and its corresponding array, <code>mailRoute</code>.</p>
 
-                    <p>The next <code>GoalRobot</code> module would created to contain the <code>goalOrientedRobot</code> and the necessary <code>findRoute</code> function. This module would depend on the <code>VillageState</code> module to travel through the route and deliver packages. The results of running the robot would also be exported.</p>
+                    <p>The <code>Dijkstrajs</code> module would be for importing the <code>dijkstrajs</code> package from NPM, combining it with a function that provides the correct input. This will allow me to use an efficient path-finding algorithm that I can compare with any other method. This module just exports the algorithm.</p>
 
-                    <p>The <code>Dijkstrajs</code> module would be for importing the <code>dijkstrajs</code> package from NPM as well as creating a function that provides the correct input. This will allow me to use an alternative pathfinding algorithm and check which one is more efficient. This module would <code>require</code> <code>VillageState</code> and export the result of running the algorithm.</p>
+                    <p>The next <code>GoalRobot</code> module would created to contain the <code>goalOrientedRobot</code> function. Instead of using the <code>findRoute</code> function, I would import the algorithm for the <code>Dijkstrajs</code> package for finding the optimal route. This module would also require the <code>Roads</code> module to know the possible routes. The robot function would then be exported.</p>
 
-                    <p>The <code>RunRobot</code> module would contain the <code>runRobot</code> function as well as any other algorithm I create to compare the results of different robots. The dependencies would rely on the <code>Village</code> module as well as any other robot modules such as <code>GoalRobot</code> or <code>Dijkstrajs</code>. This module wouldn't have any exports as this will just be used to print the results out to the console for the user to observe.</p>
+                    <p>The <code>RunRobot</code> module would contain and export the <code>runRobot</code> function, as well as any other algorithm I create to compare the results of different robots. The dependencies would rely on the <code>Village</code> module.</p>
+
+                    <p>Any other robot modules like <code>GoalRobot</code> could be created and have their function exported if I wanted to compare different implementations.</p>
                 </div>
 
                 <div class="exercise-body">
                     <h3>Author's Answer</h3>
 
-                    <p>The code used to build the road graph lives in the <code>graph</code> module. Because I’d rather use <code>dijkstrajs</code> from NPM than our own pathfinding code, we’ll make this build the kind of graph data that <code>dijkstrajs</code> expects. This module exports a single function, <code>buildGraph</code>. I’d have <code>buildGraph</code> accept an array of two-element arrays, rather than strings containing hyphens, to make the module less dependent on the input format.</p>
+                    <p>The code used to build the road graph lives in the <code>graph</code> module. Because I’d rather use <code>dijkstrajs</code> from NPM than our own path-finding code, we’ll make this build the kind of graph data that <code>dijkstrajs</code> expects. This module exports a single function, <code>buildGraph</code>. I’d have <code>buildGraph</code> accept an array of two-element arrays, rather than strings containing hyphens, to make the module less dependent on the input format.</p>
 
                     <p>The <code>roads</code> module contains the raw road data (the <code>roads</code> array) and the <code>roadGraph</code> binding. This module depends on <code>./graph</code> and exports the road graph.</p>
 
@@ -86,7 +88,7 @@
 
                     <p>By offloading some work to NPM modules, the code became a little smaller. Each individual module does something rather simple and can be read on its own. Dividing code into modules also often suggests further improvements to the program’s design. In this case, it seems a little odd that the <code>VillageState</code> and the robots depend on a specific road graph. It might be a better idea to make the graph an argument to the state’s constructor and make the robots read it from the state object—this reduces dependencies (which is always good) and makes it possible to run simulations on different maps (which is even better).</p>
 
-                    <p>Is it a good idea to use NPM modules for things that we could have written ourselves? In principle, yes—for nontrivial things like the pathfinding function you are likely to make mistakes and waste time writing them yourself. For tiny functions like <code>random-item</code>, writing them yourself is easy enough. But adding them wherever you need them does tend to clutter your modules.</p>
+                    <p>Is it a good idea to use NPM modules for things that we could have written ourselves? In principle, yes—for nontrivial things like the path-finding function you are likely to make mistakes and waste time writing them yourself. For tiny functions like <code>random-item</code>, writing them yourself is easy enough. But adding them wherever you need them does tend to clutter your modules.</p>
 
                     <p>However, you should also not underestimate the work involved in finding an appropriate NPM package. And even if you find one, it might not work well or may be missing some feature you need. On top of that, depending on NPM packages means you have to make sure they are installed, you have to distribute them with your program, and you might have to periodically upgrade them.</p>
                 </div>
@@ -168,7 +170,7 @@ exports.roadGraph = buildGraph(roads.map(r => r.split("-")));</code></pre>
                 <div class="exercise-body">
                     <h3>Personal Answer</h3>
 
-                    <p>The cycles are begin by checking whether the module has already been previously loaded and is present within the <code>cache</code>. If the module isn't, then the contents of the file are read, the <code>module</code> variable is created with the <code>exports</code> object, and the <code>module</code> is added to the <code>require.cache</code> before running the <code>wrapper</code> function. This prevents other modules from accessing each other before being loaded and from overwriting their default <code>exports</code> object. This is important since replacing the default <code>exports</code> object would made the module insecure and risky to run as the user would never know whether the original functions and variables remain intact or whether they were previously altered.</p>
+                    <p>The cycles are begin by checking whether the module has already been previously loaded and is present within the <code>cache</code>. If the module isn't, then the contents of the file are read, the <code>module</code> variable is created holding the <code>exports</code> object, and the <code>module</code> is added to the <code>require.cache</code> before running its code. Else, the <code>exports</code> from the module in the <code>cache</code> is returned. This keeps modules from automatically overwriting their default <code>exports</code> object when being loaded. This is important since replacing the default <code>exports</code> object makes the module insecure and risky to run as the user would never know whether the original functions and variables remain intact or whether they were previously altered and incomplete.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -176,7 +178,7 @@ exports.roadGraph = buildGraph(roads.map(r => r.split("-")));</code></pre>
 
                     <p>The trick is that <code>require</code> adds modules to its cache before it starts loading the module. That way, if any <code>require</code> call made while it is running tries to load it, it is already known, and the current interface will be returned, rather than starting to load the module once more (which would eventually overflow the stack).</p>
 
-                    <p>If a module overwrites its module.exports value, any other module that has received its interface value before it finished loading will have gotten hold of the default interface object (which is likely empty), rather than the intended interface value.</p>
+                    <p>If a module overwrites its <code>module.exports</code> value, any other module that has received its interface value before it finished loading will have gotten hold of the default interface object (which is likely empty), rather than the intended interface value.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>

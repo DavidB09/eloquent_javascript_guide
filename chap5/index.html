@@ -130,7 +130,7 @@
                     <h4>Part I:</h4>
                     <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function every(array, test) {
     for (let i = 0; i < array.length; i++)
-        if (!test(array[i])) return false
+        if (!test(array[i])) return false;
     return true; 
 }                   </code></pre>
                 </div>
@@ -148,7 +148,7 @@
                 <div class="exercise-body">
                     <h4>Part II:</h4>
                     <pre id="code6" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function every2(array, test) {
-    return !(array.some((n) => !test(n)))
+    return !(array.some((n) => !test(n)));
 }                   </code></pre>
                 </div>
 
@@ -212,7 +212,7 @@
         if (script != null) return script.direction;
     }).filter(n => n.name != undefined);
 
-    return scripts.reduce((a, b) => a.count >= b.count ? a : b).name
+    return scripts.reduce((a, b) => a.count >= b.count ? a : b).name;
 }                   </code></pre>
                 </div>
 
