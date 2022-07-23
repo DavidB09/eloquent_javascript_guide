@@ -40,7 +40,7 @@
 
                     <p>You can control the size of text (emoji are text) by setting the <code>font-size</code> CSS property (<code>style.fontSize</code>) on its parent element. Remember to include a unit in the value—for example, pixels (<code>10px</code>).</p>
 
-                    <p>The key names of the arrow keys are "ArrowUp" and "ArrowDown". Make sure the keys change only the balloon, without scrolling the page.</p>
+                    <p>The key names of the arrow keys are "<code>ArrowUp</code>" and "<code>ArrowDown</code>". Make sure the keys change only the balloon, without scrolling the page.</p>
 
                     <p>When that works, add a feature where, if you blow up the balloon past a certain size, it explodes. In this case, exploding means that it is replaced with an 💥 emoji, and the event handler is removed (so that you can’t inflate or deflate the explosion).</p>
                 </div>
@@ -64,7 +64,7 @@ document.addEventListener("keydown", function balloonChange(event) {
     if (fontSize > 70) {
         balloon.innerText = "💥";
         document.removeEventListener("keydown", balloonChange);
-    };
+    }
 });                 </code></pre>
                 </div>
 
@@ -73,19 +73,19 @@ document.addEventListener("keydown", function balloonChange(event) {
 
                     <p><code class="desc desc-code1" data-line="2">Line 2</code> creates the <code>fontSize</code> variable and initializes it to 20.</p>
 
-                    <p><code class="desc desc-code1" data-line="4">Line 4</code> adds an Event Listener to the <code>document</code> that waits for a key to be pressed, calling the <code>balloonChange</code> function whenever it occurs.</p>
+                    <p><code class="desc desc-code1" data-line="4">Line 4</code> adds an event listener to the <code>document</code> that waits for a key to be pressed, calling the <code>balloonChange</code> function whenever it occurs.</p>
 
-                    <p><code class="desc desc-code1" data-line="5">Line 5</code> checks whether the key that was pressed was the Arrow Up key.</p>
+                    <p><code class="desc desc-code1" data-line="5">Line 5</code> checks whether the key that was pressed was the arrow up key.</p>
 
                     <p>If <code>true</code>, then <code class="desc desc-code1" data-line="6">Line 6</code> increases <code>fontSize</code> by 10%.</p>
 
-                    <p>Else, <code class="desc desc-code1" data-line="7">Line 7</code> checks whether the key that was pressed was the Arrow Down key.</p>
+                    <p>Else, <code class="desc desc-code1" data-line="7">Line 7</code> checks whether the key that was pressed was the arrow down key.</p>
 
                     <p>If <code>true</code>, then <code class="desc desc-code1" data-line="8">Line 8</code> decreases <code>fontSize</code> by 10%.</p>
 
                     <p>Else, <code class="desc desc-code1" data-line="9">Line 9</code> stops the <code>balloonChange</code> from continuing.</p>
 
-                    <p><code class="desc desc-code1" data-line="11">Line 11</code> calls the <code>preventDefault</code> method on the <code>event</code> object provided by the Event Listener.</p>
+                    <p><code class="desc desc-code1" data-line="11">Line 11</code> calls the <code>preventDefault</code> method on the <code>event</code> object provided by the event listener to stop page scrolling.</p>
 
                     <p><code class="desc desc-code1" data-line="12">Line 12</code> sets the <code>fontSize</code> <code>style</code> property of <code>balloon</code> to equal the current <code>fontSize</code> value.</p>
 
@@ -93,7 +93,7 @@ document.addEventListener("keydown", function balloonChange(event) {
 
                     <p>If <code>true</code>, then <code class="desc desc-code1" data-line="15">Line 15</code> sets the <code>innerText</code> property of <code>balloon</code> to an explosion.</p>
 
-                    <p><code class="desc desc-code1" data-line="16">Line 16</code> removes the Event Listener from the <code>document</code>.</p>
+                    <p><code class="desc desc-code1" data-line="16">Line 16</code> removes the event listener from the <code>document</code>.</p>
                 </div>
 
                 <div class="exercise-body">
@@ -145,7 +145,7 @@ document.body.addEventListener("keydown", handleArrow);</code></pre>
 
                     <p>If <code>true</code>, then <code class="desc desc-code2" data-line="12">Line 12</code> sets the <code>textContent</code> property of <code>p</code> to an explosion.</p>
 
-                    <p><code class="desc desc-code2" data-line="13">Line 13</code> removes the <code>"keydown"</code> Event Listener from the <code>document</code>.</p>
+                    <p><code class="desc desc-code2" data-line="13">Line 13</code> removes the <code>"keydown"</code> event listener from the <code>document</code>.</p>
 
                     <p>Else, <code class="desc desc-code2" data-line="15">Line 15</code> calls the <code>setSize</code> function with <code>size</code> increased by 10%.</p>
 
@@ -157,7 +157,7 @@ document.body.addEventListener("keydown", handleArrow);</code></pre>
 
                     <p><code class="desc desc-code2" data-line="20">Line 20</code> prevents the screen from scrolling by calling the <code>preventDefault</code> method on the <code>event</code> object.</p>
 
-                    <p><code class="desc desc-code2" data-line="23">Line 23</code> adds an Event Listener to the <code>body</code> of the <code>document</code> that calls the <code>handleArrow</code> function whenever a key is pressed.</p>
+                    <p><code class="desc desc-code2" data-line="23">Line 23</code> adds an event listener to the <code>body</code> of the <code>document</code> that calls the <code>handleArrow</code> function whenever a key is pressed.</p>
                 </div>
 
                 <button class="exercise-body exercise-close">⇮</button>
@@ -212,7 +212,7 @@ document.addEventListener("mousemove", event => {
 
                     <p><code class="desc desc-code3" data-line="5">Line 5</code> uses a <code>for</code> loop to iterate until all the dot elements are created.</p>
 
-                    <p><code class="desc desc-code3" data-line="6">Line 6</code> creates a <code>div</code> element and assigns it to the variable <code>dot</code>.</p>
+                    <p><code class="desc desc-code3" data-line="6">Line 6</code> creates a <code>&lt;div></code> element and assigns it to the variable <code>dot</code>.</p>
 
                     <p><code class="desc desc-code3" data-line="7">Line 7</code> sets the <code>className</code> property of <code>dot</code> to <code>"trail"</code>.</p>
 
@@ -258,7 +258,7 @@ window.addEventListener("mousemove", event => {
 
                     <p><code class="desc desc-code4" data-line="2">Line 2</code> uses a <code>for</code> loop to iterate until all the dot elements are created.</p>
 
-                    <p><code class="desc desc-code4" data-line="3">Line 3</code> creates a <code>div</code> element and assigns it to the variable <code>node</code>.</p>
+                    <p><code class="desc desc-code4" data-line="3">Line 3</code> creates a <code>&lt;div></code> element and assigns it to the variable <code>node</code>.</p>
 
                     <p><code class="desc desc-code4" data-line="4">Line 4</code> sets the <code>className</code> property of <code>node</code> to <code>"trail"</code>.</p>
 
@@ -299,7 +299,7 @@ window.addEventListener("mousemove", event => {
                     <h3>Personal Answer</h3>
 
                     <pre id="code5" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function asTabs(node) {
-    let tabs = Array.from(node.childNodes).filter(tab => tab.nodeType == Node.ELEMENT_NODE);
+    let tabs = [...node.children];
 
     let buttonContainer = document.createElement("div");
     let buttons = tabs.map((tab, index) => {
@@ -325,15 +325,15 @@ asTabs(document.querySelector("tab-panel"));</code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code5" data-line="1">Line 1</code> creates the <code>asTabs</code> function that recieves a DOM node as the parameter.</p>
+                    <p><code class="desc desc-code5" data-line="1">Line 1</code> creates the <code>asTabs</code> function that receives a DOM node as the parameter.</p>
 
-                    <p><code class="desc desc-code5" data-line="2">Line 2</code> retrieves all the <code>childNodes</code> from <code>node</code> that are HTML elements, not text nodes, and assigns the resulting array to <code>tabs</code>.</p>
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> assigns <code>tabs</code> to all the <code>children</code> HTML elements from <code>node</code> converted into an array.</p>
 
-                    <p><code class="desc desc-code5" data-line="4">Line 4</code> creates a <code>div</code> element and assigns it to the <code>buttonContainer</code> variable.</p>
+                    <p><code class="desc desc-code5" data-line="4">Line 4</code> creates a <code>&lt;div></code> element and assigns it to the <code>buttonContainer</code> variable.</p>
 
-                    <p><code class="desc desc-code5" data-line="5">Line 5</code> creates the <code>buttons</code> varable and assigns it to the result of mapping over the <code>tabs</code> array.</p>
+                    <p><code class="desc desc-code5" data-line="5">Line 5</code> creates the <code>buttons</code> variable and assigns it to the result of mapping over the <code>tabs</code> array.</p>
 
-                    <p><code class="desc desc-code5" data-line="6">Line 6</code> creates a <code>button</code> element and assigns it to the <code>button</code> variable.</p>
+                    <p><code class="desc desc-code5" data-line="6">Line 6</code> creates a <code>&lt;button></code> element and assigns it to the <code>button</code> variable.</p>
 
                     <p><code class="desc desc-code5" data-line="7">Line 7</code> sets the <code>innerText</code> property of <code>button</code> to the <code>data-tabname</code> attribute of the current <code>tab</code> element.</p>
 
@@ -341,7 +341,7 @@ asTabs(document.querySelector("tab-panel"));</code></pre>
 
                     <p><code class="desc desc-code5" data-line="9">Line 9</code> adds an event listener that calls <code>handleClick</code> with the current <code>index</code> value whenever <code>button</code> is clicked.</p>
 
-                    <p><code class="desc desc-code5" data-line="11">Line 11</code> returns the newly created <code>button</code> variable, replacing the previous <code>tab</code> element with a clickable HTML <code>button</code>.</p>
+                    <p><code class="desc desc-code5" data-line="11">Line 11</code> returns the newly created <code>button</code> variable, replacing the previous <code>tab</code> element with a clickable HTML <code>&lt;button></code>.</p>
 
                     <p><code class="desc desc-code5" data-line="14">Line 14</code> creates the <code>handleClick</code> function takes an index number as the parameter.</p>
 
@@ -387,11 +387,11 @@ asTabs(document.querySelector("tab-panel"));</code></pre>
                 </div>
 
                 <div class="exercise-body exercise-desc">
-                    <p><code class="desc desc-code6" data-line="1">Line 1</code> creates the <code>asTabs</code> function that recieves a DOM node as the parameter.</p>
+                    <p><code class="desc desc-code6" data-line="1">Line 1</code> creates the <code>asTabs</code> function that receives a DOM node as the parameter.</p>
 
-                    <p><code class="desc desc-code6" data-line="2">Line 2</code> creates a <code>tab</code> variable and assigns its value to the result of mapping over the chidren nodes of <code>node</code>.</p>
+                    <p><code class="desc desc-code6" data-line="2">Line 2</code> creates a <code>tab</code> variable and assigns its value to the result of mapping over the children nodes of <code>node</code>.</p>
 
-                    <p><code class="desc desc-code6" data-line="3">Line 3</code> creates a <code>button</code> element and assigns it to the <code>button</code> variable.</p>
+                    <p><code class="desc desc-code6" data-line="3">Line 3</code> creates a <code>&lt;button></code> element and assigns it to the <code>button</code> variable.</p>
 
                     <p><code class="desc desc-code6" data-line="4">Line 4</code> sets the <code>innerText</code> property of <code>button</code> to the <code>data-tabname</code> attribute of the current <code>node</code> element.</p>
 
@@ -401,15 +401,15 @@ asTabs(document.querySelector("tab-panel"));</code></pre>
 
                     <p><code class="desc desc-code6" data-line="7">Line 7</code> returns the object <code>tab</code>, replacing the previous node in the array.</p>
 
-                    <p><code class="desc desc-code6" data-line="10">Line 10</code> creates a <code>div</code> element and assigns it to the <code>tabList</code> variable.</p>
+                    <p><code class="desc desc-code6" data-line="10">Line 10</code> creates a <code>&lt;div></code> element and assigns it to the <code>tabList</code> variable.</p>
 
-                    <p><code class="desc desc-code6" data-line="11">Line 11</code> interates through each object in <code>tabs</code>, retrieving the <code>button</code> property and appending it as a child node to <code>tabList</code>.</p>
+                    <p><code class="desc desc-code6" data-line="11">Line 11</code> iterates through each object in <code>tabs</code>, retrieving the <code>button</code> property and appending it as a child node to <code>tabList</code>.</p>
 
                     <p><code class="desc desc-code6" data-line="12">Line 12</code> inserts the <code>tabList</code> element before the <code>firstChild</code> node of the element <code>node</code>.</p>
 
-                    <p><code class="desc desc-code6" data-line="14">Line 14</code> craetes the <code>selectTab</code> function with the <code>selectedTab</code> parameter designated for an object.</p>
+                    <p><code class="desc desc-code6" data-line="14">Line 14</code> creates the <code>selectTab</code> function with the <code>selectedTab</code> parameter designated for an object.</p>
 
-                    <p><code class="desc desc-code6" data-line="15">Line 15</code> interates through each <code>tab</code> object in <code>tabs</code>.</p>
+                    <p><code class="desc desc-code6" data-line="15">Line 15</code> iterates through each <code>tab</code> object in <code>tabs</code>.</p>
 
                     <p><code class="desc desc-code6" data-line="16">Line 16</code> creates the <code>selected</code> variable and assigns it to the result of comparing <code>tab</code> with <code>selectedTab</code>.</p>
 
@@ -435,7 +435,7 @@ asTabs(document.querySelector("tab-panel"));</code></pre>
 
                 <nav>
                     <ul>
-                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../index.html" alt="Intro Link" title="Intro">Intro</a></li>
                         <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
                         <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
                         <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>

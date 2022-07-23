@@ -65,7 +65,7 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code1" data-line="1">Line 1</code> defines the asynchronous function <code>runGame</code> with the parameter <code>plans</code> for the different game levels and <code>Display</code> representing the current game screen.</p>
 
-                    <p><code class="desc desc-code1" data-line="2">Line 2</code> uses a <code>for</code> loop that initializes <code>level</code> to 0 and <code>lives</code> to 3 while breaking out of the loop when <code>level</code> is equal to the length of <code>plans</code>.</p>
+                    <p><code class="desc desc-code1" data-line="2">Line 2</code> uses a <code>for</code> loop that initializes <code>level</code> to 0 and <code>lives</code> to 3 while ending the loop when <code>level</code> is equal to the length of <code>plans</code>.</p>
 
                     <p><code class="desc desc-code1" data-line="3">Line 3</code> consoles to the screen the current <code>level</code> value increased by one and the <code>lives</code> value.</p>
 
@@ -113,9 +113,9 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
 
                     <p><code class="desc desc-code2" data-line="2">Line 2</code> initializes <code>lives</code> to 3.</p>
 
-                    <p><code class="desc desc-code2" data-line="3">Line 3</code> uses a <code>for</code> loop that initializes <code>level</code> to 0 ands breaks out of the loop whenever <code>level</code> is equal to the length of <code>plans</code> or <code>lives</code> is equal to 0.</p>
+                    <p><code class="desc desc-code2" data-line="3">Line 3</code> uses a <code>for</code> loop that initializes <code>level</code> to 0 and ends the loop whenever <code>level</code> is equal to the length of <code>plans</code> or <code>lives</code> is equal to 0.</p>
 
-                    <p><code class="desc desc-code1" data-line="4">Line 4</code> consoles to the screen the current <code>level</code> value increased by one and the <code>lives</code> value.</p>
+                    <p><code class="desc desc-code2" data-line="4">Line 4</code> consoles to the screen the current <code>level</code> value increased by one and the <code>lives</code> value.</p>
 
                     <p><code class="desc desc-code2" data-line="6">Line 6</code> assigns a new variable <code>status</code> to the result of calling the asynchronous <code>runLevel</code> function with the current game level and game display.</p>
 
@@ -156,7 +156,7 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                     <pre id="code3" class="line-numbers linkable-line-numbers language-javascript" tabindex="0" data-line="0"><code class="language-javascript">function runLevel(level, Display) {
     let display = new Display(document.body, level);
     let state = State.start(level);
-    let ending = 1;
+    let endPause = 1;
 
     return new Promise(resolve => {
         let isPaused = false;
@@ -176,8 +176,8 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                     return false;
                 } else if (state.status == "playing") {
                     return true;
-                } else if (ending > 0) {
-                    ending -= time;
+                } else if (endPause > 0) {
+                    endPause -= time;
                     return true;
                 } else {
                     arrowKeys.unregister(); 
@@ -186,18 +186,18 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                     return false;
                 }
             });
-        }; 
+        }
 
         run();
     });
 }
 
 function trackKeys(keys) {
-    let down = Object.create(null);
+    let down = {};
     function track(event) {
         if (keys.includes(event.key)) {
-            down[event.key] = event.type == "keydown";
             event.preventDefault();
+            down[event.key] = event.type == "keydown";
         }
     }
 
@@ -226,13 +226,13 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
 
                     <p><code class="desc desc-code3" data-line="3">Line 3</code> creates a new variable <code>state</code>, starting the game at with the value <code>level</code>.</p>
 
-                    <p><code class="desc desc-code3" data-line="4">Line 4</code> initializes a variable <code>ending</code> to 1.</p>
+                    <p><code class="desc desc-code3" data-line="4">Line 4</code> initializes a variable <code>endPause</code> to 1.</p>
 
                     <p><code class="desc desc-code3" data-line="6">Line 6</code> returns a new <code>Promise</code> from the <code>runLevel</code> function.</p>
 
                     <p><code class="desc desc-code3" data-line="7">Line 7</code> initializes <code>isPaused</code> to <code>false</code>.</p>
 
-                    <p><code class="desc desc-code3" data-line="8">Line 8</code> adds an Event Listener to <code>window</code> that waits for a <code>"keydown"</code> event before calling a function.</p>
+                    <p><code class="desc desc-code3" data-line="8">Line 8</code> adds an event listener to <code>window</code> that waits for a <code>"keydown"</code> event before calling a function.</p>
 
                     <p><code class="desc desc-code3" data-line="9">Line 9</code> checks whether the <code>key</code> that was pressed is equal to <code>"Escape"</code> or the escape key.</p>
 
@@ -258,9 +258,9 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
 
                     <p>If true, <code class="desc desc-code3" data-line="23">Line 23</code> returns <code>true</code> from the <code>runAnimation</code> function to update the game display.</p>
 
-                    <p>Else, the game is finished so <code class="desc desc-code3" data-line="24">Line 24</code> checks whether the <code>ending</code> is greater than <code>0</code>.</p>
+                    <p>Else, the game is finished so <code class="desc desc-code3" data-line="24">Line 24</code> checks whether the <code>endPause</code> is greater than <code>0</code>.</p>
 
-                    <p>If true, <code class="desc desc-code3" data-line="25">Line 25</code> decreases <code>ending</code> by the current <code>time</code> value.</p>
+                    <p>If true, <code class="desc desc-code3" data-line="25">Line 25</code> decreases <code>endPause</code> by the current <code>time</code> value.</p>
 
                     <p><code class="desc desc-code3" data-line="26">Line 26</code> returns <code>true</code> from the <code>runAnimation</code> function to update the game display for a second despite the game being finished.</p>
 
@@ -272,7 +272,7 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
 
                     <p><code class="desc desc-code3" data-line="31">Line 31</code> returns <code>false</code> from the <code>runAnimation</code> function to stop the game display from updating.</p>
 
-                    <p><code class="desc desc-code3" data-line="31">Line 36</code> calls the <code>run</code> function to start updating the game display.</p>
+                    <p><code class="desc desc-code3" data-line="36">Line 36</code> calls the <code>run</code> function to start updating the game display.</p>
 
                     <p><code class="desc desc-code3" data-line="40">Line 40</code> defines the function <code>trackKeys</code> with the parameter <code>keys</code> for an array of keyboard keys.</p>
 
@@ -282,9 +282,9 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
 
                     <p><code class="desc desc-code3" data-line="43">Line 43</code> checks if the array <code>keys</code> includes the value provided by <code>event.key</code>.</p>
 
-                    <p>If true, <code class="desc desc-code3" data-line="44">Line 44</code> sets a value in <code>down</code> with the key corresponding to <code>event.key</code> to the result of comparing <code>event.type</code> and <code>"keydown"</code>.</p>
+                    <p>If true, <code class="desc desc-code3" data-line="44">Line 44</code> prevents the default action of the keydown event.</p>
 
-                    <p><code class="desc desc-code3" data-line="45">Line 45</code> prevents the default action of the keydown event.</p>
+                    <p><code class="desc desc-code3" data-line="45">Line 45</code> sets a value in <code>down</code> with the key corresponding to <code>event.key</code> to the result of comparing <code>event.type</code> and <code>"keydown"</code>.</p>
 
                     <p><code class="desc desc-code3" data-line="49">Line 49</code> creates the method <code>register</code> on the <code>down</code> object.</p>
 
@@ -398,11 +398,11 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
 
                     <p>Else, <code class="desc desc-code4" data-line="14">Line 14</code> checks whether <code>running</code> is equal to <code>"yes"</code>.</p>
 
-                    <p>If true, <code class="desc desc-code4" data-line="15">Line 15</code> sets <code>running</code> to <code>"running"</code>.</p>
+                    <p>If true, <code class="desc desc-code4" data-line="15">Line 15</code> sets <code>running</code> to <code>"pausing"</code>.</p>
 
                     <p>Else, <code class="desc desc-code4" data-line="17">Line 17</code> sets <code>running</code> to <code>"yes"</code>.</p>
 
-                    <p><code class="desc desc-code4" data-line="20">Line 20</code> adds an Event Listener to <code>window</code> that waits for a <code>"keydown"</code> event before calling a escHandler.</p>
+                    <p><code class="desc desc-code4" data-line="20">Line 20</code> adds an event listener to <code>window</code> that waits for a <code>"keydown"</code> event before calling a escHandler.</p>
 
                     <p><code class="desc desc-code4" data-line="21">Line 21</code> calls the <code>trackKeys</code> function with an array containing the right, left, and up arrow keys and assigns the result to <code>arrowKeys</code>.</p>
 
@@ -432,7 +432,7 @@ runGame(GAME_LEVELS, DOMDisplay);</code></pre>
                     
                     <p><code class="desc desc-code4" data-line="38">Line 38</code> removes the <code>"keydown"</code> event handler from <code>window</code>.</p>
 
-                    <p>Else, <code class="desc desc-code4" data-line="39">Line 39</code> calls the <code>unregister</code> method of <code>arrowKeys</code> to prevent user input.</p>
+                    <p><code class="desc desc-code4" data-line="39">Line 39</code> calls the <code>unregister</code> method of <code>arrowKeys</code> to prevent user input.</p>
 
                     <p><code class="desc desc-code4" data-line="40">Line 40</code> calls the <code>resolve</code> function of the encompassing <code>Promise</code> object with the current <code>status</code> variable of <code>state</code>.</p>
 
@@ -519,7 +519,7 @@ Monster.prototype.size = new Vec(1.2, 2);</code></pre>
                 <div class="exercise-body exercise-desc">
                     <p><code class="desc desc-code5" data-line="1">Line 1</code> creates the class called <code>Monster</code>.</p>
 
-                    <p><code class="desc desc-code5" data-line="2">Line 2</code> defines the constructor method for <code>Monster</code> that recieves <code>pos</code> and <code>speed</code> variables.</p>
+                    <p><code class="desc desc-code5" data-line="2">Line 2</code> defines the constructor method for <code>Monster</code> that receives <code>pos</code> and <code>speed</code> variables.</p>
 
                     <p><code class="desc desc-code5" data-line="3">Line 3</code> sets the variable <code>pos</code> of <code>Monster</code> to <code>pos</code> from the parameter.</p>
 
@@ -593,7 +593,7 @@ Monster.prototype.size = new Vec(1.2, 2);</code></pre>
 
                     <p><code class="desc desc-code6" data-line="3">Line 3</code> creates the class called <code>Monster</code>.</p>
 
-                    <p><code class="desc desc-code6" data-line="4">Line 4</code> defines the constructor method for <code>Monster</code> that recieves and sets the <code>pos</code> variable.</p>
+                    <p><code class="desc desc-code6" data-line="4">Line 4</code> defines the constructor method for <code>Monster</code> that receives and sets the <code>pos</code> variable.</p>
 
                     <p><code class="desc desc-code6" data-line="6">Line 6</code> defines the getter method <code>type</code> that returns the string <code>"monster"</code>.</p>
 
@@ -603,7 +603,7 @@ Monster.prototype.size = new Vec(1.2, 2);</code></pre>
 
                     <p><code class="desc desc-code6" data-line="11">Line 11</code> assigns the new variable <code>player</code> to the current <code>state.player</code> object.</p>
 
-                    <p><code class="desc desc-code6" data-line="12">Line 12</code> sets speed to the product of <code>time</code>, <code>monsterSpeed</code>, and either <code>-1</code> or <code>1</code> depending on whether the game player is behind or infront of the current game monster.</p>
+                    <p><code class="desc desc-code6" data-line="12">Line 12</code> sets speed to the product of <code>time</code>, <code>monsterSpeed</code>, and either <code>-1</code> or <code>1</code> depending on whether the game player is behind or in front of the current game monster.</p>
 
                     <p><code class="desc desc-code6" data-line="13">Line 13</code> assigns the new variable <code>newPos</code> to a new <code>Vec</code> object that has the updated <code>pos.x</code> value.</p>
 
@@ -638,7 +638,7 @@ Monster.prototype.size = new Vec(1.2, 2);</code></pre>
 
                 <nav>
                     <ul>
-                        <li><a href="../intro/index.html" alt="Intro Link" title="Intro">Intro</a></li>
+                        <li><a href="../index.html" alt="Intro Link" title="Intro">Intro</a></li>
                         <li><a href="../chap1/index.html" alt="Chapter 1 Link" title="Chapter 1">Chapter 1 (Part 1: Language)</a></li>
                         <li><a href="../chap2/index.html" alt="Chapter 2 Link" title="Chapter 2">Chapter 2</a></li>
                         <li><a href="../chap3/index.html" alt="Chapter 3 Link" title="Chapter 3">Chapter 3</a></li>
